@@ -1,0 +1,10 @@
+@mixin flex-sort($justify, $alignItemts) {
+  display: flex;
+  align-items: $alignItemts;
+  justify-content: $justify;
+}
+
+@mixin font($size, $color) {
+  color: $color;
+  font-size: $size;
+}
