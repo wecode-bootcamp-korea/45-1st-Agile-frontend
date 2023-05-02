@@ -1,0 +1,21 @@
+@import '../../../styles/common';
+@import '../../../styles/variables';
+@import '../Payment';
+
+.subscribe {
+  margin-top: 30px;
+  margin-bottom: 70px;
+
+  .text-xl {
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+  }
+  .subscribe-main {
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    .subscribe-start {
+      @include inputBox();
+    }
+  }
+}

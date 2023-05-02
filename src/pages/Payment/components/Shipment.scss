@@ -1,0 +1,36 @@
+@import '../../../styles/common';
+@import '../../../styles/variables';
+@import '../Payment';
+
+.shipment {
+  margin-top: 30px;
+  margin-bottom: 70px;
+  .text-xl {
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+  }
+
+  .shipment-main {
+    padding-top: 10px;
+    padding-bottom: 20px;
+
+    .courier {
+      @include inputBox();
+    }
+    .address {
+      @include inputBox();
+    }
+    .courier-number {
+      @include inputBox();
+    }
+    .request {
+      @include inputBox();
+      .text-lg {
+        width: 200px;
+      }
+      select {
+        height: 46px;
+      }
+    }
+  }
+}

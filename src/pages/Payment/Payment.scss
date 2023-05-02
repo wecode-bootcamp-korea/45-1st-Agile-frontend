@@ -1,0 +1,32 @@
+@import '../../styles/common';
+@import '../../styles/variables';
+
+@mixin inputBox {
+  @include flex-sort(none, center);
+  margin-top: 7px;
+  margin-bottom: 7px;
+
+  .text-lg {
+    width: 200px;
+  }
+  input {
+    width: 500px;
+    height: 46px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+.payment {
+  .order-sheet {
+    @include flex-sort(center, center);
+    height: 200px;
+    .text-2xl {
+      font-weight: bold;
+    }
+  }
+
+  .pay-part {
+    display: flex;
+  }
+}
