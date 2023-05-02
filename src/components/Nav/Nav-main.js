@@ -21,7 +21,7 @@ const NavMain = () => {
   }, [isScrolled]);
 
   return (
-    <div className="nav-main">
+    <nav className="nav-main">
       <div className={isScrolled ? 'nav-contaner-scrolled' : 'nav-contaner'}>
         <div className="nav-main-thing">
           <div className="nav-main-left">
@@ -47,7 +47,7 @@ const NavMain = () => {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

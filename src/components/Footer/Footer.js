@@ -3,9 +3,9 @@ import './Footer.scss';
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="realfooter"> 푸터입니다</div>
-    </div>
+    </footer>
   );
 };
 export default Footer;

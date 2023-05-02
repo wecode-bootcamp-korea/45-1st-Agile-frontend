@@ -22,7 +22,7 @@ function Header() {
   };
 
   return (
-    <div className="header">
+    <header className="header">
       <Link to={isLoggedIn ? '/mypage' : '/signup'}>
         <button className="to-signup">
           {isLoggedIn ? '마이페이지' : '회원가입'}
@@ -38,7 +38,7 @@ function Header() {
       <Link to="/customer-center">
         <button className="to-customer-center">고객센터</button>
       </Link>
-    </div>
+    </header>
   );
 }
 
