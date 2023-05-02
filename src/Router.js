@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Main from './pages/main/main';
-import Login from './pages/login/login';
-import Details from './pages/details/details';
-import Cart from './pages/cart/cart';
-import Payment from './pages/payment/payment';
-import Signup from './pages/signup/signup';
-import Mypage from './pages/mypage/mypage';
+import Main from './pages/Main/Main';
+import Login from './pages/Login/Login';
+import Details from './pages/Details/Details';
+import Cart from './pages/Cart/Cart';
+import Payment from './pages/Payment/Payment';
+import Signup from './pages/Signup/Signup';
+import Mypage from './pages/Mypage/Mypage';
 
 const Router = () => {
   return (
