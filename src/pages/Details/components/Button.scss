@@ -1,0 +1,27 @@
+.button {
+  min-width: 80px;
+  min-height: 48px;
+  border: 1px solid black;
+  &-red {
+    flex: 1;
+    background-color: red;
+  }
+  &-white {
+    flex: 1;
+    background-color: white;
+  }
+  &-black {
+    flex: 1;
+    background-color: black;
+  }
+}
+
+.red {
+  color: red;
+}
+.black {
+  color: black;
+}
+.white {
+  color: white;
+}

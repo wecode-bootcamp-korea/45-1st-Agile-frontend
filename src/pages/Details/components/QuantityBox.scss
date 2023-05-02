@@ -1,0 +1,17 @@
+.quantity-box {
+  display: flex;
+  border: 1px solid #eae8e8;
+  input {
+    width: 36px;
+    border: none;
+    text-align: center;
+  }
+}
+
+.common-action-button {
+  border: none;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+}
