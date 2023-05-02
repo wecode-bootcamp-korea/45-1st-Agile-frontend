@@ -30,8 +30,8 @@ const Login = () => {
           placeholder="비밀번호를 입력해주세요"
         />
         <div className="id-check">
-          <input type="radio" id="id-check" name="id-check" value="id-check" />
-          <label for="id-check">아이디 저장</label>
+          <input type="checkbox" id="id-check" name="id-check" />
+          <label for="id-check">아이디 저장 </label>
         </div>
       </div>
       <button className="loginbtn" type="button" onClick={goToMain}>
