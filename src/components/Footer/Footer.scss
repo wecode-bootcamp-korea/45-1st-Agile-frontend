@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+.footer {
+  .realfooter {
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    left: 0;
+    height: 400px;
+    background-color: #1c1c1c;
+    @include font(12px, #999999);
+  }
+}

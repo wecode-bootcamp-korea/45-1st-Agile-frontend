@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  gap: 26px;
+  height: 17.5px;
+  margin-top: 16px;
+  .to-signup {
+    @include font(16px, #333333);
+  }
+
+  .to-login,
+  .to-customer-center {
+    @include font(16px, #999999);
+  }
+}
