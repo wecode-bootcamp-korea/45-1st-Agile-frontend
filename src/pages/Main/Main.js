@@ -11,15 +11,34 @@ const Main = () => {
     <div className="main">
       <TitleLine />
       <TitleNav />
-      <TitleAd />
+      <video
+        className="big-ad"
+        src="/images/main/main-ad1.mp4"
+        autoPlay
+        muted
+        loop
+      />
       <TitleCategory />
-      <TitleAd2 />
+      <video
+        className="small-ad"
+        src="/images/main/main-ad2.mp4"
+        autoPlay
+        muted
+        loop
+      />
       <div className="introd-sub">
-        Esteem에서 직접 검수한 따끈한 문제가 왔어요
+        Esteem이 직접 검수한 따끈한 문제가 왔어요
       </div>
       <ProductLineup subCategoryId={1} count={4} />
       <div className="introd-sub">너빼고 다 몰래보고 있어 돈버는 비법</div>
       <ProductLineup subCategoryId={2} count={4} />
+      <video
+        className="small-ad"
+        src="/images/main/main-ad3.mp4"
+        autoPlay
+        muted
+        loop
+      />
       <div className="introd-sub">
         미국이 놀라고 일본이 전전긍긍하는 화제의 그 신작들
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NewestProduct from './NewestProduct';
 import './NewestNav.scss';
 
-const subCategories = [
+const SUBCATEGORIES = [
   { id: 1, name: '구독상품' },
   { id: 2, name: '성공/처세' },
   { id: 3, name: '인간관계' },
@@ -19,7 +19,7 @@ const NewestNav = () => {
   };
 
   useEffect(() => {
-    const loadedCategory = subCategories[activeIndex];
+    const loadedCategory = SUBCATEGORIES[activeIndex];
     if (!loadedSubCategory || loadedCategory.id !== loadedSubCategory.id) {
       setLoadedSubCategory(loadedCategory);
     }
@@ -28,7 +28,7 @@ const NewestNav = () => {
   return (
     <div className="newest-nav">
       <div className="newest-navbar">
-        {subCategories.map((subCategory, index) => (
+        {SUBCATEGORIES.map((subCategory, index) => (
           <div
             key={subCategory.id}
             className={`navbar-item ${index === activeIndex ? 'active' : ''}`}
@@ -40,7 +40,7 @@ const NewestNav = () => {
       </div>
       <div className="newest-product-container">
         {loadedSubCategory &&
-          subCategories.map(subCategory => (
+          SUBCATEGORIES.map(subCategory => (
             <div
               key={subCategory.id}
               className={`newest-product ${
