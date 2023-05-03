@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const ProductLineup = ({ subCategoryId }) => {
+const ProductLineup = ({ subCategoryId, count }) => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const ProductLineup = ({ subCategoryId }) => {
     })
       .then(res => res.json())
       .then(data => {
-        setProductList(data);
+        setProductList(getFilteredProducts(data, subCategoryId, count));
       });
   }, []);
 
@@ -32,18 +32,17 @@ const ProductLineup = ({ subCategoryId }) => {
     return randomProducts;
   };
 
-  const randomProducts = getFilteredProducts(productList, subCategoryId, 4);
-
   return (
     <div className="product-lineup">
-      {randomProducts.map(product => (
+      {productList.map(product => (
         <div key={product.Key} className="product-item">
-          {/* <img
+          <img
+            className="product-img"
             src={`images/main/booksimg/${product.Key}.avif`}
             alt={product.title}
-          /> */}
-          <p>{product.title}</p>
-          <p>{product.price}원</p>
+          />
+          <div className="product-title">{product.title}</div>
+          <div className="prduct-price">{product.price}원</div>
         </div>
       ))}
     </div>

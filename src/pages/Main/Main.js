@@ -13,7 +13,7 @@ const Main = () => {
       <TitleCategory />
       <TitleAd2 />
       <IntrodSub />
-      <ProductLineup subCategoryId={1} />
+      <ProductLineup subCategoryId={1} count={4} />
     </div>
   );
 };

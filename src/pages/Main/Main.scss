@@ -1,7 +1,5 @@
 @import '../../styles/variables';
-body {
-  color: white;
-}
+
 .title-line {
   @include flex-sort(space-around, center);
   margin-top: 40px;
@@ -90,4 +88,21 @@ body {
   margin-top: 80px;
   @include font(28px, #1c1c1c);
   font-weight: 700;
+}
+
+.product-lineup {
+  margin-top: 32px;
+  @include flex-sort(space-around, center);
+  .product-item {
+    .product-img {
+      width: 200px;
+      height: 200px;
+    }
+    .product-title {
+      @include font(20px, #1c1c1c);
+    }
+    .product-price {
+      @include font(16px, #333333);
+    }
+  }
 }
