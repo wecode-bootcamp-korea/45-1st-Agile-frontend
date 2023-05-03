@@ -6,7 +6,7 @@
   margin-bottom: 70px;
   .text-xl {
     padding-bottom: 15px;
-    border-bottom: 2px solid black;
+    border-bottom: 3px solid black;
   }
   .order-list-main {
     @include flex-sort(center, center);
