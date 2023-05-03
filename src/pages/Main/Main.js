@@ -10,6 +10,7 @@ const Main = () => {
       <TitleNav />
       <TitleAd />
       <TitleCategory />
+      <TitleAd2 />
     </div>
   );
 };
@@ -56,6 +57,14 @@ const TitleCategory = () => {
           <p>{category.name}</p>
         </Link>
       ))}
+    </div>
+  );
+};
+
+const TitleAd2 = () => {
+  return (
+    <div className="title-ad2">
+      <img className="ad2" src="/images/main/main-ad2.png" alt="ad2" />
     </div>
   );
 };
