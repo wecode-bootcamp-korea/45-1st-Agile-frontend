@@ -1,0 +1,16 @@
+@import '../../../styles/common';
+@import '../../../styles/variables';
+
+.menu-bar {
+  @include flex-sort(center, center);
+  flex-direction: column;
+  border: 1px solid #999999;
+  border-bottom: none;
+  color: #999999;
+  .text-lg {
+    width: 100%;
+    padding: 10px;
+    padding-left: 20px;
+    border-bottom: 1px solid #999999;
+  }
+}

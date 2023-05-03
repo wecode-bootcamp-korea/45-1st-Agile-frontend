@@ -1,0 +1,27 @@
+@import '../../../styles/common';
+@import '../../../styles/variables';
+@import '../Mypage';
+
+.likes {
+  .text-xl {
+    @include menu-title;
+    margin-bottom: 0px;
+  }
+  .likes-main {
+    padding: 5px;
+
+    .likes-list {
+      @include flex-sort(center, center);
+      flex-direction: column;
+      border-bottom: 2px solid black;
+
+      .no-list {
+        width: 100%;
+        padding: 50px;
+
+        border-bottom: 1px solid black;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -2,12 +2,63 @@
 @import '../../../styles/variables';
 
 .mypage-top {
-  padding-top: 55px;
-  padding-bottom: 55px;
-  .top-left {
-    .text-xl {
-      .bold {
-        font-weight: bold;
+  @include flex-sort(center, center);
+
+  .mypage-top-wrap {
+    @include flex-sort(center, stretch);
+    flex-grow: 1;
+    padding: 55px;
+    background-color: #f1f1f1;
+
+    .top-left {
+      width: 50%;
+      margin: 5px;
+      padding: 20px;
+      padding-left: 30px;
+      background-color: white;
+
+      .text-xl {
+        margin-bottom: 30px;
+
+        .bold {
+          font-weight: bold;
+        }
+      }
+
+      .member {
+        @include flex-sort(center, center);
+        width: 170px;
+        height: 50px;
+        border-radius: 50px;
+        background-color: #f1f1f1;
+
+        .text-lg {
+          font-weight: bold;
+        }
+      }
+    }
+    .top-right {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background-color: #f1f1f1;
+
+      .point {
+        height: 50%;
+        margin: 5px;
+        padding: 20px;
+        background-color: white;
+
+        .text-xl {
+          font-weight: bold;
+        }
+      }
+      .phone-number {
+        @include flex-sort(space-between, center);
+        height: 50%;
+        margin: 5px;
+        padding: 20px;
+        background-color: white;
       }
     }
   }

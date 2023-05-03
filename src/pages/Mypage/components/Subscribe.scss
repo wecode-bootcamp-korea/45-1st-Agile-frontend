@@ -1,0 +1,32 @@
+@import '../../../styles/common';
+@import '../../../styles/variables';
+@import '../Mypage';
+
+.subscribe {
+  .text-xl {
+    @include menu-title;
+  }
+  .subscribe-main {
+    padding: 5px;
+    .text-lg {
+      padding-bottom: 10px;
+      border-bottom: 2px solid black;
+    }
+    .subscribe-list {
+      @include flex-sort(center, center);
+      flex-direction: column;
+      border-bottom: 2px solid black;
+
+      .no-list {
+        width: 100%;
+        padding: 50px;
+
+        border-bottom: 1px solid black;
+        text-align: center;
+      }
+      .product-list {
+        @include flex-sort(none, none);
+      }
+    }
+  }
+}

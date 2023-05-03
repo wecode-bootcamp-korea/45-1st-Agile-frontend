@@ -1,0 +1,35 @@
+@import '../../styles/common';
+@import '../../styles/variables';
+
+@mixin menu-title {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding-top: 2px;
+  padding-bottom: 30px;
+  border-bottom: 3px solid black;
+  font-weight: bold;
+}
+
+.mypage {
+  .mypage-main {
+    display: flex;
+
+    .main-left {
+      width: 250px;
+      padding-left: 30px;
+
+      .text-2xl {
+        margin-top: 50px;
+        margin-bottom: 30px;
+        @include flex-sort(center, center);
+        font-weight: bold;
+      }
+    }
+    .main-right {
+      flex-grow: 1;
+      margin-bottom: 100px;
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+  }
+}
