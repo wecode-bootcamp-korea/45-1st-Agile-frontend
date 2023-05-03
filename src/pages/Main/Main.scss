@@ -48,7 +48,8 @@
   }
 }
 
-.title-ad {
+.title-ad,
+.title-ad2 {
   width: 1050px;
   height: 212px;
   margin-top: 20px;
@@ -100,6 +101,7 @@
     }
     .product-title {
       @include font(20px, #1c1c1c);
+      font-weight: 600;
     }
     .product-price {
       @include font(16px, #333333);

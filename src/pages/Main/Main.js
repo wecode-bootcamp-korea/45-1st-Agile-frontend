@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import CATEGORY from './CATEGORY.js';
 import ProductLineup from './ProductLineup.js';
+import NewestNav from './NewestNav.js';
 import './Main.scss';
 
 const Main = () => {
@@ -12,13 +14,21 @@ const Main = () => {
       <TitleAd />
       <TitleCategory />
       <TitleAd2 />
-      <IntrodSub />
+      <div className="introd-sub">
+        Esteem에서 직접 검수한 따끈한 문제가 왔어요
+      </div>
       <ProductLineup subCategoryId={1} count={4} />
+      <div className="introd-sub">너빼고 다 몰래보고 있어 돈버는 비법</div>
+      <ProductLineup subCategoryId={2} count={4} />
+      <div className="introd-sub">
+        미국이 놀라고 일본이 전전긍긍하는 화제의 그 신작들
+      </div>
+      <NewestNav />
     </div>
   );
 };
-export default Main;
 
+export default Main;
 const TitleLine = () => {
   return (
     <div className="title-line">
@@ -67,15 +77,9 @@ const TitleCategory = () => {
 const TitleAd2 = () => {
   return (
     <div className="title-ad2">
-      <img className="ad2" src="/images/main/main-ad2.png" alt="ad2" />
-    </div>
-  );
-};
-
-const IntrodSub = () => {
-  return (
-    <div className="introd-sub">
-      Esteem에서 직접 검수한 따끈한 문제가 왔어요
+      <video autoPlay muted loop>
+        <source src="/images/main/main-ad2.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 };
