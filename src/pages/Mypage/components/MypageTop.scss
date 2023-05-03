@@ -1,0 +1,14 @@
+@import '../../../styles/common';
+@import '../../../styles/variables';
+
+.mypage-top {
+  padding-top: 55px;
+  padding-bottom: 55px;
+  .top-left {
+    .text-xl {
+      .bold {
+        font-weight: bold;
+      }
+    }
+  }
+}
