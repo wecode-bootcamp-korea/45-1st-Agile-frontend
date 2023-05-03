@@ -1,7 +1,8 @@
 import React from 'react';
 import './Review.scss';
 
-const Review = ({ review }) => {
+const Review = props => {
+  const { review } = props;
   const { user_id, content, date } = review;
 
   return (

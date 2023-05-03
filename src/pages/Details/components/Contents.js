@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import DescriptionArea from './DescriptionArea';
 import ReviewList from './ReviewList';
@@ -8,20 +8,20 @@ import QuantityBox from './QuantityBox';
 import ShippingInfo from './ShippingInfo';
 import SubscribeOptions from './SubscribeOptions';
 import './Contents.scss';
-const Contents = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [count, setCount] = useState(1);
-  const [productDetails, setProductDetails] = useState({
-    title: '',
-    subtitle: '',
-    price: '',
-    issue_date: '',
-    is_subscribed: '',
-    image: '',
-    description: '',
-    author: '',
-  });
 
+const tabArr = [
+  {
+    tabTitle: '설명',
+    tabCont: <DescriptionArea />,
+  },
+  {
+    tabTitle: '리뷰',
+    tabCont: <ReviewList />,
+  },
+];
+
+const Contents = props => {
+  const { productDetail } = props;
   const {
     title,
     subtitle,
@@ -31,28 +31,13 @@ const Contents = () => {
     image,
     description,
     author,
-  } = productDetails;
+  } = productDetail;
 
-  useEffect(() => {
-    fetch('/data/data2.json')
-      .then(res => res.json())
-      .then(data => {
-        setProductDetails(data[0]);
-      });
-  }, []);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [count, setCount] = useState(1);
 
-  const tabArr = [
-    {
-      tabTitle: '설명',
-      tabCont: <DescriptionArea />,
-    },
-    {
-      tabTitle: '리뷰',
-      tabCont: <ReviewList />,
-    },
-  ];
-  const totalPrice = price * count;
   const handleTabClick = index => () => setActiveIndex(index);
+  const totalPrice = price * count;
 
   return (
     <div className="contents">

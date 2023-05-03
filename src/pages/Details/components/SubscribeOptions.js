@@ -10,7 +10,7 @@ const SubscribeOptions = () => {
     '3개월',
   ];
   const handleCycleClick = e => {
-    return e.target.selectedIndex === 0
+    e.target.selectedIndex === 0
       ? setSelected('')
       : setSelected(e.target.value);
   };
@@ -18,7 +18,11 @@ const SubscribeOptions = () => {
     <div className="subscribe-options">
       <div className="delivery-cycle-options">
         <span className="text-base">배송주기</span>
-        <select onChange={handleCycleClick} className="delivery-cycle text-sm">
+        <select
+          onChange={handleCycleClick}
+          value={selected}
+          className="delivery-cycle text-sm"
+        >
           {selectList.map((item, index) => {
             return (
               <option value={item} key={index}>
