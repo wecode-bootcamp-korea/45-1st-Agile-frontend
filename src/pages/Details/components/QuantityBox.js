@@ -1,13 +1,28 @@
 import React from 'react';
 import './QuantityBox.scss';
 
-export const QuantityBox = () => {
-  const count = 1;
+export const QuantityBox = props => {
+  const { count, setCount } = props;
+  const handleClick = num => {
+    return setCount(prev => prev + num);
+  };
+
   return (
     <div className="quantity-box">
-      <button className="count-button common-action-button">-</button>
+      <button
+        onClick={() => handleClick(-1)}
+        className="count-button common-action-button"
+        disabled={count <= 1}
+      >
+        -
+      </button>
       <input type="text" placeholder="" value={count} />
-      <button className="count-button common-action-button">+</button>
+      <button
+        className="count-button common-action-button"
+        onClick={() => handleClick(1)}
+      >
+        +
+      </button>
     </div>
   );
 };
