@@ -10,6 +10,7 @@
       flex: 1;
       justify-content: center;
       max-width: 480px;
+      max-height: 500px;
     }
     .product-img {
       width: 100%;
@@ -74,6 +75,17 @@
   }
 }
 
+.book-meta {
+  display: flex;
+  gap: 16px;
+  padding-top: 16px;
+  color: #999999;
+
+  .book-issue-date {
+    padding-left: 16px;
+    border-left: 1px solid #999999;
+  }
+}
 .cart-purchase-container {
   display: flex;
   padding-top: 36px;
