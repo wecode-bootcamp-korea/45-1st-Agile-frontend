@@ -14,21 +14,13 @@
     padding-top: 20px;
     padding-bottom: 20px;
 
-    .orderer-name {
+    .orderer-info {
       @include inputBox();
     }
-    .orderer-number {
-      @include inputBox();
-    }
-    .orderer-email {
-      @include inputBox();
-    }
-    .caution {
-      padding-left: 200px;
 
-      .text-base {
-        color: #999999;
-      }
+    .text-base {
+      padding-left: 200px;
+      color: #999999;
     }
   }
 }

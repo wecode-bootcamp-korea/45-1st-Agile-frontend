@@ -14,13 +14,7 @@
     padding-top: 10px;
     padding-bottom: 20px;
 
-    .courier {
-      @include inputBox();
-    }
-    .address {
-      @include inputBox();
-    }
-    .courier-number {
+    .courier-info {
       @include inputBox();
     }
     .request {

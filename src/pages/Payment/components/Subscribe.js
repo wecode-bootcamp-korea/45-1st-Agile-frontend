@@ -8,7 +8,7 @@ const Subscribe = () => {
       <div className="subscribe-main">
         <div className="subscribe-start">
           <div className="text-lg">배송시작일</div>
-          <input />
+          <input placeholder="YYYY-MM-DD" />
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OrderList from './components/OrderList';
 import OrdererInfo from './components/Orderer';
 import Shipment from './components/Shipment';
@@ -8,6 +8,12 @@ import PaymentInfo from './components/PaymentInfo';
 import './Payment.scss';
 
 const Payment = () => {
+  const [info, setInfo] = useState({
+    name: '',
+    phone_number: '',
+    email: '',
+    address: '',
+  });
   return (
     <div className="payment">
       <div className="order-sheet">
@@ -15,8 +21,8 @@ const Payment = () => {
       </div>
 
       <OrderList />
-      <OrdererInfo />
-      <Shipment />
+      <OrdererInfo info={info} />
+      <Shipment info={info} />
       <Subscribe />
       <div className="pay-part">
         <PaymentMethod />
