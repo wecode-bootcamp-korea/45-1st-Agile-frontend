@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import CycleSelected from './CycleSelcted';
 import './SubscribeOptions.scss';
 
 const SubscribeOptions = () => {

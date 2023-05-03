@@ -5,8 +5,8 @@ import './ReviewList.scss';
 const ReviewList = () => {
   return (
     <div>
-      {REVIEWS.map(review => {
-        return <Review />;
+      {REVIEWS.map((review, index) => {
+        return <Review review={review} key={index} />;
       })}
     </div>
   );
