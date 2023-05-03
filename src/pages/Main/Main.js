@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CATEGORY from './CATEGORY';
+import CATEGORY from './CATEGORY.js';
+import ProductLineup from './ProductLineup.js';
 import './Main.scss';
 
 const Main = () => {
@@ -11,6 +12,8 @@ const Main = () => {
       <TitleAd />
       <TitleCategory />
       <TitleAd2 />
+      <IntrodSub />
+      <ProductLineup subCategoryId={1} />
     </div>
   );
 };
@@ -65,6 +68,14 @@ const TitleAd2 = () => {
   return (
     <div className="title-ad2">
       <img className="ad2" src="/images/main/main-ad2.png" alt="ad2" />
+    </div>
+  );
+};
+
+const IntrodSub = () => {
+  return (
+    <div className="introd-sub">
+      Esteem에서 직접 검수한 따끈한 문제가 왔어요
     </div>
   );
 };

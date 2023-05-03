@@ -10,7 +10,9 @@
     "price": 13000,
     "quantity": 10,
     "category": "구독하기",
-    "sub_category": ""
+    "sub_category": "구독하기",
+    "category_id": 1,
+    "sub_category_id": 1
   },
   {
     "Key": 2,
@@ -23,7 +25,9 @@
     "price": 13000,
     "quantity": 10,
     "category": "구독하기",
-    "sub_category": ""
+    "sub_category": "구독하기",
+    "category_id": 1,
+    "sub_category_id": 1
   },
   {
     "Key": 3,
@@ -36,7 +40,9 @@
     "price": 13000,
     "quantity": 10,
     "category": "구독하기",
-    "sub_category": ""
+    "sub_category": "구독하기",
+    "category_id": 1,
+    "sub_category_id": 1
   },
   {
     "Key": 4,
@@ -49,7 +55,9 @@
     "price": 13000,
     "quantity": 10,
     "category": "구독하기",
-    "sub_category": ""
+    "sub_category": "구독하기",
+    "category_id": 1,
+    "sub_category_id": 1
   },
   {
     "Key": 5,
@@ -62,7 +70,9 @@
     "price": 13000,
     "quantity": 10,
     "category": "구독하기",
-    "sub_category": ""
+    "sub_category": "구독하기",
+    "category_id": 1,
+    "sub_category_id": 1
   },
   {
     "Key": 6,
@@ -75,7 +85,9 @@
     "price": 17000,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "성공/처세"
+    "sub_category": "성공/처세",
+    "category_id": 2,
+    "sub_category_id": 2
   },
   {
     "Key": 7,
@@ -88,7 +100,9 @@
     "price": 11500,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "인간관계"
+    "sub_category": "인간관계",
+    "category_id": 2,
+    "sub_category_id": 3
   },
   {
     "Key": 8,
@@ -101,7 +115,9 @@
     "price": 12000,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "인간관계"
+    "sub_category": "인간관계",
+    "category_id": 2,
+    "sub_category_id": 3
   },
   {
     "Key": 9,
@@ -114,7 +130,9 @@
     "price": 16000,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "성공/처세"
+    "sub_category": "성공/처세",
+    "category_id": 2,
+    "sub_category_id": 2
   },
   {
     "Key": 10,
@@ -127,7 +145,9 @@
     "price": 32000,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "성공/처세"
+    "sub_category": "성공/처세",
+    "category_id": 2,
+    "sub_category_id": 2
   },
   {
     "Key": 11,
@@ -140,7 +160,9 @@
     "price": 15000,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "성공/처세"
+    "sub_category": "성공/처세",
+    "category_id": 2,
+    "sub_category_id": 2
   },
   {
     "Key": 12,
@@ -153,7 +175,9 @@
     "price": 22000,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "성공/처세"
+    "sub_category": "성공/처세",
+    "category_id": 2,
+    "sub_category_id": 2
   },
   {
     "Key": 13,
@@ -166,7 +190,9 @@
     "price": 16800,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "인간관계"
+    "sub_category": "인간관계",
+    "category_id": 2,
+    "sub_category_id": 3
   },
   {
     "Key": 14,
@@ -179,7 +205,9 @@
     "price": 17500,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "인간관계"
+    "sub_category": "인간관계",
+    "category_id": 2,
+    "sub_category_id": 3
   },
   {
     "Key": 15,
@@ -192,7 +220,9 @@
     "price": 16800,
     "quantity": 10,
     "category": "자기계발",
-    "sub_category": "인간관계"
+    "sub_category": "인간관계",
+    "category_id": 2,
+    "sub_category_id": 3
   },
   {
     "Key": 16,
@@ -205,7 +235,9 @@
     "price": 8550,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "중등참고서"
+    "sub_category": "중등참고서",
+    "category_id": 3,
+    "sub_category_id": 4
   },
   {
     "Key": 17,
@@ -218,7 +250,9 @@
     "price": 8550,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "중등참고서"
+    "sub_category": "중등참고서",
+    "category_id": 3,
+    "sub_category_id": 4
   },
   {
     "Key": 18,
@@ -231,7 +265,9 @@
     "price": 15300,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "중등참고서"
+    "sub_category": "중등참고서",
+    "category_id": 3,
+    "sub_category_id": 4
   },
   {
     "Key": 19,
@@ -244,7 +280,9 @@
     "price": 17100,
     "quantity": null,
     "category": "중고등 참고서",
-    "sub_category": "중등참고서"
+    "sub_category": "중등참고서",
+    "category_id": 3,
+    "sub_category_id": 4
   },
   {
     "Key": 20,
@@ -257,7 +295,9 @@
     "price": 15750,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "중등참고서"
+    "sub_category": "중등참고서",
+    "category_id": 3,
+    "sub_category_id": 4
   },
   {
     "Key": 21,
@@ -270,7 +310,9 @@
     "price": 16200,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "고등참고서"
+    "sub_category": "고등참고서",
+    "category_id": 3,
+    "sub_category_id": 5
   },
   {
     "Key": 22,
@@ -283,7 +325,9 @@
     "price": 28800,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "고등참고서"
+    "sub_category": "고등참고서",
+    "category_id": 3,
+    "sub_category_id": 5
   },
   {
     "Key": 23,
@@ -296,7 +340,9 @@
     "price": 17100,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "고등참고서"
+    "sub_category": "고등참고서",
+    "category_id": 3,
+    "sub_category_id": 5
   },
   {
     "Key": 24,
@@ -309,7 +355,9 @@
     "price": 14400,
     "quantity": null,
     "category": "중고등 참고서",
-    "sub_category": "고등참고서"
+    "sub_category": "고등참고서",
+    "category_id": 3,
+    "sub_category_id": 5
   },
   {
     "Key": 25,
@@ -322,7 +370,9 @@
     "price": 9450,
     "quantity": 10,
     "category": "중고등 참고서",
-    "sub_category": "고등참고서"
+    "sub_category": "고등참고서",
+    "category_id": 3,
+    "sub_category_id": 5
   },
   {
     "Key": 26,
@@ -335,7 +385,9 @@
     "price": 10710,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "어학"
+    "sub_category": "어학",
+    "category_id": 4,
+    "sub_category_id": 6
   },
   {
     "Key": 27,
@@ -348,7 +400,9 @@
     "price": 13500,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "어학"
+    "sub_category": "어학",
+    "category_id": 4,
+    "sub_category_id": 6
   },
   {
     "Key": 28,
@@ -361,7 +415,9 @@
     "price": 16020,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "어학"
+    "sub_category": "어학",
+    "category_id": 4,
+    "sub_category_id": 6
   },
   {
     "Key": 29,
@@ -374,7 +430,9 @@
     "price": 11610,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "어학"
+    "sub_category": "어학",
+    "category_id": 4,
+    "sub_category_id": 6
   },
   {
     "Key": 30,
@@ -387,7 +445,9 @@
     "price": 26550,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "어학"
+    "sub_category": "어학",
+    "category_id": 4,
+    "sub_category_id": 6
   },
   {
     "Key": 31,
@@ -400,7 +460,9 @@
     "price": 16200,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "인적성/직무능력"
+    "sub_category": "인적성/직무능력",
+    "category_id": 4,
+    "sub_category_id": 7
   },
   {
     "Key": 32,
@@ -413,7 +475,9 @@
     "price": 25200,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "인적성/직무능력"
+    "sub_category": "인적성/직무능력",
+    "category_id": 4,
+    "sub_category_id": 7
   },
   {
     "Key": 33,
@@ -426,7 +490,9 @@
     "price": 41400,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "인적성/직무능력"
+    "sub_category": "인적성/직무능력",
+    "category_id": 4,
+    "sub_category_id": 7
   },
   {
     "Key": 34,
@@ -439,7 +505,9 @@
     "price": 17100,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "인적성/직무능력"
+    "sub_category": "인적성/직무능력",
+    "category_id": 4,
+    "sub_category_id": 7
   },
   {
     "Key": 35,
@@ -452,6 +520,8 @@
     "price": 31500,
     "quantity": 10,
     "category": "취업/수험생",
-    "sub_category": "인적성/직무능력"
+    "sub_category": "인적성/직무능력",
+    "category_id": 4,
+    "sub_category_id": 7
   }
 ]

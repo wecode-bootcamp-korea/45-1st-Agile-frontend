@@ -85,3 +85,9 @@ body {
     height: 140px;
   }
 }
+
+.introd-sub {
+  margin-top: 80px;
+  @include font(28px, #1c1c1c);
+  font-weight: 700;
+}
