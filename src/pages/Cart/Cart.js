@@ -4,34 +4,32 @@ import './Cart.scss';
 const Cart = () => {
   return (
     <div className="container">
-      <div className="section title">
-        <h2>장바구니</h2>
+      <div className="title">
+        <h2 className="title-name">장바구니</h2>
       </div>
 
       <div className="checkbox-wrap">
         <div className="checkbox-inner">
-          <input type="checkbox" id="empty-checkbox" />
-          <label for="empty-checkbox">전체선택(0/0)</label>
-          <div>|</div>
-          <div>선택삭제</div>
+          <input type="checkbox" className="empty-checkbox" />
+          <div className="choice">전체선택(0/0)</div>
+          <div className="divide">|</div>
+          <div className="choice">선택</div>
         </div>
 
         <div className="info-wrap">
-          <p className="message-web">장바구니에 담긴 제품이 없습니다.</p>
+          <div className="message-web">
+            <p>장바구니에 담긴 제품이 없습니다.</p>
+          </div>
+          {/* <p className="message-web">장바구니에 담긴 제품이 없습니다.</p> */}
 
           <div className="order-info">
             <div className="order-won">
-              <div>
+              <div className="product-amount">
                 <span>합계</span>
                 <span>0원</span>
               </div>
 
-              <div>
-                <span>상품할인금액</span>
-                <span>-0원</span>
-              </div>
-
-              <div>
+              <div className="shipment-fee">
                 <span>배송비</span>
                 <span>+0원</span>
               </div>
@@ -43,7 +41,9 @@ const Cart = () => {
             </div>
 
             <button className="empty-button web">제품을 담아주세요</button>
-            <span>ˑ쿠폰과 적립금은 결제 페이지에서 적용할 수 있어요</span>
+            <span className="tips">
+              쿠폰과 적립금은 결제 페이지에서 적용할 수 있어요
+            </span>
           </div>
         </div>
       </div>
