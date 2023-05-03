@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 const Login = () => {
@@ -41,12 +41,12 @@ const Login = () => {
         회원가입
       </button>
       <div className="forget">
-        <a href="/forgetid" className="forgetid">
-          이메일 찾기
-        </a>
-        <a href="/forgetpassword" className="forgetpassword">
-          비밀번호 찾기
-        </a>
+        <div className="findemail">
+          <Link to="/forgetemail">이메일 찾기</Link>
+        </div>
+        <div className="findpassword">
+          <Link to="/forgetpassword">비밀번호 찾기</Link>
+        </div>
       </div>
     </div>
   );

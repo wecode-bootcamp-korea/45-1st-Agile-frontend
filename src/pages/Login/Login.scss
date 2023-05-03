@@ -42,8 +42,8 @@
   width: 260px;
   height: 40px;
   margin: 15px 0px 10px 45px;
-  background-color: #1c1c1c;
-  color: #ffffff;
+  background-color: black;
+  color: white;
 }
 
 .signupbtn {
@@ -53,20 +53,14 @@
   height: 40px;
   margin: 5px 0px 10px 45px;
   border-width: thin;
-  background-color: #ffffff;
-  color: #1c1c1c;
+  background-color: white;
+  color: black;
 }
 
 .forget {
-  margin: 20px 15px 0px 15px;
   @include flex-sort(center, center);
-
-  .forgetid {
+  margin: 20px 15px 0px 15px;
+  .findemail {
     margin: 8px;
   }
-}
-
-a {
-  @include font(black, 16px);
-  color: #666666;
 }
