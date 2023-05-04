@@ -9,20 +9,18 @@ const SignUp = () => {
     navigate('/');
   };
   return (
-    <>
-      <div className="first-title">
-        <div className="title">
-          <h1>회원가입</h1>
-        </div>
-        <div className="basicinfo">
-          <div className="basic-info">기본정보</div>
-        </div>
+    <div className="first-title">
+      <div className="title">
+        <h1>회원가입</h1>
+      </div>
+      <div className="basicinfo">
+        <div className="basic-info">기본정보</div>
       </div>
       <div className="signupform">
-        <span className="email">이메일</span>
-        <div className="writeemail">
+        <span className="password">이메일</span>
+        <div className="writepwd">
           <input
-            className="inputemail"
+            className="inputpwd"
             type="text"
             placeholder="이메일을 입력해주세요"
           />
@@ -126,7 +124,7 @@ const SignUp = () => {
       <button className="signupbtn" type="button" onClick={goToMain}>
         가입하기
       </button>
-    </>
+    </div>
   );
 };
 

@@ -1,40 +1,35 @@
 @import '../../styles/common';
 @import '../../styles/variables';
 
-.first-title {
-  .title {
-    @include font(28px, black);
-    margin-top: 150px;
-    text-align: center;
-  }
+.title {
+  @include font(28px, black);
+  margin-top: 150px;
+  text-align: center;
+}
 
-  .basicinfo {
-    @include font(20px, black);
-    margin: 30px 15px 30px 100px;
-    padding-bottom: 15px;
-    border-bottom-width: 3px;
-    border-bottom-style: solid;
-    border-color: #999999;
-    border-bottom-color: black;
-  }
+.basicinfo {
+  @include font(20px, black);
+  margin: 30px 15px 30px 100px;
+  padding-bottom: 15px;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-color: #999999;
+  border-bottom-color: black;
 }
 
 .signupform {
   @include font(16px, black);
   margin: 30px 15px 30px 100px;
 
-  .email,
   .password {
     width: 200px;
     line-height: 20px;
   }
 
-  .writeemail,
   .writepwd {
     @include flex-sort(left, center);
     flex-direction: column;
   }
-  .inputemail,
   .inputpwd {
     width: 500px;
     height: 42px;
