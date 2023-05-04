@@ -10,22 +10,8 @@ function Header() {
     setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-  };
-
-  const handleLogin = () => {
-    localStorage.setItem('token', 'exampleToken');
-    setIsLoggedIn(true);
-  };
-
   const handleButtonClick = () => {
-    if (isLoggedIn) {
-      handleLogout();
-    } else {
-      handleLogin();
-    }
+    isLoggedIn ? localStorage.removeItem('token') : setIsLoggedIn(true);
   };
 
   return (
