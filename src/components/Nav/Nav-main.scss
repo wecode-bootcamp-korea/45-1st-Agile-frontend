@@ -1,6 +1,11 @@
 @import '../../styles/variables';
 .nav-main {
   position: relative;
+
+  .nav-contaner {
+    display: none;
+  }
+
   .nav-contaner-scrolled {
     display: block;
     position: fixed;
@@ -13,34 +18,37 @@
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
     @include flex-sort(center, center);
   }
-  .nav-contaner {
-    display: none;
+
+  .nav-main-left {
+    @include flex-sort(center, center);
+    gap: 30px;
+
+    .category {
+      font-size: 20px;
+      font-weight: 400px;
+    }
   }
-}
-.nav-main-left {
-  @include flex-sort(center, center);
-  gap: 30px;
-  .category {
-    font-size: 20px;
-    font-weight: 400px;
+
+  .nav-main-thing {
+    display: flex;
+    justify-content: space-between;
+    width: 1020px;
+
+    .viewmore,
+    .heart,
+    .shopingbag {
+      width: 30px;
+      height: 30px;
+    }
   }
-}
-.nav-main-thing {
-  display: flex;
-  justify-content: space-between;
-  width: 1020px;
-  .viewmore,
-  .heart,
-  .shopingbag {
-    width: 30px;
-    height: 30px;
-  }
-}
-.nav-main-right {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  .search-bar {
-    width: 300px;
+
+  .nav-main-right {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    .search-bar {
+      width: 300px;
+    }
   }
 }

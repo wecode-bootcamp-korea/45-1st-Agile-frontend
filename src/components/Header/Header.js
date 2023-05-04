@@ -15,9 +15,16 @@ function Header() {
     setIsLoggedIn(false);
   };
 
-  const handleLoginClick = () => {
+  const handleLogin = () => {
+    localStorage.setItem('token', 'exampleToken');
+    setIsLoggedIn(true);
+  };
+
+  const handleButtonClick = () => {
     if (isLoggedIn) {
       handleLogout();
+    } else {
+      handleLogin();
     }
   };
 
@@ -29,11 +36,9 @@ function Header() {
         </button>
       </Link>
 
-      <Link to={isLoggedIn ? '/' : '/login'}>
-        <button className="to-login" onClick={handleLoginClick}>
-          {isLoggedIn ? '로그아웃' : '로그인'}
-        </button>
-      </Link>
+      <button className="to-login" onClick={handleButtonClick}>
+        {isLoggedIn ? '로그아웃' : '로그인'}
+      </button>
 
       <Link to="/customer-center">
         <button className="to-customer-center">고객센터</button>
