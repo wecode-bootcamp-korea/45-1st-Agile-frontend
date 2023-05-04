@@ -1,0 +1,57 @@
+@import '../../../styles/variables';
+
+.payment-info {
+  margin-top: 30px;
+  margin-bottom: 70px;
+  padding-left: 30px;
+
+  .text-xl {
+    padding-bottom: 15px;
+  }
+
+  .pay-box {
+    width: 320px;
+    margin-bottom: 13px;
+    padding-top: 20px;
+    padding-right: 13px;
+    padding-bottom: 20px;
+    padding-left: 13px;
+    background-color: #f1f1f1;
+
+    .ordered-product {
+      @include flex-sort(space-between, center);
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+
+    .shipment-fee {
+      @include flex-sort(space-between, center);
+      padding-top: 13px;
+      padding-bottom: 13px;
+    }
+
+    .total-amount {
+      @include flex-sort(space-between, center);
+      padding-top: 13px;
+      padding-bottom: 13px;
+      border-top: 1px solid rgb(221, 221, 221);
+
+      .text-lg {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .shipment-free {
+    @include flex-sort(center, center);
+    padding-top: 20px;
+    padding-right: 13px;
+    padding-bottom: 20px;
+    padding-left: 13px;
+    background-color: #f1f1f1;
+
+    .text-lg {
+      font-weight: bold;
+    }
+  }
+}
