@@ -17,6 +17,22 @@ const SignUp = () => {
     setUserId(event.target.value);
   };
 
+  const saveUserPassword = event => {
+    setUserPassword(event.target.value);
+  };
+
+  const saveUserpasswordOk = event => {
+    setUserPasswordOk(event.target.value);
+  };
+
+  const saveUserName = event => {
+    setUserName(event.target.value);
+  };
+
+  const saveUserAddress = event => {
+    setUserAddress(event.target.value);
+  };
+
   const goToMain = () => {
     navigate('/');
   };
@@ -48,6 +64,8 @@ const SignUp = () => {
             className="inputpwd"
             type="password"
             placeholder="비밀번호를 입력해주세요"
+            onChange={saveUserPassword}
+            value={userPassword}
           />
           <span className="usepwd">
             (영문 대/소문자, 숫자, 특수기호 8~20개 사이를 입력해주세요)
@@ -59,6 +77,8 @@ const SignUp = () => {
             className="input-checkpwd"
             type="password"
             placeholder="비밀번호를 한번 더 입력해주세요"
+            onChange={saveUserpasswordOk}
+            value={userPasswordOk}
           />
         </div>
         <div className="writename">
@@ -67,11 +87,19 @@ const SignUp = () => {
             className="inputname"
             type="text"
             placeholder="실명으로 기입해주세요"
+            onChange={saveUserName}
+            value={userName}
           />
         </div>
         <div className="write-address">
           <span className="address">주소</span>
-          <input className="input-address" type="text" placeholder="주소" />
+          <input
+            className="input-address"
+            type="text"
+            placeholder="주소"
+            onChange={saveUserAddress}
+            value={userAddress}
+          />
         </div>
         <div className="write-phonenumber">
           <span className="phonenumber">전화번호</span>
