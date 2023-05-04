@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.scss';
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
-  }, []);
+  }, [location.pathname]);
 
   const handleButtonClick = () => {
-    isLoggedIn ? localStorage.removeItem('token') : setIsLoggedIn(true);
+    isLoggedIn ? localStorage.removeItem('token') : navigate('/login');
   };
 
   return (
