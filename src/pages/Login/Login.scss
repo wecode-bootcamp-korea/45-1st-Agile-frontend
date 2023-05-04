@@ -1,0 +1,67 @@
+@import '../../styles/common';
+@import '../../styles/variables';
+
+.loginform {
+  position: relative;
+  width: 350px;
+  height: 450px;
+  margin: 150px 170px 90px 340px;
+  border-style: hidden;
+
+  .start {
+    @include font(16px, black);
+    margin-top: 25px;
+
+    .login-password {
+      @include font(24px, black);
+      margin-left: 80px;
+      font-weight: bold;
+    }
+
+    .start-words {
+      margin: 10px 0px 20px 130px;
+    }
+  }
+
+  .login,
+  .password {
+    @include flex-sort(center, center);
+    @include font(black, 16px);
+    width: 260px;
+    height: 40px;
+    margin: 10px 0px 0px 45px;
+  }
+
+  .id-check {
+    margin: 15px 5px 0px 40px;
+  }
+}
+
+.loginbtn {
+  @include flex-sort(center, center);
+  @include font(black, 16px);
+  width: 260px;
+  height: 40px;
+  margin: 15px 0px 10px 45px;
+  background-color: black;
+  color: white;
+}
+
+.signupbtn {
+  @include flex-sort(center, center);
+  @include font(black, 16px);
+  width: 260px;
+  height: 40px;
+  margin: 5px 0px 10px 45px;
+  border-width: thin;
+  background-color: white;
+  color: black;
+}
+
+.forget {
+  @include flex-sort(center, center);
+  margin: 20px 15px 0px 15px;
+  .findemail {
+    margin: 8px;
+  }
+}
