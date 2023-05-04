@@ -11,10 +11,10 @@ const Details = () => {
   const id = params.id;
 
   useEffect(() => {
-    fetch(`http://10.58.52.146:3000/books/${id}`)
+    fetch('/data/data2.json')
       .then(res => res.json())
       .then(data => {
-        setProductDetail(data);
+        setProductDetail(data[id]);
       })
       .catch(e => {
         console.error(e);

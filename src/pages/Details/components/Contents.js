@@ -31,7 +31,7 @@ const Contents = props => {
     image,
     description,
     author,
-  } = productDetail.book;
+  } = productDetail;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [count, setCount] = useState(1);
@@ -43,11 +43,7 @@ const Contents = props => {
     <div className="contents">
       <div className="contents-area">
         <div className="thumbnail">
-          <img
-            className="product-img"
-            alt=""
-            src="/images/details/book-sample.png"
-          />
+          <img className="product-img" alt="" src="/images/details/null.png" />
         </div>
         <div className="product-info">
           <div className="product-title">
