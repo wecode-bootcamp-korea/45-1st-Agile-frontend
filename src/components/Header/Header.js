@@ -10,15 +10,20 @@ function Header() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
-  }, [location.pathname]);
+  }, [location.pathname, setIsLoggedIn]);
 
   const handleButtonClick = () => {
-    isLoggedIn ? localStorage.removeItem('token') : navigate('/login');
+    if (isLoggedIn) {
+      localStorage.removeItem('token');
+      setIsLoggedIn(false);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
     <header className="header">
-      <Link to={isLoggedIn ? '/mypage' : '/signup'}>
+      <Link to={isLoggedIn ? '/mypage' : '/크signup'}>
         <button className="to-signup">
           {isLoggedIn ? '마이페이지' : '회원가입'}
         </button>

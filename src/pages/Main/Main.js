@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import CATEGORY from './CATEGORY.js';
 import ProductLineup from './ProductLineup.js';
 import NewestNav from './NewestNav.js';
+import NavSub from '../../components/Nav/Nav-sub.js';
 import './Main.scss';
 
 const Main = () => {
   return (
     <div className="main">
+      <NavSub />
       <TitleLine />
       <TitleNav />
       <video

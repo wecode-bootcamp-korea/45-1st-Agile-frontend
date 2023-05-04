@@ -1,5 +1,10 @@
 @import '../../styles/variables';
 
+a {
+  color: #1c1c1c;
+  text-decoration: none;
+}
+
 .title-line {
   @include flex-sort(space-around, center);
   margin-top: 40px;
@@ -103,6 +108,7 @@
 .product-lineup {
   margin-top: 32px;
   @include flex-sort(space-around, center);
+
   .product-item {
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -121,6 +127,7 @@
     .product-title {
       @include font(20px, #1c1c1c);
       font-weight: 600;
+      text-decoration: none;
     }
     .product-price {
       @include font(16px, #333333);
