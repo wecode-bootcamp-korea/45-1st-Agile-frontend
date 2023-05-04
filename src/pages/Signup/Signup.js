@@ -8,6 +8,7 @@ const SignUp = () => {
   const [userId, setUserId] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [userPasswordOk, setUserPasswordOk] = useState('');
+  const [userName, setUserName] = useState('');
 
   const goToMain = () => {
     navigate('/');
