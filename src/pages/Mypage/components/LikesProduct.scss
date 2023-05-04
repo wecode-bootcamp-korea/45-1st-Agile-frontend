@@ -9,18 +9,22 @@
 
   .likes-left {
     display: flex;
+
     .product-info {
       @include flex-sort(center, none);
       flex-direction: column;
       padding-left: 20px;
+
       .product-name {
         margin-bottom: 10px;
       }
+
       .product-price {
         font-weight: bold;
       }
     }
   }
+
   .likes-right {
     @include flex-sort(center, center);
     flex-direction: column;
@@ -32,6 +36,7 @@
       border: 1px solid rgb(221, 221, 221);
       background-color: white;
     }
+
     .cart {
       border-color: black;
     }

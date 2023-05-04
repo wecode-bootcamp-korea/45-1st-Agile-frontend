@@ -21,7 +21,7 @@ const Subscribes = () => {
       <div className="subscribes-main">
         <div className="text-lg">신청내역 ({subList.length}건)</div>
         <div className="subscribes-list">
-          {/* <div className="no-list">신청내역이 없습니다.</div> */}
+          <div className="no-list">신청내역이 없습니다.</div>
           {subList.map(data => {
             return <SubscribesProduct key={data.id} data={data} />;
           })}

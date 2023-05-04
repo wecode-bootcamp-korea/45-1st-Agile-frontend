@@ -7,10 +7,12 @@
   }
   .subscribes-main {
     padding: 5px;
+
     .text-lg {
       padding-bottom: 10px;
       border-bottom: 2px solid black;
     }
+
     .subscribes-list {
       @include flex-sort(center, center);
       flex-direction: column;
@@ -23,6 +25,7 @@
         border-bottom: 1px solid black;
         text-align: center;
       }
+
       .product-list {
         @include flex-sort(none, none);
       }

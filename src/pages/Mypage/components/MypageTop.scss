@@ -36,6 +36,7 @@
         }
       }
     }
+
     .top-right {
       display: flex;
       flex-direction: column;
@@ -52,6 +53,7 @@
           font-weight: bold;
         }
       }
+
       .phone-number {
         @include flex-sort(space-between, center);
         height: 50%;
