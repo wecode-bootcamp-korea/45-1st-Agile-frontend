@@ -13,53 +13,56 @@
   }
 }
 
-.checkbox-wrap {
+.content-wrap {
   display: flex;
-  // flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-
-  .product-wrap {
+  .checkbox-wrap {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
+    align-items: flex-start;
     width: 100%;
-    padding-bottom: 20px;
-    .checkbox-inner {
-      display: flex;
-      // flex-direction: row;
-      // align-items: flex-start;
-      // width: calc(100% - 316px - 42px);
-      // height: 100%;
-      padding-bottom: 20px;
-      border-bottom: 1px solid black;
-      .choice-checkbox {
-        border-radius: 50%;
-        cursor: pointer;
-      }
+    height: 100%;
 
-      .choice {
-        padding: 0 16px 0 8px;
-        cursor: pointer;
-      }
-    }
-    .message-web {
+    .product-wrap {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
       width: 100%;
-      padding: 140px 0;
-      color: #dddedd;
+      padding-bottom: 20px;
+      .checkbox-inner {
+        display: flex;
+        // flex-direction: row;
+        // align-items: flex-start;
+        // width: calc(100% - 316px - 42px);
+        // height: 100%;
+        padding-bottom: 20px;
+        border-bottom: 1px solid black;
+        .choice-checkbox {
+          border-radius: 50%;
+          cursor: pointer;
+        }
+
+        .choice {
+          padding: 0 16px 0 8px;
+          cursor: pointer;
+        }
+      }
+      .message-web {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 140px 0;
+        color: #dddedd;
+      }
     }
   }
+
   .order-info {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     width: 100%;
     max-width: 316px;
-    margin-top: 16px;
     padding: 24px 20px 40px;
     background-color: #fbfafa;
 
@@ -72,6 +75,7 @@
       padding: 24px 20px 40px;
       background-color: #f1f1f1;
       color: #9a9a9a;
+      font-size: 16px;
 
       .product-amount {
         display: flex;
@@ -113,7 +117,7 @@
         margin-bottom: 16px;
         padding-top: 20px;
         border-top: var(--border-color);
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
         line-height: 140%;
       }
