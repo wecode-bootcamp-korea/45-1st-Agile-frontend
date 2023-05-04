@@ -1,8 +1,7 @@
 import React from 'react';
 import './QuantityBox.scss';
 
-export const QuantityBox = props => {
-  const { count, setCount } = props;
+export const QuantityBox = ({ count, setCount }) => {
   const handleClick = num => {
     setCount(prev => prev + num);
   };

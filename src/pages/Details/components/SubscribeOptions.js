@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SubscribeOptions.scss';
 
-const selectList = [
+const SELECT_LIST = [
   '[필수] 배송주기를 선택해 주세요.',
   '1주일',
   '1개월',
@@ -21,7 +21,7 @@ const SubscribeOptions = () => {
       <div className="delivery-cycle-options">
         <span className="text-base">배송주기</span>
         <select onChange={handleCycleClick} className="delivery-cycle text-sm">
-          {selectList.map((item, index) => {
+          {SELECT_LIST.map((item, index) => {
             return (
               <option value={item} key={index}>
                 {item}
