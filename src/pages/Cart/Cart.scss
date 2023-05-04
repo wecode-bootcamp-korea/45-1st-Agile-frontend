@@ -20,31 +20,29 @@
   width: 100%;
   height: 100%;
 
-  .checkbox-inner {
-    display: flex;
-    // flex-direction: row;
-    // align-items: flex-start;
-    // width: calc(100% - 316px - 42px);
-    // height: 100%;
-    padding-bottom: 20px;
-    border-bottom: 1px solid black;
-    input[type='checkbox'] {
-      border-radius: 50px;
-      background-color: red;
-      cursor: pointer;
-    }
-
-    .choice {
-      padding: 0 16px 0 8px;
-      cursor: pointer;
-    }
-  }
-
-  .info-wrap {
+  .product-wrap {
     display: flex;
     flex-direction: column;
     width: 100%;
     padding-bottom: 20px;
+    .checkbox-inner {
+      display: flex;
+      // flex-direction: row;
+      // align-items: flex-start;
+      // width: calc(100% - 316px - 42px);
+      // height: 100%;
+      padding-bottom: 20px;
+      border-bottom: 1px solid black;
+      .choice-checkbox {
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .choice {
+        padding: 0 16px 0 8px;
+        cursor: pointer;
+      }
+    }
     .message-web {
       display: flex;
       flex-direction: row;
@@ -61,6 +59,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 316px;
+    margin-top: 16px;
     padding: 24px 20px 40px;
     background-color: #fbfafa;
 
@@ -114,7 +113,7 @@
         margin-bottom: 16px;
         padding-top: 20px;
         border-top: var(--border-color);
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 600;
         line-height: 140%;
       }
@@ -140,22 +139,4 @@
       text-align: start;
     }
   }
-  // input[type='checkbox'] + label {
-  //   padding: 0 16px 0 8px;
-  //   vertical-align: middle;
-  // }
-  // input[type='checkbox'],
-  // * > input[type='checkbox'] + label,
-  // input[type='radio'],
-  // * > input[type='radio'] + label {
-  //   cursor: pointer;
-  // }
 }
-
-// .empty-button.web > span {
-//   margin-top: 20px;
-//   color: var(--input-color);
-//   font-weight: 400;
-//   line-height: 140%;
-//   text-align: start;
-// }

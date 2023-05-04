@@ -9,9 +9,9 @@ const Cart = () => {
       </div>
 
       <div className="checkbox-wrap">
-        <div className="info-wrap">
+        <div className="product-wrap">
           <div className="checkbox-inner">
-            <input type="checkbox" id="empty-checkbox" />
+            <input type="checkbox" className="choice-checkbox" />
             <div className="choice">전체선택(0/0)</div>
             <div className="divide">|</div>
             <div className="choice">선택</div>
