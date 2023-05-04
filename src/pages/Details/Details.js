@@ -20,7 +20,6 @@ const Details = () => {
         console.error(e);
       });
   }, [id]);
-  console.log(productDetail);
 
   if (!productDetail) return <></>;
 
