@@ -1,0 +1,53 @@
+@import '../../styles/variables';
+
+.nav-sub {
+  position: relative;
+
+  .nav-contaner {
+    display: none;
+  }
+
+  .nav-contaner-scrolled {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    @include flex-sort(center, center);
+  }
+
+  .nav-sub-left {
+    @include flex-sort(center, center);
+    gap: 30px;
+
+    .category {
+      font-size: 20px;
+      font-weight: 400px;
+    }
+  }
+
+  .nav-sub-thing {
+    display: flex;
+    justify-content: space-between;
+    width: 1020px;
+
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .nav-sub-right {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    .search-bar {
+      width: 300px;
+    }
+  }
+}
