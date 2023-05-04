@@ -14,7 +14,7 @@ const SignUp = () => {
         <h1>회원가입</h1>
       </div>
       <div className="basicinfo">
-        <h2>기본정보</h2>
+        <div className="basic-info">기본정보</div>
       </div>
       <div className="signupform">
         <span className="email">이메일</span>
@@ -69,7 +69,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="plusinfo">
-        <h2>추가정보</h2>
+        <div className="plus-info">추가정보</div>
       </div>
       <div className="plusinfoform">
         <div className="write-birth">
@@ -89,7 +89,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="agree">
-        <h2>이용약관동의</h2>
+        <div className="agree-ok">이용약관 동의</div>
       </div>
       <div className="agree-check">
         <input type="checkbox" id="agree-all" name="agree-all" />
