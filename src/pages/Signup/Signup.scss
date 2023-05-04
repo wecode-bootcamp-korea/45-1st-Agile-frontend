@@ -1,20 +1,22 @@
 @import '../../styles/common';
 @import '../../styles/variables';
 
-.title {
-  @include font(28px, black);
-  margin-top: 150px;
-  text-align: center;
-}
+.first-title {
+  .title {
+    @include font(28px, black);
+    margin-top: 150px;
+    text-align: center;
+  }
 
-.basicinfo {
-  @include font(20px, black);
-  margin: 30px 15px 30px 100px;
-  padding-bottom: 15px;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
-  border-color: #999999;
-  border-bottom-color: black;
+  .basicinfo {
+    @include font(20px, black);
+    margin: 30px 15px 30px 100px;
+    padding-bottom: 15px;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-color: #999999;
+    border-bottom-color: black;
+  }
 }
 
 .signupform {
@@ -59,6 +61,7 @@
 
   .writename {
     margin-top: 10px;
+
     .inputname {
       width: 500px;
       height: 42px;
@@ -68,6 +71,7 @@
 
   .write-address {
     margin-top: 10px;
+
     .input-address {
       width: 500px;
       height: 42px;
@@ -77,6 +81,7 @@
 
   .write-phonenumber {
     margin-top: 10px;
+
     .input-phonenumber {
       width: 500px;
       height: 42px;
@@ -104,6 +109,7 @@
 
   .write-birth {
     margin-top: 10px;
+
     .input-birth {
       width: 500px;
       height: 42px;
@@ -113,6 +119,7 @@
 
   .check-gender {
     margin-top: 10px;
+
     .check-radio {
       margin: -15px 5px 0px 110px;
     }
