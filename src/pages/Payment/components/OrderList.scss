@@ -1,0 +1,18 @@
+@import '../../../styles/variables';
+
+.order-list {
+  margin-top: 30px;
+  margin-bottom: 70px;
+
+  .text-xl {
+    padding-bottom: 15px;
+    border-bottom: 3px solid black;
+  }
+
+  .order-list-main {
+    @include flex-sort(center, center);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #999999;
+  }
+}
