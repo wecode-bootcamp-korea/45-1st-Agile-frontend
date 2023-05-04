@@ -27,7 +27,7 @@ const NavMain = () => {
           <div className="nav-main-left">
             <img
               alt="책"
-              className="viewmore"
+              className="viewmore icon"
               src="../images/components/nav/books.png"
             />
             <div className="category">카테고리</div>
@@ -35,13 +35,13 @@ const NavMain = () => {
           <div className="nav-main-right">
             <input className="search-bar" type="text" />
             <img
-              className="heart"
+              className="heart icon"
               alt="heart"
               src="../images/components/nav/heart.png"
             />
             <img
               alt="쇼핑백"
-              className="shopingbag"
+              className="shopingbag icon"
               src="../images/components/nav/shopingbag.png"
             />
           </div>

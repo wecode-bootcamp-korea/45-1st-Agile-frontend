@@ -7,9 +7,9 @@ const NavSub = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 123 && !isScrolled) {
+      if (scrollTop > 150 && !isScrolled) {
         setIsScrolled(true);
-      } else if (scrollTop === 0 && isScrolled) {
+      } else if (scrollTop <= 150 && isScrolled) {
         setIsScrolled(false);
       }
     };
@@ -27,7 +27,7 @@ const NavSub = () => {
           <div className="nav-sub-left">
             <img
               alt="책"
-              className="viewmore"
+              className="viewmore icon"
               src="../images/components/nav/books.png"
             />
             <div className="category">카테고리</div>
@@ -35,13 +35,13 @@ const NavSub = () => {
           <div className="nav-sub-right">
             <input className="search-bar" type="text" />
             <img
-              className="heart"
+              className="heart icon"
               alt="heart"
               src="../images/components/nav/heart.png"
             />
             <img
               alt="쇼핑백"
-              className="shopingbag"
+              className="shopingbag icon"
               src="../images/components/nav/shopingbag.png"
             />
           </div>
