@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const ProductLineup = ({ subCategoryId, count }) => {
   const [productList, setProductList] = useState([]);
@@ -35,15 +36,17 @@ const ProductLineup = ({ subCategoryId, count }) => {
   return (
     <div className="product-lineup">
       {productList.map(product => (
-        <div key={product.Key} className="product-item">
-          <img
-            className="product-img"
-            src={`images/main/booksimg/${product.Key}.avif`}
-            alt={product.title}
-          />
-          <div className="product-title">{product.title}</div>
-          <div className="prduct-price">{product.price}원</div>
-        </div>
+        <Link key={product.id} to={`/books/${product.Key}`}>
+          <div key={product.Key} className="product-item">
+            <img
+              className="product-img"
+              src={`images/main/booksimg/${product.Key}.avif`}
+              alt={product.title}
+            />
+            <div className="product-title">{product.title}</div>
+            <div className="prduct-price">{product.price}원</div>
+          </div>
+        </Link>
       ))}
     </div>
   );
