@@ -62,13 +62,23 @@
   margin-top: 60px;
   @include flex-sort(space-around, center);
   a {
+    @include font(20px, #1c1c1c);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.25s ease-out;
+    // border: 1px solid grey;
+    border-radius: 5px;
     text-decoration: none;
-    @include font(20px, #1c1c1c);
+    cursor: pointer;
+    gap: 30px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   img {
     width: 40px;
@@ -94,7 +104,6 @@
   margin-top: 32px;
   @include flex-sort(space-around, center);
   .product-item {
-    padding: 25px;
     transform: translateZ(0);
     backface-visibility: hidden;
     transition: transform 0.25s ease-out;
