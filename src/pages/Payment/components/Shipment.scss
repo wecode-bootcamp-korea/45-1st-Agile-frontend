@@ -1,10 +1,10 @@
-@import '../../../styles/common';
 @import '../../../styles/variables';
 @import '../Payment';
 
 .shipment {
   margin-top: 30px;
   margin-bottom: 70px;
+
   .text-xl {
     padding-bottom: 15px;
     border-bottom: 3px solid black;
@@ -17,11 +17,14 @@
     .courier-info {
       @include inputBox();
     }
+
     .request {
       @include inputBox();
+
       .text-lg {
         width: 200px;
       }
+
       select {
         width: 500px;
         height: 42px;

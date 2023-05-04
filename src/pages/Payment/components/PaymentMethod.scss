@@ -1,10 +1,10 @@
-@import '../../../styles/common';
 @import '../../../styles/variables';
 @import '../Payment';
 
 .payment-method {
   margin-top: 30px;
   margin-bottom: 70px;
+
   .text-xl {
     padding-bottom: 15px;
     border-bottom: 3px solid black;
@@ -24,8 +24,10 @@
         width: 200px;
         padding-top: 10px;
       }
+
       .payment-method-point {
         width: 500px;
+
         .point-button {
           width: 50%;
           height: 48px;
@@ -38,6 +40,7 @@
           margin-top: 30px;
           margin-bottom: 30px;
         }
+
         .pay {
           @include flex-sort(flex-end, none);
           padding-top: 30px;

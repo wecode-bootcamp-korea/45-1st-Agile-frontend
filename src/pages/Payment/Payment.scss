@@ -1,4 +1,3 @@
-@import '../../styles/common';
 @import '../../styles/variables';
 
 @mixin inputBox {
@@ -9,12 +8,14 @@
   .text-lg {
     width: 200px;
   }
+
   input {
     width: 500px;
     height: 42px;
     padding-right: 10px;
     padding-left: 10px;
     border: 1px solid #999999;
+
     &:focus {
       outline: none;
     }
@@ -25,6 +26,7 @@
   .order-sheet {
     @include flex-sort(center, center);
     height: 200px;
+
     .text-2xl {
       font-weight: bold;
     }
