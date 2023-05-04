@@ -4,7 +4,7 @@ import './QuantityBox.scss';
 export const QuantityBox = props => {
   const { count, setCount } = props;
   const handleClick = num => {
-    return setCount(prev => prev + num);
+    setCount(prev => prev + num);
   };
 
   return (

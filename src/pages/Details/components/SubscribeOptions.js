@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './SubscribeOptions.scss';
 
+const selectList = [
+  '[필수] 배송주기를 선택해 주세요.',
+  '1주일',
+  '1개월',
+  '3개월',
+];
+
 const SubscribeOptions = () => {
   const [selected, setSelected] = useState('');
-  const selectList = [
-    '[필수] 배송주기를 선택해 주세요.',
-    '1주일',
-    '1개월',
-    '3개월',
-  ];
+
   const handleCycleClick = e => {
-    return e.target.selectedIndex === 0
+    e.target.selectedIndex === 0
       ? setSelected('')
       : setSelected(e.target.value);
   };
