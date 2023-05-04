@@ -94,6 +94,17 @@
   margin-top: 32px;
   @include flex-sort(space-around, center);
   .product-item {
+    padding: 25px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.25s ease-out;
+    // border: 1px solid grey;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
     .product-img {
       width: 200px;
       height: 200px;

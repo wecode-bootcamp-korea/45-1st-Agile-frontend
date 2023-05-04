@@ -70,16 +70,6 @@ const TitleNav = () => {
   );
 };
 
-const TitleAd = () => {
-  return (
-    <div className="title-ad">
-      <video autoPlay muted loop>
-        <source src="/images/main/main-ad1.mp4" type="video/mp4" />
-      </video>
-    </div>
-  );
-};
-
 const TitleCategory = () => {
   return (
     <div className="title-category">
@@ -89,16 +79,6 @@ const TitleCategory = () => {
           <p>{category.name}</p>
         </Link>
       ))}
-    </div>
-  );
-};
-
-const TitleAd2 = () => {
-  return (
-    <div className="title-ad2">
-      <video autoPlay muted loop>
-        <source src="/images/main/main-ad2.mp4" type="video/mp4" />
-      </video>
     </div>
   );
 };
