@@ -12,12 +12,13 @@
     @include font(16px, black);
     margin-top: 25px;
 
-    strong {
+    .login-password {
       @include font(24px, black);
-      margin-left: 70px;
+      margin-left: 80px;
+      font-weight: bold;
     }
 
-    p {
+    .start-words {
       margin: 10px 0px 20px 130px;
     }
   }
