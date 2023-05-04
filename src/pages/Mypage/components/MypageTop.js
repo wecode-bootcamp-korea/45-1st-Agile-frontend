@@ -20,7 +20,7 @@ const MypageTop = () => {
             <div className="text-xl">0원</div>
           </div>
           <div className="phone-number">
-            <div>010 - 4034 - 6206</div>
+            <div>010 - 1234 - 5678</div>
             <div>정보수정{' > '}</div>
           </div>
         </div>

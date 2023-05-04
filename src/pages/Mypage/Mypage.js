@@ -9,13 +9,13 @@ import './Mypage.scss';
 
 const Mypage = () => {
   const [info, setInfo] = useState({
-    email: 'qkrgusk0303@naver.com',
+    email: 'abc@gmail.com',
     password: '',
     password_re: '',
     name: '박현아',
     address: '',
     phone_number: '',
-    birth_date: '1995-03-03',
+    birth_date: '0000-00-00',
   });
 
   return (
