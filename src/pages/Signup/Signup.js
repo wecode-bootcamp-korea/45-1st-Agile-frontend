@@ -9,6 +9,13 @@ const SignUp = () => {
   const [userPassword, setUserPassword] = useState('');
   const [userPasswordOk, setUserPasswordOk] = useState('');
   const [userName, setUserName] = useState('');
+  const [userAddress, setUserAddress] = useState('');
+  const [userPhonenum, setUserPhonenum] = useState('');
+  const [userBirth, setUserBirth] = useState('');
+
+  const saveUserId = event => {
+    setUserId(event.target.value);
+  };
 
   const goToMain = () => {
     navigate('/');
@@ -28,6 +35,8 @@ const SignUp = () => {
             className="inputemail"
             type="text"
             placeholder="이메일을 입력해주세요"
+            onChange={saveUserId}
+            value={userId}
           />
           <span className="useemail">
             로그인 아이디로 사용할 이메일을 입력해 주세요.
