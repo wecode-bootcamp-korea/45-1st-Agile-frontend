@@ -1,0 +1,45 @@
+@import '../../../styles/variables';
+
+.subscribes-product {
+  width: 100%;
+  padding-right: 20px;
+  border-bottom: 1px solid #999999;
+
+  .title {
+    padding: 10px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+  }
+
+  .subscribes-product-main {
+    @include flex-sort(space-between, center);
+
+    .subscribes-left {
+      @include flex-sort(none, center);
+      padding: 15px;
+
+      .product-info {
+        @include flex-sort(center, none);
+        flex-direction: column;
+        padding-left: 20px;
+
+        .subscribes-start {
+          display: flex;
+          margin-bottom: 10px;
+
+          .start-title {
+            width: 100px;
+            color: #999999;
+          }
+        }
+        .subscribes-period {
+          display: flex;
+
+          .period-title {
+            width: 100px;
+            color: #999999;
+          }
+        }
+      }
+    }
+  }
+}

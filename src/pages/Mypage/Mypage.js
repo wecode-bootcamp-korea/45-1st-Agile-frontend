@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MypageTop from './components/MypageTop';
+import UserInfoUpdate from './components/UserInfoUpdate';
 import MenuBar from './components/MenuBar';
 import OrderDelivery from './components/OrderDelivery';
-import Subscribe from './components/Subscribe';
+import Subscribes from './components/Subscribes';
 import Likes from './components/Likes';
 import './Mypage.scss';
 
 const Mypage = () => {
+  const [info, setInfo] = useState({
+    email: 'qkrgusk0303@naver.com',
+    password: '',
+    password_re: '',
+    name: '박현아',
+    address: '',
+    phone_number: '',
+    birth_date: '1995-03-03',
+  });
+
   return (
     <div className="mypage">
       <MypageTop />
@@ -16,8 +27,10 @@ const Mypage = () => {
           <MenuBar />
         </div>
         <div className="main-right">
+          {/* 함수구현으로 보여주는 컴포넌트 변경예정 */}
+          <UserInfoUpdate info={info} />
           <OrderDelivery />
-          <Subscribe />
+          <Subscribes />
           <Likes />
         </div>
       </div>

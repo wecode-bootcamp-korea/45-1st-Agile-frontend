@@ -6,7 +6,7 @@ const Orderer = ({ info }) => {
     <div className="orderer">
       <div className="text-xl">주문자 정보</div>
       <div className="orderer-main">
-        {USER_INFO.map(data => {
+        {ORDERER_INFO.map(data => {
           return (
             <div className="orderer-info" key={data.id}>
               <div className="text-lg">{data.title}</div>
@@ -26,7 +26,7 @@ const Orderer = ({ info }) => {
 
 export default Orderer;
 
-const USER_INFO = [
+const ORDERER_INFO = [
   { id: 1, title: '주문자 이름', type: 'name' },
   { id: 2, title: '휴대폰 번호', type: 'phone_number' },
   { id: 3, title: '이메일', type: 'email' },

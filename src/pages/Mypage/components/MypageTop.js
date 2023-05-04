@@ -21,7 +21,7 @@ const MypageTop = () => {
           </div>
           <div className="phone-number">
             <div>010 - 4034 - 6206</div>
-            <div>정보수정</div>
+            <div>정보수정{' > '}</div>
           </div>
         </div>
       </div>

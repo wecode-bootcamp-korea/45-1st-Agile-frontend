@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import SubscribeProduct from './SubscribeProduct';
-import './Subscribe.scss';
+import SubscribesProduct from './SubscribesProduct';
+import './Subscribes.scss';
 
-const Subscribe = () => {
+const Subscribes = () => {
   const [subList, setSubList] = useState([]);
 
   useEffect(() => {
@@ -16,14 +16,14 @@ const Subscribe = () => {
   }, []);
 
   return (
-    <div className="subscribe">
+    <div className="subscribes">
       <div className="text-xl">정기구독 관리</div>
-      <div className="subscribe-main">
+      <div className="subscribes-main">
         <div className="text-lg">신청내역 ({subList.length}건)</div>
-        <div className="subscribe-list">
-          <div className="no-list">신청내역이 없습니다.</div>
+        <div className="subscribes-list">
+          {/* <div className="no-list">신청내역이 없습니다.</div> */}
           {subList.map(data => {
-            return <SubscribeProduct key={data.id} data={data} />;
+            return <SubscribesProduct key={data.id} data={data} />;
           })}
         </div>
       </div>
@@ -31,4 +31,4 @@ const Subscribe = () => {
   );
 };
 
-export default Subscribe;
+export default Subscribes;
