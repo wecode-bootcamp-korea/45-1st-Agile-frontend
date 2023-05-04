@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { children } from 'react';
+
 import './Footer.scss';
 
-const Footer = () => {
+const Footer = props => {
   return (
-    <footer className="footer">
-      <div className="realfooter"> 푸터입니다</div>
-    </footer>
+    <div className="footer" style={{ width: '1500px' }}>
+      안녕하세요
+    </div>
   );
 };
 export default Footer;

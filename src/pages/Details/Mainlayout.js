@@ -5,11 +5,11 @@ import Footer from '../../components/Footer/Footer';
 const MainLayout = props => {
   const { children } = props;
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <NavSub />
-      <div>{children}</div>
+      <div style={{ flex: '1' }}>{children}</div>
       <Footer />
-    </>
+    </div>
   );
 };
 
