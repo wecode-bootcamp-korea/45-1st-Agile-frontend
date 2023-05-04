@@ -3,7 +3,7 @@ import './Review.scss';
 
 const Review = props => {
   const { review } = props;
-  const { user_id, content, date } = review;
+  const { user_id, content, date, book_id } = review;
 
   return (
     <li className="review">

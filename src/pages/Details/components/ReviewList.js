@@ -17,6 +17,7 @@ export default ReviewList;
 export const REVIEWS = [
   {
     id: 1,
+    book_id: 1,
     user_id: 'heeyeon',
     content: '최고에요',
     product_id: 'A',
@@ -25,6 +26,7 @@ export const REVIEWS = [
   },
   {
     id: 2,
+    book_id: 2,
     user_id: 'juicy',
     content: '만점',
     product_id: 'B',
@@ -33,6 +35,7 @@ export const REVIEWS = [
   },
   {
     id: 3,
+    book_id: 3,
     user_id: 'merci',
     content: '굿굿',
     product_id: 'C',
@@ -41,6 +44,7 @@ export const REVIEWS = [
   },
   {
     id: 4,
+    book_id: 4,
     user_id: 'coffee',
     content: '추천합니다',
     product_id: 'D',
@@ -49,6 +53,7 @@ export const REVIEWS = [
   },
   {
     id: 5,
+    book_id: 5,
     user_id: 'lipstick',
     content: '최고최고',
     product_id: 'E',
