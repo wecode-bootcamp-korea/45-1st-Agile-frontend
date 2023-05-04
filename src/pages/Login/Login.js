@@ -18,31 +18,6 @@ const Login = () => {
   };
 
   const goToMain = () => {
-    fetch('http://10.58.52.146:3000/users/logIn', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        email: userId,
-        password: userPassword,
-      }),
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(result => {
-        localStorage.setItem('token', result.accessToken);
-      });
-
-    fetch('http://10.58.52.146:3000/users/signup', {
-      method: 'post',
-    })
-      .then(res => {
-        res.json();
-      })
-      .then(data => {});
-
     if (!isinputValid) {
       window.alert('이메일을 다시 입력해주세요!');
       return false;
@@ -50,7 +25,25 @@ const Login = () => {
       window.alert('비밀번호를 입력해주세요!');
       return false;
     } else {
-      navigate('/');
+      fetch('http://10.58.52.146:3000/users/logIn', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          email: userId,
+          password: userPassword,
+        }),
+      })
+        .then(response => {
+          return response.json();
+        })
+        .then(result => {
+          if (result.accessToken) {
+            localStorage.setItem('token', result.accessToken);
+            navigate('/');
+          }
+        });
     }
   };
 
