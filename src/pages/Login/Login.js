@@ -4,25 +4,26 @@ import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({
+    userId: '',
+    userPassword: '',
+  });
 
-  const [userId, setUserId] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const isinputValid = userId.match(/^[a-z0-9]+@[a-z]+(.[a-z]{2,3}){1,2}$/);
+  const isinputValid = userInfo.userId.match(
+    `/^[a-z0-9]+@[a-z]+(.[a-z]{2,3}){1,2}$/`
+  );
 
-  const saveUserId = event => {
-    setUserId(event.target.value);
-  };
-
-  const saveUserPassword = event => {
-    setUserPassword(event.target.value);
+  const handleInput = event => {
+    const { name, Info } = event.target;
+    setUserInfo({ ...userInfo, [name]: Info });
   };
 
   const goToMain = () => {
     if (!isinputValid) {
-      window.alert('이메일을 다시 입력해주세요!');
+      alert('이메일을 다시 입력해주세요!');
       return false;
-    } else if (!userPassword) {
-      window.alert('비밀번호를 입력해주세요!');
+    } else if (!userInfo.userPassword) {
+      alert('비밀번호를 입력해주세요!');
       return false;
     } else {
       fetch('http://10.58.52.146:3000/users/logIn', {
@@ -31,8 +32,8 @@ const Login = () => {
           'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify({
-          email: userId,
-          password: userPassword,
+          email: userInfo.userId,
+          password: userInfo.userPassword,
         }),
       })
         .then(response => {
@@ -61,15 +62,13 @@ const Login = () => {
           className="login"
           type="text"
           placeholder="이메일을 입력해주세요"
-          onChange={saveUserId}
-          value={userId}
+          onChange={handleInput}
         />
         <input
           className="password"
           type="password"
           placeholder="비밀번호를 입력해주세요"
-          onChange={saveUserPassword}
-          value={userPassword}
+          onChange={handleInput}
         />
         <div className="id-check">
           <input type="checkbox" id="id-check" name="id-check" />
