@@ -6,7 +6,7 @@ const UserInfoUpdate = ({ info }) => {
     <div className="userinfo-update">
       <div className="text-xl">기본정보</div>
       <div className="userinfo-update-main">
-        {USER_INFO.map(data => {
+        {UPDATE_INFO.map(data => {
           return (
             <div className="user-info" key={data.id}>
               <div className="text-lg">{data.title}</div>
@@ -29,7 +29,7 @@ const UserInfoUpdate = ({ info }) => {
 
 export default UserInfoUpdate;
 
-const USER_INFO = [
+const UPDATE_INFO = [
   { id: 1, title: '이메일', type: 'email', isUpdate: 0 },
   { id: 2, title: '비밀번호', type: 'password', isUpdate: 1 },
   { id: 3, title: '비밀번호 확인', type: 'password_re', isUpdate: 1 },
