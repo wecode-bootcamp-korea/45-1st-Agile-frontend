@@ -38,6 +38,16 @@
     margin-top: 32px;
 
     .product-item {
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      transition: transform 0.25s ease-out;
+      // border: 1px solid grey;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+      }
       .product-img {
         width: 200px;
         height: 200px;

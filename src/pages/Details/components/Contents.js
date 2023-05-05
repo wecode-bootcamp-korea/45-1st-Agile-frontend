@@ -8,6 +8,7 @@ import QuantityBox from './QuantityBox';
 import ShippingInfo from './ShippingInfo';
 import SubscribeOptions from './SubscribeOptions';
 import './Contents.scss';
+
 const Contents = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [count, setCount] = useState(1);

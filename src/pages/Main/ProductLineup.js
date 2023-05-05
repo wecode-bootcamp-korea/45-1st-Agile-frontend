@@ -13,7 +13,6 @@ const ProductLineup = ({ subCategoryId, count }) => {
         setProductList(getFilteredProducts(data, subCategoryId, count));
       });
   }, []);
-
   const getFilteredProducts = (products, subCategoryId, count) => {
     // sub_category_id가 subCategoryId인 상품들만 필터링합니다.
     const filteredProducts = products.filter(
@@ -53,3 +52,41 @@ const ProductLineup = ({ subCategoryId, count }) => {
 };
 
 export default ProductLineup;
+
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+
+// const ProductLineup = ({ subCategoryId }) => {
+//   const [productList, setProductList] = useState([]);
+
+//   useEffect(() => {
+//     fetch(`/books?categoryId=2&subCategoryId=${subCategoryId}&orderBy=bestBooks&limit=4&offset=0`, {
+//       method: 'GET',
+//     })
+//       .then(res => res.json())
+//       .then(data => {
+//         setProductList(data);
+//       });
+//   }, []);
+
+//   return (
+//     <div className="product-lineup">
+//       {productList.map(product => (
+//         <Link key={product.id} to={`/books/${product.Key}`}>
+//           <div key={product.Key} className="product-item">
+//             <img
+//               className="product-img"
+//               src={`images/main/booksimg/${product.Key}.png`}
+//               alt={product.title}
+//             />
+//             <div className="product-title">{product.title}</div>
+//             <div className="prduct-price">{product.price}원</div>
+//           </div>
+//         </Link>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default ProductLineup;
+//데이터 패칭시 사용할 코드
