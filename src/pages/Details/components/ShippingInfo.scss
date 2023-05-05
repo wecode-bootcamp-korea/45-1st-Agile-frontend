@@ -1,0 +1,38 @@
+.shipping-info {
+  padding: 16px;
+  background-color: #f1f1f1;
+
+  .free-shipping-conditions {
+    padding-bottom: 8px;
+    border-bottom: 1px solid;
+    border-color: rgb(221, 221, 221);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .shipping-cost {
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 8px;
+    font-size: 14px;
+    font-weight: 500;
+
+    &-second {
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    &-first {
+      width: 58px;
+    }
+  }
+}
+.shipping-cost-second {
+  gap: 8px;
+
+  .rest-price-area {
+    padding-bottom: 8px;
+  }
+}

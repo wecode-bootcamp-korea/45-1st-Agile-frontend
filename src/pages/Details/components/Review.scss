@@ -1,0 +1,43 @@
+.review {
+  display: flex;
+  padding: 24px;
+  border-top: 1px solid #d8dde5;
+
+  list-style: none;
+  .review-area {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 24px;
+    border-right: 1px solid #d8dde5;
+  }
+  .rate-review {
+    display: flex;
+    padding-bottom: 24px;
+  }
+  .review-content {
+    padding-bottom: 8px;
+    text-align: left;
+  }
+  .toggle-review-more {
+    max-width: 80px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: #9999;
+    text-align: left;
+    cursor: pointer;
+  }
+  .user-info {
+    flex: 0.5;
+    padding: 24px;
+    text-align: left;
+  }
+}
+
+.rate-review {
+  .review-date {
+    flex: 1;
+    text-align: right;
+  }
+}
