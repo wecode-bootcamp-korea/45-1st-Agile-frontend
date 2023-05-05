@@ -6,12 +6,54 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [memberData, setMemberData] = useState({
     userId: '',
-    user,
+    userPassword: '',
+    userPasswordOk: '',
+    userName: '',
+    userAddress: '',
+    userPhonenum: '',
+    userBirth: '',
   });
 
+  const [isIdValid, setIsIdValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+
+  const handleInput = event => {
+    const { name, value } = event.target;
+    setMemberData({ ...memberData, [name]: value });
+
+    if (name === 'userId') {
+      const isValid = /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(value);
+      setIsIdValid(isValid);
+    }
+
+    if (name === 'userPassword') {
+      const isValid =
+        /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(
+          value
+        );
+      setIsPasswordValid(isValid);
+    }
+  };
+
   const goToMain = () => {
+    if (!memberData.userId || !isIdValid) {
+      alert('이메일을 다시 입력해주세요!');
+      return;
+    }
+
+    if (!memberData.userPassword || !isPasswordValid) {
+      alert('비밀번호를 다시 입력해주세요!');
+      return;
+    }
+
+    if (memberData.userPassword !== memberData.userPasswordOk) {
+      alert('입력한 비밀번호와 일치하지 않습니다!');
+      return;
+    }
+
     navigate('/');
   };
+
   return (
     <div className="first-title">
       <div className="title">
@@ -27,6 +69,7 @@ const SignUp = () => {
             className="inputpwd"
             type="text"
             placeholder="이메일을 입력해주세요"
+            onChange={handleInput}
           />
           <span className="useemail">
             로그인 아이디로 사용할 이메일을 입력해 주세요.
@@ -38,6 +81,7 @@ const SignUp = () => {
             className="inputpwd"
             type="password"
             placeholder="비밀번호를 입력해주세요"
+            onChange={handleInput}
           />
           <span className="usepwd">
             (영문 대/소문자, 숫자, 특수기호 8~20개 사이를 입력해주세요)
@@ -49,6 +93,7 @@ const SignUp = () => {
             className="input-checkpwd"
             type="password"
             placeholder="비밀번호를 한번 더 입력해주세요"
+            onChange={handleInput}
           />
         </div>
         <div className="writename">
@@ -57,6 +102,7 @@ const SignUp = () => {
             className="inputname"
             type="text"
             placeholder="실명으로 기입해주세요"
+            onChange={handleInput}
           />
         </div>
         <div className="write-address">
@@ -69,6 +115,7 @@ const SignUp = () => {
             className="input-phonenumber"
             type="text"
             placeholder="000-000-0000"
+            onChange={handleInput}
           />
         </div>
       </div>
@@ -78,7 +125,12 @@ const SignUp = () => {
       <div className="plusinfoform">
         <div className="write-birth">
           <span className="birth">생년월일</span>
-          <input className="input-birth" type="text" placeholder="YYYY-MM-DD" />
+          <input
+            className="input-birth"
+            type="text"
+            placeholder="YYYY-MM-DD"
+            onChange={handleInput}
+          />
         </div>
         <div className="check-gender">
           <span className="gender">성별</span>
