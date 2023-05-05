@@ -8,27 +8,42 @@ import PaymentInfo from './components/PaymentInfo';
 import './Payment.scss';
 
 const Payment = () => {
+  const [userInfo, setUserInfo] = useState({});
   const [radio, setRadio] = useState(true);
-  const [info, setInfo] = useState({
-    name: '박현아',
-    phone_number: '',
-    email: '',
-    address: '',
-    receiver_name: '올리브',
-    receiver_phone_number: '',
-    receiver_address: '',
-    subscribe_start: subDate(),
-  });
+  const [info, setInfo] = useState({});
 
   const handleInfo = e => {
     const { name, value } = e.target;
-    if (name != 'subscribe_start') {
+    if (!radio || !name.includes('receiver_')) {
       setInfo({ ...info, [name]: value });
     }
   };
 
-  console.log(1);
-  console.log(radio);
+  useEffect(() => {
+    fetch('/data/userData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setUserInfo(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    setInfo({
+      name: userInfo.name,
+      phone_number: userInfo.phone_number,
+      email: userInfo.email,
+      address: userInfo.address,
+      receiver_name: userInfo.name,
+      receiver_phone_number: userInfo.phone_number,
+      receiver_address: userInfo.address,
+      subscribe_start: subDate(),
+    });
+  }, [userInfo]);
+
+  // console.log(1);
+  // console.log(radio);
 
   const switchRadio = () => {
     for (let key in info) {
@@ -36,7 +51,7 @@ const Payment = () => {
         if (radio) {
           info[key] = '';
         } else {
-          info[key] = 'ssss';
+          info[key] = userInfo[key.slice(9)];
         }
       }
     }
@@ -71,7 +86,7 @@ const subDate = () => {
   const now = new Date();
   const year = now.getFullYear();
   let month = now.getMonth() + 1;
-  let day = now.getDay() + 1;
+  let day = now.getDay() + 1; //next day
 
   if (month < 10) {
     month = '0' + String(month);

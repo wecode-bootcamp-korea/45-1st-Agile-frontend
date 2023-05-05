@@ -3,8 +3,8 @@ import ShipmentSelect from './ShipmentSelect';
 import './Shipment.scss';
 
 const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
-  console.log(2);
-  console.log(radio);
+  // console.log(2);
+  // console.log(radio);
 
   return (
     <div className="shipment">
