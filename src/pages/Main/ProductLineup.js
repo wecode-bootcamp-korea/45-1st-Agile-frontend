@@ -31,18 +31,18 @@ const ProductLineup = ({ subCategoryId }) => {
       return;
     }
 
+    const startIndex = Math.min(currentIndex, extractedList.length - showCount);
     const newVisibleProducts = extractedList.slice(
-      currentIndex,
-      currentIndex + showCount
+      startIndex,
+      startIndex + showCount
     );
     setVisibleProducts(newVisibleProducts);
 
-    // cleanup 함수에서 이벤트 핸들러 제거
     return () => {
       document.removeEventListener('click', handlePrevClick);
       document.removeEventListener('click', handleNextClick);
     };
-  }, [currentIndex, extractedList, showCount]);
+  }, [extractedList, showCount]);
 
   const handlePrevClick = event => {
     event.preventDefault(); // 이벤트 전파 막기

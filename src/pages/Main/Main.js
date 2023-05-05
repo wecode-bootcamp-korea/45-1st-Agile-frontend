@@ -33,7 +33,7 @@ const Main = () => {
       </div>
       <ProductLineup subCategoryId={1} />
       <div className="introd-sub">너빼고 다 몰래보고 있어 돈버는 비법</div>
-      {/* <ProductLineup subCategoryId={2} /> */}
+      <ProductLineup subCategoryId={2} />
       <video
         className="small-ad"
         src="/images/main/main-ad3.mp4"
