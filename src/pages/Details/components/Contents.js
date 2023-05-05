@@ -8,6 +8,7 @@ import QuantityBox from './QuantityBox';
 import ShippingInfo from './ShippingInfo';
 import SubscribeOptions from './SubscribeOptions';
 import './Contents.scss';
+import CartModal from './CartModal';
 
 const tabArr = [
   {
@@ -35,9 +36,13 @@ const Contents = props => {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [count, setCount] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleTabClick = index => () => setActiveIndex(index);
   const totalPrice = price * count;
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
 
   return (
     <div className="contents">
@@ -74,7 +79,10 @@ const Contents = props => {
           <div>
             <ShippingInfo />
             <div className="cart-purchase-container">
-              <Button color="white">장바구니</Button>
+              <Button color="white" onClick={handleModalOpen}>
+                장바구니
+              </Button>
+              {modalOpen && <CartModal setModalOpen={setModalOpen} />}
               <Button color="black">구매하기</Button>
             </div>
           </div>
