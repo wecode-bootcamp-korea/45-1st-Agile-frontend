@@ -1,7 +1,10 @@
 import React from 'react';
 import '../Cart.scss';
+import ProductInfo from './productInfo';
 
-const Product = () => {
+const Product = ({ product }) => {
+  const { title, price, author } = product;
+
   return (
     <div className="product-wrap">
       <div className="checkbox-inner">
@@ -11,9 +14,12 @@ const Product = () => {
         <div className="choice">선택</div>
       </div>
       <div className="message-web">
-        <p>장바구니에 담긴 제품이 없습니다.</p>
+        {!product ? (
+          <p>장바구니에 담긴 제품이 없습니다.</p>
+        ) : (
+          <ProductInfo title={title} />
+        )}
       </div>
-      {/* <p className="message-web">장바구니에 담긴 제품이 없습니다.</p> */}
     </div>
   );
 };
