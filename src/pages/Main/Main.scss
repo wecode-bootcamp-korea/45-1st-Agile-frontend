@@ -109,6 +109,17 @@ a {
   margin-top: 32px;
   @include flex-sort(space-around, center);
 
+  .product-slider-container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-slider-track {
+    display: flex;
+    transition: transform 0.25s ease-out;
+  }
+
   .product-item {
     transform: translateZ(0);
     backface-visibility: hidden;

@@ -1,92 +1,109 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const ProductLineup = ({ subCategoryId, count }) => {
-  const [productList, setProductList] = useState([]);
+const ProductLineup = ({ subCategoryId }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCount, setShowCount] = useState(4);
+  const [extractedList, setExtractedList] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState([]);
 
   useEffect(() => {
-    fetch('/data/data.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setProductList(getFilteredProducts(data, subCategoryId, count));
-      });
-  }, []);
-  const getFilteredProducts = (products, subCategoryId, count) => {
-    // sub_category_id가 subCategoryId인 상품들만 필터링합니다.
-    const filteredProducts = products.filter(
-      product => product.sub_category_id === subCategoryId
-    );
-
-    // 상품 리스트에서 랜덤으로 count개를 선택합니다.
-    const randomProducts = [];
-    while (randomProducts.length < count) {
-      const randomIndex = Math.floor(Math.random() * filteredProducts.length);
-      const product = filteredProducts[randomIndex];
-      if (!randomProducts.includes(product)) {
-        randomProducts.push(product);
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/data/data.json');
+        const data = await res.json();
+        if (data) {
+          const filteredBooks = data.filter(
+            book => book.sub_category_id === subCategoryId
+          );
+          const sortedBooks = filteredBooks.sort((a, b) => a.price - b.price);
+          setExtractedList(sortedBooks);
+        }
+      } catch (error) {
+        console.log(error);
       }
+    };
+    fetchData();
+  }, [subCategoryId]);
+
+  useEffect(() => {
+    if (extractedList.length === 0) {
+      return;
     }
 
-    return randomProducts;
+    const newVisibleProducts = extractedList.slice(
+      currentIndex,
+      currentIndex + showCount
+    );
+    setVisibleProducts(newVisibleProducts);
+
+    // cleanup 함수에서 이벤트 핸들러 제거
+    return () => {
+      document.removeEventListener('click', handlePrevClick);
+      document.removeEventListener('click', handleNextClick);
+    };
+  }, [currentIndex, extractedList, showCount]);
+
+  const handlePrevClick = event => {
+    event.preventDefault(); // 이벤트 전파 막기
+    event.stopPropagation(); // 이벤트 전파 막기
+    if (currentIndex > 0) {
+      setCurrentIndex(prevIndex => prevIndex - 1);
+    }
   };
 
+  const handleNextClick = event => {
+    event.preventDefault(); // 이벤트 전파 막기
+    event.stopPropagation(); // 이벤트 전파 막기
+    if (currentIndex + showCount < extractedList.length) {
+      setCurrentIndex(prevIndex => prevIndex + 1);
+    }
+  };
+
+  if (visibleProducts.length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="product-lineup">
-      {productList.map(product => (
-        <Link key={product.id} to={`/books/${product.Key}`}>
-          <div key={product.Key} className="product-item">
-            <img
-              className="product-img"
-              src={`images/main/booksimg/${product.Key}.png`}
-              alt={product.title}
-            />
-            <div className="product-title">{product.title}</div>
-            <div className="prduct-price">{product.price}원</div>
-          </div>
-        </Link>
-      ))}
+      <div className="product-slider-container">
+        <div
+          className="product-slider-track"
+          style={{
+            transform: `translateX(-${
+              currentIndex * (100 / visibleProducts.length)
+            }%)`,
+            width: `${100 * visibleProducts.length}%`,
+          }}
+        >
+          {visibleProducts.map(product => (
+            <Link key={product.id} to={`/books/${product.Key}`}>
+              <div
+                key={product.key}
+                className="product-item"
+                style={{ width: `${100 / visibleProducts.length}%` }}
+              >
+                <img
+                  className="product-img"
+                  src={`images/main/booksimg/${product.Key}.png`}
+                  alt={product.title}
+                />
+                <div className="product-title">{product.title}</div>
+                <div className="product-price">{product.price}원</div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+      <div className="product-slider-controls">
+        <button className="product-slider-prev" onClick={handlePrevClick}>
+          이전내용
+        </button>
+        <button className="product-slider-next" onClick={handleNextClick}>
+          다음내용
+        </button>
+      </div>
     </div>
   );
 };
 
 export default ProductLineup;
-
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom';
-
-// const ProductLineup = ({ subCategoryId }) => {
-//   const [productList, setProductList] = useState([]);
-
-//   useEffect(() => {
-//     fetch(`/books?categoryId=2&subCategoryId=${subCategoryId}&orderBy=bestBooks&limit=4&offset=0`, {
-//       method: 'GET',
-//     })
-//       .then(res => res.json())
-//       .then(data => {
-//         setProductList(data);
-//       });
-//   }, []);
-
-//   return (
-//     <div className="product-lineup">
-//       {productList.map(product => (
-//         <Link key={product.id} to={`/books/${product.Key}`}>
-//           <div key={product.Key} className="product-item">
-//             <img
-//               className="product-img"
-//               src={`images/main/booksimg/${product.Key}.png`}
-//               alt={product.title}
-//             />
-//             <div className="product-title">{product.title}</div>
-//             <div className="prduct-price">{product.price}원</div>
-//           </div>
-//         </Link>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default ProductLineup;
-//데이터 패칭시 사용할 코드
