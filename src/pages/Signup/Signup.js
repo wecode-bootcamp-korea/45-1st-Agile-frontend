@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Signup.scss';
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [memberData, setMemberData] = useState({
+    userEmail: '',
+    userPassword: '',
+    userPasswordOk: '',
+    userName: '',
+    userAddress: '',
+    userPhoneNum: '',
+    userBirth: '',
+  });
 
   const goToMain = () => {
     navigate('/');
