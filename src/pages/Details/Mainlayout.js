@@ -1,6 +1,7 @@
-import React, { children } from 'react';
+import React from 'react';
 import NavSub from '../../components/Nav/Nav-sub';
 import Footer from '../../components/Footer/Footer';
+import NavMain from '../../components/Nav/Nav-main';
 
 const MainLayout = props => {
   const { children } = props;

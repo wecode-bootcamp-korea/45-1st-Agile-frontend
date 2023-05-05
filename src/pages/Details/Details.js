@@ -21,7 +21,7 @@ const Details = () => {
       });
   }, [id]);
 
-  if (!productDetail) return <></>;
+  if (!productDetail) return;
 
   return (
     <MainLayout>

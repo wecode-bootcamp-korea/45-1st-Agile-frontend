@@ -27,7 +27,7 @@ const Contents = props => {
     subtitle,
     price,
     issue_date,
-    is_subscribe,
+    is_subscribed,
     image,
     description,
     author,
@@ -65,7 +65,7 @@ const Contents = props => {
             </div>
             <QuantityBox count={count} setCount={setCount} />
           </div>
-          {is_subscribe ? <SubscribeOptions /> : ''}
+          {is_subscribed ? <SubscribeOptions /> : ''}
           <div className="price-info">
             <div className="text-sm">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>
