@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 import CATEGORY from './CATEGORY.js';
 import ProductLineup from './ProductLineup.js';
 import NewestNav from './NewestNav.js';
-import NavSub from '../../components/Nav/Nav-sub.js';
+import NavMain from '../../components/Nav/Nav-main.js';
 import './Main.scss';
 
 const Main = () => {
   return (
     <div className="main">
-      <NavSub />
       <TitleLine />
-      <TitleNav />
+      <NavMain />
       <video
         className="big-ad"
         src="/images/main/main-ad1.mp4"
@@ -50,28 +49,25 @@ const Main = () => {
 };
 
 export default Main;
+
 const TitleLine = () => {
   return (
     <div className="title-line">
-      <img className="logo" alt="logo" src="/images/main/logo.png" />
-      <input className="search-bar" />
-      <div className="title-right">
-        <button className="to-wishlist" />
-        <button className="to-cart" />
+      <div className="title-one">
+        <img className="logo" alt="logo" src="/images/main/logo.png" />
+        <input className="search-bar" />
+        <div className="title-right">
+          <button className="to-wishlist" />
+          <button className="to-cart" />
+        </div>
+      </div>
+      <div className="title-nav">
+        <button className="menus" />
+        <div className="카테고리">카테고리</div>
       </div>
     </div>
   );
 };
-
-const TitleNav = () => {
-  return (
-    <div className="title-nav">
-      <button className="menus" />
-      <div className="카테고리">카테고리</div>
-    </div>
-  );
-};
-
 const TitleCategory = () => {
   return (
     <div className="title-category">

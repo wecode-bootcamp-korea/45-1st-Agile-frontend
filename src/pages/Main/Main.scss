@@ -6,52 +6,56 @@ a {
 }
 
 .title-line {
-  @include flex-sort(space-around, center);
+  display: flex;
+  flex-direction: column;
   margin-top: 40px;
-  .logo {
-    height: 100px;
+  .title-one {
+    @include flex-sort(space-around, center);
+    .logo {
+      height: 100px;
+    }
+    .search-bar {
+      width: 406px;
+      height: 50px;
+    }
   }
-  .search-bar {
-    width: 406px;
-    height: 50px;
-  }
-}
-.title-right {
-  @include flex-sort(center, center);
-  gap: 20px;
-  .to-wishlist,
-  .to-cart {
-    width: 32px;
-    height: 32px;
-    border: none;
-    background-color: transparent;
-    background-image: url('../../assets/main/heart.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
+  .title-right {
+    @include flex-sort(center, center);
+    gap: 20px;
+    .to-wishlist,
+    .to-cart {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background-color: transparent;
+      background-image: url('../../assets/main/heart.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
 
-    &.to-cart {
-      background-image: url('../../assets/main/cart.svg');
+      &.to-cart {
+        background-image: url('../../assets/main/cart.svg');
+      }
+    }
+  }
+  .title-nav {
+    @include flex-sort(flex-start, center);
+    @include font(16px, #1c1c1c);
+    margin-top: 40px;
+    font-weight: bold;
+    gap: 20px;
+    .menus {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background-color: transparent;
+      background-image: url('../../assets/main/menu.svg');
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 }
 
-.title-nav {
-  @include flex-sort(flex-start, center);
-  @include font(16px, #1c1c1c);
-  margin-top: 40px;
-  font-weight: bold;
-  gap: 20px;
-  .menus {
-    width: 32px;
-    height: 32px;
-    border: none;
-    background-color: transparent;
-    background-image: url('../../assets/main/menu.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-  }
-}
 .big-ad {
   width: 1050px;
   height: 212px;
