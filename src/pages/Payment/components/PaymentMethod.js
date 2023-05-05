@@ -1,8 +1,15 @@
 import React from 'react';
+import { useNavigate, Route } from 'react-router-dom';
 import Agreement from './Agreement';
 import './PaymentMethod.scss';
 
 const PaymentMethod = () => {
+  const navigate = useNavigate();
+
+  const handlePayButton = () => {
+    navigate('/orderCompleted');
+  };
+
   return (
     <div className="payment-method">
       <div className="text-xl">결제수단</div>
@@ -16,7 +23,9 @@ const PaymentMethod = () => {
               <div>주문 내용을 확인하였으며 약관에 동의합니다.</div>
             </div>
             <div className="pay">
-              <button className="pay-button">결제하기</button>
+              <button className="pay-button" onClick={handlePayButton}>
+                결제하기
+              </button>
             </div>
           </div>
         </div>
