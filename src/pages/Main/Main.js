@@ -1,10 +1,10 @@
 import React from 'react';
+import ProductLineup from './components/ProductLineup';
+import NewestNav from './components/NewestNav';
+import NavMain from '../../components/Nav/Nav-main';
+import TitleLine from '../../components/TitleLine/TitleLine';
+import TitleCategory from './components/TitleCategory';
 
-import { Link } from 'react-router-dom';
-import CATEGORY from './CATEGORY.js';
-import ProductLineup from './ProductLineup.js';
-import NewestNav from './NewestNav.js';
-import NavMain from '../../components/Nav/Nav-main.js';
 import './Main.scss';
 
 const Main = () => {
@@ -49,37 +49,3 @@ const Main = () => {
 };
 
 export default Main;
-
-const TitleLine = () => {
-  return (
-    <div className="title-line">
-      <div className="title-one">
-        <img className="logo" alt="logo" src="/images/main/logo.png" />
-        <input className="search-bar" />
-        <div className="title-right">
-          <button className="to-wishlist" />
-          <button className="to-cart" />
-        </div>
-      </div>
-      <div className="title-nav">
-        <button className="menus" />
-        <div className="카테고리">카테고리</div>
-      </div>
-    </div>
-  );
-};
-const TitleCategory = () => {
-  return (
-    <div className="title-category">
-      {CATEGORY.map(category => (
-        <Link
-          key={category.id}
-          to={`/books?categoryId=${category.id}&subCategoryId=value&limit=9&orderBy=bestBooks&offset=0`}
-        >
-          <img src={`/images/main/${category.img}`} alt={category.name} />
-          <p>{category.name}</p>
-        </Link>
-      ))}
-    </div>
-  );
-};

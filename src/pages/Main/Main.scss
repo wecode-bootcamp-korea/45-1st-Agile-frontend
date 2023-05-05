@@ -5,57 +5,6 @@ a {
   text-decoration: none;
 }
 
-.title-line {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  .title-one {
-    @include flex-sort(space-around, center);
-    .logo {
-      height: 100px;
-    }
-    .search-bar {
-      width: 406px;
-      height: 50px;
-    }
-  }
-  .title-right {
-    @include flex-sort(center, center);
-    gap: 20px;
-    .to-wishlist,
-    .to-cart {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background-color: transparent;
-      background-image: url('../../assets/main/heart.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-      cursor: pointer;
-
-      &.to-cart {
-        background-image: url('../../assets/main/cart.svg');
-      }
-    }
-  }
-  .title-nav {
-    @include flex-sort(flex-start, center);
-    @include font(16px, #1c1c1c);
-    margin-top: 40px;
-    font-weight: bold;
-    gap: 20px;
-    .menus {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background-color: transparent;
-      background-image: url('../../assets/main/menu.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-  }
-}
-
 .big-ad {
   width: 1050px;
   height: 212px;
@@ -65,33 +14,6 @@ a {
   width: 1050px;
   height: 140px;
   margin-top: 80px;
-}
-
-.title-category {
-  margin-top: 60px;
-  @include flex-sort(space-around, center);
-  a {
-    @include font(20px, #1c1c1c);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    transition: transform 0.25s ease-out;
-    // border: 1px solid grey;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    gap: 30px;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-  img {
-    width: 40px;
-  }
 }
 
 .title-ad2 {
