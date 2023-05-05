@@ -8,9 +8,13 @@ const Orderer = ({ info, handleInfo }) => {
       <div className="orderer-main">
         {USER_INFO.map(data => {
           return (
-            <div className="orderer-info" key={data.id} onChange={handleInfo}>
+            <div className="orderer-info" key={data.id}>
               <div className="text-lg">{data.title}</div>
-              <input name={data.type} value={info[data.type]} />
+              <input
+                name={data.type}
+                value={info[data.type]}
+                onChange={handleInfo}
+              />
             </div>
           );
         })}

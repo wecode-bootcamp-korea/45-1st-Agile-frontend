@@ -2,18 +2,29 @@ import React from 'react';
 import ShipmentSelect from './ShipmentSelect';
 import './Shipment.scss';
 
-const Shipment = ({ info }) => {
+const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
+  console.log(2);
+  console.log(radio);
+
   return (
     <div className="shipment">
       <div className="text-xl">배송 정보</div>
       <div className="shipment-main">
-        <ShipmentSelect />
+        <ShipmentSelect
+          switchRadio={switchRadio}
+          setRadio={setRadio}
+          radio={radio}
+        />
 
         {SHIPMENT_INFO.map(data => {
           return (
             <div className="courier-info" key={data.id}>
               <div className="text-lg">{data.title}</div>
-              <input value={info[data.type]} />
+              <input
+                name={data.type}
+                value={info[data.type]}
+                onChange={handleInfo}
+              />
             </div>
           );
         })}

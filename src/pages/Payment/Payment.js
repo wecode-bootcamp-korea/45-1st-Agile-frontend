@@ -8,12 +8,13 @@ import PaymentInfo from './components/PaymentInfo';
 import './Payment.scss';
 
 const Payment = () => {
+  const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({
     name: '박현아',
     phone_number: '',
     email: '',
     address: '',
-    receiver_name: '',
+    receiver_name: '올리브',
     receiver_phone_number: '',
     receiver_address: '',
     subscribe_start: subDate(),
@@ -21,7 +22,24 @@ const Payment = () => {
 
   const handleInfo = e => {
     const { name, value } = e.target;
-    setInfo({ ...info, [name]: value });
+    if (name != 'subscribe_start') {
+      setInfo({ ...info, [name]: value });
+    }
+  };
+
+  console.log(1);
+  console.log(radio);
+
+  const switchRadio = () => {
+    for (let key in info) {
+      if (key.includes('receiver')) {
+        if (radio) {
+          info[key] = '';
+        } else {
+          info[key] = 'ssss';
+        }
+      }
+    }
   };
 
   return (
@@ -32,8 +50,14 @@ const Payment = () => {
 
       <OrderList />
       <Orderer info={info} handleInfo={handleInfo} />
-      <Shipment info={info} />
-      <Subscribe info={info} />
+      <Shipment
+        info={info}
+        handleInfo={handleInfo}
+        setRadio={setRadio}
+        radio={radio}
+        switchRadio={switchRadio}
+      />
+      <Subscribe info={info} handleInfo={handleInfo} />
       <div className="pay-part">
         <PaymentMethod />
         <PaymentInfo />
