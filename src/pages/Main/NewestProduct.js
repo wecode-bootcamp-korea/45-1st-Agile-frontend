@@ -33,7 +33,7 @@ const NewestProduct = ({ subCategoryId, count }) => {
         <div key={product.Key} className="product-item">
           <img
             className="product-img"
-            src={`images/main/booksimg/${product.Key}.avif`}
+            src={`images/main/booksimg/${product.Key}.png`}
             alt={product.title}
           />
           <div className="product-title">{product.title}</div>

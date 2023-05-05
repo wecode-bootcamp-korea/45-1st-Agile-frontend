@@ -23,7 +23,7 @@ function Header() {
 
   return (
     <header className="header">
-      <Link to={isLoggedIn ? '/mypage' : '/크signup'}>
+      <Link to={isLoggedIn ? '/mypage' : '/signup'}>
         <button className="to-signup">
           {isLoggedIn ? '마이페이지' : '회원가입'}
         </button>
