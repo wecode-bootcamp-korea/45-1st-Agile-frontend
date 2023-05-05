@@ -5,31 +5,26 @@ import './Signup.scss';
 const SignUp = () => {
   const navigate = useNavigate();
   const [memberData, setMemberData] = useState({
-    userEmail: '',
-    userPassword: '',
-    userPasswordOk: '',
-    userName: '',
-    userAddress: '',
-    userPhoneNum: '',
-    userBirth: '',
+    userId: '',
+    user,
   });
 
   const goToMain = () => {
     navigate('/');
   };
   return (
-    <>
+    <div className="first-title">
       <div className="title">
         <h1>회원가입</h1>
       </div>
       <div className="basicinfo">
-        <h2>기본정보</h2>
+        <div className="basic-info">기본정보</div>
       </div>
       <div className="signupform">
-        <span className="email">이메일</span>
-        <div className="writeemail">
+        <span className="password">이메일</span>
+        <div className="writepwd">
           <input
-            className="inputemail"
+            className="inputpwd"
             type="text"
             placeholder="이메일을 입력해주세요"
           />
@@ -78,7 +73,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="plusinfo">
-        <h2>추가정보</h2>
+        <div className="plus-info">추가정보</div>
       </div>
       <div className="plusinfoform">
         <div className="write-birth">
@@ -98,7 +93,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="agree">
-        <h2>이용약관동의</h2>
+        <div className="agree-ok">이용약관 동의</div>
       </div>
       <div className="agree-check">
         <input type="checkbox" id="agree-all" name="agree-all" />
@@ -133,7 +128,7 @@ const SignUp = () => {
       <button className="signupbtn" type="button" onClick={goToMain}>
         가입하기
       </button>
-    </>
+    </div>
   );
 };
 
