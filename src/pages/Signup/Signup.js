@@ -16,6 +16,17 @@ const SignUp = () => {
 
   const [isIdValid, setIsIdValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isAllAgreed, setIsAllAgreed] = useState(false);
+
+  const handleAllAgreeChange = event => {
+    setIsAllAgreed(event.target.checked);
+    const allCheckboxes = document.querySelectorAll(
+      'input[type="checkbox"]:not(#agree-all)'
+    );
+    allCheckboxes.forEach(checkbox => {
+      checkbox.checked = event.target.checked;
+    });
+  };
 
   const handleInput = event => {
     const { name, value } = event.target;
@@ -148,7 +159,13 @@ const SignUp = () => {
         <div className="agree-ok">이용약관 동의</div>
       </div>
       <div className="agree-check">
-        <input type="checkbox" id="agree-all" name="agree-all" />
+        <input
+          type="checkbox"
+          id="agree-all"
+          name="agree-all"
+          onChange={handleAllAgreeChange}
+          checked={isAllAgreed}
+        />
         <label for="agree-all">전체 동의합니다 </label>
       </div>
       <span className="check-agree">
