@@ -1,8 +1,7 @@
 import React from 'react';
 import './Button.scss';
 
-const Button = props => {
-  const { color, children } = props;
+const Button = ({ color, children }) => {
   return <button className={`button button-${color}`}>{children}</button>;
 };
 
