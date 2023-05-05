@@ -45,3 +45,38 @@ const NewestProduct = ({ subCategoryId, count }) => {
 };
 
 export default NewestProduct;
+
+// import React, { useState, useEffect } from 'react';
+
+// const NewestProduct = ({ subCategoryId }) => {
+//   const [productList, setProductList] = useState([]);
+
+//   useEffect(() => {
+//     fetch(`/books?categoryId=2&subCategoryId=${subCategoryId}&orderBy=newBooks&limit=4&offset=0`, {
+//       method: 'GET',
+//     })
+//       .then(res => res.json())
+//       .then(data => {
+//         setProductList(data);
+//       });
+//   }, [subCategoryId]);
+
+//   return (
+//     <div className="newest-product">
+//       {productList.map(product => (
+//         <div key={product.Key} className="product-item">
+//           <img
+//             className="product-img"
+//             src={`images/main/booksimg/${product.Key}.png`}
+//             alt={product.title}
+//           />
+//           <div className="product-title">{product.title}</div>
+//           <div className="prduct-price">{product.price}원</div>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// };
+
+// export default NewestProduct;
+//패칭시 사용할 코드
