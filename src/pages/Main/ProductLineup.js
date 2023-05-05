@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './ProductLineup.scss';
 
 const ProductLineup = ({ subCategoryId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,31 +31,20 @@ const ProductLineup = ({ subCategoryId }) => {
     if (extractedList.length === 0) {
       return;
     }
-
-    const startIndex = Math.min(currentIndex, extractedList.length - showCount);
-    const newVisibleProducts = extractedList.slice(
-      startIndex,
-      startIndex + showCount
-    );
-    setVisibleProducts(newVisibleProducts);
-
-    return () => {
-      document.removeEventListener('click', handlePrevClick);
-      document.removeEventListener('click', handleNextClick);
-    };
-  }, [extractedList, showCount]);
+    setVisibleProducts(extractedList);
+  }, [extractedList]);
 
   const handlePrevClick = event => {
-    event.preventDefault(); // 이벤트 전파 막기
-    event.stopPropagation(); // 이벤트 전파 막기
+    event.preventDefault();
+    event.stopPropagation();
     if (currentIndex > 0) {
       setCurrentIndex(prevIndex => prevIndex - 1);
     }
   };
 
   const handleNextClick = event => {
-    event.preventDefault(); // 이벤트 전파 막기
-    event.stopPropagation(); // 이벤트 전파 막기
+    event.preventDefault();
+    event.stopPropagation();
     if (currentIndex + showCount < extractedList.length) {
       setCurrentIndex(prevIndex => prevIndex + 1);
     }
@@ -65,14 +55,15 @@ const ProductLineup = ({ subCategoryId }) => {
   }
   return (
     <div className="product-lineup">
+      <button className="product-slider-prev" onClick={handlePrevClick} />
       <div className="product-slider-container">
         <div
           className="product-slider-track"
           style={{
             transform: `translateX(-${
-              currentIndex * (100 / visibleProducts.length)
+              currentIndex * (100 / extractedList.length)
             }%)`,
-            width: `${100 * visibleProducts.length}%`,
+            width: `${100 * extractedList.length}%`,
           }}
         >
           {visibleProducts.map(product => (
@@ -80,7 +71,7 @@ const ProductLineup = ({ subCategoryId }) => {
               <div
                 key={product.key}
                 className="product-item"
-                style={{ width: `${100 / visibleProducts.length}%` }}
+                style={{ width: `${100 / extractedList.length}%` }}
               >
                 <img
                   className="product-img"
@@ -94,14 +85,8 @@ const ProductLineup = ({ subCategoryId }) => {
           ))}
         </div>
       </div>
-      <div className="product-slider-controls">
-        <button className="product-slider-prev" onClick={handlePrevClick}>
-          이전내용
-        </button>
-        <button className="product-slider-next" onClick={handleNextClick}>
-          다음내용
-        </button>
-      </div>
+
+      <button className="product-slider-next" onClick={handleNextClick} />
     </div>
   );
 };

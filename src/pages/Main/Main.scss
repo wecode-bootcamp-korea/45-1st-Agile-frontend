@@ -100,48 +100,7 @@ a {
 }
 
 .introd-sub {
-  margin-top: 80px;
+  margin-top: 60px;
   @include font(28px, #1c1c1c);
   font-weight: 700;
-}
-
-.product-lineup {
-  margin-top: 32px;
-  @include flex-sort(space-around, center);
-
-  .product-slider-container {
-    display: flex;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .product-slider-track {
-    display: flex;
-    transition: transform 0.25s ease-out;
-  }
-
-  .product-item {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    transition: transform 0.25s ease-out;
-    // border: 1px solid grey;
-    border-radius: 5px;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-    .product-img {
-      width: 200px;
-      height: 200px;
-    }
-    .product-title {
-      @include font(20px, #1c1c1c);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .product-price {
-      @include font(16px, #333333);
-    }
-  }
 }
