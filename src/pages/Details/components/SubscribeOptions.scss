@@ -1,0 +1,22 @@
+.delivery-cycle-options {
+  display: flex;
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: #f1f1f1;
+
+  gap: 16px;
+  .delivery-cycle {
+    flex: 1;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+  }
+}
+
+.selected-cycle {
+  flex: 1;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  padding-left: 16px;
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
