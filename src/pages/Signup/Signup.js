@@ -29,6 +29,20 @@ const SignUp = () => {
     });
   };
 
+  const essentialCheckboxes = document.querySelectorAll(
+    '.agree-essential input[type="checkbox"]'
+  );
+  const allAgreeCheckbox = document.querySelector('#agree-all');
+
+  essentialCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', () => {
+      const isAllChecked = Array.from(essentialCheckboxes).every(
+        checkbox => checkbox.checked
+      );
+      allAgreeCheckbox.checked = isAllChecked;
+    });
+  });
+
   const handleEmailInput = event => {
     const { value } = event.target;
     setMemberData({ ...memberData, userId: value });
