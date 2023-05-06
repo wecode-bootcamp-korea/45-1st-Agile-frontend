@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './ProductListNav.scss';
 
 const ProductListNav = ({ mainName, subName, otherSubCategories }) => {
@@ -22,17 +22,17 @@ const ProductListNav = ({ mainName, subName, otherSubCategories }) => {
       <div className="main-name">{mainName}</div>
       <div className="sub-names">
         {subCategories.map(subCategory => (
-          <NavLink
+          <Link
             key={subCategory.sub_category_id}
             to={`/books?categoryId=${subCategory.category_id}&subCategoryId=${subCategory.sub_category_id}&limit=9&orderBy=bestBooks&offset=0`}
-            activeClassName={
+            className={
               subCategory.sub_category_id === currentSubCategoryId
                 ? 'active'
                 : 'inactive'
             }
           >
             {subCategory.sub_name}
-          </NavLink>
+          </Link>
         ))}
       </div>
     </div>
