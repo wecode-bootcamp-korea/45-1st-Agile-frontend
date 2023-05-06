@@ -1,0 +1,10 @@
+.product-list-nav {
+  .sub-names {
+    & .inactive {
+      color: black;
+    }
+    & .active {
+      color: #ff0000;
+    }
+  }
+}

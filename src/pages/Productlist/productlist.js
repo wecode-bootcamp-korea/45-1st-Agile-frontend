@@ -3,9 +3,8 @@ import { useLocation } from 'react-router-dom';
 import TitleLine from '../../components/TitleLine/TitleLine';
 import ProductListCont from './components/ProdcutListCont';
 import CATEGORY from '../Main/components/CATEGORY';
-
-import './ProductList.scss';
 import ProductListNav from './components/ProductListNav';
+import './ProductList.scss';
 
 const ProductList = () => {
   const location = useLocation();
@@ -43,8 +42,10 @@ const ProductList = () => {
       />
       <ProductListNav
         mainName={mainName}
+        categoryId={categoryId}
         subName={subName}
         otherSubCategories={otherSubCategories}
+        subCategoryId={subCategoryId}
       />
 
       <ProductListCont subCategoryId={subCategoryId} />
