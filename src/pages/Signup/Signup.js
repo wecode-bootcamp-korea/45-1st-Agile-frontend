@@ -16,6 +16,7 @@ const SignUp = () => {
 
   const [isIdValid, setIsIdValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
   const [isAllAgreed, setIsAllAgreed] = useState(false);
 
   const handleAllAgreeChange = event => {
@@ -39,17 +40,34 @@ const SignUp = () => {
   const handlePasswordInput = event => {
     const { value } = event.target;
     setMemberData({ ...memberData, userPassword: value });
+    validatePassword(value);
+  };
 
+  const handlePasswordOkInput = event => {
+    const { value } = event.target;
+    setMemberData({ ...memberData, userPasswordOk: value });
+    validatePassword(memberData.userPassword, value);
+  };
+
+  const validatePassword = (password, passwordOk) => {
     const isValid =
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(
-        value
+        password
       );
+
+    const isMatch = password === passwordOk;
+
     setIsPasswordValid(isValid);
+    setIsPasswordMatch(isMatch);
   };
 
   const handleInput = event => {
-    const { value } = event.target;
-    setMemberData({ ...memberData, userPassword: value });
+    const { name, value } = event.target;
+    setMemberData({ ...memberData, [name]: value });
+
+    if (name === 'userPassword' || name === 'userPasswordOk') {
+      validatePassword(memberData.userPassword, memberData.userPasswordOk);
+    }
   };
 
   const goToMain = () => {
@@ -63,7 +81,7 @@ const SignUp = () => {
       return;
     }
 
-    if (memberData.userPassword !== memberData.userPasswordOk) {
+    if (!isPasswordMatch) {
       alert('입력한 비밀번호와 일치하지 않습니다!');
       return;
     }
@@ -110,7 +128,7 @@ const SignUp = () => {
             className="input-checkpwd"
             type="password"
             placeholder="비밀번호를 한번 더 입력해주세요"
-            onChange={handlePasswordInput}
+            onChange={handlePasswordOkInput}
           />
         </div>
         <div className="writename">
