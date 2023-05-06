@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const NewestProduct = ({ subCategoryId, count }) => {
   const [productList, setProductList] = useState([]);
@@ -30,15 +31,17 @@ const NewestProduct = ({ subCategoryId, count }) => {
   return (
     <div className="newest-product">
       {productList.map(product => (
-        <div key={product.Key} className="product-item">
-          <img
-            className="product-img"
-            src={`images/main/booksimg/${product.Key}.png`}
-            alt={product.title}
-          />
-          <div className="product-title">{product.title}</div>
-          <div className="prduct-price">{product.price}원</div>
-        </div>
+        <Link key={product.Key} to={`/books/${product.Key}`}>
+          <div key={product.Key} className="product-item">
+            <img
+              className="product-img"
+              src={`images/main/booksimg/${product.Key}.png`}
+              alt={product.title}
+            />
+            <div className="product-title">{product.title}</div>
+            <div className="prduct-price">{product.price}원</div>
+          </div>
+        </Link>
       ))}
     </div>
   );
@@ -64,6 +67,7 @@ export default NewestProduct;
 //   return (
 //     <div className="newest-product">
 //       {productList.map(product => (
+// <Link key={product.Key} to={`/books/${product.Key}`}>
 //         <div key={product.Key} className="product-item">
 //           <img
 //             className="product-img"
@@ -73,6 +77,7 @@ export default NewestProduct;
 //           <div className="product-title">{product.title}</div>
 //           <div className="prduct-price">{product.price}원</div>
 //         </div>
+// </Link>
 //       ))}
 //     </div>
 //   );
