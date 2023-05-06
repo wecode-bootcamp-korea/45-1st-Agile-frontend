@@ -28,22 +28,28 @@ const SignUp = () => {
     });
   };
 
+  const handleEmailInput = event => {
+    const { value } = event.target;
+    setMemberData({ ...memberData, userId: value });
+
+    const isValid = /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(value);
+    setIsIdValid(isValid);
+  };
+
+  const handlePasswordInput = event => {
+    const { value } = event.target;
+    setMemberData({ ...memberData, userPassword: value });
+
+    const isValid =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(
+        value
+      );
+    setIsPasswordValid(isValid);
+  };
+
   const handleInput = event => {
-    const { name, value } = event.target;
-    setMemberData({ ...memberData, [name]: value });
-
-    if (name === 'userId') {
-      const isValid = /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(value);
-      setIsIdValid(isValid);
-    }
-
-    if (name === 'userPassword') {
-      const isValid =
-        /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(
-          value
-        );
-      setIsPasswordValid(isValid);
-    }
+    const { value } = event.target;
+    setMemberData({ ...memberData, userPassword: value });
   };
 
   const goToMain = () => {
@@ -80,7 +86,7 @@ const SignUp = () => {
             className="inputpwd"
             type="text"
             placeholder="이메일을 입력해주세요"
-            onChange={handleInput}
+            onChange={handleEmailInput}
           />
           <span className="useemail">
             로그인 아이디로 사용할 이메일을 입력해 주세요.
@@ -92,7 +98,7 @@ const SignUp = () => {
             className="inputpwd"
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            onChange={handleInput}
+            onChange={handlePasswordInput}
           />
           <span className="usepwd">
             (영문 대/소문자, 숫자, 특수기호 8~20개 사이를 입력해주세요)
@@ -104,7 +110,7 @@ const SignUp = () => {
             className="input-checkpwd"
             type="password"
             placeholder="비밀번호를 한번 더 입력해주세요"
-            onChange={handleInput}
+            onChange={handlePasswordInput}
           />
         </div>
         <div className="writename">
@@ -125,7 +131,7 @@ const SignUp = () => {
           <input
             className="input-phonenumber"
             type="text"
-            placeholder="000-000-0000"
+            placeholder="000-0000-0000"
             onChange={handleInput}
           />
         </div>
@@ -175,6 +181,10 @@ const SignUp = () => {
       <div className="agree-essential">
         <input type="checkbox" id="agree-condition" name="agree-condition" />
         <label for="agree-condition">[필수] 이용약관 동의 </label>
+      </div>
+      <div className="agree-essential">
+        <input type="checkbox" id="agree-condition" name="agree-condition" />
+        <label for="agree-condition">[필수] 개인정보 수집 및 동의</label>
       </div>
       <div className="agree-select">
         <input type="checkbox" id="agree-message" name="agree-message" />
