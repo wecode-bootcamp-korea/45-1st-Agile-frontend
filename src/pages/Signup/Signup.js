@@ -64,7 +64,7 @@ const SignUp = () => {
           <input
             className="input-phonenumber"
             type="text"
-            placeholder="000-000-0000"
+            placeholder="000-0000-0000"
           />
         </div>
       </div>
