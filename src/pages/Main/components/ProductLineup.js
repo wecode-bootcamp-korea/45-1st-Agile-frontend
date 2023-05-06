@@ -97,45 +97,46 @@ export default ProductLineup;
 // import { Link } from 'react-router-dom';
 // import './ProductLineup.scss';
 
-// const ProductLineup = ({ categoryId, subCategoryId }) => {
+// const ProductLineup = ({ subCategoryId }) => {
 //   const [currentIndex, setCurrentIndex] = useState(0);
 //   const [showCount, setShowCount] = useState(4);
 //   const [visibleProducts, setVisibleProducts] = useState([]);
 
 //   useEffect(() => {
-//     const fetchData = async () => {
+//     const fetchProducts = async () => {
 //       try {
-//         const res = await fetch(`/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=bestBooks&limit=10&offset=0`);
+//         const res = await fetch(
+//           `/books?categoryId=2&subCategoryId=${subCategoryId}&orderBy=priceDesc&limit=${showCount}&offset=${currentIndex}`
+//         );
 //         const data = await res.json();
-//         if (data) {
-//           setVisibleProducts(data);
-//         }
+//         setVisibleProducts(data);
 //       } catch (error) {
 //         console.log(error);
 //       }
 //     };
-//     fetchData();
-//   }, [categoryId, subCategoryId]);
+//     fetchProducts();
+//   }, [subCategoryId, currentIndex, showCount]);
 
-//   const handlePrevClick = event => {
+//   const handlePrevClick = (event) => {
 //     event.preventDefault();
 //     event.stopPropagation();
 //     if (currentIndex > 0) {
-//       setCurrentIndex(prevIndex => prevIndex - 1);
+//       setCurrentIndex((prevIndex) => prevIndex - showCount);
 //     }
 //   };
 
-//   const handleNextClick = event => {
+//   const handleNextClick = (event) => {
 //     event.preventDefault();
 //     event.stopPropagation();
 //     if (currentIndex + showCount < visibleProducts.length) {
-//       setCurrentIndex(prevIndex => prevIndex + 1);
+//       setCurrentIndex((prevIndex) => prevIndex + showCount);
 //     }
 //   };
 
 //   if (visibleProducts.length === 0) {
 //     return <div>Loading...</div>;
 //   }
+
 //   return (
 //     <div className="product-lineup">
 //       <button className="product-slider-prev" onClick={handlePrevClick} />
@@ -143,20 +144,20 @@ export default ProductLineup;
 //         <div
 //           className="product-slider-track"
 //           style={{
-//             transform: `translateX(-${currentIndex * (100 / showCount)}%)`,
-//             width: `${100 * visibleProducts.length / showCount}%`,
+//             transform: `translateX(-${(currentIndex / showCount) * 100}%)`,
+//             width: `${(visibleProducts.length / showCount) * 100}%`,
 //           }}
 //         >
-//           {visibleProducts.map(product => (
-//             <Link key={product.id} to={`/books/${product.key}`}>
+//           {visibleProducts.map((product) => (
+//             <Link key={product.Key} to={`/books/${product.Key}`}>
 //               <div
-//                 key={product.key}
+//                 key={product.Key}
 //                 className="product-item"
 //                 style={{ width: `${100 / showCount}%` }}
 //               >
 //                 <img
 //                   className="product-img"
-//                   src={`images/main/booksimg/${product.key}.png`}
+//                   src={`images/main/booksimg/${product.Key}.png`}
 //                   alt={product.title}
 //                 />
 //                 <div className="product-title">{product.title}</div>
@@ -166,7 +167,6 @@ export default ProductLineup;
 //           ))}
 //         </div>
 //       </div>
-
 //       <button className="product-slider-next" onClick={handleNextClick} />
 //     </div>
 //   );
