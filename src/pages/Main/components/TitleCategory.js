@@ -8,7 +8,7 @@ const TitleCategory = () => {
       {CATEGORY.map(category => (
         <Link
           key={category.id}
-          to={`/books?categoryId=${category.id}&subCategoryId=value&limit=9&orderBy=bestBooks&offset=0`}
+          to={`/books?categoryId=value&subCategoryId=${category.id}&limit=9&orderBy=bestBooks&offset=0`}
         >
           <img src={`/images/main/${category.img}`} alt={category.name} />
           <p>{category.name}</p>

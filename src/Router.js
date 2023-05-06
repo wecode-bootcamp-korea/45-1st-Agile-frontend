@@ -8,6 +8,7 @@ import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
+import ProductList from './pages/ProductList/ProductList';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/books/:id" element={<Details />} />
+        <Route path="/books" element={<ProductList />} />
       </Routes>
     </BrowserRouter>
   );
