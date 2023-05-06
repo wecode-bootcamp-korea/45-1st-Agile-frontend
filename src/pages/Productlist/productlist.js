@@ -4,6 +4,7 @@ import TitleLine from '../../components/TitleLine/TitleLine';
 import ProductListCont from './components/ProdcutListCont';
 import CATEGORY from '../Main/components/CATEGORY';
 import ProductListNav from './components/ProductListNav';
+import NavSub from '../../components/Nav/Nav-sub';
 import './ProductList.scss';
 
 const ProductList = () => {
@@ -33,6 +34,7 @@ const ProductList = () => {
   return (
     <div className="mypage">
       <TitleLine />
+      <NavSub />
       <video
         className="banner"
         autoPlay
