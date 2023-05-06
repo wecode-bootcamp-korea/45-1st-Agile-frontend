@@ -10,8 +10,11 @@ import './Payment.scss';
 
 const Payment = () => {
   const [userInfo, setUserInfo] = useState({});
+  const [orderInfo, setOrderInfo] = useState({});
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
+  const [price, setPrice] = useState(0);
+  const [point, setPoint] = useState(0);
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -19,37 +22,57 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.146:3000/orders/user', {
+    fetch('/data/userData.json', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        // setUserInfo(data);
-        // setInfo({
-        //   name: data.name,
-        //   phone_number: data.phone_number,
-        //   email: data.email,
-        //   address: data.address,
-        //   receiver_name: data.name,
-        //   receiver_phone_number: data.phone_number,
-        //   receiver_address: data.address,
-        //   subscribe_start: subDate(),
-        // });
+        setUserInfo(data);
+        setInfo({
+          name: data.name,
+          phone_number: data.phone_number,
+          email: data.email,
+          address: data.address,
+          receiver_name: data.name,
+          receiver_phone_number: data.phone_number,
+          receiver_address: data.address,
+          subscribe_start: subDate(),
+        });
+        setPoint(data.points);
+        console.log('point');
+        console.log(data.points);
       });
   }, []);
 
-  // useEffect(()=> {
-  //   fetch('',{
-  //     method:'POST',
-  //     headers:{
-  //       'Content-type':'application/json;utf=8'
+  useEffect(() => {
+    fetch('/data/orderItemsData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setOrderInfo(data);
+        data.forEach(ele => {
+          setPrice(prev => prev + ele.price * ele.quantity);
+        });
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   fetch('', {
+  //     method: 'POST',
+  //     headers: {
+  //       accessToken: 'token',
+  //       'Content-type': 'application/json;utf=8',
   //     },
-  //     body:JSON.stringify()
+  //     body: JSON.stringify(),
   //   })
-  //   .then(res=>json())
-  //   .then(data => {console.log(data)})
-  // },[])
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data);
+  //     });
+  // }, []);
 
   const switchRadio = () => {
     for (let key in info) {

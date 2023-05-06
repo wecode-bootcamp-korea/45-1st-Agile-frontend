@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "quantity": 3,
+    "book_id": 3,
+    "order_id": 4,
+    "price": 3000,
+    "is_subscribe": false
+  },
+  {
+    "id": 2,
+    "quantity": 1,
+    "book_id": 5,
+    "order_id": 2,
+    "price": 15000,
+    "is_subscribe": false
+  }
+]
