@@ -1,34 +1,44 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './Agreement.scss';
 
 const Agreement = () => {
-  const [isCheckAll, setIsCheckAll] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [checkItems, setCheckItems] = useState(AGREE_INFO);
+  const [checkItems, setCheckItems] = useState([]);
 
-  const handleIsCheckAll = () => {
-    setIsCheckAll(!isCheckAll);
+  const handleAllCheck = checked => {
+    if (checked) {
+      const idArr = [];
+      AGREE_INFO.forEach(el => idArr.push(el.id));
+      setCheckItems(idArr);
+    } else {
+      setCheckItems([]);
+    }
   };
 
-  const handleCheck = idx => {};
+  const handleSingleCheck = (checked, id) => {
+    if (checked) {
+      setCheckItems(prev => [...prev, id]);
+    } else {
+      setCheckItems(checkItems.filter(el => el !== id));
+    }
+  };
 
   return (
     <div className="agreement">
       <div className="agree-all">
         <input
           type="checkbox"
-          checked={isCheckAll}
-          onClick={handleIsCheckAll}
+          checked={AGREE_INFO.length === checkItems.length}
+          onChange={e => handleAllCheck(e.target.checked)}
         />
         <div className="text-base">모든 약관 동의</div>
       </div>
-      {checkItems.map(data => {
+      {AGREE_INFO.map(data => {
         return (
           <div key={data.id} className="agree">
             <input
               type="checkbox"
-              checked={data.isChecked}
-              onClick={() => handleCheck(data.id)}
+              checked={checkItems.includes(data.id)}
+              onChange={e => handleSingleCheck(e.target.checked, data.id)}
             />
             <div className="text-base">{data.text}</div>
           </div>

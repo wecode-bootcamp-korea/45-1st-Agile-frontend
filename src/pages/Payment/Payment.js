@@ -19,24 +19,37 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch('/data/userData.json', {
+    fetch('http://10.58.52.146:3000/orders/user', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setUserInfo(data);
-        setInfo({
-          name: data.name,
-          phone_number: data.phone_number,
-          email: data.email,
-          address: data.address,
-          receiver_name: data.name,
-          receiver_phone_number: data.phone_number,
-          receiver_address: data.address,
-          subscribe_start: subDate(),
-        });
+        console.log(data);
+        // setUserInfo(data);
+        // setInfo({
+        //   name: data.name,
+        //   phone_number: data.phone_number,
+        //   email: data.email,
+        //   address: data.address,
+        //   receiver_name: data.name,
+        //   receiver_phone_number: data.phone_number,
+        //   receiver_address: data.address,
+        //   subscribe_start: subDate(),
+        // });
       });
   }, []);
+
+  // useEffect(()=> {
+  //   fetch('',{
+  //     method:'POST',
+  //     headers:{
+  //       'Content-type':'application/json;utf=8'
+  //     },
+  //     body:JSON.stringify()
+  //   })
+  //   .then(res=>json())
+  //   .then(data => {console.log(data)})
+  // },[])
 
   const switchRadio = () => {
     for (let key in info) {
