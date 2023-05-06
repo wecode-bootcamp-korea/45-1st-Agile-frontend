@@ -51,3 +51,54 @@ const ProductListCont = ({ subCategoryId }) => {
 };
 
 export default ProductListCont;
+
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+// import './ProductListCont.scss';
+
+// const ProductListCont = ({ subCategoryId }) => {
+//   const [visibleProducts, setVisibleProducts] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const res = await fetch(`books?categoryId=2&subCategoryId=${subCategoryId}&orderBy=bestBooks&limit=9&offset=0`);
+//         const data = await res.json();
+//         if (data) {
+//           setVisibleProducts(data);
+//         }
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     };
+//     fetchData();
+//   }, [subCategoryId]);
+
+//   if (visibleProducts.length === 0) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return (
+//     <div className="product-list-cont">
+//       <div className="product-list">
+//         {visibleProducts.map((product, index) => (
+//           <Link key={product.id} to={`/books/${product.Key}`}>
+//             <div className="product-item">
+//               <img
+//                 className="product-img"
+//                 src={`images/main/booksimg/${product.Key}.png`}
+//                 alt={product.title}
+//               />
+//               <div className="product-title">{product.title}</div>
+//               <div className="product-price">{product.price}원</div>
+//               <div className="product-subtitle">{product.subtitle}</div>
+//             </div>
+//           </Link>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductListCont;
+//데이터 패칭시 사용할 코드

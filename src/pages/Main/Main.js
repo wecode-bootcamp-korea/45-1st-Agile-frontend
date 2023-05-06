@@ -30,9 +30,9 @@ const Main = () => {
       <div className="introd-sub">
         Esteem이 직접 검수한 따끈한 문제가 왔어요
       </div>
-      <ProductLineup subCategoryId={1} />
+      <ProductLineup categoryId={1} subCategoryId={1} />
       <div className="introd-sub">너빼고 다 몰래보고 있어 돈버는 비법</div>
-      <ProductLineup subCategoryId={2} />
+      <ProductLineup categoryId={2} subCategoryId={2} />
       <video
         className="small-ad"
         src="/images/main/main-ad3.mp4"

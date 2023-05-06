@@ -3,9 +3,9 @@ import NewestProduct from './NewestProduct';
 import './NewestNav.scss';
 
 const SUBCATEGORIES = [
-  { id: 1, name: '구독상품' },
-  { id: 2, name: '성공/처세' },
-  { id: 3, name: '인간관계' },
+  { categoryId: 1, subCategoryId: 1, name: '구독상품' },
+  { categoryId: 2, subCategoryId: 2, name: '성공/처세' },
+  { categoryId: 2, subCategoryId: 3, name: '인간관계' },
 ];
 
 const NewestNav = () => {
@@ -20,7 +20,10 @@ const NewestNav = () => {
 
   useEffect(() => {
     const loadedCategory = SUBCATEGORIES[activeIndex];
-    if (!loadedSubCategory || loadedCategory.id !== loadedSubCategory.id) {
+    if (
+      !loadedSubCategory ||
+      loadedCategory.subCategoryId !== loadedSubCategory.subCategoryId
+    ) {
       setLoadedSubCategory(loadedCategory);
     }
   }, [activeIndex]);
@@ -30,7 +33,7 @@ const NewestNav = () => {
       <div className="newest-navbar">
         {SUBCATEGORIES.map((subCategory, index) => (
           <div
-            key={subCategory.id}
+            key={subCategory.subCategoryId}
             className={`navbar-item ${index === activeIndex ? 'active' : ''}`}
             onClick={() => handleNavbarClick(index)}
           >
@@ -39,19 +42,12 @@ const NewestNav = () => {
         ))}
       </div>
       <div className="newest-product-container">
-        {loadedSubCategory &&
-          SUBCATEGORIES.map(subCategory => (
-            <div
-              key={subCategory.id}
-              className={`newest-product ${
-                subCategory.id === loadedSubCategory.id ? 'active' : ''
-              }`}
-            >
-              {subCategory.id === loadedSubCategory.id && (
-                <NewestProduct subCategoryId={subCategory.id} count={4} />
-              )}
-            </div>
-          ))}
+        {loadedSubCategory && (
+          <NewestProduct
+            categoryId={loadedSubCategory.categoryId}
+            subCategoryId={loadedSubCategory.subCategoryId}
+          />
+        )}
       </div>
     </div>
   );

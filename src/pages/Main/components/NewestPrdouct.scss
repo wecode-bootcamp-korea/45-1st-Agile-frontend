@@ -1,0 +1,36 @@
+@import '../../../styles/variables';
+
+.newest-product {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start !important;
+  width: 1050px;
+  margin-top: 32px;
+  gap: 70px;
+  .product-item {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.25s ease-out;
+    // border: 1px solid grey;
+    border-radius: 5px;
+    white-space: nowrap;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+    .product-img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .product-title {
+      @include font(20px, #1c1c1c);
+      font-weight: bold;
+    }
+
+    .product-price {
+      @include font(18px, #1c1c1c);
+    }
+  }
+}
