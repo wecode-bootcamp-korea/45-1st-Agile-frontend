@@ -1,12 +1,36 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import TitleLine from '../../components/TitleLine/TitleLine';
+import ProductListCont from './components/ProdcutListCont';
+import CATEGORY from '../Main/components/CATEGORY';
+
 import './ProductList.scss';
+import ProductListNav from './components/ProductListNav';
+
 const ProductList = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const subCategoryId = queryParams.get('subCategoryId');
+  const categoryId = parseInt(queryParams.get('categoryId'));
+  const subCategoryId = parseInt(queryParams.get('subCategoryId'));
+  const category = CATEGORY.find(
+    c => c.category_id === categoryId && c.subCategory_id === subCategoryId
+  );
+  const mainName = category.main_name;
+  const subName = category.sub_name;
 
+  const subCategories = CATEGORY.filter(c => c.category_id === categoryId).map(
+    c => ({
+      category_id: c.category_id,
+      sub_name: c.sub_name,
+      sub_category_id: c.subCategory_id,
+    })
+  );
+  const mainSubCategoryId = category.subCategory_id;
+  const otherSubCategories = subCategories.filter(
+    c => c.sub_category_id !== mainSubCategoryId
+  );
+  console.log(otherSubCategories);
+  //배열 형태로 같은 카테고리의 다른 서브네임 저장함
   return (
     <div className="mypage">
       <TitleLine />
@@ -17,6 +41,13 @@ const ProductList = () => {
         muted
         src={`images/productlist/productlist-${subCategoryId}.mp4`}
       />
+      <ProductListNav
+        mainName={mainName}
+        subName={subName}
+        otherSubCategories={otherSubCategories}
+      />
+
+      <ProductListCont subCategoryId={subCategoryId} />
     </div>
   );
 };
