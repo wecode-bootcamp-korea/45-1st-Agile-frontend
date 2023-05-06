@@ -103,6 +103,10 @@ const SignUp = () => {
         <input type="checkbox" id="agree-condition" name="agree-condition" />
         <label for="agree-condition">[필수] 이용약관 동의 </label>
       </div>
+      <div className="agree-essential">
+        <input type="checkbox" id="agree-condition" name="agree-condition" />
+        <label for="agree-condition">[필수] 개인정보 수집 및 동의 </label>
+      </div>
       <div className="agree-select">
         <input type="checkbox" id="agree-message" name="agree-message" />
         <label for="agree-message">
