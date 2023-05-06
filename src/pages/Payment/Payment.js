@@ -5,6 +5,7 @@ import Shipment from './components/Shipment';
 import Subscribe from './components/Subscribe';
 import PaymentMethod from './components/PaymentMethod';
 import PaymentInfo from './components/PaymentInfo';
+
 import './Payment.scss';
 
 const Payment = () => {
@@ -14,9 +15,7 @@ const Payment = () => {
 
   const handleInfo = e => {
     const { name, value } = e.target;
-    if (!radio || !name.includes('receiver_')) {
-      setInfo({ ...info, [name]: value });
-    }
+    setInfo({ ...info, [name]: value });
   };
 
   useEffect(() => {
@@ -26,24 +25,18 @@ const Payment = () => {
       .then(res => res.json())
       .then(data => {
         setUserInfo(data);
+        setInfo({
+          name: data.name,
+          phone_number: data.phone_number,
+          email: data.email,
+          address: data.address,
+          receiver_name: data.name,
+          receiver_phone_number: data.phone_number,
+          receiver_address: data.address,
+          subscribe_start: subDate(),
+        });
       });
   }, []);
-
-  useEffect(() => {
-    setInfo({
-      name: userInfo.name,
-      phone_number: userInfo.phone_number,
-      email: userInfo.email,
-      address: userInfo.address,
-      receiver_name: userInfo.name,
-      receiver_phone_number: userInfo.phone_number,
-      receiver_address: userInfo.address,
-      subscribe_start: subDate(),
-    });
-  }, [userInfo]);
-
-  // console.log(1);
-  // console.log(radio);
 
   const switchRadio = () => {
     for (let key in info) {

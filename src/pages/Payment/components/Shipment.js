@@ -3,9 +3,6 @@ import ShipmentSelect from './ShipmentSelect';
 import './Shipment.scss';
 
 const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
-  // console.log(2);
-  // console.log(radio);
-
   return (
     <div className="shipment">
       <div className="text-xl">배송 정보</div>
@@ -24,6 +21,7 @@ const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
                 name={data.type}
                 value={info[data.type]}
                 onChange={handleInfo}
+                readOnly={radio}
               />
             </div>
           );

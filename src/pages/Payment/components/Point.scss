@@ -1,0 +1,17 @@
+@import '../../../styles/variables';
+
+.point {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid black;
+
+  .point-status {
+    @include flex-sort(space-between, center);
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    .status-count {
+      font-weight: bold;
+    }
+  }
+}

@@ -14,6 +14,7 @@ const Orderer = ({ info, handleInfo }) => {
                 name={data.type}
                 value={info[data.type]}
                 onChange={handleInfo}
+                readOnly
               />
             </div>
           );

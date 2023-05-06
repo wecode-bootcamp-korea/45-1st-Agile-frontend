@@ -1,13 +1,16 @@
 import React from 'react';
+import Point from './Point';
 import { useNavigate, Route } from 'react-router-dom';
 import Agreement from './Agreement';
+
 import './PaymentMethod.scss';
 
 const PaymentMethod = () => {
   const navigate = useNavigate();
 
   const handlePayButton = () => {
-    navigate('/orderCompleted');
+    // navigate('/orderCompleted');
+    navigate('/invalidAccess');
   };
 
   return (
@@ -18,6 +21,7 @@ const PaymentMethod = () => {
           <div className="text-lg">결제수단 선택</div>
           <div className="payment-method-point">
             <button className="point-button">포인트</button>
+            <Point />
             <Agreement />
             <div className="confirm">
               <div>주문 내용을 확인하였으며 약관에 동의합니다.</div>
