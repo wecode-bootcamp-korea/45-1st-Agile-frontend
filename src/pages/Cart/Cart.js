@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Title from './Components/Title';
 import Product from './Components/Product';
 import OrderInfo from './Components/OrderInfo';
 import './Cart.scss';
 
 const Cart = () => {
-  const [product, setProductList] = useState([]);
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetch('/data/data.json', {
+    fetch('/data/cartData.json', {
       method: 'GET',
     })
       .then(res => res.json())
@@ -22,9 +22,7 @@ const Cart = () => {
       <Title />
       <div className="content-wrap">
         <div className="checkbox-wrap">
-          {product.map(item => (
-            <Product it={item} />
-          ))}
+          <Product />
         </div>
         <div className="order-info">
           <OrderInfo />
@@ -34,3 +32,7 @@ const Cart = () => {
   );
 };
 export default Cart;
+
+// {productList.map(item => (
+//   <Product it={item} />
+// ))}

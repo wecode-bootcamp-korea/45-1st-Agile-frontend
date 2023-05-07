@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import ShippingInfo from '../../Details/components/ShippingInfo';
 import '../Cart.scss';
 
 const OrderInfo = () => {
+  const [productList, setProductList] = useState([]);
+  const isDisplay = productList.length !== 0;
+
+  useEffect(() => {
+    fetch('/data/cartData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setProductList(data);
+      });
+  }, []);
   return (
     <div className="order-info">
       <div className="order-won">
@@ -19,6 +32,10 @@ const OrderInfo = () => {
           <span>결제예정금액</span>
           <span>0원</span>
         </div>
+      </div>
+
+      <div className="shipping-free">
+        {isDisplay && productList.map(item => <ShippingInfo it={item} />)}
       </div>
 
       <button className="empty-button web">제품을 담아주세요</button>

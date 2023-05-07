@@ -1,0 +1,28 @@
+[
+  {
+    "Key": 1,
+    "title": "최종마무리-영어",
+    "subtitle": "매주 스스로 점검하는 봉투모의고사 영어 영역",
+    "author": "점프업연구소",
+    "issue_date": "2023. 1. 1",
+    "description": "연습은 실전처럼\n시험 막바지에 꼭 필요한 실전같은 모의고사\n시험 4주 전부터 매주 수요일 1회분씩 택배로 발송됩니다.",
+    "image": null,
+    "price": 13000,
+    "quantity": 10,
+    "category": "구독하기",
+    "sub_category": ""
+  },
+  {
+    "Key": 2,
+    "title": "최종마무리-수학",
+    "subtitle": "매주 스스로 점검하는 봉투모의고사 수학 영역",
+    "author": "점프업연구소",
+    "issue_date": "2023. 1. 1",
+    "description": "연습은 실전처럼\n시험 막바지에 꼭 필요한 실전같은 모의고사\n시험 4주 전부터 매주 수요일 1회분씩 택배로 발송됩니다.",
+    "image": null,
+    "price": 13000,
+    "quantity": 10,
+    "category": "구독하기",
+    "sub_category": ""
+  }
+]
