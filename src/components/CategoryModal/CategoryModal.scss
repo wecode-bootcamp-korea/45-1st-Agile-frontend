@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.category-modal {
+  display: flex;
+  flex-direction: column;
+  width: 274px;
+  background-color: #1c1c1c;
+  .modal-container {
+    img {
+      width: 24px;
+    }
+    p {
+      @include font(16px, #ffffff);
+    }
+  }
+}
