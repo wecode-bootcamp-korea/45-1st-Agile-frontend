@@ -35,7 +35,8 @@ const OrderInfo = () => {
       </div>
 
       <div className="shipping-free">
-        {isDisplay && productList.map(item => <ShippingInfo it={item} />)}
+        {isDisplay ? <ShippingInfo /> : ''}
+        {/* {isDisplay && productList.map(item => <ShippingInfo it={item} />)} */}
       </div>
 
       <button className="empty-button web">제품을 담아주세요</button>

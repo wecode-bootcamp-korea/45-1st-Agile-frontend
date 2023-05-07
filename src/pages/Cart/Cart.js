@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Title from './Components/Title';
 import Product from './Components/Product';
 import OrderInfo from './Components/OrderInfo';
+import List from './Components/List';
 import './Cart.scss';
 
 const Cart = () => {
   const [productList, setProductList] = useState([]);
+  //productList를 props로 Product와 OrderInfo ,Count 로 내려줘야하고
 
   useEffect(() => {
     fetch('/data/cartData.json', {
@@ -22,10 +24,11 @@ const Cart = () => {
       <Title />
       <div className="content-wrap">
         <div className="checkbox-wrap">
-          <Product />
+          <Product list={<List />} />
         </div>
         <div className="order-info">
           <OrderInfo />
+          {/* props로 productList를 내려줌 */}
         </div>
       </div>
     </div>

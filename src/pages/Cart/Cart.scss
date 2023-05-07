@@ -31,9 +31,14 @@
           border-radius: 50%;
           cursor: pointer;
         }
-        .choice {
-          padding: 0 16px 0 8px;
-          cursor: pointer;
+        .select {
+          display: flex;
+          margin-right: 12px;
+          vertical-align: middle;
+          .choice {
+            padding: 0 16px 0 8px;
+            cursor: pointer;
+          }
         }
       }
       .message-web {
