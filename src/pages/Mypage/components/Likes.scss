@@ -2,9 +2,23 @@
 @import '../Mypage';
 
 .likes {
-  .text-xl {
+  .likes-top {
+    @include flex-sort(space-between, center);
     @include menu-title;
     margin-bottom: 0px;
+
+    .top-left {
+      @include flex-sort(space-between, center);
+
+      .text-sm {
+        margin-left: 10px;
+        color: #999999;
+        font-weight: lighter;
+      }
+    }
+    .top-right {
+      font-weight: lighter;
+    }
   }
 
   .likes-main {
@@ -13,12 +27,11 @@
     .likes-list {
       @include flex-sort(center, center);
       flex-direction: column;
-      border-bottom: 2px solid black;
+      border-bottom: 3px solid black;
 
       .no-list {
         width: 100%;
         padding: 50px;
-
         border-bottom: 1px solid black;
         text-align: center;
       }

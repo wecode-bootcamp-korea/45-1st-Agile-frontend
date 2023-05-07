@@ -16,7 +16,7 @@
     .subscribes-list {
       @include flex-sort(center, center);
       flex-direction: column;
-      border-bottom: 2px solid black;
+      border-bottom: 3px solid black;
 
       .no-list {
         width: 100%;
