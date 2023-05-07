@@ -1,6 +1,6 @@
 import React from 'react';
 import Point from './Point';
-import { useNavigate, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Agreement from './Agreement';
 
 import './PaymentMethod.scss';
@@ -9,8 +9,11 @@ const PaymentMethod = ({ point }) => {
   const navigate = useNavigate();
 
   const handlePayButton = () => {
-    // navigate('/orderCompleted');
-    navigate('/invalidAccess');
+    if (point.remainPoint < 0) {
+      navigate('/invalidAccess');
+      return;
+    }
+    navigate('/orderCompleted');
   };
 
   return (

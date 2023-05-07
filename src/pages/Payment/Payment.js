@@ -65,15 +65,7 @@ const Payment = () => {
             shipmentFee: fee,
           };
         });
-
-        setPoint(prev => {
-          return {
-            ...prev,
-            remainPoint: prev.curPoint - prev.usePoint,
-          };
-        });
-
-        if (point.usePoint >= 70000) {
+        if (totalPrice >= 70000) {
           setPoint(prev => {
             return {
               ...prev,
@@ -82,9 +74,12 @@ const Payment = () => {
           });
         }
 
-        // if (point.remainPoint < 0) {
-        //   alert('잔액이 부족합니다.');
-        // }
+        setPoint(prev => {
+          return {
+            ...prev,
+            remainPoint: prev.curPoint - prev.usePoint + prev.earnPoint,
+          };
+        });
       });
   }, []);
 
@@ -121,7 +116,7 @@ const Payment = () => {
         <p className="text-2xl">주문서</p>
       </div>
 
-      <OrderList />
+      <OrderList orderInfo={orderInfo} />
       <Orderer info={info} handleInfo={handleInfo} />
       <Shipment
         info={info}

@@ -1,8 +1,18 @@
 import React from 'react';
 import check from '../../assets/payment/circleCheck.jpg';
 import './OrderCompleted.scss';
+import { useNavigate } from 'react-router-dom';
 
 const OrderCompleted = () => {
+  const navigate = useNavigate();
+
+  const handleConfirmOrder = () => {
+    navigate('/mypage');
+  };
+  const handleContinueShopping = () => {
+    navigate('/');
+  };
+
   return (
     <div className="order-completed">
       <div className="completed-box">
@@ -27,10 +37,13 @@ const OrderCompleted = () => {
           </div>
         </div>
         <div className="box-bottom">
-          <button className="confirm-order">
+          <button className="confirm-order" onClick={handleConfirmOrder}>
             <b>주문확인하기</b>
           </button>
-          <button className="continue-shopping">
+          <button
+            className="continue-shopping"
+            onClick={handleContinueShopping}
+          >
             <b>쇼핑계속하기</b>
           </button>
         </div>
