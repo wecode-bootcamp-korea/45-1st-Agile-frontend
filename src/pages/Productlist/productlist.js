@@ -29,8 +29,7 @@ const ProductList = () => {
   const otherSubCategories = subCategories.filter(
     c => c.sub_category_id !== mainSubCategoryId
   );
-  console.log(otherSubCategories);
-  //배열 형태로 같은 카테고리의 다른 서브네임 저장함
+
   return (
     <div className="mypage">
       <TitleLine />
@@ -50,7 +49,7 @@ const ProductList = () => {
         subCategoryId={subCategoryId}
       />
 
-      <ProductListCont subCategoryId={subCategoryId} />
+      <ProductListCont categoryId={categoryId} subCategoryId={subCategoryId} />
     </div>
   );
 };

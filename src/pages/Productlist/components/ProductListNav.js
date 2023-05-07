@@ -7,7 +7,6 @@ const ProductListNav = ({ mainName, subName, otherSubCategories }) => {
   const queryParams = new URLSearchParams(location.search);
   const currentCategoryId = queryParams.get('categoryId');
   const currentSubCategoryId = queryParams.get('subCategoryId');
-  console.log(currentSubCategoryId);
   const subCategories = [
     {
       sub_name: subName,
