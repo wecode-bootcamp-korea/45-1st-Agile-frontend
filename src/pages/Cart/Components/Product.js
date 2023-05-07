@@ -39,7 +39,7 @@ const Product = props => {
         {/* {title} */}
       </div>
       <div className summary-info>
-        {isDisplay.length >= 1 ? <Summmary /> : ''}
+        {isDisplay ? <Summmary /> : ''}
       </div>
     </div>
   );

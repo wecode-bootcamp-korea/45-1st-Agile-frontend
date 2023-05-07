@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ShippingInfo from '../../Details/components/ShippingInfo';
+import BuyingButton from './BuyingButton';
 import '../Cart.scss';
 
 const OrderInfo = () => {
@@ -39,7 +40,14 @@ const OrderInfo = () => {
         {/* {isDisplay && productList.map(item => <ShippingInfo it={item} />)} */}
       </div>
 
-      <button className="empty-button web">제품을 담아주세요</button>
+      <div className="buying-button">
+        {isDisplay ? (
+          <BuyingButton />
+        ) : (
+          <button className="empty-button web">제품을 담아주세요</button>
+        )}
+      </div>
+
       <span className="tips">
         쿠폰과 적립금은 결제 페이지에서 적용할 수 있어요
       </span>
