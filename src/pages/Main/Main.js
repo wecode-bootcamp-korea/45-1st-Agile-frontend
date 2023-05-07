@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductLineup from './components/ProductLineup';
 import NewestNav from './components/NewestNav';
-import NavMain from '../../components/Nav/Nav-main';
+import NavMain from '../../components/Nav/NavMain';
 import TitleLine from '../../components/TitleLine/TitleLine';
 import TitleCategory from './components/TitleCategory';
 

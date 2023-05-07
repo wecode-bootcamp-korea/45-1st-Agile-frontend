@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import CategoryModal from '../CategoryModal/CategoryModal';
 
 import './TitleLine.scss';
+
 const TitleLine = () => {
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+
+  const handleMenusMouseEnter = () => {
+    setShowCategoryModal(true);
+  };
+
+  const handleMenusMouseLeave = () => {
+    setShowCategoryModal(false);
+  };
+
   return (
     <div className="title-line">
       <div className="title-one">
@@ -14,15 +25,25 @@ const TitleLine = () => {
         <input className="search-bar" />
         <div className="title-right">
           <button className="to-wishlist" />
-          <button className="to-cart" />
+          <Link to="/cart">
+            <button className="to-cart" />
+          </Link>
         </div>
       </div>
       <div className="title-nav">
-        <button className="menus" />
-        <CategoryModal />
-        <div className="카테고리">카테고리</div>
+        <div
+          className="title-nav-things"
+          onMouseEnter={handleMenusMouseEnter}
+          onMouseLeave={handleMenusMouseLeave}
+        >
+          <button className="menus" />
+
+          <div className="category-name">카테고리</div>
+          {showCategoryModal && <CategoryModal />}
+        </div>
       </div>
     </div>
   );
 };
+
 export default TitleLine;

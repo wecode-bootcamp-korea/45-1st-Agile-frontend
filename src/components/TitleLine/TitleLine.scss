@@ -2,6 +2,7 @@
 
 .title-line {
   display: flex;
+
   flex-direction: column;
   margin-top: 40px;
   .title-one {
@@ -34,19 +35,22 @@
     }
   }
   .title-nav {
-    @include flex-sort(flex-start, center);
-    @include font(16px, #1c1c1c);
-    margin-top: 40px;
-    font-weight: bold;
-    gap: 20px;
-    .menus {
-      width: 32px;
-      height: 32px;
-      border: none;
-      background-color: transparent;
-      background-image: url('../../assets/main/menu.svg');
-      background-repeat: no-repeat;
-      background-position: center;
+    .title-nav-things {
+      @include flex-sort(flex-start, center);
+      @include font(16px, #1c1c1c);
+      position: relative;
+      margin-top: 40px;
+      font-weight: bold;
+      gap: 20px;
+      .menus {
+        width: 32px;
+        height: 32px;
+        border: none;
+        background-color: transparent;
+        background-image: url('../../assets/main/menu.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+      }
     }
   }
 }

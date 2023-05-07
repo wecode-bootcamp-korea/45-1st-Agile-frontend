@@ -4,7 +4,7 @@ import TitleLine from '../../components/TitleLine/TitleLine';
 import ProductListCont from './components/ProdcutListCont';
 import CATEGORY from '../Main/components/CATEGORY';
 import ProductListNav from './components/ProductListNav';
-import NavSub from '../../components/Nav/Nav-sub';
+import NavSub from '../../components/Nav/NavSub';
 import './ProductList.scss';
 
 const ProductList = () => {

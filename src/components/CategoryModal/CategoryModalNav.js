@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CATEGORY from '../../pages/Main/components/CATEGORY';
-import './CategoryModal.scss';
-
-const CategoryModal = () => {
+import './CategoryModalNav.scss';
+const CategoryModalNav = () => {
   return (
-    <div className="category-modal">
+    <div className="category-modal-nav">
       {CATEGORY.map(category => (
         <div className="modal-container" key={category.subCategory_id}>
           <Link
@@ -23,4 +22,4 @@ const CategoryModal = () => {
   );
 };
 
-export default CategoryModal;
+export default CategoryModalNav;

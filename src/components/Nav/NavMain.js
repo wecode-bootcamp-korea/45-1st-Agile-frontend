@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Nav-main.scss';
+import { Link } from 'react-router-dom';
+import CategoryModalNav from '../CategoryModal/CategoryModalNav';
+import './NavMain.scss';
 
 const NavMain = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,31 +21,37 @@ const NavMain = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [isScrolled]);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+
+  const handleMenusMouseEnter = () => {
+    setShowCategoryModal(true);
+  };
+
+  const handleMenusMouseLeave = () => {
+    setShowCategoryModal(false);
+  };
 
   return (
     <nav className="nav-main">
       <div className={isScrolled ? 'nav-contaner-scrolled' : 'nav-contaner'}>
         <div className="nav-main-thing">
-          <div className="nav-main-left">
-            <img
-              alt="책"
-              className="viewmore icon"
-              src="../images/components/nav/books.png"
-            />
-            <div className="category">카테고리</div>
+          <div
+            className="nav-main-left"
+            onMouseEnter={handleMenusMouseEnter}
+            onMouseLeave={handleMenusMouseLeave}
+          >
+            <button className="menus" />
+            <div className="category-name">카테고리</div>
+            {showCategoryModal && <CategoryModalNav />}
           </div>
           <div className="nav-main-right">
             <input className="search-bar" type="text" />
-            <img
-              className="heart icon"
-              alt="heart"
-              src="../images/components/nav/heart.png"
-            />
-            <img
-              alt="쇼핑백"
-              className="shopingbag icon"
-              src="../images/components/nav/shopingbag.png"
-            />
+
+            <button className="to-wishlist" />
+
+            <Link to="/cart">
+              <button className="to-cart" />
+            </Link>
           </div>
         </div>
       </div>
