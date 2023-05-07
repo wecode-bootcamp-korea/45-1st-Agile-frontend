@@ -8,6 +8,7 @@
   margin-top: 32px;
   gap: 70px;
   .product-item {
+    width: 200px;
     transform: translateZ(0);
     backface-visibility: hidden;
     transition: transform 0.25s ease-out;
@@ -27,6 +28,7 @@
     .product-title {
       @include font(20px, #1c1c1c);
       font-weight: bold;
+      white-space: normal;
     }
 
     .product-price {

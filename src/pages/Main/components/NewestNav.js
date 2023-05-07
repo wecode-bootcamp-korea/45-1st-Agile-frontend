@@ -3,9 +3,10 @@ import NewestProduct from './NewestProduct';
 import './NewestNav.scss';
 
 const SUBCATEGORIES = [
-  { categoryId: 1, subCategoryId: 1, name: '구독상품' },
   { categoryId: 2, subCategoryId: 2, name: '성공/처세' },
   { categoryId: 2, subCategoryId: 3, name: '인간관계' },
+  { categoryId: 4, subCategoryId: 6, name: '어학' },
+  { categoryId: 4, subCategoryId: 7, name: '인적성/직무능력' },
 ];
 
 const NewestNav = () => {
