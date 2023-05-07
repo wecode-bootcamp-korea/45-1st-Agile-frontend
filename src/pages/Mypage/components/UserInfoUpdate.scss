@@ -1,11 +1,6 @@
 @import '../../../styles/variables';
-@import '../Mypage';
 
 .userinfo-update {
-  .text-xl {
-    @include menu-title;
-  }
-
   .userinfo-update-main {
     padding-left: 5px;
 

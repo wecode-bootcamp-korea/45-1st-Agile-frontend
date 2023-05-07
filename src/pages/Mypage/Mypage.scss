@@ -1,14 +1,5 @@
 @import '../../styles/variables';
 
-@mixin menu-title {
-  margin-top: 50px;
-  margin-bottom: 30px;
-  padding-top: 2px;
-  padding-bottom: 30px;
-  border-bottom: 3px solid black;
-  font-weight: bold;
-}
-
 .mypage {
   .mypage-main {
     display: flex;

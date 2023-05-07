@@ -1,33 +1,12 @@
 @import '../../../styles/variables';
-@import '../Mypage';
 
 .likes {
-  .likes-top {
-    @include flex-sort(space-between, center);
-    @include menu-title;
-    margin-bottom: 0px;
-
-    .top-left {
-      @include flex-sort(space-between, center);
-
-      .text-sm {
-        margin-left: 10px;
-        color: #999999;
-        font-weight: lighter;
-      }
-    }
-    .top-right {
-      font-weight: lighter;
-    }
-  }
-
   .likes-main {
     padding: 5px;
 
     .likes-list {
       @include flex-sort(center, center);
       flex-direction: column;
-      border-bottom: 3px solid black;
 
       .no-list {
         width: 100%;

@@ -1,13 +1,7 @@
 @import '../../../styles/variables';
-@import '../Mypage';
 
 .order-delivery {
   padding-bottom: 50px;
-  border-bottom: 3px solid black;
-
-  .text-xl {
-    @include menu-title;
-  }
 
   .order-delivery-main {
     @include flex-sort(center, center);

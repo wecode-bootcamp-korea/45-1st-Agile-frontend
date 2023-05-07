@@ -1,10 +1,12 @@
 import React from 'react';
+import ItemTitle from './ItemTitle';
 import './OrderDelivery.scss';
 
 const OrderDelivery = () => {
   return (
     <div className="order-delivery">
-      <div className="text-xl">주문배송 조회</div>
+      <ItemTitle title="주문배송 조회" />
+
       <div className="order-delivery-main">
         {PRESENT_CONDITION_INFO.map(data => {
           return (

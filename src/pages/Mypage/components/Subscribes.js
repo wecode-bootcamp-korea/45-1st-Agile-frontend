@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ItemTitle from './ItemTitle';
 import SubscribesProduct from './SubscribesProduct';
 import './Subscribes.scss';
 
@@ -17,7 +18,7 @@ const Subscribes = () => {
 
   return (
     <div className="subscribes">
-      <div className="text-xl">정기구독 관리</div>
+      <ItemTitle title="정기구독 관리" />
       <div className="subscribes-main">
         <div className="text-lg">신청내역 ({subList.length}건)</div>
         <div className="subscribes-list">

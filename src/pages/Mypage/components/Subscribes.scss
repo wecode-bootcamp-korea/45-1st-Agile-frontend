@@ -1,10 +1,6 @@
 @import '../../../styles/variables';
-@import '../Mypage';
 
 .subscribes {
-  .text-xl {
-    @include menu-title;
-  }
   .subscribes-main {
     padding: 5px;
 
@@ -16,7 +12,6 @@
     .subscribes-list {
       @include flex-sort(center, center);
       flex-direction: column;
-      border-bottom: 3px solid black;
 
       .no-list {
         width: 100%;

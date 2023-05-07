@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ItemTitle from './ItemTitle';
 import './UserInfoUpdate.scss';
 
 const UserInfoUpdate = () => {
@@ -26,7 +27,7 @@ const UserInfoUpdate = () => {
 
   return (
     <div className="userinfo-update">
-      <div className="text-xl">기본정보</div>
+      <ItemTitle title="기본정보" />
       <div className="userinfo-update-main">
         {UPDATE_INFO.map(data => {
           return (
