@@ -7,9 +7,7 @@ const Likes = () => {
   const [likesList, setLikesList] = useState([]);
 
   useEffect(() => {
-    fetch('/data/subscribeData.json', {
-      method: 'GET',
-    })
+    fetch('/data/subscribeData.json')
       .then(res => res.json())
       .then(data => {
         setLikesList(data);

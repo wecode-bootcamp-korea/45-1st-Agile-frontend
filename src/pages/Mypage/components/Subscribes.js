@@ -7,9 +7,7 @@ const Subscribes = () => {
   const [subList, setSubList] = useState([]);
 
   useEffect(() => {
-    fetch('/data/subscribeData.json', {
-      method: 'GET',
-    })
+    fetch('/data/subscribeData.json')
       .then(res => res.json())
       .then(data => {
         setSubList(data);

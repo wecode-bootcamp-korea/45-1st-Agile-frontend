@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MenuBar.scss';
 
-const MenuBar = ({ isOpen, setIsOpen }) => {
+const MenuBar = ({ menuMode, setMenuMode }) => {
   const navigate = useNavigate();
 
   const handleMenu = id => {
-    setIsOpen(id);
+    setMenuMode(id);
 
     //log out
     if (id === 4) {
@@ -20,7 +20,7 @@ const MenuBar = ({ isOpen, setIsOpen }) => {
         return (
           <div
             key={data.id}
-            className={`text-lg ${data.id === isOpen ? 'selected' : ''}`}
+            className={`text-lg ${data.id === menuMode ? 'selected' : ''}`}
             onClick={() => handleMenu(data.id)}
           >
             {data.title}

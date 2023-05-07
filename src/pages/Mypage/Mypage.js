@@ -7,7 +7,12 @@ import Likes from './components/Likes';
 import './Mypage.scss';
 
 const Mypage = () => {
-  const [isOpen, setIsOpen] = useState(1);
+  const [menuMode, setMenuMode] = useState(1);
+  const menuList = {
+    1: <OrderDelivery />,
+    2: <Subscribes />,
+    3: <Likes />,
+  };
 
   return (
     <div className="mypage">
@@ -15,13 +20,9 @@ const Mypage = () => {
       <div className="mypage-main">
         <div className="main-left">
           <div className="text-2xl">마이페이지</div>
-          <MenuBar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <MenuBar menuMode={menuMode} setMenuMode={setMenuMode} />
         </div>
-        <div className="main-right">
-          {isOpen === 1 && <OrderDelivery />}
-          {isOpen === 2 && <Subscribes />}
-          {isOpen === 3 && <Likes />}
-        </div>
+        <div className="main-right">{menuList[menuMode]}</div>
       </div>
     </div>
   );
