@@ -3,6 +3,7 @@
 .newest-product {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start !important;
   justify-content: flex-start !important;
   width: 1050px;
   margin-top: 32px;
