@@ -35,6 +35,8 @@
     }
   }
   .title-nav {
+    display: flex;
+    justify-content: flex-start;
     .title-nav-things {
       @include flex-sort(flex-start, center);
       @include font(16px, #1c1c1c);
