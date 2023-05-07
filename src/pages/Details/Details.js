@@ -5,7 +5,8 @@ import Contents from './components/Contents';
 import './Details.scss';
 
 const Details = () => {
-  const [productDetail, setProductDetail] = useState(null);
+  const [productDetail, setProductDetail] = useState({});
+  const [productsInCart, setProductsInCart] = useState([]);
 
   const params = useParams();
   const id = params.id;
@@ -18,15 +19,21 @@ const Details = () => {
       })
       .catch(e => {
         console.error(e);
+        fetch(`http://10.58.52.146:3000/books/${id}`);
       });
   }, [id]);
 
-  if (!productDetail) return <></>;
+  if (!productDetail) return;
 
   return (
     <MainLayout>
       <div className="product-detail-page">
-        <Contents productDetail={productDetail} id={id} />
+        <Contents
+          productDetail={productDetail}
+          id={id}
+          setProductsInCart={setProductsInCart}
+          productsInCart={productsInCart}
+        />
       </div>
     </MainLayout>
   );

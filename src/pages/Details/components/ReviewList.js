@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Review from './Review';
 import './ReviewList.scss';
 
-const ReviewList = () => {
+const ReviewList = id => {
+  const [reviewsData, setReviewsData] = useState([]);
+
+  useEffect(() => {
+    const fetchReviewsData = async () => {
+      try {
+        const res = await fetch('/data/reviewsdata.json');
+        const data = await res.json();
+        setReviewsData(data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchReviewsData();
+  }, [id]);
+
+  if (!reviewsData) return;
   return (
     <div>
-      {REVIEWS.map((review, index) => {
+      {reviewsData.map((review, index) => {
         return <Review review={review} key={index} />;
       })}
     </div>
@@ -13,51 +30,3 @@ const ReviewList = () => {
 };
 
 export default ReviewList;
-
-export const REVIEWS = [
-  {
-    id: 1,
-    book_id: 1,
-    user_id: 'heeyeon',
-    content: '최고에요',
-    product_id: 'A',
-    score: 4,
-    date: '2022.04.20',
-  },
-  {
-    id: 2,
-    book_id: 2,
-    user_id: 'juicy',
-    content: '만점',
-    product_id: 'B',
-    score: 3,
-    date: '2022.04.19',
-  },
-  {
-    id: 3,
-    book_id: 3,
-    user_id: 'merci',
-    content: '굿굿',
-    product_id: 'C',
-    score: 5,
-    date: '2022.04.18',
-  },
-  {
-    id: 4,
-    book_id: 4,
-    user_id: 'coffee',
-    content: '추천합니다',
-    product_id: 'D',
-    score: 2,
-    date: '2022.04.17',
-  },
-  {
-    id: 5,
-    book_id: 5,
-    user_id: 'lipstick',
-    content: '최고최고',
-    product_id: 'E',
-    score: 4,
-    date: '2022.04.16',
-  },
-];

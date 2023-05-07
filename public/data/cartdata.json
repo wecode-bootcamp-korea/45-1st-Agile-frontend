@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "title": "최종마무리-영어",
+    "price": 13000,
+    "amount": 1,
+    "is_subscribed": true
+  },
+  {
+    "id": 2,
+    "title": "최종마무리-수학",
+
+    "price": 13000,
+    "amount": 1,
+
+    "is_subscribed": true
+  },
+  {
+    "id": 3,
+    "title": "최종마무리-한국사",
+
+    "amount": 1,
+    "price": 13000,
+    "is_subscribed": true
+  },
+  {
+    "id": 4,
+    "title": "최종마무리-토익",
+
+    "price": 13000,
+    "amount": 1,
+
+    "is_subscribed": true
+  },
+  {
+    "id": 5,
+    "title": "최종마무리-NCS",
+
+    "price": 13000,
+    "amount": 1,
+
+    "is_subscribed": true
+  },
+  {
+    "id": 6,
+    "title": "부의 인문학",
+
+    "price": 17000,
+    "amount": 1,
+
+    "is_subscribed": false
+  },
+  {
+    "id": 7,
+    "title": "데일 카네기 인간관계론",
+
+    "price": 11500,
+    "amount": 1,
+    "is_subscribed": false
+  }
+]

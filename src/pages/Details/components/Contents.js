@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
-import DescriptionArea from './DescriptionArea';
-import ReviewList from './ReviewList';
+import ProductInformation from './ProductInformation';
 import WishlistButton from './WishlistButton';
 import ShareButton from './ShareButton';
 import QuantityBox from './QuantityBox';
@@ -10,19 +10,7 @@ import SubscribeOptions from './SubscribeOptions';
 import './Contents.scss';
 import CartModal from './CartModal';
 
-const tabArr = [
-  {
-    tabTitle: '설명',
-    tabCont: <DescriptionArea />,
-  },
-  {
-    tabTitle: '리뷰',
-    tabCont: <ReviewList />,
-  },
-];
-
-const Contents = props => {
-  const { productDetail } = props;
+const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
   const {
     title,
     subtitle,
@@ -32,16 +20,71 @@ const Contents = props => {
     image,
     description,
     author,
+    sub_category_id,
+    is_liked,
   } = productDetail;
 
-  const [activeIndex, setActiveIndex] = useState(0);
   const [count, setCount] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLiked, setIsLiked] = useState(is_liked);
+  const navigate = useNavigate();
 
-  const handleTabClick = index => () => setActiveIndex(index);
+  const productsInfo = [
+    {
+      item: productDetail,
+      quauntity: 1,
+    },
+  ];
+
   const totalPrice = price * count;
-  const handleModalOpen = () => {
+
+  const openCartModal = () => {
     setModalOpen(true);
+  };
+  const totalPriceInCart = productsInCart.reduce((total, element) => {
+    return total + element.price * element.amount;
+  }, 0);
+
+  const addToCart = () => {
+    // fetch('/data/cartdata.json', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json;charset=utf-8', token: '' },
+    //   body: JSON.stringify({ id: '1', quantity: 1 }),
+    // });
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log(1);
+        resolve();
+      }, 2000);
+    });
+  };
+
+  const fetchCartData = async () => {
+    try {
+      const res = await fetch('/data/cartdata.json');
+      const data = await res.json();
+      setProductsInCart(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleCartClick = async () => {
+    try {
+      openCartModal();
+      await addToCart();
+      await fetchCartData();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const BOOKS_ID = id;
+  const SUBCATEGORY_ID = sub_category_id;
+
+  const handlePaymentClick = () => {
+    navigate(`/payment?product_id=${BOOKS_ID}&subcategory=${SUBCATEGORY_ID}`, {
+      state: { productsInfo },
+    });
   };
 
   return (
@@ -54,7 +97,11 @@ const Contents = props => {
           <div className="product-title">
             <div>{title}</div>
             <div className="product-actions">
-              <WishlistButton />
+              <WishlistButton
+                id={id}
+                isLiked={isLiked}
+                setIsLiked={setIsLiked}
+              />
               <ShareButton />
             </div>
           </div>
@@ -77,29 +124,22 @@ const Contents = props => {
           </div>
 
           <div>
-            <ShippingInfo />
+            <ShippingInfo totalPriceInCart={totalPriceInCart} />
             <div className="cart-purchase-container">
-              <Button color="white" onClick={handleModalOpen}>
+              <Button color="white" onClick={handleCartClick}>
                 장바구니
               </Button>
-              {modalOpen && <CartModal setModalOpen={setModalOpen} />}
-              <Button color="black">구매하기</Button>
+              {modalOpen && (
+                <CartModal title={title} setModalOpen={setModalOpen} />
+              )}
+              <Button color="black" onClick={handlePaymentClick}>
+                구매하기
+              </Button>
             </div>
           </div>
         </div>
       </div>
-      <div className="information-area">
-        <ul className="tabs">
-          {tabArr.map((tab, index) => {
-            return (
-              <li className="tab" onClick={handleTabClick(index)} key={index}>
-                {tab.tabTitle}
-              </li>
-            );
-          })}
-        </ul>
-        <div className="tab-content">{tabArr[activeIndex].tabCont}</div>
-      </div>
+      <ProductInformation id={id} />
     </div>
   );
 };
