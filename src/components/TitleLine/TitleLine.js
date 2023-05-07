@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './TitleLine.scss';
 
+import CategoryModal from '../CategoryModal/CategoryModal';
+
+import './TitleLine.scss';
 const TitleLine = () => {
   return (
     <div className="title-line">
@@ -17,6 +19,7 @@ const TitleLine = () => {
       </div>
       <div className="title-nav">
         <button className="menus" />
+        <CategoryModal />
         <div className="카테고리">카테고리</div>
       </div>
     </div>
