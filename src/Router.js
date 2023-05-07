@@ -23,8 +23,8 @@ const Router = () => {
         <Route path="/payment" element={<Payment />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path="/invalidAccess" element={<InvalidAccess />} />
         <Route path="/orderCompleted" element={<OrderCompleted />} />
+        <Route path="/invalidAccess" element={<InvalidAccess />} />
       </Routes>
     </BrowserRouter>
   );

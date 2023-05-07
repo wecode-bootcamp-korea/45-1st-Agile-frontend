@@ -125,7 +125,9 @@ const Payment = () => {
         radio={radio}
         switchRadio={switchRadio}
       />
-      <Subscribe info={info} handleInfo={handleInfo} />
+      {orderInfo[0]?.is_subscribe && (
+        <Subscribe info={info} handleInfo={handleInfo} />
+      )}
       <div className="pay-part">
         <PaymentMethod point={point} />
         <PaymentInfo point={point} />
