@@ -6,12 +6,20 @@ const NewestProduct = ({ categoryId, subCategoryId }) => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
-    )
+    fetch(`/backend/api/endpoint`) // 백엔드 API 엔드포인트
       .then(res => res.json())
       .then(data => {
         setProductList(data);
+      })
+      .catch(error => {
+        console.log(error);
+        fetch(
+          `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
+        ) // 목데이터 경로
+          .then(res => res.json())
+          .then(data => {
+            setProductList(data);
+          });
       });
   }, [categoryId, subCategoryId]);
 

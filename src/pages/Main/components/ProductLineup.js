@@ -11,7 +11,7 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
+          `/backend/api/endpoint` // 백엔드 API 엔드포인트
         );
         const data = await res.json();
         if (data) {
@@ -19,6 +19,11 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
         }
       } catch (error) {
         console.log(error);
+        const res = await fetch(
+          `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json` // 목데이터 경로
+        );
+        const data = await res.json();
+        setVisibleProducts(data);
       }
     };
     fetchData();
