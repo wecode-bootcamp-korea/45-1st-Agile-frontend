@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MypageTop.scss';
 
 const MypageTop = () => {
+  const navigate = useNavigate();
+
+  const handleOnclick = () => {
+    navigate('/userInfoUpdate');
+  };
+
   return (
     <div className="mypage-top">
       <div className="mypage-top-wrap">
@@ -21,7 +28,7 @@ const MypageTop = () => {
           </div>
           <div className="phone-number">
             <div>010 - 1234 - 5678</div>
-            <div>정보수정{' > '}</div>
+            <div onClick={handleOnclick}>정보수정{' > '}</div>
           </div>
         </div>
       </div>

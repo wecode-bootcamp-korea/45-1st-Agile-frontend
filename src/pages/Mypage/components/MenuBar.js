@@ -1,12 +1,28 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MenuBar.scss';
 
-const MenuBar = () => {
+const MenuBar = ({ isOpen, setIsOpen }) => {
+  const navigate = useNavigate();
+
+  const handleMenu = id => {
+    setIsOpen(id);
+
+    //log out
+    if (id === 4) {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="menu-bar">
       {MENU_INFO.map(data => {
         return (
-          <div key={data.id} className="text-lg">
+          <div
+            key={data.id}
+            className={`text-lg ${data.id === isOpen ? 'selected' : ''}`}
+            onClick={() => handleMenu(data.id)}
+          >
             {data.title}
           </div>
         );

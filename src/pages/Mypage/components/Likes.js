@@ -20,10 +20,13 @@ const Likes = () => {
       <div className="text-xl">관심 상품</div>
       <div className="likes-main">
         <div className="likes-list">
-          <div className="no-list">관심 상품이 없습니다.</div>
-          {likesList.map(data => {
-            return <LikesProduct key={data.id} data={data} />;
-          })}
+          {likesList.length === 0 && (
+            <div className="no-list">관심 상품이 없습니다.</div>
+          )}
+          {likesList.length !== 0 &&
+            likesList.map(data => {
+              return <LikesProduct key={data.id} data={data} />;
+            })}
         </div>
       </div>
     </div>
