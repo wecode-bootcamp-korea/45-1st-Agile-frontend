@@ -13,8 +13,7 @@ const Payment = () => {
   const [orderInfo, setOrderInfo] = useState({});
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
-  const [price, setPrice] = useState(0);
-  const [point, setPoint] = useState(0);
+  const [point, setPoint] = useState({});
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -27,7 +26,6 @@ const Payment = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setUserInfo(data);
         setInfo({
           name: data.name,
@@ -39,9 +37,7 @@ const Payment = () => {
           receiver_address: data.address,
           subscribe_start: subDate(),
         });
-        setPoint(data.points);
-        console.log('point');
-        console.log(data.points);
+        setPoint({ curPoint: data.points });
       });
   }, []);
 
@@ -51,11 +47,44 @@ const Payment = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setOrderInfo(data);
+        let totalPrice = 0;
         data.forEach(ele => {
-          setPrice(prev => prev + ele.price * ele.quantity);
+          totalPrice += ele.price * ele.quantity;
         });
+
+        const fee = totalPrice < 40000 ? 3000 : 0;
+
+        setPoint(prev => {
+          return {
+            ...prev,
+            usePoint: totalPrice + fee,
+            earnPoint: 0,
+            remainPoint: 0,
+            price: totalPrice,
+            shipmentFee: fee,
+          };
+        });
+
+        setPoint(prev => {
+          return {
+            ...prev,
+            remainPoint: prev.curPoint - prev.usePoint,
+          };
+        });
+
+        if (point.usePoint >= 70000) {
+          setPoint(prev => {
+            return {
+              ...prev,
+              earnPoint: prev.usePoint * 0.02,
+            };
+          });
+        }
+
+        // if (point.remainPoint < 0) {
+        //   alert('잔액이 부족합니다.');
+        // }
       });
   }, []);
 
@@ -103,8 +132,8 @@ const Payment = () => {
       />
       <Subscribe info={info} handleInfo={handleInfo} />
       <div className="pay-part">
-        <PaymentMethod />
-        <PaymentInfo />
+        <PaymentMethod point={point} />
+        <PaymentInfo point={point} />
       </div>
     </div>
   );
