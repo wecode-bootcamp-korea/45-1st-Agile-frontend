@@ -21,23 +21,30 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch('/data/userData.json', {
+    fetch('http://10.58.52.230:3000/orders/user', {
       method: 'GET',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNTI4MjY2fQ.cHOI-3sL1BPWSu2OZ3Sp1nMbYvClKitzJWtGgYBal4s',
+        'Content-type': 'application/json;utf=8',
+      },
     })
       .then(res => res.json())
       .then(data => {
-        setUserInfo(data);
+        const user = data.user;
+        console.log(data.user);
+        setUserInfo(user);
         setInfo({
-          name: data.name,
-          phoneNumber: data.phoneNumber,
-          email: data.email,
-          address: data.address,
-          receiverName: data.name,
-          receiverPhoneNumber: data.phoneNumber,
-          receiverAddress: data.address,
+          name: user.name,
+          phoneNumber: user.phoneNumber,
+          email: user.email,
+          address: user.address,
+          receiverName: user.name,
+          receiverPhoneNumber: user.phoneNumber,
+          receiverAddress: user.address,
           subscribeStart: subDate(),
         });
-        setPoint({ curPoint: data.points });
+        setPoint({ curPoint: parseInt(user.points) });
       });
   }, []);
 
@@ -58,18 +65,18 @@ const Payment = () => {
         setPoint(prev => {
           return {
             ...prev,
-            usePoint: totalPrice + fee,
+            usePoint: parseInt(totalPrice + fee),
             earnPoint: 0,
             remainPoint: 0,
-            price: totalPrice,
-            shipmentFee: fee,
+            price: parseInt(totalPrice),
+            shipmentFee: parseInt(fee),
           };
         });
         if (totalPrice >= 70000) {
           setPoint(prev => {
             return {
               ...prev,
-              earnPoint: prev.usePoint * 0.02,
+              earnPoint: parseInt(prev.usePoint * 0.02),
             };
           });
         }
@@ -77,7 +84,9 @@ const Payment = () => {
         setPoint(prev => {
           return {
             ...prev,
-            remainPoint: prev.curPoint - prev.usePoint + prev.earnPoint,
+            remainPoint: parseInt(
+              prev.curPoint - prev.usePoint + prev.earnPoint
+            ),
           };
         });
       });
