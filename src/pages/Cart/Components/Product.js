@@ -2,16 +2,29 @@ import React, { useState, useEffect } from 'react';
 import Summmary from './Summary';
 import './Product.scss';
 
-// 처음
-// const Product = (props) => {
-// console.log(props); // {it: {}}
-
 // 객체 구조 분해 후
 const Product = props => {
-  // const { it } = props;
-  // const { title } = it;
   const [productList, setProductList] = useState([]);
   const isDisplay = productList.length !== 0;
+
+  // const [checkItems, setCheckItems] = useState([]);
+
+  // const handleAllCheck = checked => {
+  //   if (checked) {
+  //     const idArr = [];
+  //     AGREE_INFO.forEach(el => idArr.push(el.id));
+  //     setCheckItems(idArr);
+  //   } else {
+  //     setCheckItems([]);
+  //   }
+  // };
+  // const handleSingleCheck = (checked, id) => {
+  //   if (checked) {
+  //     setCheckItems(prev => [...prev, id]);
+  //   } else {
+  //     setCheckItems(checkItems.filter(el => el !== id));
+  //   }
+  // };
 
   useEffect(() => {
     fetch('/data/cartData.json', {
