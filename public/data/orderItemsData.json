@@ -2,19 +2,19 @@
   {
     "id": 1,
     "quantity": 3,
-    "book_id": 3,
-    "book_title": "무인도에서 살아남기",
-    "order_id": 4,
+    "bookId": 3,
+    "bookTitle": "무인도에서 살아남기",
+    "orderId": 4,
     "price": 3000,
-    "is_subscribe": false
+    "isSubscribe": false
   },
   {
     "id": 2,
     "quantity": 1,
-    "book_id": 5,
-    "book_title": "수능특강",
-    "order_id": 2,
+    "bookId": 5,
+    "bookTitle": "수능특강",
+    "orderId": 2,
     "price": 15000,
-    "is_subscribe": false
+    "isSubscribe": false
   }
 ]
