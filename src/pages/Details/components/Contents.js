@@ -15,24 +15,25 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
     title,
     subtitle,
     price,
-    issue_date,
-    is_subscribe,
+    issueDate,
+    isSubscribe,
     image,
     description,
     author,
-    sub_category_id,
-    is_liked,
+    subCategoryId,
+    isLiked,
   } = productDetail;
 
   const [count, setCount] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [isLiked, setIsLiked] = useState(is_liked);
+  const [isWished, setIsWished] = useState(isLiked);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   const productsInfo = [
     {
-      item: productDetail,
-      quauntity: 1,
+      item: { id: id },
+      quauntity: count,
     },
   ];
 
@@ -46,11 +47,15 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
   }, 0);
 
   const addToCart = () => {
-    // fetch('/data/cartdata.json', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json;charset=utf-8', token: '' },
-    //   body: JSON.stringify({ id: '1', quantity: 1 }),
-    // });
+    fetch('/data/cartdata.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        token: token,
+      },
+      body: JSON.stringify({ id: '1', quantity: 1 }),
+    });
+
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         console.log(1);
@@ -72,17 +77,20 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
   const handleCartClick = async () => {
     try {
       openCartModal();
-      await addToCart();
-      await fetchCartData();
+
+      if (token) {
+        await addToCart();
+        await fetchCartData();
+      } else {
+        navigate('/login');
+      }
     } catch (e) {
       console.log(e);
     }
   };
-  const BOOKS_ID = id;
-  const SUBCATEGORY_ID = sub_category_id;
 
   const handlePaymentClick = () => {
-    navigate(`/payment?product_id=${BOOKS_ID}&subcategory=${SUBCATEGORY_ID}`, {
+    navigate('/payment', {
       state: { productsInfo },
     });
   };
@@ -99,15 +107,15 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
             <div className="product-actions">
               <WishlistButton
                 id={id}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
+                isWished={isWished}
+                setIsWished={setIsWished}
               />
               <ShareButton />
             </div>
           </div>
           <div className="book-meta text-sm">
             <div className="book-author">{author}</div>
-            <div className="book-issue-date">{issue_date}</div>
+            <div className="book-issue-date">{issueDate}</div>
           </div>
           <p className="product-desc">{subtitle}</p>
           <div className="product-summary">
@@ -117,7 +125,7 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
             </div>
             <QuantityBox count={count} setCount={setCount} />
           </div>
-          {is_subscribe ? <SubscribeOptions /> : ''}
+          {isSubscribe ? <SubscribeOptions /> : ''}
           <div className="price-info">
             <div className="text-sm">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>

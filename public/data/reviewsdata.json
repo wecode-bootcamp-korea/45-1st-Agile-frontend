@@ -1,46 +1,46 @@
 [
   {
     "id": 1,
-    "book_id": 1,
-    "user_id": "heeyeon",
+    "bookId": 1,
+    "userID": "heeyeon",
     "content": "최고에요",
-    "product_id": "A",
+    "productId": "A",
     "score": 4,
     "date": "2022.04.20"
   },
   {
     "id": 2,
-    "book_id": 2,
-    "user_id": "juicy",
+    "bookId": 2,
+    "userID": "juicy",
     "content": "만점",
-    "product_id": "B",
+    "productId": "B",
     "score": 3,
     "date": "2022.04.19"
   },
   {
     "id": 3,
-    "book_id": 3,
-    "user_id": "merci",
+    "bookId": 3,
+    "userID": "merci",
     "content": "굿굿",
-    "product_id": "C",
+    "productId": "C",
     "score": 5,
     "date": "2022.04.18"
   },
   {
     "id": 4,
-    "book_id": 4,
-    "user_id": "coffee",
+    "bookId": 4,
+    "userID": "coffee",
     "content": "추천합니다",
-    "product_id": "D",
+    "productId": "D",
     "score": 2,
     "date": "2022.04.17"
   },
   {
     "id": 5,
-    "book_id": 5,
-    "user_id": "lipstick",
+    "bookId": 5,
+    "userID": "lipstick",
     "content": "최고최고",
-    "product_id": "E",
+    "productId": "E",
     "score": 4,
     "date": "2022.04.16"
   }

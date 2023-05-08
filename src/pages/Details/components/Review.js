@@ -3,7 +3,7 @@ import './Review.scss';
 
 const Review = props => {
   const { review } = props;
-  const { user_id, content, date, book_id } = review;
+  const { userId, content, date, bookId } = review;
 
   return (
     <li className="review">
@@ -16,7 +16,7 @@ const Review = props => {
         <div className="review-content">{content}</div>
         <button className="toggle-review-more">리뷰 더보기</button>
       </div>
-      <div className="user-info">{`${user_id}님의 리뷰입니다.`}</div>
+      <div className="user-info">{`${userId}님의 리뷰입니다.`}</div>
     </li>
   );
 };

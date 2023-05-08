@@ -1,18 +1,18 @@
 import React from 'react';
 import './WishlistButton.scss';
 
-const WishlistButton = ({ id, isLiked, setIsLiked }) => {
+const WishlistButton = ({ id, isWished, setIsWished }) => {
   const addToLikes = () => {
     fetch('/data/cartdata.json', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=utf-8', token: '' },
-      body: JSON.stringify({ book_id: { id } }),
+      body: JSON.stringify({ bookId: { id } }),
     });
   };
 
   const handleLikesClick = () => {
     // addToLikes();
-    !isLiked && setIsLiked(true);
+    !isWished && setIsWished(true);
   };
 
   return (
@@ -21,7 +21,7 @@ const WishlistButton = ({ id, isLiked, setIsLiked }) => {
       onClick={handleLikesClick}
     >
       <img
-        src={`/images/details/${isLiked ? 'red-' : ''}heart.svg`}
+        src={`/images/details/${isWished ? 'red-' : ''}heart.svg`}
         alt="wish"
         className="wish-img"
       />

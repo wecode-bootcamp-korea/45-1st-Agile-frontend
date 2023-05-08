@@ -21,10 +21,22 @@ const Details = () => {
         console.error(e);
         fetch(`http://10.58.52.146:3000/books/${id}`);
       });
+
+    const fetchCartData = async () => {
+      try {
+        const res = await fetch('/data/cartdata.json');
+        const data = await res.json();
+        setProductsInCart(data);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchCartData();
   }, [id]);
 
   if (!productDetail) return;
-
+  console.log(productsInCart);
   return (
     <MainLayout>
       <div className="product-detail-page">

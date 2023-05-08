@@ -4,7 +4,7 @@
     "title": "최종마무리-영어",
     "price": 13000,
     "amount": 1,
-    "is_subscribed": true
+    "isSubscribed": true
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "price": 13000,
     "amount": 1,
 
-    "is_subscribed": true
+    "isSubscribed": true
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
 
     "amount": 1,
     "price": 13000,
-    "is_subscribed": true
+    "isSubscribed": true
   },
   {
     "id": 4,
@@ -30,7 +30,7 @@
     "price": 13000,
     "amount": 1,
 
-    "is_subscribed": true
+    "isSubscribed": true
   },
   {
     "id": 5,
@@ -39,7 +39,7 @@
     "price": 13000,
     "amount": 1,
 
-    "is_subscribed": true
+    "isSubscribed": true
   },
   {
     "id": 6,
@@ -48,7 +48,7 @@
     "price": 17000,
     "amount": 1,
 
-    "is_subscribed": false
+    "isSubscribed": false
   },
   {
     "id": 7,
@@ -56,6 +56,6 @@
 
     "price": 11500,
     "amount": 1,
-    "is_subscribed": false
+    "isSubscribed": false
   }
 ]
