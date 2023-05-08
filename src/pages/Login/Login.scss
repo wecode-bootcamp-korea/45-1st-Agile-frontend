@@ -14,10 +14,10 @@
 
     strong {
       @include font(24px, black);
-      margin-left: 70px;
+      margin-left: 80px;
     }
 
-    p {
+    .start-words {
       margin: 10px 0px 20px 130px;
     }
   }

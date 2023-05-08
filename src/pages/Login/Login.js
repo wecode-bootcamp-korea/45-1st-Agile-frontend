@@ -57,7 +57,7 @@ const Login = () => {
     <div className="loginform">
       <p className="start">
         <strong>로그인 및 회원가입</strong>
-        <p>시작합니다.</p>
+        <p className="start-words">을 시작합니다.</p>
       </p>
       <form>
         <div className="inputwrap">
