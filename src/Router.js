@@ -9,6 +9,7 @@ import Payment from './pages/Payment/Payment';
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
 import ProductList from './pages/ProductList/ProductList';
+import UserInfoUpdate from './pages/Mypage/components/UserInfoUpdate';
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/books/:id" element={<Details />} />
         <Route path="/books" element={<ProductList />} />
+        <Route path="/userInfoUpdate" element={<UserInfoUpdate />} />
       </Routes>
     </BrowserRouter>
   );
