@@ -4,6 +4,13 @@
   .likes-main {
     padding: 5px;
 
+    .text-lg {
+      &.application-details {
+        padding-bottom: 10px;
+        border-bottom: 2px solid black;
+      }
+    }
+
     .likes-list {
       @include flex-sort(center, center);
       flex-direction: column;

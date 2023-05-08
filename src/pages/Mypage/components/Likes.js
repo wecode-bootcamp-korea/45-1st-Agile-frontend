@@ -22,6 +22,9 @@ const Likes = () => {
           details="관심 제품은 최대 200개까지 저장됩니다."
           count={`총 ${likesList.length}개`}
         />
+        <div className="text-lg application-details">
+          신청내역 ({likesList.length}건)
+        </div>
         <div className="likes-list">
           {likesList.length === 0 && (
             <div className="no-list">관심 상품이 없습니다.</div>

@@ -5,6 +5,7 @@ const LikesProduct = ({ data }) => {
   return (
     <div className="likes-product">
       <div className="likes-left">
+        <input type="checkbox" className="checkbox" />
         <img alt="관심제품" src={data.src} width="90" />
         <div className="product-info">
           <div className="product-name">{data.name}</div>
