@@ -9,7 +9,7 @@ const Footer = () => {
     navigate('/login');
   };
   const handlePayment = () => {
-    navigate('/payment');
+    navigate('/mypage');
   };
   return (
     <div className="footer">
