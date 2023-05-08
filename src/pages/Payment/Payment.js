@@ -5,15 +5,13 @@ import Shipment from './components/Shipment';
 import Subscribe from './components/Subscribe';
 import PaymentMethod from './components/PaymentMethod';
 import PaymentInfo from './components/PaymentInfo';
-
 import './Payment.scss';
 
 const Payment = () => {
   const [userInfo, setUserInfo] = useState({});
-  const [orderInfo, setOrderInfo] = useState({});
+  const [orderInfo, setOrderInfo] = useState([]);
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
-  const [point, setPoint] = useState({});
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -21,30 +19,23 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch('http://10.58.52.230:3000/orders/user', {
+    fetch('/data/userData.json', {
       method: 'GET',
-      headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNTI4MjY2fQ.cHOI-3sL1BPWSu2OZ3Sp1nMbYvClKitzJWtGgYBal4s',
-        'Content-type': 'application/json;utf=8',
-      },
     })
       .then(res => res.json())
       .then(data => {
-        const user = data.user;
-        console.log(data.user);
+        const user = data.user; // for real backend data
         setUserInfo(user);
         setInfo({
           name: user.name,
           phoneNumber: user.phoneNumber,
           email: user.email,
           address: user.address,
-          receiverName: user.name,
-          receiverPhoneNumber: user.phoneNumber,
-          receiverAddress: user.address,
+          receiver_name: user.name,
+          receiver_phoneNumber: user.phoneNumber,
+          receiver_address: user.address,
           subscribeStart: subDate(),
         });
-        setPoint({ curPoint: parseInt(user.points) });
       });
   }, []);
 
@@ -55,57 +46,28 @@ const Payment = () => {
       .then(res => res.json())
       .then(data => {
         setOrderInfo(data);
-        let totalPrice = 0;
-        data.forEach(ele => {
-          totalPrice += ele.price * ele.quantity;
-        });
-
-        const fee = totalPrice < 40000 ? 3000 : 0;
-
-        setPoint(prev => {
-          return {
-            ...prev,
-            usePoint: parseInt(totalPrice + fee),
-            earnPoint: 0,
-            remainPoint: 0,
-            price: parseInt(totalPrice),
-            shipmentFee: parseInt(fee),
-          };
-        });
-        if (totalPrice >= 70000) {
-          setPoint(prev => {
-            return {
-              ...prev,
-              earnPoint: parseInt(prev.usePoint * 0.02),
-            };
-          });
-        }
-
-        setPoint(prev => {
-          return {
-            ...prev,
-            remainPoint: parseInt(
-              prev.curPoint - prev.usePoint + prev.earnPoint
-            ),
-          };
-        });
       });
   }, []);
 
-  // useEffect(() => {
-  //   fetch('', {
-  //     method: 'POST',
-  //     headers: {
-  //       accessToken: 'token',
-  //       'Content-type': 'application/json;utf=8',
-  //     },
-  //     body: JSON.stringify(),
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //     });
-  // }, []);
+  if (orderInfo === []) return null;
+
+  let totalPrice = 0;
+  orderInfo?.forEach(ele => {
+    totalPrice += ele.price * ele.quantity;
+  });
+  const fee = totalPrice < 40000 ? 3000 : 0;
+  const usePoint = parseInt(totalPrice + fee);
+  const earnPoint = totalPrice >= 70000 ? usePoint * 0.02 : 0;
+  const remainPoint = parseInt(userInfo.points) - usePoint + earnPoint;
+
+  const point = {
+    curPoint: parseInt(userInfo.points),
+    usePoint: usePoint,
+    earnPoint: earnPoint,
+    remainPoint: remainPoint,
+    price: parseInt(totalPrice),
+    shipmentFee: parseInt(fee),
+  };
 
   const switchRadio = () => {
     for (let key in info) {

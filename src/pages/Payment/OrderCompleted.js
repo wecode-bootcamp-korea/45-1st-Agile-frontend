@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import check from '../../assets/payment/circleCheck.jpg';
 import './OrderCompleted.scss';
 import { useNavigate } from 'react-router-dom';
 
 const OrderCompleted = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('api주소', {
+      headers: { 인증: '' },
+    })
+      .then(res => res.json())
+      .catch(e => navigate('/invalidAccess'))
+      .then();
+  }, []);
 
   const handleConfirmOrder = () => {
     navigate('/mypage');

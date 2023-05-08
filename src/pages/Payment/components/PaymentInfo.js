@@ -11,6 +11,7 @@ const PaymentInfo = ({ point }) => {
             <div key={data.id} className="payment-fee">
               <div className="fee-title">{data.title}</div>
               <div className="fee-point">
+                {data.oper}
                 {point[data.type]?.toLocaleString()}원
               </div>
             </div>
@@ -28,6 +29,6 @@ export default PaymentInfo;
 
 const AMOUNT_INFO = [
   { id: 1, title: '주문제품', type: 'price' },
-  { id: 1, title: '배송비', type: 'shipmentFee', oper: ' + ' },
-  { id: 1, title: '결제금액', type: 'usePoint' },
+  { id: 2, title: '배송비', type: 'shipmentFee', oper: ' + ' },
+  { id: 3, title: '결제금액', type: 'usePoint' },
 ];

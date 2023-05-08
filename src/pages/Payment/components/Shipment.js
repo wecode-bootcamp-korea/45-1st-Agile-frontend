@@ -43,9 +43,9 @@ const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
 export default Shipment;
 
 const SHIPMENT_INFO = [
-  { id: 1, title: '받는 사람', type: 'receiverName' },
-  { id: 2, title: '주소', type: 'receiverAddress' },
-  { id: 3, title: '휴대폰 번호', type: 'receiverPhoneNumber' },
+  { id: 1, title: '받는 사람', type: 'receiver_name' },
+  { id: 2, title: '주소', type: 'receiver_address' },
+  { id: 3, title: '휴대폰 번호', type: 'receiver_phoneNumber' },
 ];
 
 const SELECT_MSG = [
