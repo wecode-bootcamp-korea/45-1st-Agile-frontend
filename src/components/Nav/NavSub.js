@@ -28,7 +28,11 @@ const NavSub = () => {
   };
 
   const handleMenusMouseLeave = () => {
-    setShowCategoryModal(false);
+    setTimeout(() => {
+      if (showCategoryModal) {
+        setShowCategoryModal(false);
+      }
+    }, 300);
   };
 
   return (

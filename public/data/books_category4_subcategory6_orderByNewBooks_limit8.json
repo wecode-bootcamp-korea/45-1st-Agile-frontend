@@ -1,6 +1,6 @@
 [
   {
-    "Key": 26,
+    "id": 26,
     "title": "2023 해커스 토익 실전 1000제 1 RC Reading(리딩) 문제집",
     "subtitle": "최신기출유형 100% 반영｜무료 동영상강의 제공 | 무료 Part 5&6 해설ㅣ무료 온라인 실전모의고사 ",
     "author": "해커스어학연구소 ",
@@ -15,7 +15,7 @@
     "sub_category_id": 6
   },
   {
-    "Key": 27,
+    "id": 27,
     "title": "YBM 실전토익 LC 1000 2(고득점 대비)",
     "subtitle": "토익 주관사가 만든 고난도 적중실전, 해설집 무료 제공",
     "author": "YBM",
@@ -30,7 +30,7 @@
     "sub_category_id": 6
   },
   {
-    "Key": 28,
+    "id": 28,
     "title": "ETS 토익 정기시험 기출문제집 1000 Vol 3 LISTENING(리스닝)",
     "subtitle": "All New 최신 기출 7회 | ETS 예상 문제 3회",
     "author": "YBM",
@@ -45,7 +45,7 @@
     "sub_category_id": 6
   },
   {
-    "Key": 29,
+    "id": 29,
     "title": "해커스 토익 기출보카 TOEIC VOCA(토익보카) 단어장",
     "subtitle": "RC,LC 필수 토익 보카ㅣ 주제별 연상암기로 토익 영단어 30일 완성 | 최신 기출 단어 · 어휘+출제포인트 수록 ㅣ토익필수 단어장",
     "author": "David Cho",
@@ -60,7 +60,7 @@
     "sub_category_id": 6
   },
   {
-    "Key": 30,
+    "id": 30,
     "title": "해커스 토플 리스닝(Hackers TOEFL Listening)",
     "subtitle": "고득점을 위한 완벽한 전략 제시 | 쉐도잉 프로그램, 들으면서 외우는 단어암기자료 제공",
     "author": "David Cho",

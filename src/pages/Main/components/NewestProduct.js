@@ -6,31 +6,27 @@ const NewestProduct = ({ categoryId, subCategoryId }) => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetch(`/backend/api/endpoint`) // 백엔드 API 엔드포인트
+    fetch(
+      `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
+    )
       .then(res => res.json())
       .then(data => {
         setProductList(data);
       })
       .catch(error => {
         console.log(error);
-        fetch(
-          `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
-        ) // 목데이터 경로
-          .then(res => res.json())
-          .then(data => {
-            setProductList(data);
-          });
       });
   }, [categoryId, subCategoryId]);
-
+  // `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=newBooks&limit=9`
+  //  setVisibleProducts(data.data);
   return (
     <div className="newest-product">
       {productList.map(product => (
-        <Link key={product.Key} to={`/books/${product.Key}`}>
-          <div key={product.Key} className="product-item">
+        <Link key={product.id} to={`/books/${product.id}`}>
+          <div key={product.id} className="product-item">
             <img
               className="product-img"
-              src={`images/main/booksimg/${product.Key}.png`}
+              src={`images/main/booksimg/${product.id}.png`}
               alt={product.title}
             />
             <div className="product-title">{product.title}</div>
