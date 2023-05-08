@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ShippingInfo from '../../Details/components/ShippingInfo';
 import BuyingButton from './BuyingButton';
-import '../Cart.scss';
+import './OrderInfo.scss';
 
 const OrderInfo = () => {
   const [productList, setProductList] = useState([]);
