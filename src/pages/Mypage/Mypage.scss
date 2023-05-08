@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.mypage {
+  .mypage-main {
+    display: flex;
+
+    .main-left {
+      width: 250px;
+      padding-left: 30px;
+
+      .text-2xl {
+        margin-top: 50px;
+        margin-bottom: 30px;
+        @include flex-sort(center, center);
+        font-weight: bold;
+      }
+    }
+
+    .main-right {
+      flex-grow: 1;
+      margin-bottom: 100px;
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+  }
+}

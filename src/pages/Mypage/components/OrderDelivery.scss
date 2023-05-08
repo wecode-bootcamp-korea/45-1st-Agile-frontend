@@ -1,0 +1,33 @@
+@import '../../../styles/variables';
+
+.order-delivery {
+  padding-bottom: 50px;
+
+  .order-delivery-main {
+    @include flex-sort(center, center);
+
+    .condition-mode {
+      @include flex-sort(center, center);
+      flex-direction: column;
+      margin: 20px;
+
+      .text-2xl {
+        margin: 10px;
+        font-weight: bold;
+      }
+
+      .mode {
+        color: #999999;
+      }
+    }
+
+    .text-lg {
+      color: #999999;
+      font-weight: bold;
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+}

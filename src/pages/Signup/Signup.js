@@ -186,6 +186,7 @@ const SignUp = () => {
             name="userAddress"
             onChange={handleInput}
           />
+          <input className="input-address" type="text" placeholder="주소" />
         </div>
         <div className="write-phonenumber">
           <span className="phonenumber">전화번호</span>
@@ -211,6 +212,7 @@ const SignUp = () => {
             name="userBirth"
             onChange={handleInput}
           />
+          <input className="input-birth" type="text" placeholder="YYYY-MM-DD" />
         </div>
         <div className="check-gender">
           <span className="gender">성별</span>
@@ -235,6 +237,11 @@ const SignUp = () => {
               value="noselected"
               onChange={handleradioCheck}
             />
+            <input type="radio" name="gender" value="male" />
+            남자
+            <input type="radio" name="gender" value="female" />
+            여자
+            <input type="radio" name="gender" value="noselected" />
             선택 안함
           </div>
         </div>
@@ -250,6 +257,7 @@ const SignUp = () => {
           onChange={handleAllAgreeChange}
           checked={isAllAgreed}
         />
+        <input type="checkbox" id="agree-all" name="agree-all" />
         <label for="agree-all">전체 동의합니다 </label>
       </div>
       <span className="check-agree">
@@ -263,6 +271,7 @@ const SignUp = () => {
       <div className="agree-essential">
         <input type="checkbox" id="agree-condition" name="agree-condition" />
         <label for="agree-condition">[필수] 개인정보 수집 및 동의</label>
+        <label for="agree-condition">[필수] 개인정보 수집 및 동의 </label>
       </div>
       <div className="agree-select">
         <input type="checkbox" id="agree-message" name="agree-message" />
