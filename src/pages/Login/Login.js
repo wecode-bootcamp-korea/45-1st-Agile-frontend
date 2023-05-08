@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleInput = event => {
     const { name, value } = event.target;
-    setUserInfo({ ...userInfo, [name]: value });
+    setUserInfo(prev => ({ ...prev, [name]: value }));
   };
 
   const goToMain = event => {
@@ -32,10 +32,7 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify({
-          email: userInfo.email,
-          password: userInfo.password,
-        }),
+        body: JSON.stringify(userInfo),
       })
         .then(response => {
           return response.json();
