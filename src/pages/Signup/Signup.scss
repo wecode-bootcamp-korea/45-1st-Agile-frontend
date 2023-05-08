@@ -1,86 +1,50 @@
 @import '../../styles/common';
 @import '../../styles/variables';
 
-.title {
-  @include font(28px, black);
-  margin-top: 150px;
-  text-align: center;
-}
-
-.basicinfo {
-  @include font(20px, black);
-  margin: 30px 15px 30px 100px;
-  padding-bottom: 15px;
-  border-bottom-width: 3px;
-  border-bottom-style: solid;
-  border-color: #999999;
-  border-bottom-color: black;
-}
-
-.signupform {
-  @include font(16px, black);
-  margin: 30px 15px 30px 100px;
-
-  .password {
-    width: 200px;
-    line-height: 20px;
+.signup {
+  .title {
+    @include font(28px, black);
+    margin-top: 150px;
+    text-align: center;
   }
 
-  .writepwd {
-    @include flex-sort(left, center);
-    flex-direction: column;
-  }
-  .inputpwd {
-    width: 500px;
-    height: 42px;
-    margin: -25px 0px 0px -200px;
-  }
-
-  .useemail {
-    @include font(10px, #999999);
-    margin: 10px 0px 10px -470px;
+  .basicinfo {
+    @include font(20px, black);
+    margin: 30px 15px 30px 100px;
+    padding-bottom: 15px;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-color: #999999;
+    border-bottom-color: black;
   }
 
-  .usepwd {
-    @include font(10px, #999999);
-    margin: 10px 0px 5px -415px;
-  }
+  .signupform {
+    @include font(16px, black);
+    margin: 30px 15px 30px 100px;
 
-  .pwd-ok {
-    .input-checkpwd {
-      width: 500px;
-      height: 42px;
-      margin-left: 25px;
+    .form-id {
+      padding: 10px;
     }
-  }
 
-  .writename {
-    margin-top: 10px;
-
-    .inputname {
-      width: 500px;
-      height: 42px;
-      margin-left: 88px;
+    .form-info {
+      margin: 5px 5px 10px 15px;
     }
-  }
 
-  .write-address {
-    margin-top: 10px;
-
-    .input-address {
+    .form-placeholder {
+      @include flex-sort(center, center);
+      flex-direction: column;
       width: 500px;
       height: 42px;
-      margin-left: 88px;
+      margin: -25px 10px 0px 130px;
     }
-  }
 
-  .write-phonenumber {
-    margin-top: 10px;
-
-    .input-phonenumber {
-      width: 500px;
-      height: 42px;
-      margin-left: 58px;
+    .form-message {
+      @include flex-sort(center, center);
+      flex-direction: column;
+      margin: 10px 410px 10px 30px;
+      color: #999999;
+      font-size: 11px;
+      line-height: 140%;
     }
   }
 }
@@ -108,7 +72,7 @@
     .input-birth {
       width: 500px;
       height: 42px;
-      margin-left: 58px;
+      margin-left: 80px;
     }
   }
 
@@ -116,7 +80,7 @@
     margin-top: 10px;
 
     .check-radio {
-      margin: -15px 5px 0px 110px;
+      margin: -15px 5px 0px 130px;
     }
   }
 }
@@ -136,35 +100,35 @@
 
 .agree-check {
   #agree-all {
-    margin-left: 215px;
+    margin-left: 235px;
   }
 }
 .check-agree {
   @include font(10px, #999999);
-  margin: 10px 0px 0px 215px;
+  margin: 10px 0px 0px 235px;
 }
 
 .agree-essential {
   #agree-condition {
-    margin: 10px 5px 10px 215px;
+    margin: 10px 5px 10px 235px;
   }
 }
 
 .agree-select {
   #agree-message {
-    margin: 10px 5px 10px 215px;
+    margin: 10px 5px 10px 235px;
   }
 }
 
 .select-info {
   #agree-send {
-    margin: 10px 5px 10px 215px;
+    margin: 10px 5px 10px 235px;
   }
 }
 
 .check-all {
   @include font(10px, #999999);
-  margin: 10px 5px 10px 215px;
+  margin: 10px 5px 10px 235px;
 }
 
 .signupbtn {

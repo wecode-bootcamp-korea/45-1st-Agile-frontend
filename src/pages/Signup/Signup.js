@@ -45,8 +45,8 @@ const SignUp = () => {
   });
 
   const handleEmailInput = event => {
-    const { value } = event.target;
-    setMemberData({ ...memberData, userId: value });
+    const { value, name } = event.target;
+    setMemberData({ ...memberData, [name]: value });
 
     const isValid = /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(value);
     setIsIdValid(isValid);
@@ -126,78 +126,38 @@ const SignUp = () => {
   };
 
   return (
-    <div className="first-title">
+    <div className="signup">
       <div className="title">
         <h1>회원가입</h1>
       </div>
       <div className="basicinfo">
         <div className="basic-info">기본정보</div>
       </div>
+
       <div className="signupform">
-        <span className="password">이메일</span>
-        <div className="writepwd">
-          <input
-            className="inputpwd"
-            type="text"
-            placeholder="이메일을 입력해주세요"
-            onChange={handleEmailInput}
-          />
-          <span className="useemail">
-            로그인 아이디로 사용할 이메일을 입력해 주세요.
-          </span>
-        </div>
-        <span className="password">비밀번호</span>
-        <div className="writepwd">
-          <input
-            className="inputpwd"
-            type="password"
-            placeholder="비밀번호를 입력해주세요"
-            onChange={handlePasswordInput}
-          />
-          <span className="usepwd">
-            (영문 대/소문자, 숫자, 특수기호 8~20개 사이를 입력해주세요)
-          </span>
-        </div>
-        <div className="pwd-ok">
-          <span className="checkpwd">비밀번호 확인</span>
-          <input
-            className="input-checkpwd"
-            type="password"
-            placeholder="비밀번호를 한번 더 입력해주세요"
-            onChange={handlePasswordOkInput}
-          />
-        </div>
-        <div className="writename">
-          <span className="name">이름</span>
-          <input
-            className="inputname"
-            type="text"
-            placeholder="실명으로 기입해주세요"
-            name="userName"
-            onChange={handleInput}
-          />
-        </div>
-        <div className="write-address">
-          <span className="address">주소</span>
-          <input
-            className="input-address"
-            type="text"
-            placeholder="주소"
-            name="userAddress"
-            onChange={handleInput}
-          />
-          <input className="input-address" type="text" placeholder="주소" />
-        </div>
-        <div className="write-phonenumber">
-          <span className="phonenumber">전화번호</span>
-          <input
-            className="input-phonenumber"
-            type="text"
-            placeholder="000-0000-0000"
-            name="userPhoneNumber"
-            onChange={handleInput}
-          />
-        </div>
+        {USER_INFO.map(info => {
+          return (
+            <div className="form-id" key={info.id}>
+              <span className="form-title">{info.title}</span>
+              <input
+                className="form-placeholder"
+                type={info.type}
+                placeholder={info.placeholder}
+                name={info.name}
+                onChange={
+                  info.name === 'userId'
+                    ? handleEmailInput
+                    : info.name === 'userPassword'
+                    ? handlePasswordInput
+                    : handlePasswordOkInput
+                }
+              />
+              {(info.title === '이메일' || info.title === '비밀번호') && (
+                <span className="form-message">{info.message}</span>
+              )}
+            </div>
+          );
+        })}
       </div>
       <div className="plusinfo">
         <div className="plus-info">추가정보</div>
@@ -212,7 +172,6 @@ const SignUp = () => {
             name="userBirth"
             onChange={handleInput}
           />
-          <input className="input-birth" type="text" placeholder="YYYY-MM-DD" />
         </div>
         <div className="check-gender">
           <span className="gender">성별</span>
@@ -237,11 +196,6 @@ const SignUp = () => {
               value="noselected"
               onChange={handleradioCheck}
             />
-            <input type="radio" name="gender" value="male" />
-            남자
-            <input type="radio" name="gender" value="female" />
-            여자
-            <input type="radio" name="gender" value="noselected" />
             선택 안함
           </div>
         </div>
@@ -257,8 +211,7 @@ const SignUp = () => {
           onChange={handleAllAgreeChange}
           checked={isAllAgreed}
         />
-        <input type="checkbox" id="agree-all" name="agree-all" />
-        <label for="agree-all">전체 동의합니다 </label>
+        전체 동의합니다
       </div>
       <span className="check-agree">
         선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수
@@ -299,3 +252,50 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
+const USER_INFO = [
+  {
+    id: 1,
+    title: '이메일',
+    type: 'text',
+    placeholder: '이메일을 입력해주세요',
+    name: 'userId',
+    message: '로그인 아이디로 사용할 이메일을 입력해 주세요.',
+  },
+  {
+    id: 2,
+    title: '비밀번호',
+    type: 'password',
+    placeholder: '비밀번호를 입력해주세요',
+    name: 'userPassword',
+    message: '(영문 대/소문자, 숫자, 특수기호 8~20개 사이를 입력해주세요)',
+  },
+  {
+    id: 3,
+    title: '비밀번호 확인',
+    type: 'password',
+    placeholder: '비밀번호를 한번 더 입력해주세요',
+    name: 'userPasswordOk',
+  },
+  {
+    id: 4,
+    title: '이름',
+    type: 'text',
+    placeholder: '실명으로 기입해주세요',
+    name: 'userName',
+  },
+  {
+    id: 5,
+    title: '주소',
+    type: 'text',
+    placeholder: '주소',
+    name: 'userAddress',
+  },
+  {
+    id: 6,
+    title: '전화번호',
+    type: 'text',
+    placeholder: '000-0000-0000',
+    name: 'userPhoneNumber',
+  },
+];
