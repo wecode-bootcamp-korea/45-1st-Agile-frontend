@@ -4,10 +4,13 @@
   .likes-main {
     padding: 5px;
 
-    .text-lg {
-      &.application-details {
-        padding-bottom: 10px;
-        border-bottom: 2px solid black;
+    .application-top {
+      padding-bottom: 10px;
+      border-bottom: 2px solid black;
+      @include flex-sort(space-between, center);
+      .text-lg {
+        &.application-details {
+        }
       }
     }
 
