@@ -10,8 +10,9 @@ const SignUp = () => {
     userPasswordOk: '',
     userName: '',
     userAddress: '',
-    userPhonenum: '',
+    userPhoneNumber: '',
     userBirth: '',
+    userGender: '',
   });
 
   const [isIdValid, setIsIdValid] = useState(false);
@@ -84,6 +85,11 @@ const SignUp = () => {
     }
   };
 
+  const handleradioCheck = event => {
+    const { name, value } = event.target;
+    setMemberData({ ...memberData, [name]: value });
+  };
+
   const goToMain = () => {
     if (!memberData.userId || !isIdValid) {
       alert('이메일을 다시 입력해주세요!');
@@ -99,7 +105,23 @@ const SignUp = () => {
       alert('입력한 비밀번호와 일치하지 않습니다!');
       return;
     }
-
+    fetch('http://10.58.52.230:3000/users/signUp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        email: memberData.userId,
+        password: memberData.userPassword,
+        name: memberData.userName,
+        gender: memberData.gender,
+        address: memberData.userAddress,
+        phoneNumber: memberData.userPhoneNumber,
+        birthDate: memberData.userBirth,
+      }),
+    }).then(response => {
+      return response.json();
+    });
     navigate('/');
   };
 
@@ -151,12 +173,19 @@ const SignUp = () => {
             className="inputname"
             type="text"
             placeholder="실명으로 기입해주세요"
+            name="userName"
             onChange={handleInput}
           />
         </div>
         <div className="write-address">
           <span className="address">주소</span>
-          <input className="input-address" type="text" placeholder="주소" />
+          <input
+            className="input-address"
+            type="text"
+            placeholder="주소"
+            name="userAddress"
+            onChange={handleInput}
+          />
         </div>
         <div className="write-phonenumber">
           <span className="phonenumber">전화번호</span>
@@ -164,6 +193,7 @@ const SignUp = () => {
             className="input-phonenumber"
             type="text"
             placeholder="000-0000-0000"
+            name="userPhoneNumber"
             onChange={handleInput}
           />
         </div>
@@ -178,17 +208,33 @@ const SignUp = () => {
             className="input-birth"
             type="text"
             placeholder="YYYY-MM-DD"
+            name="userBirth"
             onChange={handleInput}
           />
         </div>
         <div className="check-gender">
           <span className="gender">성별</span>
           <div className="check-radio">
-            <input type="radio" name="gender" value="male" />
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              onChange={handleradioCheck}
+            />
             남자
-            <input type="radio" name="gender" value="female" />
+            <input
+              type="radio"
+              name="gender"
+              value="female"
+              onChange={handleradioCheck}
+            />
             여자
-            <input type="radio" name="gender" value="noselected" />
+            <input
+              type="radio"
+              name="gender"
+              value="noselected"
+              onChange={handleradioCheck}
+            />
             선택 안함
           </div>
         </div>
