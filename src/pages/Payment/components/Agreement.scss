@@ -6,14 +6,15 @@
     margin-top: 15px;
     margin-bottom: 15px;
 
-    .text-base {
+    .all-article {
       font-weight: bold;
     }
   }
-
-  .agree {
-    display: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  .agree-single {
+    .agree-article {
+      display: flex;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
   }
 }

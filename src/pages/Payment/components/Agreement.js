@@ -30,20 +30,22 @@ const Agreement = () => {
           checked={AGREE_INFO.length === checkItems.length}
           onChange={e => handleAllCheck(e.target.checked)}
         />
-        <div className="text-base">모든 약관 동의</div>
+        <div className="all-article">모든 약관 동의</div>
       </div>
-      {AGREE_INFO.map(data => {
-        return (
-          <div key={data.id} className="agree">
-            <input
-              type="checkbox"
-              checked={checkItems.includes(data.id)}
-              onChange={e => handleSingleCheck(e.target.checked, data.id)}
-            />
-            <div className="text-base">{data.text}</div>
-          </div>
-        );
-      })}
+      <div className="agree-single">
+        {AGREE_INFO.map(data => {
+          return (
+            <div key={data.id} className="agree-article">
+              <input
+                type="checkbox"
+                checked={checkItems.includes(data.id)}
+                onChange={e => handleSingleCheck(e.target.checked, data.id)}
+              />
+              <div className="single-article">{data.text}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
