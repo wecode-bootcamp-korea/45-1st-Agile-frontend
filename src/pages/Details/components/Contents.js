@@ -10,7 +10,13 @@ import SubscribeOptions from './SubscribeOptions';
 import './Contents.scss';
 import CartModal from './CartModal';
 
-const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
+const Contents = ({
+  productDetail,
+  setProductsInCart,
+  productsInCart,
+  id,
+  token,
+}) => {
   const {
     title,
     subtitle,
@@ -28,8 +34,7 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isWished, setIsWished] = useState(isLiked);
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-
+  const bookId = parseInt(id);
   const productsInfo = [
     {
       item: { id: id },
@@ -42,18 +47,19 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
   const openCartModal = () => {
     setModalOpen(true);
   };
+  console.log(productsInCart);
   const totalPriceInCart = productsInCart.reduce((total, element) => {
-    return total + element.price * element.amount;
+    return total + Number(element.price) * Number(element.amount);
   }, 0);
 
   const addToCart = () => {
-    fetch('/data/cartdata.json', {
+    fetch('http://10.58.52.241:3000/carts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        token: token,
+        Authorization: token,
       },
-      body: JSON.stringify({ id: '1', quantity: 1 }),
+      body: JSON.stringify({ bookId: bookId, amount: count, isSubscribe: 0 }),
     });
 
     return new Promise((resolve, reject) => {
@@ -66,9 +72,14 @@ const Contents = ({ productDetail, setProductsInCart, productsInCart, id }) => {
 
   const fetchCartData = async () => {
     try {
-      const res = await fetch('/data/cartdata.json');
+      const res = await fetch('http://10.58.52.241:3000/carts', {
+        headers: {
+          'content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+      });
       const data = await res.json();
-      setProductsInCart(data);
+      setProductsInCart(data.data);
     } catch (e) {
       console.error(e);
     }

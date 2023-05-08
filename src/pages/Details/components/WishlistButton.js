@@ -3,10 +3,13 @@ import './WishlistButton.scss';
 
 const WishlistButton = ({ id, isWished, setIsWished }) => {
   const addToLikes = () => {
-    fetch('/data/cartdata.json', {
+    fetch('`http://10.58.52.241:3000/likes', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=utf-8', token: '' },
-      body: JSON.stringify({ bookId: { id } }),
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: '',
+      },
+      body: JSON.stringify({ bookId: id }),
     });
   };
 

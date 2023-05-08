@@ -7,36 +7,42 @@ import './Details.scss';
 const Details = () => {
   const [productDetail, setProductDetail] = useState({});
   const [productsInCart, setProductsInCart] = useState([]);
-
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNTQxMjYyfQ.lVqVzJiczLrURF67hAW8Vf9SOcTgmiQbJmXX2jIPt_M';
   const params = useParams();
   const id = params.id;
 
   useEffect(() => {
-    fetch('/data/data2.json')
+    fetch(`http://10.58.52.241:3000/books/${id}`)
       .then(res => res.json())
       .then(data => {
-        setProductDetail(data[id]);
+        setProductDetail(data.book);
       })
       .catch(e => {
         console.error(e);
-        fetch(`http://10.58.52.146:3000/books/${id}`);
       });
 
     const fetchCartData = async () => {
       try {
-        const res = await fetch('/data/cartdata.json');
+        const res = await fetch('http://10.58.52.241:3000/carts', {
+          headers: {
+            'content-Type': 'application/json;charset=utf-8',
+            Authorization: token,
+          },
+        });
         const data = await res.json();
-        setProductsInCart(data);
+        setProductsInCart(data.data);
       } catch (e) {
         console.error(e);
       }
     };
 
-    fetchCartData();
+    if (token) fetchCartData();
   }, [id]);
 
   if (!productDetail) return;
-  console.log(productsInCart);
+  console.log(productDetail);
+
   return (
     <MainLayout>
       <div className="product-detail-page">
@@ -45,6 +51,7 @@ const Details = () => {
           id={id}
           setProductsInCart={setProductsInCart}
           productsInCart={productsInCart}
+          token={token}
         />
       </div>
     </MainLayout>
