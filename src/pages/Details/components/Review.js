@@ -1,9 +1,8 @@
 import React from 'react';
 import './Review.scss';
 
-const Review = props => {
-  const { review } = props;
-  const { userId, content, date, bookId } = review;
+const Review = ({ review }) => {
+  const { bookID, content, date, id, productId, score, userId } = review;
 
   return (
     <li className="review">

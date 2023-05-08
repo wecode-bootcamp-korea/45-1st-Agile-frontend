@@ -8,15 +8,15 @@ const Details = () => {
   const [productDetail, setProductDetail] = useState({});
   const [productsInCart, setProductsInCart] = useState([]);
   const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNTQxMjYyfQ.lVqVzJiczLrURF67hAW8Vf9SOcTgmiQbJmXX2jIPt_M';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNTQ1ODU2fQ.TwBTGjItzqb9JJ7wgX2LNFuvz8ngKdJ_9b00ACSI8i4';
   const params = useParams();
   const id = params.id;
 
   useEffect(() => {
-    fetch(`http://10.58.52.241:3000/books/${id}`)
+    fetch('/data/data2.json')
       .then(res => res.json())
       .then(data => {
-        setProductDetail(data.book);
+        setProductDetail(data[id]);
       })
       .catch(e => {
         console.error(e);

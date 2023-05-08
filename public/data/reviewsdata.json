@@ -2,7 +2,7 @@
   {
     "id": 1,
     "bookId": 1,
-    "userID": "heeyeon",
+    "userId": "heeyeon",
     "content": "최고에요",
     "productId": "A",
     "score": 4,
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "bookId": 2,
-    "userID": "juicy",
+    "userId": "juicy",
     "content": "만점",
     "productId": "B",
     "score": 3,
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "bookId": 3,
-    "userID": "merci",
+    "userId": "merci",
     "content": "굿굿",
     "productId": "C",
     "score": 5,
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "bookId": 4,
-    "userID": "coffee",
+    "userId": "coffee",
     "content": "추천합니다",
     "productId": "D",
     "score": 2,
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "bookId": 5,
-    "userID": "lipstick",
+    "userId": "lipstick",
     "content": "최고최고",
     "productId": "E",
     "score": 4,

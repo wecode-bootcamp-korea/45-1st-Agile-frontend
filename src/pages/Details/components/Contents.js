@@ -47,7 +47,7 @@ const Contents = ({
   const openCartModal = () => {
     setModalOpen(true);
   };
-  console.log(productsInCart);
+
   const totalPriceInCart = productsInCart.reduce((total, element) => {
     return total + Number(element.price) * Number(element.amount);
   }, 0);
@@ -138,7 +138,7 @@ const Contents = ({
           </div>
           {isSubscribe ? <SubscribeOptions /> : ''}
           <div className="price-info">
-            <div className="text-sm">총 제품금액</div>
+            <div className="text-sm test2">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>
           </div>
 
@@ -158,7 +158,7 @@ const Contents = ({
           </div>
         </div>
       </div>
-      <ProductInformation id={id} />
+      <ProductInformation id={id} description={description} token={token} />
     </div>
   );
 };
