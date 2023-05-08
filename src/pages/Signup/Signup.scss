@@ -1,0 +1,176 @@
+@import '../../styles/common';
+@import '../../styles/variables';
+
+.title {
+  @include font(28px, black);
+  margin-top: 150px;
+  text-align: center;
+}
+
+.basicinfo {
+  @include font(20px, black);
+  margin: 30px 15px 30px 100px;
+  padding-bottom: 15px;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-color: #999999;
+  border-bottom-color: black;
+}
+
+.signupform {
+  @include font(16px, black);
+  margin: 30px 15px 30px 100px;
+
+  .password {
+    width: 200px;
+    line-height: 20px;
+  }
+
+  .writepwd {
+    @include flex-sort(left, center);
+    flex-direction: column;
+  }
+  .inputpwd {
+    width: 500px;
+    height: 42px;
+    margin: -25px 0px 0px -200px;
+  }
+
+  .useemail {
+    @include font(10px, #999999);
+    margin: 10px 0px 10px -470px;
+  }
+
+  .usepwd {
+    @include font(10px, #999999);
+    margin: 10px 0px 5px -415px;
+  }
+
+  .pwd-ok {
+    .input-checkpwd {
+      width: 500px;
+      height: 42px;
+      margin-left: 25px;
+    }
+  }
+
+  .writename {
+    margin-top: 10px;
+
+    .inputname {
+      width: 500px;
+      height: 42px;
+      margin-left: 88px;
+    }
+  }
+
+  .write-address {
+    margin-top: 10px;
+
+    .input-address {
+      width: 500px;
+      height: 42px;
+      margin-left: 88px;
+    }
+  }
+
+  .write-phonenumber {
+    margin-top: 10px;
+
+    .input-phonenumber {
+      width: 500px;
+      height: 42px;
+      margin-left: 58px;
+    }
+  }
+}
+
+.plusinfo {
+  @include font(20px, black);
+  margin: 30px 15px 30px 100px;
+  padding-bottom: 15px;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+
+  .plus-info {
+    margin-bottom: 5px;
+  }
+}
+
+.plusinfoform {
+  @include font(16px, black);
+  margin: 30px 15px 30px 100px;
+
+  .write-birth {
+    margin-top: 10px;
+
+    .input-birth {
+      width: 500px;
+      height: 42px;
+      margin-left: 58px;
+    }
+  }
+
+  .check-gender {
+    margin-top: 10px;
+
+    .check-radio {
+      margin: -15px 5px 0px 110px;
+    }
+  }
+}
+
+.agree {
+  @include font(20px, black);
+  margin: 30px 15px 30px 100px;
+  padding-bottom: 15px;
+  border-bottom-width: 3px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+
+  .agree-ok {
+    margin-bottom: 5px;
+  }
+}
+
+.agree-check {
+  #agree-all {
+    margin-left: 215px;
+  }
+}
+.check-agree {
+  @include font(10px, #999999);
+  margin: 10px 0px 0px 215px;
+}
+
+.agree-essential {
+  #agree-condition {
+    margin: 10px 5px 10px 215px;
+  }
+}
+
+.agree-select {
+  #agree-message {
+    margin: 10px 5px 10px 215px;
+  }
+}
+
+.select-info {
+  #agree-send {
+    margin: 10px 5px 10px 215px;
+  }
+}
+
+.check-all {
+  @include font(10px, #999999);
+  margin: 10px 5px 10px 215px;
+}
+
+.signupbtn {
+  width: 266px;
+  height: 60px;
+  margin: 30px 0px 0px 380px;
+  background-color: black;
+  color: white;
+}

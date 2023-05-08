@@ -10,6 +10,7 @@ import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
 import InvalidAccess from './pages/Payment/InvalidAccess';
 import OrderCompleted from './pages/Payment/OrderCompleted';
+import UserInfoUpdate from './pages/Mypage/components/UserInfoUpdate';
 
 const Router = () => {
   return (
@@ -25,6 +26,7 @@ const Router = () => {
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/orderCompleted" element={<OrderCompleted />} />
         <Route path="/invalidAccess" element={<InvalidAccess />} />
+        <Route path="/userInfoUpdate" element={<UserInfoUpdate />} />
       </Routes>
     </BrowserRouter>
   );
