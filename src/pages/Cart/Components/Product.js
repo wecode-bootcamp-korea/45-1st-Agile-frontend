@@ -7,25 +7,6 @@ const Product = props => {
   const [productList, setProductList] = useState([]);
   const isDisplay = productList.length !== 0;
 
-  // const [checkItems, setCheckItems] = useState([]);
-
-  // const handleAllCheck = checked => {
-  //   if (checked) {
-  //     const idArr = [];
-  //     AGREE_INFO.forEach(el => idArr.push(el.id));
-  //     setCheckItems(idArr);
-  //   } else {
-  //     setCheckItems([]);
-  //   }
-  // };
-  // const handleSingleCheck = (checked, id) => {
-  //   if (checked) {
-  //     setCheckItems(prev => [...prev, id]);
-  //   } else {
-  //     setCheckItems(checkItems.filter(el => el !== id));
-  //   }
-  // };
-
   useEffect(() => {
     fetch('/data/cartData.json', {
       method: 'GET',
@@ -38,7 +19,7 @@ const Product = props => {
 
   return (
     <div className="checkbox-wrap">
-      <div className="product-wrap">
+      <div className="proßduct-wrap">
         <div className="checkbox-inner">
           <input type="checkbox" id="select-all" className="choice-checkbox" />
           <label for="select-all" className="select">
@@ -52,6 +33,7 @@ const Product = props => {
 
           {/* {title} */}
         </div>
+
         <div className summary-info>
           {isDisplay ? <Summmary /> : ''}
         </div>
