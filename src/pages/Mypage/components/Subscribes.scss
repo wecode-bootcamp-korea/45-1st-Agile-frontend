@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+
+.subscribes {
+  .subscribes-main {
+    padding: 5px;
+
+    .text-lg {
+      padding-bottom: 10px;
+      border-bottom: 2px solid black;
+    }
+
+    .subscribes-list {
+      @include flex-sort(center, center);
+      flex-direction: column;
+
+      .no-list {
+        width: 100%;
+        padding: 50px;
+
+        border-bottom: 1px solid black;
+        text-align: center;
+      }
+
+      .product-list {
+        @include flex-sort(none, none);
+      }
+    }
+  }
+}
