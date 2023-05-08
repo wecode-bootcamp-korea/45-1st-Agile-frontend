@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Cart.scss';
+import './OrderInfo.scss';
 
 const OrderInfo = () => {
   return (
