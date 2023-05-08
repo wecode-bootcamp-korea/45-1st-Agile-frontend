@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Summmary from './Summary';
+import List from './List';
 import './Product.scss';
 
 // 객체 구조 분해 후
@@ -16,6 +17,7 @@ const Product = props => {
         setProductList(data);
       });
   }, []);
+  console.log(productList);
 
   return (
     <div className="checkbox-wrap">
@@ -29,7 +31,9 @@ const Product = props => {
           </label>
         </div>
         <div className="message-web">
-          <div>{props.list}</div>
+          <div>
+            <List />
+          </div>
 
           {/* {title} */}
         </div>
