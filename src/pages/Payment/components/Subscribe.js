@@ -9,8 +9,8 @@ const Subscribe = ({ info, handleInfo }) => {
         <div className="subscribe-start">
           <div className="text-lg">배송시작일</div>
           <input
-            name="subscribe_start"
-            value={info.subscribe_start}
+            name="subscribeStart"
+            value={info.subscribeStart}
             onChange={handleInfo}
             placeholder="YYYY-MM-DD"
             maxLength="10"

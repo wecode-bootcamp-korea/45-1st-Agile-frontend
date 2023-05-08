@@ -33,6 +33,6 @@ export default Orderer;
 
 const USER_INFO = [
   { id: 1, title: '주문자 이름', type: 'name' },
-  { id: 2, title: '휴대폰 번호', type: 'phone_number' },
+  { id: 2, title: '휴대폰 번호', type: 'phoneNumber' },
   { id: 3, title: '이메일', type: 'email' },
 ];

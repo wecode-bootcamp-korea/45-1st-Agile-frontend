@@ -9,7 +9,7 @@ const OrderList = ({ orderInfo }) => {
       <div className="text-xl">주문제품</div>
       <div className="order-list-main">
         <div>
-          {orderInfo[0]?.book_title}{' '}
+          {orderInfo[0]?.bookTitle}{' '}
           {orderLength && <span>외 {orderLength}개 </span>}
           제품을 주문합니다.
         </div>

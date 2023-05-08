@@ -29,13 +29,13 @@ const Payment = () => {
         setUserInfo(data);
         setInfo({
           name: data.name,
-          phone_number: data.phone_number,
+          phoneNumber: data.phoneNumber,
           email: data.email,
           address: data.address,
-          receiver_name: data.name,
-          receiver_phone_number: data.phone_number,
-          receiver_address: data.address,
-          subscribe_start: subDate(),
+          receiverName: data.name,
+          receiverPhoneNumber: data.phoneNumber,
+          receiverAddress: data.address,
+          subscribeStart: subDate(),
         });
         setPoint({ curPoint: data.points });
       });
@@ -125,7 +125,7 @@ const Payment = () => {
         radio={radio}
         switchRadio={switchRadio}
       />
-      {orderInfo[0]?.is_subscribe && (
+      {orderInfo[0]?.isSubscribe && (
         <Subscribe info={info} handleInfo={handleInfo} />
       )}
       <div className="pay-part">
