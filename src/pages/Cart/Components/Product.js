@@ -4,8 +4,16 @@ import List from './List';
 import './Product.scss';
 
 // 객체 구조 분해 후
-const Product = props => {
-  const [productList, setProductList] = useState([]);
+const Product = ({
+  handleAllCheck,
+  handleSingleCheck,
+  productList,
+  setProductList,
+  checkItems,
+  setCheckItems,
+}) => {
+  // const [productList, setProductList] = useState([]);
+
   const isDisplay = productList.length !== 0;
 
   useEffect(() => {
@@ -17,13 +25,18 @@ const Product = props => {
         setProductList(data);
       });
   }, []);
-  console.log(productList);
+  // console.log(productList);
 
   return (
     <div className="checkbox-wrap">
       <div className="proßduct-wrap">
         <div className="checkbox-inner">
-          <input type="checkbox" id="select-all" className="choice-checkbox" />
+          <input
+            type="checkbox"
+            id="select-all"
+            className="choice-checkbox"
+            onChange={e => handleAllCheck(e.target.checked)}
+          />
           <label for="select-all" className="select">
             <div className="choice">전체선택(0/0)</div>
             <div className="divide">|</div>
@@ -32,7 +45,13 @@ const Product = props => {
         </div>
         <div className="message-web">
           <div>
-            <List />
+            <List
+              handleSingleCheck={handleSingleCheck}
+              productList={productList}
+              setProductList={setProductList}
+              checkItems={checkItems}
+              setCheckItems={setCheckItems}
+            />
           </div>
 
           {/* {title} */}

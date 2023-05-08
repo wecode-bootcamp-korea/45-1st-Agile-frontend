@@ -3,19 +3,9 @@ import ShippingInfo from '../../Details/components/ShippingInfo';
 import BuyingButton from './BuyingButton';
 import './OrderInfo.scss';
 
-const OrderInfo = () => {
-  const [productList, setProductList] = useState([]);
+const OrderInfo = ({ productList, setProductList }) => {
   const isDisplay = productList.length !== 0;
 
-  useEffect(() => {
-    fetch('/data/cartData.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setProductList(data);
-      });
-  }, []);
   return (
     <div className="order-info">
       <div className="order-won">
