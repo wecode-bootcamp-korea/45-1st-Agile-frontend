@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Cart.scss';
+import './Title.scss';
 
 const Tilte = () => {
   return (

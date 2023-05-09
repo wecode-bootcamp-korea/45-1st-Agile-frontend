@@ -1,7 +1,12 @@
-.checkbox-wrap {
+@import '../../../styles/variables';
+
+.product {
   align-items: flex-start;
-  width: 100%;
+  // width: 100%;
+  width: 2400px;
   height: 100%;
+  background-color: palegreen;
+
   .product-wrap {
     flex-direction: column;
     width: 100%;
@@ -26,13 +31,21 @@
       }
     }
     .message-web {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 140px 0;
-      color: #dddedd;
+      @include flex-sort(space-between, none);
+      flex-direction: column;
+      height: 100%;
+
+      .summary-info {
+        margin-top: 50px;
+      }
+
+      // display: flex;
+      // flex-direction: row;
+      // align-items: center;
+      // justify-content: center;
+      // width: 100%;
+      // padding: 140px 0;
+      // color: #dddedd;
     }
   }
 }

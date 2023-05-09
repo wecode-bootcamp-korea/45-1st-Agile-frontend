@@ -1,11 +1,21 @@
+@import '../../../styles/variables';
+
 .listitem-info {
-  display: flex;
+  @include flex-sort(space-between, center);
   margin-top: 12px;
-  img {
-    width: 80px;
-    height: 80px;
+  background-color: palevioletred;
+  .item-left {
+    @include flex-sort(none, center);
+    img {
+      width: 80px;
+      height: 80px;
+    }
+    .product-info {
+      font-size: 20px;
+    }
   }
-  .product-info {
-    font-size: 20x;
+
+  .item-right {
+    @include flex-sort(center, center);
   }
 }

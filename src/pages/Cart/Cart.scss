@@ -1,3 +1,20 @@
-.content-wrap {
-  display: flex;
+@import '../../styles/variables';
+
+.cart {
+  padding: 12px;
+  background-color: yellow;
+  .top-wrap {
+    @include flex-sort(center, center);
+    height: 100px;
+    background-color: orangered;
+    .text-2xl {
+      &.cart-title {
+        font-weight: bold;
+      }
+    }
+  }
+  .content-wrap {
+    display: flex;
+    background-color: aqua;
+  }
 }

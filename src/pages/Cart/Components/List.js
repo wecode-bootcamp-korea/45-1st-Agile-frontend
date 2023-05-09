@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ListItem from './ListItem';
+import './List.scss';
 
 const List = ({
   handleSingleCheck,
@@ -7,8 +8,9 @@ const List = ({
   setProductList,
   checkItems,
   setCheckItems,
-  produc,
+  // productPrice,
 }) => {
+  const [productPriceList, setProcductPriceList] = useState([]);
   return (
     //map 사용, 마이페이지에 있는 제품리스트 컴포넌트를 map으로 사용할 예정
     <div className="list">
@@ -23,6 +25,7 @@ const List = ({
                 setProductList={setProductList}
                 checkItems={checkItems}
                 setCheckItems={setCheckItems}
+                // productPrice={productPrice}
               />
             );
           })

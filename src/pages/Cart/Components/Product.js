@@ -15,7 +15,6 @@ const Product = ({
   const { price } = productList;
   const isDisplay = productList.length !== 0;
   const [count, setCount] = useState(1);
-  const productPrice = price * count;
 
   useEffect(() => {
     fetch('/data/cartData.json', {
@@ -28,8 +27,8 @@ const Product = ({
   }, []);
 
   return (
-    <div className="checkbox-wrap">
-      <div className="proßduct-wrap">
+    <div className="product">
+      <div className="product-wrap">
         <div className="checkbox-inner">
           <input
             type="checkbox"
@@ -54,23 +53,20 @@ const Product = ({
               setProductList={setProductList}
               checkItems={checkItems}
               setCheckItems={setCheckItems}
-              productPrice={productPrice}
+              // productPrice={productPrice}
             />
           </div>
-
-          {/* {title} */}
-        </div>
-
-        <div className summary-info>
-          {isDisplay ? (
-            <Summmary
-              productList={productList}
-              count={count}
-              setCount={setCount}
-            />
-          ) : (
-            ''
-          )}
+          <div className="summary-info">
+            {isDisplay ? (
+              <Summmary
+                productList={productList}
+                count={count}
+                setCount={setCount}
+              />
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       </div>
     </div>

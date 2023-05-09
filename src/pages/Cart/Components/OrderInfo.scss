@@ -1,19 +1,21 @@
 .order-info {
   display: flex;
-  box-sizing: border-box;
   flex-direction: column;
   width: 100%;
-  width: 360px;
-  max-width: 316px;
-  padding: 24px 20px 40px;
-  background-color: #fbfafa;
+  // width: 360px;
+  // max-width: 316px;
+  padding-top: 24px;
+  padding-left: 10px;
+
+  // background-color: #fbfafa;
+  background-color: pink;
 
   .order-won {
     display: flex;
     box-sizing: border-box;
     flex-direction: column;
     width: 100%;
-    max-width: 316px;
+    // max-width: 316px;
     padding: 24px 20px 40px;
     background-color: #f1f1f1;
     color: #9a9a9a;
