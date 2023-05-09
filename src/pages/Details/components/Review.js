@@ -2,7 +2,7 @@ import React from 'react';
 import './Review.scss';
 
 const Review = ({ review }) => {
-  const { bookID, content, createdAt, id, productId, score, userId } = review;
+  const { content, createdAt, score, userId } = review;
 
   const scoreToStars = score => {
     let filledStar = '★'.repeat(score);

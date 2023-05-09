@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Header from '../../components/Header/Header';
 import Contents from './components/Contents';
 import APIS from '../../\bconfig';
 import './Details.scss';
+import MainLayout from './Mainlayout';
 
 const Details = () => {
   const [productDetail, setProductDetail] = useState({});
@@ -12,7 +12,6 @@ const Details = () => {
   const token = localStorage.getItem('token');
   const params = useParams();
   const id = params.id;
-  console.log(productDetail);
 
   useEffect(() => {
     fetch(`${APIS.books}/${id}`)
@@ -46,8 +45,7 @@ const Details = () => {
   if (!productDetail) return;
 
   return (
-    <>
-      <Header />
+    <MainLayout>
       <div className="product-detail-page">
         <Contents
           productDetail={productDetail}
@@ -59,7 +57,7 @@ const Details = () => {
           token={token}
         />
       </div>
-    </>
+    </MainLayout>
   );
 };
 export default Details;
