@@ -2,14 +2,35 @@ import React from 'react';
 import LikesProduct from './LikesProduct';
 import './LikesList.scss';
 
-const LikesList = ({ likesArr, setLikesArr }) => {
+const LikesList = ({ likesArr, setLikesArr, checkItems, setCheckItems }) => {
+  const handleAllCheck = checked => {
+    if (checked) {
+      const idArr = [];
+      likesArr.forEach(el => idArr.push(el.id));
+      setCheckItems(idArr);
+    } else {
+      setCheckItems([]);
+    }
+  };
+
+  const handleSingleCheck = (checked, id) => {
+    if (checked) {
+      setCheckItems(prev => [...prev, id]);
+    } else {
+      setCheckItems(checkItems.filter(el => el !== id));
+    }
+  };
   return (
     <div className="likes-list">
       <div className="likes-select">
         <div className="all-select">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={checkItems.length === likesArr.length}
+            onChange={e => handleAllCheck(e.target.checked)}
+          />
           <div className="text-lg">
-            <b>전체선택</b> (/{likesArr.length})
+            <b>전체선택</b> ({checkItems.length}/{likesArr.length})
           </div>
         </div>
         <div>선택삭제</div>
@@ -20,7 +41,15 @@ const LikesList = ({ likesArr, setLikesArr }) => {
         )}
         {likesArr.length !== 0 &&
           likesArr.map(data => {
-            return <LikesProduct key={data.id} data={data} />;
+            return (
+              <LikesProduct
+                key={data.id}
+                data={data}
+                checkItems={checkItems}
+                setCheckItems={setCheckItems}
+                handleSingleCheck={handleSingleCheck}
+              />
+            );
           })}
       </div>
     </div>

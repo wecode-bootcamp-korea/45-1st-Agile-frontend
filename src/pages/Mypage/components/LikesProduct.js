@@ -1,15 +1,25 @@
 import React from 'react';
 import './LikesProduct.scss';
 
-const LikesProduct = ({ data }) => {
+const LikesProduct = ({
+  data,
+  checkItems,
+  setCheckItems,
+  handleSingleCheck,
+}) => {
   return (
     <div className="likes-product">
       <div className="likes-left">
-        <input type="checkbox" className="checkbox" />
+        <input
+          type="checkbox"
+          className="checkbox"
+          checked={checkItems.includes(data.id)}
+          onChange={e => handleSingleCheck(e.target.checked, data.id)}
+        />
         <img alt="관심제품" src={data.src} width="90" />
         <div className="product-info">
           <div className="product-name">{data.name}</div>
-          <div className="product-price">{data.price.toLocaleString()}원</div>
+          <div className="product-price">{data.price?.toLocaleString()}원</div>
         </div>
       </div>
       <div className="likes-right">

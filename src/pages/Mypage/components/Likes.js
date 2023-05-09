@@ -6,6 +6,7 @@ import './Likes.scss';
 
 const Likes = () => {
   const [likesArr, setLikesArr] = useState([]);
+  const [checkItems, setCheckItems] = useState([]);
   useEffect(() => {
     fetch('/data/subscribeData.json')
       .then(res => res.json())
@@ -21,7 +22,12 @@ const Likes = () => {
           title="관심 제품"
           details="관심 제품은 최대 200개까지 저장됩니다."
         />
-        <LikesList likesArr={likesArr} setLikesArr={setLikesArr} />
+        <LikesList
+          likesArr={likesArr}
+          setLikesArr={setLikesArr}
+          checkItems={checkItems}
+          setCheckItems={setCheckItems}
+        />
       </div>
     </div>
   );
