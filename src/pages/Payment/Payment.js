@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import OrderList from './components/OrderList';
 import Orderer from './components/Orderer';
 import Shipment from './components/Shipment';
@@ -8,10 +9,15 @@ import PaymentInfo from './components/PaymentInfo';
 import './Payment.scss';
 
 const Payment = () => {
+  const location = useLocation();
   const [userInfo, setUserInfo] = useState({});
   const [orderInfo, setOrderInfo] = useState([]);
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
+
+  const { productsInfo } = location.state;
+
+  console.log(productsInfo);
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -37,16 +43,7 @@ const Payment = () => {
           subscribeStart: subDate(),
         });
       });
-  }, []);
-
-  useEffect(() => {
-    fetch('/data/orderItemsData.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setOrderInfo(data);
-      });
+    setOrderInfo(productsInfo);
   }, []);
 
   if (orderInfo === []) return null;

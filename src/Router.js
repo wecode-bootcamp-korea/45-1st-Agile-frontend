@@ -11,6 +11,7 @@ import Mypage from './pages/Mypage/Mypage';
 import InvalidAccess from './pages/Payment/InvalidAccess';
 import OrderCompleted from './pages/Payment/OrderCompleted';
 import UserInfoUpdate from './pages/Mypage/components/UserInfoUpdate';
+import PayTest from './pages/Payment/PayTest';
 
 const Router = () => {
   return (
@@ -27,6 +28,7 @@ const Router = () => {
         <Route path="/orderCompleted" element={<OrderCompleted />} />
         <Route path="/invalidAccess" element={<InvalidAccess />} />
         <Route path="/userInfoUpdate" element={<UserInfoUpdate />} />
+        <Route path="/paytest" element={<PayTest />} />
       </Routes>
     </BrowserRouter>
   );
