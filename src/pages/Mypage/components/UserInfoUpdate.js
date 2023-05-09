@@ -77,7 +77,7 @@ const UPDATE_INFO = [
     title: '비밀번호',
     type: 'password',
     isUpdate: 1,
-    placeholder: '비밀번호를 입력해주세요',
+    placeholder: '현재 비밀번호를 입력해주세요',
   },
   {
     id: 3,
