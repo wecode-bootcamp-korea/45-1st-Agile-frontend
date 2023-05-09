@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ShippingInfo from '../../Details/components/ShippingInfo';
 import BuyingButton from './BuyingButton';
 import './OrderInfo.scss';
 
 const OrderInfo = ({ productList, setProductList }) => {
+  const { price } = productList;
   const isDisplay = productList.length !== 0;
+  // const totalPrice = price *
 
   return (
     <div className="order-info">

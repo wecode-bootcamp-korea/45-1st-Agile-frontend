@@ -12,9 +12,10 @@ const Product = ({
   checkItems,
   setCheckItems,
 }) => {
-  // const [productList, setProductList] = useState([]);
-
+  const { price } = productList;
   const isDisplay = productList.length !== 0;
+  const [count, setCount] = useState(1);
+  const productPrice = price * count;
 
   useEffect(() => {
     fetch('/data/cartData.json', {
@@ -25,7 +26,6 @@ const Product = ({
         setProductList(data);
       });
   }, []);
-  // console.log(productList);
 
   return (
     <div className="checkbox-wrap">
@@ -35,10 +35,13 @@ const Product = ({
             type="checkbox"
             id="select-all"
             className="choice-checkbox"
+            checked={productList.length === checkItems.length}
             onChange={e => handleAllCheck(e.target.checked)}
           />
           <label for="select-all" className="select">
-            <div className="choice">전체선택(0/0)</div>
+            <div className="choice">
+              전체선택({checkItems.length}/{productList.length})
+            </div>
             <div className="divide">|</div>
             <div className="choice">선택삭제</div>
           </label>
@@ -51,6 +54,7 @@ const Product = ({
               setProductList={setProductList}
               checkItems={checkItems}
               setCheckItems={setCheckItems}
+              productPrice={productPrice}
             />
           </div>
 
@@ -58,7 +62,15 @@ const Product = ({
         </div>
 
         <div className summary-info>
-          {isDisplay ? <Summmary /> : ''}
+          {isDisplay ? (
+            <Summmary
+              productList={productList}
+              count={count}
+              setCount={setCount}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
     </div>

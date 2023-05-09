@@ -2,23 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Title from './Components/Title';
 import Product from './Components/Product';
 import OrderInfo from './Components/OrderInfo';
-
 import './Cart.scss';
 
 const Cart = () => {
   const [productList, setProductList] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
-  //productList를 props로 Product와 OrderInfo ,Count 로 내려줘야하고
-
-  useEffect(() => {
-    fetch('/data/cartData.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setProductList(data);
-      });
-  }, []);
+  //productList를 props로 Product와 OrderInfo ,Count 로 내려줘야합니다.
 
   useEffect(() => {
     fetch('/data/cartData.json', {
@@ -31,7 +20,6 @@ const Cart = () => {
   }, []);
 
   const handleAllCheck = checked => {
-    console.log(checked);
     if (checked) {
       const idArr = [];
       productList.forEach(ele => idArr.push(ele.Key));
@@ -42,24 +30,12 @@ const Cart = () => {
   };
 
   const handleSingleCheck = (checked, key) => {
-    console.log(checked);
     if (checked) {
       setCheckItems(prev => [...prev, key]);
     } else {
       setCheckItems(checkItems.filter(ele => ele !== key));
     }
   };
-
-  useEffect(() => {
-    fetch('/data/cartData.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        setProductList(data);
-      });
-  }, []);
-
   return (
     <div className="cart">
       <Title />

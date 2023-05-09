@@ -3,15 +3,17 @@ import Count from './Count';
 import './ListItem.scss';
 
 const ListItem = ({
-  it,
+  book,
   handleSingleCheck,
   productList,
   setProductList,
   checkItems,
   setCheckItems,
+  productPrice,
 }) => {
-  const { image, title, price, Key } = it;
+  const { image, title, price, Key } = book;
   const [count, setCount] = useState(1);
+
   return (
     <div className="listitem-info">
       <input
@@ -27,7 +29,8 @@ const ListItem = ({
       </div>
 
       <Count count={count} setCount={setCount} />
-      <div className="product-info">{price}</div>
+      <div className="product-info">{productPrice}</div>
+      <div />
     </div>
   );
 };

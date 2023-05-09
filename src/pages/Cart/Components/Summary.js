@@ -1,7 +1,7 @@
 import React from 'react';
 import './Summary.scss';
 
-const Summmary = () => {
+const Summmary = ({ productList }) => {
   return (
     <div className="summary">
       <div className="sum-contents">
@@ -9,7 +9,7 @@ const Summmary = () => {
           <p>제품가격</p>
         </div>
         <div>
-          <strong>12345원</strong>+
+          <strong>0원</strong>+
         </div>
 
         <div className="delv-price">

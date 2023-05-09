@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ListItem from './ListItem';
 
 const List = ({
@@ -7,18 +7,17 @@ const List = ({
   setProductList,
   checkItems,
   setCheckItems,
+  produc,
 }) => {
-  // const [productList, setProductList] = useState([]);
-
   return (
     //map 사용, 마이페이지에 있는 제품리스트 컴포넌트를 map으로 사용할 예정
     <div className="list">
       {productList.length >= 1
-        ? productList.map(item => {
+        ? productList.map(book => {
             return (
               <ListItem
-                key={item.Key}
-                it={item}
+                key={book.Key}
+                book={book}
                 handleSingleCheck={handleSingleCheck}
                 productList={productList}
                 setProductList={setProductList}
