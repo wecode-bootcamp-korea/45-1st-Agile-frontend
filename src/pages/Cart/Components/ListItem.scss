@@ -3,7 +3,7 @@
 .listitem-info {
   @include flex-sort(space-between, center);
   margin-top: 12px;
-  background-color: palevioletred;
+
   .item-left {
     @include flex-sort(none, center);
 

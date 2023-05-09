@@ -8,7 +8,15 @@ const Cart = () => {
   const [productList, setProductList] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState(0); //배송비 합친가격
+  const [subtotal, setSubtotal] = useState(0); //제품가격
+  const [deliveryFee, setDeliveryFee] = useState(0);
   //productList를 props로 Product와 OrderInfo ,Count 로 내려줘야합니다.
+
+  const handleTotalChange = newTotal => {
+    setTotal(newTotal);
+    setSubtotal(newTotal);
+  };
 
   useEffect(() => {
     fetch('/data/cartData.json', {
@@ -58,14 +66,9 @@ const Cart = () => {
             productList={productList}
             setProductList={setProductList}
           />
-          {/* props로 productList를 내려줌 */}
         </div>
       </div>
     </div>
   );
 };
 export default Cart;
-
-// {productList.map(item => (
-//   <Product it={item} />
-// ))}
