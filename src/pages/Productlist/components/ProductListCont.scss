@@ -1,15 +1,15 @@
 @import '../../../styles/variables';
 
 .product-list-cont {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 70px;
   .product-list {
-    @include flex-sort(flex-start, center);
+    display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     width: 1018px;
+    margin-top: 70px;
     gap: 10px;
+    @include flex-sort(flex-start, center);
 
     .product-item {
       width: 330px;
@@ -43,6 +43,27 @@
       .product-subtitle {
         @include font(15px, #999999);
         white-space: normal;
+      }
+    }
+  }
+  .pagination-container {
+    @include flex-sort(center, center);
+    margin-top: 40px;
+    margin-bottom: 40px;
+    .pagination {
+      display: flex;
+      gap: 50px;
+      .pagination-button {
+        @include font(20px, #1c1c1c);
+        border: none;
+        background-color: transparent;
+        &:hover {
+          cursor: pointer;
+        }
+        &.active {
+          font-weight: bold;
+          text-decoration: underline;
+        }
       }
     }
   }

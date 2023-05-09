@@ -4,32 +4,46 @@ import './ProductListCont.scss';
 
 const ProductListCont = ({ categoryId, subCategoryId }) => {
   const [visibleProducts, setVisibleProducts] = useState([]);
+  const [booksCount, setBooksCount] = useState(0);
   const location = useLocation();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(
           `http://10.58.52.241:3000/books${location.search}`
-          // `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
         );
         const data = await res.json();
-        console.log(data.data);
+        console.log(data);
         if (data.data) {
           setVisibleProducts(data.data);
         }
+        if (data.booksCount) {
+          setBooksCount(data.booksCount[0].booksCount);
+        }
+        const currentPage =
+          parseInt(new URLSearchParams(location.search).get('offset'), 10) / 9 +
+            1 || 1;
+        const totalPages = Math.ceil(booksCount / 9);
+        const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+        setCurrentPage(currentPage);
+        setPages(pages);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [location]);
+  }, [booksCount, location.search]);
 
-  // `http://10.58.52.241:3000/books${location.search}`
-  //  setVisibleProducts(data.data);
-  // [location]
-
-  console.log(visibleProducts);
-  if (visibleProducts.length === 0) return;
+  const handlePageClick = page => {
+    const offset = (page - 1) * 9;
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set('offset', offset);
+    window.location.search = searchParams.toString();
+    setCurrentPage(page);
+  };
 
   return (
     <div className="product-list-cont">
@@ -50,6 +64,24 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
             </div>
           </Link>
         ))}
+      </div>
+      <div className="pagination-container">
+        <div className="pagination">
+          {pages.map(page => (
+            <button
+              key={page}
+              className={`pagination-button ${
+                currentPage === page ? 'active' : ''
+              }`}
+              onClick={() => {
+                handlePageClick(page);
+                setCurrentPage(page);
+              }}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

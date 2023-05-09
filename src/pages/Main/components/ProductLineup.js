@@ -11,11 +11,12 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
+          `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=likesCount&limit=9`
+          // `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
         );
         const data = await res.json();
-        if (data) {
-          setVisibleProducts(data);
+        if (data.data) {
+          setVisibleProducts(data.data);
         }
         console.log(data);
       } catch (error) {
@@ -24,7 +25,7 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
     };
     fetchData();
   }, [categoryId, subCategoryId]);
-  // `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=bestBooks&limit=9`
+  // `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=likesCount&limit=9`
   //  setVisibleProducts(data.data);
 
   const handlePrevClick = event => {
@@ -73,8 +74,9 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
                 />
                 <div className="product-title">{product.title}</div>
                 <div className="product-price">
-                  {product.price.toLocaleString()}원
+                  {Number(product.price).toLocaleString()}원
                 </div>
+                <button className="to-cart" />
               </div>
             </Link>
           ))}

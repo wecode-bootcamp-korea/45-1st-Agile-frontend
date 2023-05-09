@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import CategoryModal from '../CategoryModal/CategoryModal';
-
 import './TitleLine.scss';
 
 const TitleLine = () => {
   const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const [showSubCategoryModal, setShowSubCategoryModal] = useState(false);
 
   const handleMenusMouseEnter = () => {
     setShowCategoryModal(true);
@@ -17,7 +16,7 @@ const TitleLine = () => {
       if (showCategoryModal) {
         setShowCategoryModal(false);
       }
-    }, 300);
+    }, 500);
   };
 
   return (
@@ -41,9 +40,13 @@ const TitleLine = () => {
           onMouseLeave={handleMenusMouseLeave}
         >
           <button className="menus" />
-
           <div className="category-name">카테고리</div>
-          {showCategoryModal && <CategoryModal />}
+          {showCategoryModal && (
+            <CategoryModal
+              showSubCategoryModal={showSubCategoryModal}
+              setShowSubCategoryModal={setShowSubCategoryModal}
+            />
+          )}
         </div>
       </div>
     </div>
