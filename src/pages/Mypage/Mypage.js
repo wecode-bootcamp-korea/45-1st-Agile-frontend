@@ -7,7 +7,7 @@ import Likes from './components/Likes';
 import './Mypage.scss';
 
 const Mypage = () => {
-  const [menuMode, setMenuMode] = useState(3);
+  const [menuMode, setMenuMode] = useState(1);
   const [userInfo, setUserInfo] = useState({});
   const menuList = {
     1: <OrderDelivery />,
