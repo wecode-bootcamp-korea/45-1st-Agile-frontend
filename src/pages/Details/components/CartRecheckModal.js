@@ -1,37 +1,36 @@
 import React, { useRef } from 'react';
-import './CartModal.scss';
+import './CartRecheckModal.scss';
 import Button from './Button';
-import { useNavigate } from 'react-router-dom';
 
-const CartModal = props => {
-  const { setModalOpen, title } = props;
-  const navigate = useNavigate();
+const CartRecheckModal = props => {
+  const { setRecheckModalOpen, handleProductsInCarts } = props;
   const handleModalClosed = () => {
-    setModalOpen(false);
+    setRecheckModalOpen(false);
   };
   const modalRef = useRef(null);
 
   return (
     <div className="cart-modal-background">
       <div className="cart-modal" ref={modalRef}>
-        <div className="modal-contents text-base">
-          장바구니에 제품을 담았습니다
+        <div className="modal-contents text-sm">
+          장바구니에 동일한 상품이 있습니다.
+          <br /> 장바구니에 추가하시겠습니까?
         </div>
-        <div className="product-name text-sm">{title}</div>
+        <div className="product-name text-sm" />
         <div className="buttons">
           <Button
             className="first-button"
             color="white"
             onClick={handleModalClosed}
           >
-            계속 쇼핑하기
+            취소
           </Button>
           <Button
-            onClick={() => navigate('/cart')}
+            onClick={handleProductsInCarts}
             className="second-button"
             color="black"
           >
-            장바구니로 이동
+            장바구니에 담기
           </Button>
         </div>
       </div>
@@ -39,4 +38,4 @@ const CartModal = props => {
   );
 };
 
-export default CartModal;
+export default CartRecheckModal;

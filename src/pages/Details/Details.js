@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import Contents from './components/Contents';
+import APIS from '../../\bconfig';
 import './Details.scss';
 
 const Details = () => {
   const [productDetail, setProductDetail] = useState({});
+  const [isLiked, setIsLiked] = useState('');
   const [productsInCart, setProductsInCart] = useState([]);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNTQ1ODU2fQ.TwBTGjItzqb9JJ7wgX2LNFuvz8ngKdJ_9b00ACSI8i4';
+  const token = localStorage.getItem('token');
   const params = useParams();
   const id = params.id;
+  console.log(productDetail);
 
   useEffect(() => {
-    fetch(`http://10.58.52.241:3000/books/${id}`)
+    fetch(`${APIS.books}/${id}`)
       .then(res => res.json())
       .then(data => {
         setProductDetail(data.book);
+        setIsLiked(data.getLike);
       })
       .catch(e => {
         console.error(e);
@@ -23,7 +27,7 @@ const Details = () => {
 
     const fetchCartData = async () => {
       try {
-        const res = await fetch('http://10.58.52.241:3000/carts', {
+        const res = await fetch(`${APIS.cartsb}`, {
           headers: {
             'content-Type': 'application/json;charset=utf-8',
             Authorization: token,
@@ -37,10 +41,9 @@ const Details = () => {
     };
 
     if (token) fetchCartData();
-  }, [id]);
+  }, [id, token]);
 
   if (!productDetail) return;
-  console.log(productDetail);
 
   return (
     <>
@@ -48,6 +51,8 @@ const Details = () => {
       <div className="product-detail-page">
         <Contents
           productDetail={productDetail}
+          isLiked={isLiked}
+          setIsLiked={setIsLiked}
           id={id}
           setProductsInCart={setProductsInCart}
           productsInCart={productsInCart}

@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './WishlistButton.scss';
 
-const WishlistButton = ({ id, isLiked }) => {
-  const [isHeartFilled, setIsHeartFilled] = useState(isLiked);
+const WishlistButton = ({ id, isLiked, setIsLiked, token }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const addToLikes = async () => {
     try {
-      const res = await fetch('`http://10.58.52.241:3000/likes', {
+      const res = await fetch('http://10.58.52.241:3000/likes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
-          Authorization: '',
+          Authorization: token,
         },
         body: JSON.stringify({ bookId: id }),
       });
       if (res.ok) {
         const data = await res.json();
         const message = data.message;
-        message.includes('DELETE')
-          ? setIsHeartFilled(false)
-          : setIsHeartFilled(true);
+        setIsLiked(!message.includes('Deleted'));
       }
     } catch (error) {
       console.log(error);
@@ -26,7 +27,11 @@ const WishlistButton = ({ id, isLiked }) => {
   };
 
   const handleLikesClick = () => {
-    addToLikes();
+    if (token) {
+      addToLikes();
+    } else {
+      navigate('/login', { state: { from: location.pathname } });
+    }
   };
 
   return (
@@ -35,7 +40,7 @@ const WishlistButton = ({ id, isLiked }) => {
       onClick={handleLikesClick}
     >
       <img
-        src={`/images/details/${isHeartFilled ? 'red-' : ''}heart.svg`}
+        src={`/images/details/${isLiked ? 'red-' : ''}heart.svg`}
         alt="wish"
         className="wish-img"
       />

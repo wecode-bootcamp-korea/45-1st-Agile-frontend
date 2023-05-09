@@ -9,13 +9,13 @@
     .tab {
       flex: 1;
       padding-bottom: 24px;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid rgb(221, 221, 221);
       text-align: center;
     }
   }
 
   .tab-content {
-    padding-top: 56px;
+    padding: 80px 0;
     text-align: center;
   }
 }

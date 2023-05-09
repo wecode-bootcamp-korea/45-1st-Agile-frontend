@@ -3,7 +3,7 @@ import DescriptionArea from './DescriptionArea';
 import ReviewList from './ReviewList';
 import './ProductInformation.scss';
 
-const ProductInformation = ({ id, description, token }) => {
+const ProductInformation = ({ bookId, description, token }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const handleTabClick = index => () => setActiveIndex(index);
 
@@ -14,7 +14,7 @@ const ProductInformation = ({ id, description, token }) => {
     },
     {
       tabTitle: '리뷰',
-      tabCont: <ReviewList id={id} token={token} />,
+      tabCont: <ReviewList bookId={bookId} token={token} />,
     },
   ];
 

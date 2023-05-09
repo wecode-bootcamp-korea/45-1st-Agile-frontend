@@ -5,19 +5,20 @@ import './ReviewList.scss';
 
 const LIMIT = 5;
 
-const ReviewList = (id, token) => {
+const ReviewList = ({ bookId, token }) => {
   const [reviewsData, setReviewsData] = useState([]);
+  const [total, setTotal] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
 
-  const total = 16;
+  const pageTotal = Number(total.count);
 
   useEffect(() => {
     const fetchReviewsData = async () => {
       try {
         const offset = (currentPage - 1) * LIMIT;
-        console.log(offset);
+
         const res = await fetch(
-          `http://10.58.52.241:3000/books/${id}/reviews/?limit=${LIMIT}&offset=${offset}`,
+          `http://10.58.52.241:3000/books/${bookId}/reviews?limit=${LIMIT}&offset=${offset}`,
           {
             headers: {
               'Content-Type': 'application/json;charset=utf-8',
@@ -26,28 +27,31 @@ const ReviewList = (id, token) => {
           }
         );
         const data = await res.json();
-        setReviewsData(data);
+        setReviewsData(data.reviews);
+        setTotal(data.reviewsCount);
       } catch (e) {
         console.error(e);
       }
     };
 
     fetchReviewsData();
-  }, [currentPage, id, token]);
+  }, [currentPage, bookId]);
 
-  const pageNumber = Math.ceil(total / LIMIT);
+  if (reviewsData.length === 0) return;
+
+  const pageNumber = Math.ceil(pageTotal / LIMIT);
   const pageNumberArr = [...Array(pageNumber)].map((_, index) => index + 1);
 
   const handlePageClick = num => () => {
     setCurrentPage(num);
   };
 
-  if (!reviewsData) return;
   return (
     <div>
       {reviewsData.map((review, index) => {
         return <Review review={review} key={index} />;
       })}
+
       <div>
         <div className="review-pagination-buttons">
           {pageNumberArr.map(num => {
