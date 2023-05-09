@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import check from '../../assets/payment/circleCheck.jpg';
 import './OrderCompleted.scss';
-import { useNavigate } from 'react-router-dom';
 
 const OrderCompleted = () => {
   const navigate = useNavigate();

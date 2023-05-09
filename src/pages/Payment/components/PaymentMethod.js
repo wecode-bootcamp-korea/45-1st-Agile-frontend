@@ -1,8 +1,7 @@
 import React from 'react';
-import Point from './Point';
 import { useNavigate } from 'react-router-dom';
+import Point from './Point';
 import Agreement from './Agreement';
-
 import './PaymentMethod.scss';
 
 const PaymentMethod = ({ point }) => {
