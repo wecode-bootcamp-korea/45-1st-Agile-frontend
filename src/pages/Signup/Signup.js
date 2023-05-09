@@ -281,3 +281,11 @@ const ALERT_MESSAGE = {
   userPassword: '비밀번호를 다시 입력해주세요!',
   userPasswordOk: '입력한 비밀번호와 일치하지 않습니다!',
 };
+
+// const CHECKBOX = [
+//   {
+//     id : 1,
+//     type: 'checkbox'
+//     name
+//   }
+// ]
