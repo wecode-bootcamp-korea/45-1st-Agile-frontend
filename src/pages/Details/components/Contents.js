@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import DescriptionArea from './DescriptionArea';
 import ReviewList from './ReviewList';
@@ -8,42 +8,52 @@ import QuantityBox from './QuantityBox';
 import ShippingInfo from './ShippingInfo';
 import SubscribeOptions from './SubscribeOptions';
 import './Contents.scss';
-
-const tabArr = [
-  {
-    tabTitle: '설명',
-    tabCont: <DescriptionArea />,
-  },
-  {
-    tabTitle: '리뷰',
-    tabCont: <ReviewList />,
-  },
-];
-
-const Contents = props => {
-  const { productDetail } = props;
-  const {
-    title,
-    subtitle,
-    price,
-    issue_date,
-    is_subscribed,
-    image,
-    description,
-    author,
-  } = productDetail;
-
+const Contents = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [count, setCount] = useState(1);
+  const [productDetails, setProductDetails] = useState({
+    title: '',
+    subtitle: '',
+    price: '',
+    issue_date: '',
+    is_subscribed: '',
+    image: '',
+    description: '',
+    author: '',
+  });
 
-  const handleTabClick = index => () => setActiveIndex(index);
+  const { title, subtitle, image, description, author } = productDetails;
+
+  useEffect(() => {
+    fetch('/data/data2.json')
+      .then(res => res.json())
+      .then(data => {
+        setProductDetails(data[0]);
+      });
+  }, []);
+
+  const tabArr = [
+    {
+      tabTitle: '설명',
+      tabCont: <DescriptionArea />,
+    },
+    {
+      tabTitle: '리뷰',
+      tabCont: <ReviewList />,
+    },
+  ];
   const totalPrice = price * count;
+  const handleTabClick = index => () => setActiveIndex(index);
 
   return (
     <div className="contents">
       <div className="contents-area">
         <div className="thumbnail">
-          <img className="product-img" alt="" src="/images/details/null.png" />
+          <img
+            className="product-img"
+            alt=""
+            src="/images/details/book-sample.png"
+          />
         </div>
         <div className="product-info">
           <div className="product-title">
@@ -65,12 +75,11 @@ const Contents = props => {
             </div>
             <QuantityBox count={count} setCount={setCount} />
           </div>
-          {is_subscribed ? <SubscribeOptions /> : ''}
+          {is_subscribed && <SubscribeOptions />}
           <div className="price-info">
             <div className="text-sm">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>
           </div>
-
           <div>
             <ShippingInfo />
             <div className="cart-purchase-container">
@@ -95,5 +104,4 @@ const Contents = props => {
     </div>
   );
 };
-
 export default Contents;
