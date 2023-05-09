@@ -18,21 +18,21 @@ const SignUp = () => {
   const { userId, userPassword, userPasswordOk } = memberData;
   const [checkId, setCheckId] = useState([]);
 
-  const handleCheckBox = e => {
-    if (checkId.includes(e.target.name)) {
-      setCheckId(prev => prev.filter(id => id !== e.target.name));
+  const isAllChecked = checkId.length === CHECKBOX.length;
+
+  const handleCheckBox = (checked, id) => {
+    if (checked) {
+      setCheckId(prev => [...prev, id]);
     } else {
-      setCheckId(prev => [...prev, e.target.name]);
+      setCheckId(checkId.filter(ele => ele !== id));
     }
   };
 
-  const isAllAgreed = checkId.length === 4;
-
   const handleAllAgreeChange = () => {
-    if (isAllAgreed) {
+    if (isAllChecked) {
       setCheckId([]);
     } else {
-      setCheckId(['1', '2', '3', '4']);
+      setCheckId(CHECKBOX.map(ele => ele.id));
     }
   };
 
@@ -157,69 +157,37 @@ const SignUp = () => {
       <div className="agree">
         <div className="agree-ok">이용약관 동의</div>
       </div>
-      <div className="agree-check">
+      <div className="agree-all">
         <input
           type="checkbox"
-          id="agree-all"
-          name="agree-all"
+          checked={isAllChecked}
           onChange={handleAllAgreeChange}
-          checked={isAllAgreed}
         />
-        전체 동의합니다
+        전체 동의 합니다.
+        <div className="check-message">
+          선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할
+          수 있습니다.
+        </div>
       </div>
-      <span className="check-agree">
-        선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수
-        있습니다.
-      </span>
-      <div className="agree-essential">
-        <input
-          type="checkbox"
-          id="agree-condition"
-          name={1}
-          checked={checkId.includes('1')}
-          onChange={handleCheckBox}
-        />
-        <label for="agree-condition">[필수] 이용약관 동의 </label>
-      </div>
-      <div className="agree-essential">
-        <input
-          type="checkbox"
-          id="agree-condition"
-          name={2}
-          checked={checkId.includes('2')}
-          onChange={handleCheckBox}
-        />
-        <label for="agree-condition">[필수] 개인정보 수집 및 동의</label>
-      </div>
-      <div className="agree-select">
-        <input
-          type="checkbox"
-          id="agree-message"
-          name={3}
-          checked={checkId.includes('3')}
-          onChange={handleCheckBox}
-        />
-        <label for="agree-message">
-          [선택] SMS (문자, 카카오톡 등)으로 혜택과 유용한 정보를 보내드려도
-          될까요?
-        </label>
-      </div>
-      <div className="select-info">
-        <input
-          type="checkbox"
-          id="agree-send"
-          name={4}
-          checked={checkId.includes('4')}
-          onChange={handleCheckBox}
-        />
-        <label for="agree-send">
-          [선택] 이메일로 혜택과 정보를 보내드려도 될까요?
-        </label>
-      </div>
-      <div className="text">
-        <span className="check-all">
-          본인은 만 14세 이상이며,이용약관, 수집 및 이용을 확인하며, 동의합니다.
-        </span>
+
+      <div className="agree-check">
+        {CHECKBOX.map(checkbox => {
+          return (
+            <div key={checkbox.id} className="agree-check">
+              <input
+                type="checkbox"
+                checked={checkId.includes(checkbox.id)}
+                onChange={e => handleCheckBox(e.target.checked, checkbox.id)}
+              />
+              <label htmlFor={checkbox.name}>{checkbox.label}</label>
+              {(checkbox.label === '전체 동의 합니다.' ||
+                checkbox.label ===
+                  '[선택] 이메일로 혜택과 정보를 보내드려도 될까요?') && (
+                <span className="checkbox-message">{checkbox.message}</span>
+              )}
+            </div>
+          );
+        })}
       </div>
       <button className="signupbtn" type="button" onClick={goToMain}>
         가입하기
@@ -282,10 +250,27 @@ const ALERT_MESSAGE = {
   userPasswordOk: '입력한 비밀번호와 일치하지 않습니다!',
 };
 
-// const CHECKBOX = [
-//   {
-//     id : 1,
-//     type: 'checkbox'
-//     name
-//   }
-// ]
+const CHECKBOX = [
+  {
+    id: 1,
+    label: '[필수] 이용약관 동의',
+  },
+
+  {
+    id: 2,
+    label: '[필수] 개인정보 수집 및 동의',
+  },
+
+  {
+    id: 3,
+    label:
+      '[선택] SMS (문자, 카카오톡 등)으로 혜택과 유용한 정보를 보내드려도 될까요?',
+  },
+
+  {
+    id: 4,
+    label: '[선택] 이메일로 혜택과 정보를 보내드려도 될까요?',
+    message:
+      '본인은 만 14세 이상이며, 이용약관, 개인정보 수집 및 이용을 확인하며, 동의합니다.',
+  },
+];

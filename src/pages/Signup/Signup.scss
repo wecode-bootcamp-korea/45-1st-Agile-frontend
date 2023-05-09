@@ -92,43 +92,34 @@
   border-bottom-width: 3px;
   border-bottom-style: solid;
   border-bottom-color: black;
+}
 
-  .agree-ok {
-    margin-bottom: 5px;
+.agree-all {
+  @include font(16px, black);
+  margin: 10px 20px 10px 200px;
+
+  .check-message {
+    @include flex-sort(center, center);
+    flex-direction: column;
+    margin: 10px 0px 0px -430px;
+    color: #999999;
+    font-size: 11px;
+    line-height: 140%;
   }
 }
 
 .agree-check {
-  #agree-all {
-    margin-left: 235px;
-  }
-}
-.check-agree {
-  @include font(10px, #999999);
-  margin: 10px 0px 0px 235px;
-}
+  @include font(16px, black);
+  margin: 10px 20px 20px 100px;
 
-.agree-essential {
-  #agree-condition {
-    margin: 10px 5px 10px 235px;
+  .checkbox-message {
+    @include flex-sort(center, center);
+    flex-direction: column;
+    margin: 10px 0px 0px -430px;
+    color: #999999;
+    font-size: 11px;
+    line-height: 140%;
   }
-}
-
-.agree-select {
-  #agree-message {
-    margin: 10px 5px 10px 235px;
-  }
-}
-
-.select-info {
-  #agree-send {
-    margin: 10px 5px 10px 235px;
-  }
-}
-
-.check-all {
-  @include font(10px, #999999);
-  margin: 10px 5px 10px 235px;
 }
 
 .signupbtn {
