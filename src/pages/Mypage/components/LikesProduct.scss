@@ -1,0 +1,48 @@
+@import '../../../styles/variables';
+
+.likes-product {
+  @include flex-sort(space-between, center);
+  width: 100%;
+  padding: 15px;
+  padding-right: 20px;
+  border-bottom: 1px solid #999999;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .likes-left {
+    display: flex;
+
+    .product-info {
+      @include flex-sort(center, none);
+      flex-direction: column;
+      padding-left: 20px;
+
+      .product-name {
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .likes-right {
+    @include flex-sort(center, center);
+    flex-direction: column;
+
+    button {
+      width: 100px;
+      height: 35px;
+      margin: 2px;
+      border: 1px solid rgb(221, 221, 221);
+      background-color: white;
+    }
+
+    .cart {
+      border-color: black;
+    }
+  }
+}

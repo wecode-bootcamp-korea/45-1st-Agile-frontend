@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import MypageTop from './components/MypageTop';
+import MenuBar from './components/MenuBar';
+import OrderDelivery from './components/OrderDelivery';
+import Subscribes from './components/Subscribes';
+import Likes from './components/Likes';
 import './Mypage.scss';
 
 const Mypage = () => {
-  return <div className="mypage">마이페이지</div>;
+  const [menuMode, setMenuMode] = useState(1);
+  const menuList = {
+    1: <OrderDelivery />,
+    2: <Subscribes />,
+    3: <Likes />,
+  };
+
+  return (
+    <div className="mypage">
+      <MypageTop />
+      <div className="mypage-main">
+        <div className="main-left">
+          <div className="text-2xl">마이페이지</div>
+          <MenuBar menuMode={menuMode} setMenuMode={setMenuMode} />
+        </div>
+        <div className="main-right">{menuList[menuMode]}</div>
+      </div>
+    </div>
+  );
 };
 export default Mypage;

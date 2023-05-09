@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import MainLayout from './Mainlayout';
+import Header from '../../components/Header/Header';
 import Contents from './components/Contents';
 import './Details.scss';
 
@@ -44,7 +43,8 @@ const Details = () => {
   console.log(productDetail);
 
   return (
-    <MainLayout>
+    <>
+      <Header />
       <div className="product-detail-page">
         <Contents
           productDetail={productDetail}
@@ -54,7 +54,7 @@ const Details = () => {
           token={token}
         />
       </div>
-    </MainLayout>
+    </>
   );
 };
 export default Details;

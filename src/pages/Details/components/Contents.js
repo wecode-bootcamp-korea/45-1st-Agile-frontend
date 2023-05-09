@@ -109,7 +109,11 @@ const Contents = ({
     <div className="contents">
       <div className="contents-area">
         <div className="thumbnail">
-          <img className="product-img" alt="" src="/images/details/null.png" />
+          <img
+            className="product-img"
+            alt=""
+            src="/images/details/book-sample.png"
+          />
         </div>
         <div className="product-info">
           <div className="product-title">

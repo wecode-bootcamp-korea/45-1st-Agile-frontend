@@ -1,12 +1,12 @@
 import React from 'react';
-import '../Cart.scss';
+import './OrderInfo.scss';
 
 const OrderInfo = () => {
   return (
     <div className="order-info">
       <div className="order-won">
         <div className="product-amount">
-          <span>합계ddd</span>
+          <span>합계</span>
           <span>0원</span>
         </div>
 

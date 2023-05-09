@@ -1,0 +1,38 @@
+@import '../../../styles/variables';
+
+.item-title {
+  .likes-top {
+    @include flex-sort(space-between, center);
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-top: 2px;
+    padding-bottom: 30px;
+    border-bottom: 3px solid black;
+    font-weight: bold;
+
+    .top-left {
+      @include flex-sort(space-between, center);
+
+      .text-sm {
+        margin-left: 10px;
+        color: #999999;
+        font-weight: lighter;
+      }
+    }
+
+    .top-right {
+      font-weight: lighter;
+    }
+  }
+
+  .text-xl {
+    &.noDetails {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      padding-top: 2px;
+      padding-bottom: 30px;
+      border-bottom: 3px solid black;
+      font-weight: bold;
+    }
+  }
+}
