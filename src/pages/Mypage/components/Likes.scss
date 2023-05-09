@@ -4,25 +4,29 @@
   .likes-main {
     padding: 5px;
 
-    .application-top {
-      padding-bottom: 10px;
-      border-bottom: 2px solid black;
-      @include flex-sort(space-between, center);
-      .text-lg {
-        &.application-details {
+    .likes-list {
+      .likes-select {
+        @include flex-sort(space-between, center);
+        padding-bottom: 3px;
+        border-bottom: 2px solid black;
+
+        .all-select {
+          @include flex-sort(space-between, center);
+
+          input {
+            margin-right: 7px;
+          }
         }
       }
-    }
-
-    .likes-list {
-      @include flex-sort(center, center);
-      flex-direction: column;
-
-      .no-list {
-        width: 100%;
-        padding: 50px;
-        border-bottom: 1px solid black;
-        text-align: center;
+      .likes-list-items {
+        @include flex-sort(center, center);
+        flex-direction: column;
+        .no-list {
+          width: 100%;
+          padding: 50px;
+          border-bottom: 1px solid black;
+          text-align: center;
+        }
       }
     }
   }
