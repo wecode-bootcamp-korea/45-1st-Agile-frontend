@@ -15,74 +15,40 @@ const SignUp = () => {
     userGender: '',
   });
 
-  const [isIdValid, setIsIdValid] = useState(false);
-  const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
-  const [isAllAgreed, setIsAllAgreed] = useState(false);
+  const { userId, userPassword, userPasswordOk } = memberData;
+  const [checkId, setCheckId] = useState([]);
 
-  const handleAllAgreeChange = event => {
-    setIsAllAgreed(event.target.checked);
-    const allCheckboxes = document.querySelectorAll(
-      'input[type="checkbox"]:not(#agree-all)'
-    );
-    allCheckboxes.forEach(checkbox => {
-      checkbox.checked = event.target.checked;
-    });
+  const handleCheckBox = e => {
+    if (checkId.includes(e.target.name)) {
+      setCheckId(prev => prev.filter(id => id !== e.target.name));
+    } else {
+      setCheckId(prev => [...prev, e.target.name]);
+    }
   };
 
-  const essentialCheckboxes = document.querySelectorAll(
-    '.agree-essential input[type="checkbox"]'
-  );
-  const allAgreeCheckbox = document.querySelector('#agree-all');
+  const isAllAgreed = checkId.length === 4;
 
-  essentialCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', () => {
-      const isAllChecked = Array.from(essentialCheckboxes).every(
-        checkbox => checkbox.checked
-      );
-      allAgreeCheckbox.checked = isAllChecked;
-    });
-  });
+  const handleAllAgreeChange = () => {
+    if (isAllAgreed) {
+      setCheckId([]);
+    } else {
+      setCheckId(['1', '2', '3', '4']);
+    }
+  };
 
-  const handleEmailInput = event => {
+  const handleUserInput = event => {
     const { value, name } = event.target;
     setMemberData({ ...memberData, [name]: value });
-
-    const isValid = /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(value);
-    setIsIdValid(isValid);
   };
-
-  const handlePasswordInput = event => {
-    const { value } = event.target;
-    setMemberData({ ...memberData, userPassword: value });
-    validatePassword(value);
-  };
-
-  const handlePasswordOkInput = event => {
-    const { value } = event.target;
-    setMemberData({ ...memberData, userPasswordOk: value });
-    validatePassword(memberData.userPassword, value);
-  };
-
-  const validatePassword = (password, passwordOk) => {
-    const isValid =
+  const conditions = {
+    userId:
+      /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(userId) &&
+      userId.length !== 0,
+    userPassword:
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/.test(
-        password
-      );
-
-    const isMatch = password === passwordOk;
-
-    setIsPasswordValid(isValid);
-    setIsPasswordMatch(isMatch);
-  };
-
-  const handleInput = event => {
-    const { name, value } = event.target;
-    setMemberData({ ...memberData, [name]: value });
-
-    if (name === 'userPassword' || name === 'userPasswordOk') {
-      validatePassword(memberData.userPassword, memberData.userPasswordOk);
-    }
+        userPassword
+      ) && userPassword.length !== 0,
+    userPasswordOk: userPasswordOk === userPassword,
   };
 
   const handleradioCheck = event => {
@@ -91,20 +57,14 @@ const SignUp = () => {
   };
 
   const goToMain = () => {
-    if (!memberData.userId || !isIdValid) {
-      alert('이메일을 다시 입력해주세요!');
-      return;
-    }
-
-    if (!memberData.userPassword || !isPasswordValid) {
-      alert('비밀번호를 다시 입력해주세요!');
-      return;
-    }
-
-    if (!isPasswordMatch) {
-      alert('입력한 비밀번호와 일치하지 않습니다!');
-      return;
-    }
+    Object.keys(conditions).every(key => {
+      if (!conditions[key]) {
+        alert(ALERT_MESSAGE[key]);
+        return false;
+      } else {
+        return true;
+      }
+    });
     fetch('http://10.58.52.230:3000/users/signUp', {
       method: 'POST',
       headers: {
@@ -144,13 +104,7 @@ const SignUp = () => {
                 type={info.type}
                 placeholder={info.placeholder}
                 name={info.name}
-                onChange={
-                  info.name === 'userId'
-                    ? handleEmailInput
-                    : info.name === 'userPassword'
-                    ? handlePasswordInput
-                    : handlePasswordOkInput
-                }
+                onChange={handleUserInput}
               />
               {(info.title === '이메일' || info.title === '비밀번호') && (
                 <span className="form-message">{info.message}</span>
@@ -170,7 +124,7 @@ const SignUp = () => {
             type="text"
             placeholder="YYYY-MM-DD"
             name="userBirth"
-            onChange={handleInput}
+            onChange={handleUserInput}
           />
         </div>
         <div className="check-gender">
@@ -218,23 +172,46 @@ const SignUp = () => {
         있습니다.
       </span>
       <div className="agree-essential">
-        <input type="checkbox" id="agree-condition" name="agree-condition" />
+        <input
+          type="checkbox"
+          id="agree-condition"
+          name={1}
+          checked={checkId.includes('1')}
+          onChange={handleCheckBox}
+        />
         <label for="agree-condition">[필수] 이용약관 동의 </label>
       </div>
       <div className="agree-essential">
-        <input type="checkbox" id="agree-condition" name="agree-condition" />
+        <input
+          type="checkbox"
+          id="agree-condition"
+          name={2}
+          checked={checkId.includes('2')}
+          onChange={handleCheckBox}
+        />
         <label for="agree-condition">[필수] 개인정보 수집 및 동의</label>
-        <label for="agree-condition">[필수] 개인정보 수집 및 동의 </label>
       </div>
       <div className="agree-select">
-        <input type="checkbox" id="agree-message" name="agree-message" />
+        <input
+          type="checkbox"
+          id="agree-message"
+          name={3}
+          checked={checkId.includes('3')}
+          onChange={handleCheckBox}
+        />
         <label for="agree-message">
           [선택] SMS (문자, 카카오톡 등)으로 혜택과 유용한 정보를 보내드려도
           될까요?
         </label>
       </div>
       <div className="select-info">
-        <input type="checkbox" id="agree-send" name="agree-send" />
+        <input
+          type="checkbox"
+          id="agree-send"
+          name={4}
+          checked={checkId.includes('4')}
+          onChange={handleCheckBox}
+        />
         <label for="agree-send">
           [선택] 이메일로 혜택과 정보를 보내드려도 될까요?
         </label>
@@ -299,3 +276,8 @@ const USER_INFO = [
     name: 'userPhoneNumber',
   },
 ];
+const ALERT_MESSAGE = {
+  userId: '이메일을 다시 입력해주세요!',
+  userPassword: '비밀번호를 다시 입력해주세요!',
+  userPasswordOk: '입력한 비밀번호와 일치하지 않습니다!',
+};
