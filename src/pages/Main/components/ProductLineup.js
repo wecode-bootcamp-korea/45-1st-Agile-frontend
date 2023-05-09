@@ -72,7 +72,9 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
                   alt={product.title}
                 />
                 <div className="product-title">{product.title}</div>
-                <div className="product-price">{product.price}원</div>
+                <div className="product-price">
+                  {product.price.toLocaleString()}원
+                </div>
               </div>
             </Link>
           ))}

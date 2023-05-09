@@ -9,13 +9,16 @@ const CategoryModal = () => {
       {CATEGORY.map(category => (
         <div className="modal-container" key={category.subCategory_id}>
           <Link
-            to={`/books?categoryId=${category.category_id}&subCategoryId=${category.subCategory_id}&limit=9&orderBy=bestBooks&offset=0`}
+            to={`/productlist?categoryId=${category.category_id}&subCategoryId=${category.subCategory_id}&limit=9&orderBy=countLikes&offset=0`}
           >
             <img
               src={`/images/components/categorymodal/${category.imgW}`}
               alt={category.sub_name}
             />
             <p>{category.sub_name}</p>
+            {category.sub.map(list => {
+              return;
+            })}
           </Link>
         </div>
       ))}

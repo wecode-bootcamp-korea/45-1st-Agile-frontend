@@ -1,30 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './ProductListCont.scss';
 
 const ProductListCont = ({ categoryId, subCategoryId }) => {
   const [visibleProducts, setVisibleProducts] = useState([]);
-
+  const location = useLocation();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
+          `http://10.58.52.241:3000/books${location.search}`
+          // `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
         );
         const data = await res.json();
-        if (data) {
-          setVisibleProducts(data);
+        console.log(data.data);
+        if (data.data) {
+          setVisibleProducts(data.data);
         }
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [categoryId, subCategoryId]);
-  // `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=bestBooks&limit=9`
+  }, [location]);
+
+  // `http://10.58.52.241:3000/books${location.search}`
   //  setVisibleProducts(data.data);
-  if (visibleProducts.length === 0) return <div>Loading...</div>;
+  // [location]
+
+  console.log(visibleProducts);
+  if (visibleProducts.length === 0) return;
 
   return (
     <div className="product-list-cont">
@@ -38,7 +43,9 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
                 alt={product.title}
               />
               <div className="product-title">{product.title}</div>
-              <div className="product-price">{product.price}원</div>
+              <div className="product-price">
+                {Number(product.price).toLocaleString()}원
+              </div>
               <div className="product-subtitle">{product.subtitle}</div>
             </div>
           </Link>

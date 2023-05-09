@@ -8,7 +8,7 @@ const CategoryModalNav = () => {
       {CATEGORY.map(category => (
         <div className="modal-container" key={category.subCategory_id}>
           <Link
-            to={`/books?categoryId=${category.category_id}&subCategoryId=${category.subCategory_id}&limit=9&orderBy=bestBooks&offset=0`}
+            to={`/books?categoryId=${category.category_id}&subCategoryId=${category.subCategory_id}&limit=9&orderBy=countLikes&offset=0`}
           >
             <img
               src={`/images/components/categorymodal/${category.imgW}`}
