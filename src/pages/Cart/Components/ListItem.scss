@@ -6,16 +6,19 @@
   background-color: palevioletred;
   .item-left {
     @include flex-sort(none, center);
+
     img {
       width: 80px;
       height: 80px;
     }
     .product-info {
+      margin-left: 12px;
       font-size: 20px;
     }
   }
 
   .item-right {
     @include flex-sort(center, center);
+    margin-right: 12px;
   }
 }

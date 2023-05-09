@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Count from './Count';
 import './ListItem.scss';
 
@@ -7,10 +7,10 @@ const ListItem = ({
   handleSingleCheck,
   checkItems,
   setCheckItems,
-  // productPrice,
+  quantity,
+  setQuantity,
 }) => {
   const { image, title, Key, price } = book;
-  const [count, setCount] = useState(1);
 
   return (
     <div className="listitem-info">
@@ -25,12 +25,12 @@ const ListItem = ({
         {image}
         <div className="product-info">
           <p className="product-title">{title}</p>
-          <div>{count}개</div>
+          <div>{quantity}개</div>
         </div>
       </div>
       <div className="item-right">
-        <Count count={count} setCount={setCount} />
-        <div className="product-info">{price * count}원</div>
+        <Count count={quantity} setCount={setQuantity} />
+        <div className="product-info">{price * quantity}원</div>
       </div>
     </div>
   );

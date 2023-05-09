@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Summmary from './Summary';
 import List from './List';
 import './Product.scss';
@@ -11,10 +11,11 @@ const Product = ({
   setProductList,
   checkItems,
   setCheckItems,
+  quantity,
+  setQuantity,
 }) => {
   const { price } = productList;
   const isDisplay = productList.length !== 0;
-  const [count, setCount] = useState(1);
 
   useEffect(() => {
     fetch('/data/cartData.json', {
@@ -30,20 +31,31 @@ const Product = ({
     <div className="product">
       <div className="product-wrap">
         <div className="checkbox-inner">
-          <input
-            type="checkbox"
-            id="select-all"
-            className="choice-checkbox"
-            checked={productList.length === checkItems.length}
-            onChange={e => handleAllCheck(e.target.checked)}
-          />
-          <label for="select-all" className="select">
-            <div className="choice">
-              전체선택({checkItems.length}/{productList.length})
-            </div>
-            <div className="divide">|</div>
-            <div className="choice">선택삭제</div>
+          <label className="all-check-label">
+            <input
+              type="checkbox"
+              id="select-all"
+              className="choice-checkbox"
+              checked={productList.length === checkItems.length}
+              onChange={e => handleAllCheck(e.target.checked)}
+            />
+            <div className="choice">전체선택</div>
           </label>
+
+          <div>
+            ({checkItems.length}/{productList.length})
+          </div>
+          <div className="divide">|</div>
+          <div className="choice">선택삭제</div>
+
+          {/* <div className="all-wrap">
+            <label for="select-all" className="select">
+              
+            </label>
+            
+          </div>
+          
+           */}
         </div>
         <div className="message-web">
           <div>
@@ -53,15 +65,16 @@ const Product = ({
               setProductList={setProductList}
               checkItems={checkItems}
               setCheckItems={setCheckItems}
-              // productPrice={productPrice}
+              quantity={quantity}
+              setQuantity={setQuantity}
             />
           </div>
           <div className="summary-info">
             {isDisplay ? (
               <Summmary
                 productList={productList}
-                count={count}
-                setCount={setCount}
+                quantity={quantity}
+                setQuantity={setQuantity}
               />
             ) : (
               ''
