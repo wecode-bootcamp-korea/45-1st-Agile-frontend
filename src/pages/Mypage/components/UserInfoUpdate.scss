@@ -10,7 +10,9 @@
       margin-bottom: 20px;
 
       .text-lg {
-        width: 200px;
+        &.info-title {
+          width: 200px;
+        }
       }
 
       .valid-0 {
@@ -27,6 +29,14 @@
         &:focus {
           outline: none;
         }
+
+        &::placeholder {
+          color: #999999;
+        }
+      }
+
+      .help-pwd {
+        @include font(10px, #999999);
       }
     }
 

@@ -1,1 +1,13 @@
-{ "user": {} }
+{
+  "user": {
+    "id": 1,
+    "email": "abc@gamil.com",
+    "password": "123@",
+    "name": "김코딩",
+    "phoneNumber": "010-1111-1111",
+    "address": "서울",
+    "gender": "남",
+    "birthDate": "1999-01-01",
+    "points": 50000
+  }
+}
