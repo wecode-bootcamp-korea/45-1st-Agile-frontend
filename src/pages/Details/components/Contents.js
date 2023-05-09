@@ -32,7 +32,6 @@ const Contents = ({
 
   const [count, setCount] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [isWished, setIsWished] = useState(isLiked);
   const navigate = useNavigate();
   const bookId = parseInt(id);
   const productsInfo = [
@@ -116,11 +115,7 @@ const Contents = ({
           <div className="product-title">
             <div>{title}</div>
             <div className="product-actions">
-              <WishlistButton
-                id={id}
-                isWished={isWished}
-                setIsWished={setIsWished}
-              />
+              <WishlistButton id={id} isLiked={isLiked} />
               <ShareButton />
             </div>
           </div>

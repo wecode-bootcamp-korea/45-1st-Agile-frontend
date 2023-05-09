@@ -16,12 +16,15 @@ const ReviewList = (id, token) => {
       try {
         const offset = (currentPage - 1) * LIMIT;
         console.log(offset);
-        const res = await fetch('/data/reviewsdata.json', {
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Authorization: token,
-          },
-        });
+        const res = await fetch(
+          `http://10.58.52.241:3000/books/${id}/reviews/?limit=${LIMIT}&offset=${offset}`,
+          {
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          }
+        );
         const data = await res.json();
         setReviewsData(data);
       } catch (e) {
