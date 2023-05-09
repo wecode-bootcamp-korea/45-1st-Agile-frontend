@@ -13,6 +13,8 @@ const LikesList = ({ likesArr, setLikesArr, checkItems, setCheckItems }) => {
     }
   };
 
+  const isAllChecked = checkItems.length === likesArr.length;
+
   const handleSingleCheck = (checked, id) => {
     if (checked) {
       setCheckItems(prev => [...prev, id]);
@@ -26,11 +28,12 @@ const LikesList = ({ likesArr, setLikesArr, checkItems, setCheckItems }) => {
         <div className="all-select">
           <input
             type="checkbox"
-            checked={checkItems.length === likesArr.length}
+            checked={isAllChecked}
             onChange={e => handleAllCheck(e.target.checked)}
           />
           <div className="text-lg">
-            <b>전체선택</b> ({checkItems.length}/{likesArr.length})
+            <b onClick={() => handleAllCheck(!isAllChecked)}>전체선택</b> (
+            {checkItems.length}/{likesArr.length})
           </div>
         </div>
         <div>선택삭제</div>
