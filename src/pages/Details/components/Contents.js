@@ -22,7 +22,16 @@ const Contents = () => {
     author: '',
   });
 
-  const { title, subtitle, image, description, author } = productDetails;
+  const {
+    title,
+    subtitle,
+    price,
+    issue_date,
+    is_subscribed,
+    image,
+    description,
+    author,
+  } = productDetails;
 
   useEffect(() => {
     fetch('/data/data2.json')
@@ -80,6 +89,7 @@ const Contents = () => {
             <div className="text-sm">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>
           </div>
+
           <div>
             <ShippingInfo />
             <div className="cart-purchase-container">
@@ -104,4 +114,5 @@ const Contents = () => {
     </div>
   );
 };
+
 export default Contents;
