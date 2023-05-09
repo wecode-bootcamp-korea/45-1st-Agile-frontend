@@ -1,8 +1,18 @@
 @import '../../styles/variables';
-
 .cart {
-  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .top {
+    @include flex-sort(center, center);
+    height: 100px;
+    .text-2xl {
+      &.cart-title {
+        font-weight: bold;
+      }
+    }
+  }
   .content-wrap {
-    display: flex;
+    @include flex-sort(space-between, flex-start);
   }
 }
