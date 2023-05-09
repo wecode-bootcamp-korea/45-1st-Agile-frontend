@@ -11,9 +11,21 @@ const RightSide = ({
   return (
     <div className="right-side">
       <div className="order-info">
-        <div className="sub-total">합계 {subtotal}원</div>
-        <div className="deliver-fee"> 배송비+{deliveryFee}원</div>
-        <div className="total">결제예정금액 {total}원</div>
+        <div className="sub-total">
+          합계 <div className="won">{subtotal}원</div>
+        </div>
+        <div className="discount">
+          할인금액 <div className="won">-0원</div>
+        </div>
+        <div className="deliver-fee">
+          {' '}
+          배송비
+          <div className="won">+{deliveryFee}원</div>
+        </div>
+        <div className="total">
+          결제예정금액
+          <div className="won">{total}원</div>
+        </div>
       </div>
       <div className="shipping-free">{isDisplay ? <ShippingInfo /> : ''}</div>
 

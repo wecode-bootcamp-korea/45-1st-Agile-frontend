@@ -162,7 +162,7 @@ const LeftSide = ({
                 +
               </button>
             </div>
-            <div className="product-price">{product.price}</div>
+            <div className="product-price">{product.price}원</div>
             <button onClick={() => handleDeleteItem(product.Key)}>x</button>
           </div>
         ))}{' '}
