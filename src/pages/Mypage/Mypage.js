@@ -4,9 +4,11 @@ import MenuBar from './components/MenuBar';
 import OrderDelivery from './components/OrderDelivery';
 import Subscribes from './components/Subscribes';
 import Likes from './components/Likes';
+import ConfirmPassword from './components/ConfirmPassword';
 import './Mypage.scss';
 
 const Mypage = () => {
+  const [modal, setModal] = useState(false);
   const [menuMode, setMenuMode] = useState(1);
   const [userInfo, setUserInfo] = useState({});
   const menuList = {
@@ -30,7 +32,9 @@ const Mypage = () => {
 
   return (
     <div className="mypage">
-      <MypageTop userInfo={userInfo} />
+      {modal && <div className="background" />}
+      {modal && <ConfirmPassword />}
+      <MypageTop userInfo={userInfo} modal={modal} setModal={setModal} />
       <div className="mypage-main">
         <div className="main-left">
           <div className="text-2xl">마이페이지</div>

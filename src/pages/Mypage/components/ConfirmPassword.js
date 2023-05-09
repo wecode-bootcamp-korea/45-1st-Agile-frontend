@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import './ConfirmPassword.scss';
+import { useNavigate } from 'react-router-dom';
 
 const ConfirmPassword = () => {
+  const navigate = useNavigate();
   const [pwd, setPwd] = useState();
   const handlePwd = e => {
     setPwd(e.target.value);
@@ -16,12 +19,20 @@ const ConfirmPassword = () => {
       },
       body: JSON.stringify({ password: pwd }),
     });
+    navigate('/userInfoUpdate');
   };
 
   return (
     <div className="confirm-password">
-      <input onChange={handlePwd} />
-      <button onClick={handleButton}>확인</button>
+      <div className="confirm-main">
+        <div className="text-2xl main-title">
+          <b>비밀번호</b>
+        </div>
+        <input onChange={handlePwd} />
+        <button onClick={handleButton}>
+          <b>확인</b>
+        </button>
+      </div>
     </div>
   );
 };

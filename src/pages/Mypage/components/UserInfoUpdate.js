@@ -23,7 +23,7 @@ const UserInfoUpdate = () => {
         setUserInfo({
           email: user.email,
           password: '',
-          password_re: '',
+          passwordOk: '',
           name: user.name,
           address: user.address,
           phoneNumber: user.phoneNumber,
@@ -31,14 +31,21 @@ const UserInfoUpdate = () => {
         });
       });
   }, []);
+
+  let isDisabled = true;
+
   const handleInfo = e => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
+    if (name.includes('password')) {
+      isDisabled = userInfo.password === userInfo.passwordOk ? true : false;
+    }
+    console.log(isDisabled);
+    console.log(userInfo.password);
+    console.log(userInfo.passwordOk);
   };
-
-  const handleButton = () => {
+  const handlePwd = () => {
     if (userInfo.password) {
-      console.log('pwd');
       fetch('http://10.58.52.241:3000/users/password', {
         method: 'PATCH',
         headers: {
@@ -48,8 +55,14 @@ const UserInfoUpdate = () => {
         },
         body: JSON.stringify({ password: userInfo.password }),
       });
-    } else {
-      console.log('no pwd');
+      alert('비밀번호수정이 완료되었습니다.');
+
+      navigate('/mypage');
+    }
+  };
+
+  const handleUser = () => {
+    if (userInfo.address && userInfo.phoneNumber) {
       fetch('http://10.58.52.241:3000/users/information', {
         method: 'PATCH',
         headers: {
@@ -62,10 +75,10 @@ const UserInfoUpdate = () => {
           address: userInfo.address,
         }),
       });
-      console.log(userInfo.phoneNumber);
-      console.log(userInfo.address);
+      alert('회원정보수정이 완료되었습니다.');
+
+      navigate('/mypage');
     }
-    navigate('/mypage');
   };
 
   return (
@@ -79,13 +92,14 @@ const UserInfoUpdate = () => {
               <div className="input-part">
                 <input
                   name={data.type}
+                  type={data.inputType}
                   className={`valid-${data.isUpdate}`}
                   value={userInfo[data.type]}
                   onChange={handleInfo}
                   readOnly={!data.isUpdate}
                   placeholder={data.placeholder}
                 />
-                {data.id === 3 && (
+                {data.id === 2 && (
                   <div className="help-pwd">
                     (영문 대/소문자, 숫자, 특수기호 8~20개 사이를 입력해주세요)
                   </div>
@@ -95,7 +109,10 @@ const UserInfoUpdate = () => {
           );
         })}
         <div className="button-part">
-          <button className="text-lg" onClick={handleButton}>
+          <button className="text-lg updatePwd" onClick={handlePwd}>
+            <b>비밀번호수정</b>
+          </button>
+          <button className="text-lg updateInfo" onClick={handleUser}>
             <b>회원정보수정</b>
           </button>
         </div>
@@ -114,13 +131,15 @@ const UPDATE_INFO = [
     type: 'password',
     isUpdate: 1,
     placeholder: '현재 비밀번호를 입력해주세요',
+    inputType: 'password',
   },
   {
     id: 3,
     title: '비밀번호 확인',
-    type: 'password_re',
+    type: 'passwordOk',
     isUpdate: 1,
     placeholder: '비밀번호를 한번 더 입력해주세요',
+    inputType: 'password',
   },
   { id: 4, title: '이름', type: 'name', isUpdate: 0 },
   { id: 5, title: '주소', type: 'address', isUpdate: 1, placeholder: '주소' },

@@ -41,7 +41,7 @@
     }
 
     .button-part {
-      @include flex-sort(center, center);
+      @include flex-sort(space-evenly, center);
       margin: 100px;
 
       button {

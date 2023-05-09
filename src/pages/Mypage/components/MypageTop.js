@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MypageTop.scss';
 
-const MypageTop = ({ userInfo }) => {
+const MypageTop = ({ userInfo, modal, setModal }) => {
   const navigate = useNavigate();
 
   const handleOnclick = () => {
-    navigate('/confirmPassword');
+    setModal(true);
   };
 
   return (
