@@ -9,6 +9,7 @@ import Payment from './pages/Payment/Payment';
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
 import UserInfoUpdate from './pages/Mypage/components/UserInfoUpdate';
+import ConfirmPassword from './pages/Mypage/components/ConfirmPassword';
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/userInfoUpdate" element={<UserInfoUpdate />} />
+        <Route path="/confirmPassword" element={<ConfirmPassword />} />
       </Routes>
     </BrowserRouter>
   );

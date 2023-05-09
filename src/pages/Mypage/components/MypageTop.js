@@ -6,7 +6,7 @@ const MypageTop = ({ userInfo }) => {
   const navigate = useNavigate();
 
   const handleOnclick = () => {
-    navigate('/userInfoUpdate');
+    navigate('/confirmPassword');
   };
 
   return (

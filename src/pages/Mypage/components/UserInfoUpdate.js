@@ -8,9 +8,17 @@ const UserInfoUpdate = () => {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
-    fetch('/data/userData_mypage.json')
+    fetch('http://10.58.52.241:3000/users', {
+      method: 'GET',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80',
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         const user = data.user;
         setUserInfo({
           email: user.email,
@@ -29,6 +37,34 @@ const UserInfoUpdate = () => {
   };
 
   const handleButton = () => {
+    if (userInfo.password) {
+      console.log('pwd');
+      fetch('http://10.58.52.241:3000/users/password', {
+        method: 'PATCH',
+        headers: {
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80',
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({ password: userInfo.password }),
+      });
+    } else {
+      console.log('no pwd');
+      fetch('http://10.58.52.241:3000/users/information', {
+        method: 'PATCH',
+        headers: {
+          Authorization:
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80',
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          phoneNumber: userInfo.phoneNumber,
+          address: userInfo.address,
+        }),
+      });
+      console.log(userInfo.phoneNumber);
+      console.log(userInfo.address);
+    }
     navigate('/mypage');
   };
 
