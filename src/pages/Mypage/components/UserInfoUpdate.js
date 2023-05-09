@@ -5,14 +5,14 @@ import './UserInfoUpdate.scss';
 
 const UserInfoUpdate = () => {
   const navigate = useNavigate();
-  const [info, setInfo] = useState({});
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     fetch('/data/userData_mypage.json')
       .then(res => res.json())
       .then(data => {
         const user = data.user;
-        setInfo({
+        setUserInfo({
           email: user.email,
           password: '',
           password_re: '',
@@ -25,7 +25,7 @@ const UserInfoUpdate = () => {
   }, []);
   const handleInfo = e => {
     const { name, value } = e.target;
-    setInfo({ ...info, [name]: value });
+    setUserInfo({ ...userInfo, [name]: value });
   };
 
   const handleButton = () => {
@@ -44,7 +44,7 @@ const UserInfoUpdate = () => {
                 <input
                   name={data.type}
                   className={`valid-${data.isUpdate}`}
-                  value={info[data.type]}
+                  value={userInfo[data.type]}
                   onChange={handleInfo}
                   readOnly={!data.isUpdate}
                   placeholder={data.placeholder}
