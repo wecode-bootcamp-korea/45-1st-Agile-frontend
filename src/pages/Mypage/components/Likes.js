@@ -20,6 +20,7 @@ const Likes = () => {
       .then(res => {
         console.log(res);
         const { message, data } = res;
+        console.log(res);
         // console.log(message);
         // console.log(data);
         setLikesArr(data);

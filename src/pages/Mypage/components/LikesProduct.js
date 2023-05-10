@@ -32,7 +32,11 @@ const LikesProduct = ({
         Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({
+        bookId: data.bookId,
+        amount: 1,
+        isSubscribe: data.isSubscribe,
+      }),
     })
       .then(res => res.json())
       .then(data => {
@@ -51,7 +55,10 @@ const LikesProduct = ({
         />
         <img alt="관심제품" src={data.thumbnail} width="90" />
         <div className="product-info">
-          <div className="product-name">{data.title}</div>
+          <div className="product-name">
+            {data.isSubscribe === 1 && <span>[구독]</span>}
+            {data.title}
+          </div>
           <div className="product-price">
             {parseInt(data.price).toLocaleString()}원
           </div>
