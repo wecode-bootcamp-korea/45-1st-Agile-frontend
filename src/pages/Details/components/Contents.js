@@ -13,11 +13,9 @@ import './Contents.scss';
 
 const Contents = ({
   productDetail,
-  isLiked,
   setProductsInCart,
   productsInCart,
   id,
-  setIsLiked,
   token,
 }) => {
   const {
@@ -29,10 +27,12 @@ const Contents = ({
     image,
     description,
     author,
+    isLiked,
   } = productDetail;
 
   const [count, setCount] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
   const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,7 +57,7 @@ const Contents = ({
 
   const addToCart = async () => {
     try {
-      const res = await fetch('http://10.58.52.241:3000/carts', {
+      const res = await fetch('http://10.58.52.196:3000/carts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -80,7 +80,7 @@ const Contents = ({
 
   const fetchCartData = async () => {
     try {
-      const res = await fetch('http://10.58.52.241:3000/carts', {
+      const res = await fetch('http://10.58.52.196:3000/carts', {
         headers: {
           'content-Type': 'application/json;charset=utf-8',
           Authorization: token,
@@ -114,13 +114,13 @@ const Contents = ({
         state: { productsInfo },
       });
     } else {
-      navigate('/login', { state: { from: location.pathname } });
+      navigate('/login');
     }
   };
 
   const handleProductsInCarts = async () => {
     try {
-      const res = await fetch('http://10.58.52.241:3000/carts/add', {
+      const res = await fetch('http://10.58.52.196:3000/carts/add', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -152,8 +152,8 @@ const Contents = ({
             <div className="product-actions">
               <WishlistButton
                 id={id}
-                isLiked={isLiked}
-                setIsLiked={setIsLiked}
+                isLikeChanged={isLikeChanged}
+                setIsLikeChanged={setIsLikeChanged}
                 token={token}
               />
               <ShareButton />

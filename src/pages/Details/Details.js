@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Contents from './components/Contents';
-import APIS from '../../\bconfig';
+
 import './Details.scss';
 import MainLayout from './Mainlayout';
 
 const Details = () => {
   const [productDetail, setProductDetail] = useState({});
-  const [isLiked, setIsLiked] = useState('');
   const [productsInCart, setProductsInCart] = useState([]);
   const token = localStorage.getItem('token');
   const params = useParams();
   const id = params.id;
 
   useEffect(() => {
-    fetch(`${APIS.books}/${id}`)
+    fetch(`http://10.58.52.196:3000/books/${id}`)
       .then(res => res.json())
       .then(data => {
-        setProductDetail(data.book);
-        setIsLiked(data.getLike);
+        setProductDetail(data);
       })
       .catch(e => {
         console.error(e);
@@ -26,7 +24,7 @@ const Details = () => {
 
     const fetchCartData = async () => {
       try {
-        const res = await fetch(`${APIS.cartsb}`, {
+        const res = await fetch('http://10.58.52.196:3000/carts', {
           headers: {
             'content-Type': 'application/json;charset=utf-8',
             Authorization: token,
@@ -49,8 +47,6 @@ const Details = () => {
       <div className="product-detail-page">
         <Contents
           productDetail={productDetail}
-          isLiked={isLiked}
-          setIsLiked={setIsLiked}
           id={id}
           setProductsInCart={setProductsInCart}
           productsInCart={productsInCart}
