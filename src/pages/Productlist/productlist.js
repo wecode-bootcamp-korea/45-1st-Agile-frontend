@@ -3,9 +3,8 @@ import { useLocation } from 'react-router-dom';
 import TitleLine from '../../components/TitleLine/TitleLine';
 import ProductListCont from './components/ProdcutListCont';
 import ProductListNav from './components/ProductListNav';
-import NavSub from '../../components/Nav/NavSub';
-import './ProductList.scss';
 import NavMain from '../../components/Nav/NavMain';
+import './ProductList.scss';
 
 const ProductList = () => {
   const [categoryId, setCategoryId] = useState(null);

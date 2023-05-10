@@ -1,58 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Review from './Review';
+import ReviewPaginationButton from './ReviewPaginationButton';
 import './ReviewList.scss';
 
-const ReviewList = () => {
+const LIMIT = 5;
+
+const ReviewList = ({ bookId, token }) => {
+  const [reviewsData, setReviewsData] = useState([]);
+  const [total, setTotal] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const pageTotal = Number(total.count);
+
+  useEffect(() => {
+    const fetchReviewsData = async () => {
+      try {
+        const offset = (currentPage - 1) * LIMIT;
+
+        const res = await fetch(
+          `http://10.58.52.241:3000/books/${bookId}/reviews?limit=${LIMIT}&offset=${offset}`,
+          {
+            headers: {
+              'Content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          }
+        );
+        const data = await res.json();
+        setReviewsData(data.reviews);
+        setTotal(data.reviewsCount);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchReviewsData();
+  }, [currentPage, bookId]);
+
+  if (reviewsData.length === 0) return;
+
+  const pageNumber = Math.ceil(pageTotal / LIMIT);
+  const pageNumberArr = [...Array(pageNumber)].map((_, index) => index + 1);
+
+  const handlePageClick = num => () => {
+    setCurrentPage(num);
+  };
+
   return (
     <div>
-      {REVIEWS.map((review, index) => {
+      {reviewsData.map((review, index) => {
         return <Review review={review} key={index} />;
       })}
+
+      <div>
+        <div className="review-pagination-buttons">
+          {pageNumberArr.map(num => {
+            return (
+              <ReviewPaginationButton
+                point={`${num === currentPage ? 'selected-page' : ''}`}
+                onClick={handlePageClick(num)}
+                key={num}
+              >
+                {num}
+              </ReviewPaginationButton>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default ReviewList;
-
-export const REVIEWS = [
-  {
-    id: 1,
-    user_id: 'heeyeon',
-    content: '최고에요',
-    product_id: 'A',
-    score: 4,
-    date: '2022.04.20',
-  },
-  {
-    id: 2,
-    user_id: 'juicy',
-    content: '만점',
-    product_id: 'B',
-    score: 3,
-    date: '2022.04.19',
-  },
-  {
-    id: 3,
-    user_id: 'merci',
-    content: '굿굿',
-    product_id: 'C',
-    score: 5,
-    date: '2022.04.18',
-  },
-  {
-    id: 4,
-    user_id: 'coffee',
-    content: '추천합니다',
-    product_id: 'D',
-    score: 2,
-    date: '2022.04.17',
-  },
-  {
-    id: 5,
-    user_id: 'lipstick',
-    content: '최고최고',
-    product_id: 'E',
-    score: 4,
-    date: '2022.04.16',
-  },
-];

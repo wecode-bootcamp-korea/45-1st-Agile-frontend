@@ -32,6 +32,10 @@
 .shipping-cost-second {
   gap: 8px;
 
+  .line-through {
+    text-decoration: line-through;
+  }
+
   .rest-price-area {
     padding-bottom: 8px;
   }
