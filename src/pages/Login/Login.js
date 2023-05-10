@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -41,8 +40,7 @@ const Login = () => {
         .then(result => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
-            const { from } = location.state || { from: '/' };
-            navigate(from);
+            navigate(-1);
           }
         });
     }
