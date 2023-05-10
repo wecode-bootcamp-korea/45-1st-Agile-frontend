@@ -5,6 +5,7 @@ import ProductListCont from './components/ProdcutListCont';
 import ProductListNav from './components/ProductListNav';
 import NavSub from '../../components/Nav/NavSub';
 import './ProductList.scss';
+import NavMain from '../../components/Nav/NavMain';
 
 const ProductList = () => {
   const [categoryId, setCategoryId] = useState(null);
@@ -22,7 +23,7 @@ const ProductList = () => {
   return (
     <div className="mypage">
       <TitleLine />
-      <NavSub />
+      <NavMain />
       <video
         className="banner"
         autoPlay

@@ -22,6 +22,7 @@ const NavMain = () => {
     };
   }, [isScrolled]);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const [showSubCategoryModal, setShowSubCategoryModal] = useState(false);
 
   const handleMenusMouseEnter = () => {
     setShowCategoryModal(true);
@@ -32,7 +33,7 @@ const NavMain = () => {
       if (showCategoryModal) {
         setShowCategoryModal(false);
       }
-    }, 300);
+    }, 500);
   };
 
   return (
@@ -46,7 +47,12 @@ const NavMain = () => {
           >
             <button className="menus" />
             <div className="category-name">카테고리</div>
-            {showCategoryModal && <CategoryModalNav />}
+            {showCategoryModal && (
+              <CategoryModalNav
+                showSubCategoryModal={showSubCategoryModal}
+                setShowSubCategoryModal={setShowSubCategoryModal}
+              />
+            )}
           </div>
           <div className="nav-main-right">
             <input className="search-bar" type="text" />

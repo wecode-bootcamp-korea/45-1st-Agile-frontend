@@ -1,4 +1,5 @@
 const SORTOPTION = [
+  { value: '', label: '정렬방식' },
   { value: 'countLikes', label: '추천순' },
   { value: 'newBooks', label: '신상품순' },
   { value: 'priceAsc', label: '낮은 가격순' },

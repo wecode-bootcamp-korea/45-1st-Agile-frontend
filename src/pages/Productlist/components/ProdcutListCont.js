@@ -9,7 +9,7 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
-  const [selectedSortOption, setSelectedSortOption] = useState('');
+  const [selectedSortOption, setSelectedSortOption] = useState('-정렬방식-');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const order = searchParams.get('orderBy');
@@ -47,7 +47,7 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
     const currentPage =
       parseInt(new URLSearchParams(location.search).get('offset'), 10) / 9 +
         1 || 1;
-    const order = searchParams.get('orderBy') || '추천순';
+    const order = searchParams.get('orderBy') || '-정렬방식-';
     setSelectedSortOption(order);
     setCurrentPage(currentPage);
   }, [location.search]);
