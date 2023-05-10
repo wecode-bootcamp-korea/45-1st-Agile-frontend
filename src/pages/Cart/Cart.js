@@ -18,12 +18,10 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProductList(data.data);
         setSelectedProducts(data.data.map(product => product.cartId));
       });
   }, []);
-  console.log(selectedProducts);
 
   if (productList.length === 0) return;
 
@@ -31,7 +29,6 @@ const Cart = () => {
     .filter(product => selectedProducts.includes(product.cartId))
     .map(product => product.price * product.amount)
     .reduce((acc, price) => acc + price, 0);
-  console.log(subtotal);
 
   const DELIVERY_FEE = 3000;
 

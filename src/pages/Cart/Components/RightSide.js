@@ -1,5 +1,5 @@
 import React from 'react';
-import ShippingInfo from '../../Details/components/ShippingInfo';
+import ShippingFree from './ShippingFree';
 import BuyingButton from './BuyingButton';
 import './RightSide.scss';
 const RightSide = ({ subtotal, total, DELIVERY_FEE, productList }) => {
@@ -23,7 +23,7 @@ const RightSide = ({ subtotal, total, DELIVERY_FEE, productList }) => {
           <div className="won">{total}원</div>
         </div>
       </div>
-      <div className="shipping-free">{isDisplay ? <ShippingInfo /> : ''}</div>
+      <div className="shipping-free">{isDisplay ? <ShippingFree /> : ''}</div>
 
       <div className="buying-button">
         {isDisplay ? (
