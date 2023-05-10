@@ -7,9 +7,6 @@ import Likes from './components/Likes';
 import ConfirmPassword from './components/ConfirmPassword';
 import './Mypage.scss';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
-
 const Mypage = () => {
   const [modal, setModal] = useState(false);
   const [menuMode, setMenuMode] = useState(1);
@@ -24,7 +21,7 @@ const Mypage = () => {
     fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
     })

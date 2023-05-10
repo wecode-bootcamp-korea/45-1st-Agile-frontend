@@ -1,42 +1,47 @@
 import React from 'react';
 import './LikesProduct.scss';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
-
 const LikesProduct = ({
   data,
   checkItems,
   setCheckItems,
   handleSingleCheck,
+  likesGetFetch,
 }) => {
   const handleLikesDelete = () => {
-    console.log('dd');
-    fetch('http://10.58.52.230:3000/users/', {
+    console.log('삭제');
+    fetch('http://10.58.52.196:3000/likes', {
       method: 'DELETE',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(),
+      body: JSON.stringify({ query: data.id }),
     })
       .then(res => res.json())
-      .then(data => {});
+      .then(data => {
+        console.log('delete ok');
+        console.log(data);
+      });
+
+    likesGetFetch();
   };
 
   const handleLikesAddCart = () => {
-    console.log('fgg');
+    console.log('장바구니');
 
-    fetch('http://10.58.52.230:3000/users/', {
+    fetch('http://10.58.52.196:3000/carts', {
       method: 'POST',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(),
     })
       .then(res => res.json())
-      .then(data => {});
+      .then(data => {
+        console.log(data);
+      });
   };
 
   return (

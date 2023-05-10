@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import ItemTitle from './ItemTitle';
 import './UserInfoUpdate.scss';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
-
 const UserInfoUpdate = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({});
@@ -14,7 +11,7 @@ const UserInfoUpdate = () => {
     fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
@@ -58,7 +55,7 @@ const UserInfoUpdate = () => {
       fetch('http://10.58.52.241:3000/users/password', {
         method: 'PATCH',
         headers: {
-          Authorization: token,
+          Authorization: localStorage.getItem('token'),
           'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify({ password: userInfo.password }),
@@ -73,7 +70,7 @@ const UserInfoUpdate = () => {
       fetch('http://10.58.52.241:3000/users/information', {
         method: 'PATCH',
         headers: {
-          Authorization: token,
+          Authorization: localStorage.getItem('token'),
           'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify({

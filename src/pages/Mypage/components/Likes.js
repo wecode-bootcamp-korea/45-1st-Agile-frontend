@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import ItemTitle from './ItemTitle';
 import LikesList from './LikesList';
-
 import './Likes.scss';
-
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjk2OTU5fQ.wPYKeEdVgIJljdnBoIelyaamXZtn-3LYrRBQiWhJktU';
 
 const Likes = () => {
   const [likesArr, setLikesArr] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
-  useEffect(() => {
+
+  const likesGetFetch = () => {
     fetch('http://10.58.52.196:3000/likes', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
@@ -23,8 +20,13 @@ const Likes = () => {
       .then(res => {
         const { message, data } = res;
         console.log(message);
+        console.log(data);
         setLikesArr(data);
       });
+  };
+
+  useEffect(() => {
+    likesGetFetch();
   }, []);
 
   return (
@@ -39,6 +41,7 @@ const Likes = () => {
           setLikesArr={setLikesArr}
           checkItems={checkItems}
           setCheckItems={setCheckItems}
+          likesGetFetch={likesGetFetch}
         />
       </div>
     </div>

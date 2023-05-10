@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import './ConfirmPassword.scss';
 import { useNavigate } from 'react-router-dom';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
-
 const ConfirmPassword = () => {
   const navigate = useNavigate();
   const [pwd, setPwd] = useState();
@@ -16,7 +13,7 @@ const ConfirmPassword = () => {
     fetch('http://10.58.52.241:3000/users/auth-check', {
       method: 'POST',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({ password: pwd }),
