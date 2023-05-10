@@ -1,17 +1,28 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import check from '../../assets/payment/circleCheck.jpg';
 import './OrderCompleted.scss';
 
 const OrderCompleted = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const sendInfo = location.state;
 
   useEffect(() => {
-    fetch('api주소', {
-      headers: { 인증: '' },
+    fetch('http://10.58.52.230:3000/users/orders', {
+      method: 'POST',
+      headers: {
+        Authorization: '',
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        address: sendInfo.receiver_address,
+        subscribeDeliveryTime: sendInfo.subscribeStart,
+        cartIds: [],
+      }),
     })
       .then(res => res.json())
-      .catch(e => navigate('/invalidAccess'))
+      // .catch(e => navigate('/invalidAccess'))
       .then();
   }, []);
 

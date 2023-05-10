@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import OrderList from './components/OrderList';
 import Orderer from './components/Orderer';
 import Shipment from './components/Shipment';
@@ -15,9 +15,25 @@ const Payment = () => {
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
 
-  const { productsInfo } = location.state;
+  const navigate = useNavigate();
 
-  console.log(productsInfo);
+  const handlePayButton = () => {
+    if (point.remainPoint < 0) {
+      navigate('/invalidAccess');
+      return;
+    }
+    navigate('/orderCompleted', {
+      state: {
+        address: info.receiver_address,
+        subscribeDeliveryTime: info.subscribeStart,
+        cartIds: [],
+      },
+    });
+  };
+
+  // const { productsInfo } = location.state;
+
+  // console.log(productsInfo);
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -43,7 +59,7 @@ const Payment = () => {
           subscribeStart: subDate(),
         });
       });
-    setOrderInfo(productsInfo);
+    // setOrderInfo(productsInfo);
   }, []);
 
   if (orderInfo === []) return null;
@@ -99,6 +115,11 @@ const Payment = () => {
       <div className="pay-part">
         <PaymentMethod point={point} />
         <PaymentInfo point={point} />
+      </div>
+      <div className="pay">
+        <button className="pay-button" onClick={handlePayButton}>
+          결제하기
+        </button>
       </div>
     </div>
   );
