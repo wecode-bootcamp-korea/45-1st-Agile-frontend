@@ -1,8 +1,9 @@
 import React from 'react';
+import Point from './Point';
 import Agreement from './Agreement';
 import './PaymentMethod.scss';
 
-const PaymentMethod = () => {
+const PaymentMethod = ({ point }) => {
   return (
     <div className="payment-method">
       <div className="text-xl">결제수단</div>
@@ -11,12 +12,10 @@ const PaymentMethod = () => {
           <div className="text-lg">결제수단 선택</div>
           <div className="payment-method-point">
             <button className="point-button">포인트</button>
+            <Point point={point} />
             <Agreement />
             <div className="confirm">
               <div>주문 내용을 확인하였으며 약관에 동의합니다.</div>
-            </div>
-            <div className="pay">
-              <button className="pay-button">결제하기</button>
             </div>
           </div>
         </div>

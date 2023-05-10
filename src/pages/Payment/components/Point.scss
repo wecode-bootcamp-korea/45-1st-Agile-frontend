@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.point {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid black;
+
+  .point-status {
+    @include flex-sort(space-between, center);
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    &:last-child {
+      margin-top: 8px;
+      padding-top: 5px;
+      border-top: 1px solid #999999;
+    }
+
+    .status-count {
+      font-weight: bold;
+    }
+  }
+}
