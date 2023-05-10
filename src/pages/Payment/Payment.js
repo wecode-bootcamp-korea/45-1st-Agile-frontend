@@ -47,9 +47,9 @@ const Payment = () => {
     //   .then();
   };
 
-  // const { productsInfo } = location.state;
+  const { productsInfo } = location.state;
 
-  // console.log(productsInfo);
+  console.log(productsInfo);
 
   const handleInfo = e => {
     const { name, value } = e.target;

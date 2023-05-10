@@ -8,7 +8,7 @@ import Cart from './pages/Cart/Cart';
 import Payment from './pages/Payment/Payment';
 import Signup from './pages/Signup/Signup';
 import Mypage from './pages/Mypage/Mypage';
-import ProductList from './pages/Productlist/ProductList';
+import ProductList from './pages/ProductList/ProductList';
 import InvalidAccess from './pages/Payment/InvalidAccess';
 import OrderCompleted from './pages/Payment/OrderCompleted';
 import UserInfoUpdate from './pages/Mypage/components/UserInfoUpdate';

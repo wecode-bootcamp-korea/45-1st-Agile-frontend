@@ -38,8 +38,12 @@ const Contents = ({
   const bookId = parseInt(id);
   const productsInfo = [
     {
-      item: { id: id, title: title, price: price, isSubscribe: isSubscribe },
+      bookId: bookId,
+      title: title,
+      price: price,
+      isSubscribe: isSubscribe,
       quauntity: count,
+      mode: false,
     },
   ];
   const totalPrice = price * count;
@@ -51,7 +55,7 @@ const Contents = ({
   }, 0);
   const addToCart = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/carts', {
+      const res = await fetch('http://10.58.52.241:3000/carts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -63,7 +67,7 @@ const Contents = ({
           isSubscribe: isSubscribe,
         }),
       });
-      if (res.status === 400) {
+      if (res.status >= 400 && res.status < 600) {
         throw new Error('장바구니 확인');
       }
     } catch (error) {
@@ -73,7 +77,7 @@ const Contents = ({
   };
   const fetchCartData = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/carts', {
+      const res = await fetch('http://10.58.52.241:3000/carts', {
         headers: {
           'content-Type': 'application/json;charset=utf-8',
           Authorization: token,
@@ -87,6 +91,7 @@ const Contents = ({
   };
   const handleCartClick = async () => {
     try {
+      console.log(isOptionSelected);
       if (!isOptionSelected) {
         throw new Error('옵션을 선택해주세요.');
       }
@@ -121,7 +126,7 @@ const Contents = ({
   };
   const handleProductsInCarts = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/carts/add', {
+      const res = await fetch('http://10.58.52.241:3000/carts/add', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -140,11 +145,7 @@ const Contents = ({
     <div className="contents">
       <div className="contents-area">
         <div className="thumbnail">
-          <img
-            className="product-img"
-            alt=""
-            src="/images/details/book-sample.png"
-          />
+          <img className="product-img" alt="" src={thumbnail} />
         </div>
         <div className="product-info">
           <div className="product-title">
@@ -172,7 +173,10 @@ const Contents = ({
             <QuantityBox count={count} setCount={setCount} />
           </div>
           {isSubscribe === 1 && (
-            <SubscribeOptions setIsOptionSelected={setIsOptionSelected} />
+            <SubscribeOptions
+              isOptionSelected={isOptionSelected}
+              setIsOptionSelected={setIsOptionSelected}
+            />
           )}
           <div className="price-info">
             <div className="text-sm test2">총 제품금액</div>
