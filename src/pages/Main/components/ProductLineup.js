@@ -76,7 +76,6 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
                 <div className="product-price">
                   {Number(product.price).toLocaleString()}원
                 </div>
-                <button className="to-cart" />
               </div>
             </Link>
           ))}
