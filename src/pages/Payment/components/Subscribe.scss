@@ -16,7 +16,6 @@
 
     .subscribe-start {
       @include inputBox();
-
       input::placeholder {
         color: #999999;
       }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Contents from './components/Contents';
-
+import APIS from '../../config';
 import './Details.scss';
 import MainLayout from './Mainlayout';
 

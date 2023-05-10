@@ -10,7 +10,9 @@
       margin-bottom: 20px;
 
       .text-lg {
-        width: 200px;
+        &.info-title {
+          width: 200px;
+        }
       }
 
       .valid-0 {
@@ -27,11 +29,19 @@
         &:focus {
           outline: none;
         }
+
+        &::placeholder {
+          color: #999999;
+        }
+      }
+
+      .help-pwd {
+        @include font(10px, #999999);
       }
     }
 
     .button-part {
-      @include flex-sort(center, center);
+      @include flex-sort(space-evenly, center);
       margin: 100px;
 
       button {
@@ -39,6 +49,12 @@
         height: 60px;
         background-color: black;
         color: white;
+
+        &.updatePwd {
+          &.valid {
+            background-color: red;
+          }
+        }
       }
     }
   }

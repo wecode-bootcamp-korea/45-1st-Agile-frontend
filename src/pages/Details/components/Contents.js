@@ -10,7 +10,6 @@ import SubscribeOptions from './SubscribeOptions';
 import CartModal from './CartModal';
 import CartRecheckModal from './CartRecheckModal';
 import './Contents.scss';
-
 const Contents = ({
   productDetail,
   setProductsInCart,
@@ -29,7 +28,6 @@ const Contents = ({
     author,
     isLiked,
   } = productDetail;
-
   const [count, setCount] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
@@ -38,27 +36,22 @@ const Contents = ({
   const navigate = useNavigate();
   const location = useLocation();
   const bookId = parseInt(id);
-
   const productsInfo = [
     {
       item: { id: id, title: title, price: price, isSubscribe: isSubscribe },
       quauntity: count,
     },
   ];
-
   const totalPrice = price * count;
-
   const openCartModal = () => {
     setModalOpen(true);
   };
-
   const totalPriceInCart = productsInCart.reduce((total, element) => {
     return total + Number(element.price) * Number(element.amount);
   }, 0);
-
   const addToCart = async () => {
     try {
-      const res = await fetch('http://10.58.52.241:3000/carts', {
+      const res = await fetch('http://10.58.52.196:3000/carts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -78,10 +71,9 @@ const Contents = ({
       throw error;
     }
   };
-
   const fetchCartData = async () => {
     try {
-      const res = await fetch('http://10.58.52.241:3000/carts', {
+      const res = await fetch('http://10.58.52.196:3000/carts', {
         headers: {
           'content-Type': 'application/json;charset=utf-8',
           Authorization: token,
@@ -93,7 +85,6 @@ const Contents = ({
       console.error(e);
     }
   };
-
   const handleCartClick = async () => {
     try {
       if (!isOptionSelected) {
@@ -115,7 +106,6 @@ const Contents = ({
       }
     }
   };
-
   const handlePaymentClick = () => {
     if (token) {
       if (isOptionSelected) {
@@ -129,10 +119,9 @@ const Contents = ({
       navigate('/login');
     }
   };
-
   const handleProductsInCarts = async () => {
     try {
-      const res = await fetch('http://10.58.52.241:3000/carts/add', {
+      const res = await fetch('http://10.58.52.196:3000/carts/add', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -147,7 +136,6 @@ const Contents = ({
       console.log(error);
     }
   };
-
   return (
     <div className="contents">
       <div className="contents-area">
@@ -190,7 +178,6 @@ const Contents = ({
             <div className="text-sm test2">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>
           </div>
-
           <div>
             <ShippingInfo totalPriceInCart={totalPriceInCart} />
             <div className="cart-purchase-container">
@@ -221,5 +208,4 @@ const Contents = ({
     </div>
   );
 };
-
 export default Contents;

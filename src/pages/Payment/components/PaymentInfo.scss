@@ -18,26 +18,16 @@
     padding-left: 13px;
     background-color: #f1f1f1;
 
-    .ordered-product {
+    .payment-fee {
       @include flex-sort(space-between, center);
       padding-top: 13px;
       padding-bottom: 13px;
-    }
 
-    .shipment-fee {
-      @include flex-sort(space-between, center);
-      padding-top: 13px;
-      padding-bottom: 13px;
-    }
-
-    .total-amount {
-      @include flex-sort(space-between, center);
-      padding-top: 13px;
-      padding-bottom: 13px;
-      border-top: 1px solid rgb(221, 221, 221);
-
-      .text-lg {
-        font-weight: bold;
+      &:last-child {
+        border-top: 1px solid rgb(221, 221, 221);
+        .fee-point {
+          font-weight: bold;
+        }
       }
     }
   }
