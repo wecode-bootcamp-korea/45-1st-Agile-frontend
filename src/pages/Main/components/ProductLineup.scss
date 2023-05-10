@@ -20,6 +20,7 @@
     background-position: center center;
     background-size: 20px;
   }
+
   .product-slider-next {
     position: absolute;
     z-index: 1;
@@ -35,6 +36,7 @@
     background-position: center center;
     background-size: 24px;
   }
+
   .product-slider-container {
     display: flex;
     z-index: 0;
@@ -64,14 +66,17 @@
         transform: scale(1.05);
       }
     }
+
     .product-title {
       @include font(20px, #1c1c1c);
       font-weight: 600;
       text-decoration: none;
     }
+
     .product-price {
       @include font(16px, #333333);
     }
+
     .to-cart {
       position: absolute;
       right: -180px;

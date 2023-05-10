@@ -25,17 +25,17 @@ const NewestProduct = ({ categoryId, subCategoryId }) => {
   return (
     <div className="newest-product">
       {productList.length > 0 &&
-        productList.map(product => (
-          <Link key={product.id} to={`/books/${product.id}`}>
+        productList.map(({ id, title, price }) => (
+          <Link key={id} to={`/books/${id}`}>
             <div className="product-item">
               <img
                 className="product-img"
-                src={`images/main/booksimg/${product.id}.png`}
-                alt={product.title}
+                src={`images/main/booksimg/${id}.png`}
+                alt={title}
               />
-              <div className="product-title">{product.title}</div>
+              <div className="product-title">{title}</div>
               <div className="product-price">
-                {Number(product.price).toLocaleString()}원
+                {Number(price).toLocaleString()}원
               </div>
             </div>
           </Link>

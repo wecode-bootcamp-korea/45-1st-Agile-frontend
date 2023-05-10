@@ -7,6 +7,7 @@ const TitleCategory = () => {
     <div className="title-category">
       {CATEGORY.map(category => (
         <Link
+          className="icons"
           key={category.subCategory_id}
           to={`/productlist?categoryId=${category.category_id}&subCategoryId=${category.subCategory_id}&limit=9&orderBy=&offset=0`}
         >

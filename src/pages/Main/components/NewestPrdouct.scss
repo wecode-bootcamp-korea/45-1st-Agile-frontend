@@ -8,6 +8,7 @@
   width: 1050px;
   margin-top: 32px;
   gap: 70px;
+ 
   .product-item {
     width: 200px;
     transform: translateZ(0);
@@ -36,6 +37,7 @@
     .product-price {
       @include font(18px, #1c1c1c);
     }
+  
     .to-cart {
       position: absolute;
       right: 0px;

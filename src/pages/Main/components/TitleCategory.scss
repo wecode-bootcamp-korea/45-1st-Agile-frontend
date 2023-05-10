@@ -3,7 +3,8 @@
 .title-category {
   margin-top: 60px;
   @include flex-sort(space-around, center);
-  a {
+
+  .icons {
     @include font(20px, #1c1c1c);
     display: flex;
     flex-direction: column;
@@ -22,6 +23,7 @@
       transform: scale(1.05);
     }
   }
+
   img {
     width: 40px;
   }
