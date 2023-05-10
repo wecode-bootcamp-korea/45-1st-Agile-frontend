@@ -29,6 +29,22 @@ const Payment = () => {
         cartIds: [],
       },
     });
+
+    // fetch('http://10.58.52.230:3000/users/orders', {
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: '',
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     address: userInfo.receiver_address,
+    //     subscribeDeliveryTime: userInfo.subscribeStart,
+    //     cartIds: [],
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   // .catch(e => navigate('/invalidAccess'))
+    //   .then();
   };
 
   // const { productsInfo } = location.state;
