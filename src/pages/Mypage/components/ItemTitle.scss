@@ -1,38 +1,24 @@
 @import '../../../styles/variables';
 
 .item-title {
-  .likes-top {
-    @include flex-sort(space-between, center);
-    margin-top: 50px;
-    margin-bottom: 30px;
-    padding-top: 2px;
-    padding-bottom: 30px;
-    border-bottom: 3px solid black;
-    font-weight: bold;
+  @include flex-sort(none, center);
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding-top: 2px;
+  padding-bottom: 30px;
+  border-bottom: 3px solid black;
 
-    .top-left {
-      @include flex-sort(space-between, center);
-
-      .text-sm {
-        margin-left: 10px;
-        color: #999999;
-        font-weight: lighter;
-      }
-    }
-
-    .top-right {
-      font-weight: lighter;
+  .text-xl {
+    &.titles {
+      font-weight: bold;
     }
   }
 
-  .text-xl {
-    &.noDetails {
-      margin-top: 50px;
-      margin-bottom: 30px;
-      padding-top: 2px;
-      padding-bottom: 30px;
-      border-bottom: 3px solid black;
-      font-weight: bold;
+  .text-sm {
+    &.details {
+      margin-left: 10px;
+      color: #999999;
+      font-weight: lighter;
     }
   }
 }

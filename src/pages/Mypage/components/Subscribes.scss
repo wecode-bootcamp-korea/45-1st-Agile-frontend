@@ -5,8 +5,10 @@
     padding: 5px;
 
     .text-lg {
-      padding-bottom: 10px;
-      border-bottom: 2px solid black;
+      &.application-details {
+        padding-bottom: 10px;
+        border-bottom: 2px solid black;
+      }
     }
 
     .subscribes-list {

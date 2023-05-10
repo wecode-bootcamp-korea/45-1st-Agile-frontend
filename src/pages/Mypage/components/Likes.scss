@@ -3,17 +3,5 @@
 .likes {
   .likes-main {
     padding: 5px;
-
-    .likes-list {
-      @include flex-sort(center, center);
-      flex-direction: column;
-
-      .no-list {
-        width: 100%;
-        padding: 50px;
-        border-bottom: 1px solid black;
-        text-align: center;
-      }
-    }
   }
 }

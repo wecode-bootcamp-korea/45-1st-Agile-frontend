@@ -4,7 +4,7 @@ import './SubscribesProduct.scss';
 const SubscribesProduct = ({ data }) => {
   return (
     <div className="subscribes-product">
-      <div className="title">
+      <div className="subscribes-title">
         <b>[구독] {data.name}</b>
       </div>
       <div className="subscribes-product-main">

@@ -23,7 +23,16 @@
   .nav-sub-left {
     @include flex-sort(center, center);
     gap: 30px;
-
+    position: relative;
+    .menus {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background-color: transparent;
+      background-image: url('../../assets/main/menu.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+    }
     .category {
       font-size: 20px;
       font-weight: 400px;
@@ -34,18 +43,27 @@
     display: flex;
     justify-content: space-between;
     width: 1020px;
-
-    .icon {
-      width: 30px;
-      height: 30px;
-    }
   }
 
   .nav-sub-right {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    .to-wishlist,
+    .to-cart {
+      width: 32px;
+      height: 32px;
+      border: none;
+      background-color: transparent;
+      background-image: url('../../assets/main/heart.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
 
+      &.to-cart {
+        background-image: url('../../assets/main/cart.svg');
+      }
+    }
     .search-bar {
       width: 300px;
     }
