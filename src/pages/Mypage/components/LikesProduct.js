@@ -8,21 +8,17 @@ const LikesProduct = ({
   handleSingleCheck,
   likesGetFetch,
 }) => {
-  const handleLikesDelete = () => {
+  const handleLikesSingleDelete = () => {
     console.log('삭제');
-    fetch('http://10.58.52.196:3000/likes', {
+    console.log(data);
+    fetch(`http://10.58.52.196:3000/likes?likeId=${data.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({ query: data.id }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log('delete ok');
-        console.log(data);
-      });
+      // body: JSON.stringify({ query: data.id }),
+    });
 
     likesGetFetch();
   };
@@ -62,7 +58,7 @@ const LikesProduct = ({
         </div>
       </div>
       <div className="likes-right">
-        <button onClick={handleLikesDelete}>삭제</button>
+        <button onClick={handleLikesSingleDelete}>삭제</button>
         <button className="cart" onClick={handleLikesAddCart}>
           장바구니
         </button>

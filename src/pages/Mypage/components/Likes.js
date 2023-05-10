@@ -15,12 +15,13 @@ const Likes = () => {
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
-      // fetch('http://10.58.52.196:3000/users/likes')
+      // fetch('http://10.58.52.196:3000/likes')
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         const { message, data } = res;
-        console.log(message);
-        console.log(data);
+        // console.log(message);
+        // console.log(data);
         setLikesArr(data);
       });
   };

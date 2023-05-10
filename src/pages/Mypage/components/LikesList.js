@@ -29,6 +29,27 @@ const LikesList = ({
     }
   };
 
+  const handleLikesSelectDelete = () => {
+    console.log('선택삭제');
+    console.log(checkItems);
+
+    let query = '';
+    checkItems.forEach(ele => (query += 'likeId=' + ele + '&'));
+    query = query.slice(0, -1);
+
+    console.log(query);
+
+    fetch(`http://10.58.52.196:3000/likes?${query}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    });
+
+    likesGetFetch();
+  };
+
   const likesDeleteFetch = () => {
     console.log('삭제');
     // fetch('http://10.58.52.196:3000/likes', {
@@ -39,11 +60,7 @@ const LikesList = ({
     //   },
     //   body: JSON.stringify({ query: data.id }),
     // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log('delete ok');
-    //     console.log(data);
-    //   });
+
     console.log('delete');
   };
 
@@ -61,7 +78,7 @@ const LikesList = ({
             {checkItems.length}/{likesArr.length})
           </div>
         </div>
-        <div>선택삭제</div>
+        <div onClick={handleLikesSelectDelete}>선택삭제</div>
       </div>
       <div className="likes-list-items">
         {likesArr.length === 0 && (
