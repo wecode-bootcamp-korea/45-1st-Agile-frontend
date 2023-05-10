@@ -13,7 +13,7 @@ const Details = () => {
   const id = params.id;
 
   useEffect(() => {
-    fetch(`http://10.58.52.196:3000/books/${id}`)
+    fetch(`http://10.58.52.241:3000/books/${id}`)
       .then(res => res.json())
       .then(data => {
         setProductDetail(data);
@@ -24,7 +24,7 @@ const Details = () => {
 
     const fetchCartData = async () => {
       try {
-        const res = await fetch('http://10.58.52.196:3000/carts', {
+        const res = await fetch('http://10.58.52.241:3000/carts', {
           headers: {
             'content-Type': 'application/json;charset=utf-8',
             Authorization: token,

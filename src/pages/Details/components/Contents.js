@@ -24,7 +24,7 @@ const Contents = ({
     price,
     issueDate,
     isSubscribe,
-    image,
+    thumbnail,
     description,
     author,
     isLiked,
@@ -34,6 +34,7 @@ const Contents = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
   const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
+  const [isOptionSelected, setIsOptionSelected] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const bookId = parseInt(id);
@@ -57,7 +58,7 @@ const Contents = ({
 
   const addToCart = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/carts', {
+      const res = await fetch('http://10.58.52.241:3000/carts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -80,7 +81,7 @@ const Contents = ({
 
   const fetchCartData = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/carts', {
+      const res = await fetch('http://10.58.52.241:3000/carts', {
         headers: {
           'content-Type': 'application/json;charset=utf-8',
           Authorization: token,
@@ -95,6 +96,9 @@ const Contents = ({
 
   const handleCartClick = async () => {
     try {
+      if (!isOptionSelected) {
+        throw new Error('옵션을 선택해주세요.');
+      }
       if (token) {
         await addToCart();
         await openCartModal();
@@ -104,15 +108,23 @@ const Contents = ({
       }
     } catch (e) {
       console.log(e);
-      setRecheckModalOpen(true);
+      if (!e.message.includes('옵션')) {
+        setRecheckModalOpen(true);
+      } else {
+        alert('옵션을 선택해주세요.');
+      }
     }
   };
 
   const handlePaymentClick = () => {
     if (token) {
-      navigate('/payment', {
-        state: { productsInfo },
-      });
+      if (isOptionSelected) {
+        navigate('/payment', {
+          state: { productsInfo },
+        });
+      } else {
+        alert('옵션을 선택해주세요.');
+      }
     } else {
       navigate('/login');
     }
@@ -120,7 +132,7 @@ const Contents = ({
 
   const handleProductsInCarts = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/carts/add', {
+      const res = await fetch('http://10.58.52.241:3000/carts/add', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -171,7 +183,9 @@ const Contents = ({
             </div>
             <QuantityBox count={count} setCount={setCount} />
           </div>
-          {isSubscribe === 1 && <SubscribeOptions />}
+          {isSubscribe === 1 && (
+            <SubscribeOptions setIsOptionSelected={setIsOptionSelected} />
+          )}
           <div className="price-info">
             <div className="text-sm test2">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>

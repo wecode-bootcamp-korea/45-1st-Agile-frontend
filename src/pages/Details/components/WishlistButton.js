@@ -8,7 +8,7 @@ const WishlistButton = ({ id, isLikeChanged, setIsLikeChanged, token }) => {
 
   const addToLikes = async () => {
     try {
-      const res = await fetch('http://10.58.52.196:3000/likes', {
+      const res = await fetch('http://10.58.52.241:3000/likes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
