@@ -6,7 +6,7 @@
     "bookTitle": "먼나라이웃나라",
     "orderId": 4,
     "price": 13000,
-    "isSubscribe": false
+    "isSubscribe": true
   },
   {
     "id": 2,
@@ -15,6 +15,6 @@
     "bookTitle": "최종마무리-한국사",
     "orderId": 4,
     "price": 3000,
-    "isSubscribe": false
+    "isSubscribe": true
   }
 ]

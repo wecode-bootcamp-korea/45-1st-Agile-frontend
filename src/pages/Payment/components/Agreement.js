@@ -4,6 +4,7 @@ import './Agreement.scss';
 const Agreement = () => {
   const [checkItems, setCheckItems] = useState([]);
 
+  //전체체크
   const handleAllCheck = checked => {
     if (checked) {
       const idArr = [];
@@ -14,6 +15,7 @@ const Agreement = () => {
     }
   };
 
+  //개별체크
   const handleSingleCheck = (checked, id) => {
     if (checked) {
       setCheckItems(prev => [...prev, id]);
