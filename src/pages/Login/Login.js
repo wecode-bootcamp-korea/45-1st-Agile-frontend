@@ -41,6 +41,7 @@ const Login = () => {
         .then(result => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
+            navigate(-1);
             const { from } = location.state || { from: '/' };
             navigate(from);
           }
