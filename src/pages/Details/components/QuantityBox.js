@@ -15,7 +15,7 @@ export const QuantityBox = ({ count, setCount }) => {
       >
         -
       </button>
-      <input type="text" placeholder="" value={count} />
+      <input type="text" placeholder="" value={count} readOnly />
       <button
         className="count-button common-action-button"
         onClick={() => handleClick(1)}

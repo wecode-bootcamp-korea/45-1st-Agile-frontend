@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import OrderList from './components/OrderList';
 import OrdererInfo from './components/Orderer';
 import Shipment from './components/Shipment';
@@ -14,6 +15,9 @@ const Payment = () => {
     email: '',
     address: '',
   });
+  const location = useLocation();
+  const { productsInfo } = location.state;
+  console.log(productsInfo);
   return (
     <div className="payment">
       <div className="order-sheet">

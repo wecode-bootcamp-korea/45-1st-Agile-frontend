@@ -1,58 +1,140 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button';
-import DescriptionArea from './DescriptionArea';
-import ReviewList from './ReviewList';
+import ProductInformation from './ProductInformation';
 import WishlistButton from './WishlistButton';
 import ShareButton from './ShareButton';
 import QuantityBox from './QuantityBox';
 import ShippingInfo from './ShippingInfo';
 import SubscribeOptions from './SubscribeOptions';
+import CartModal from './CartModal';
+import CartRecheckModal from './CartRecheckModal';
 import './Contents.scss';
-const Contents = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [count, setCount] = useState(1);
-  const [productDetails, setProductDetails] = useState({
-    title: '',
-    subtitle: '',
-    price: '',
-    issue_date: '',
-    is_subscribed: '',
-    image: '',
-    description: '',
-    author: '',
-  });
 
+const Contents = ({
+  productDetail,
+  isLiked,
+  setProductsInCart,
+  productsInCart,
+  id,
+  setIsLiked,
+  token,
+}) => {
   const {
     title,
     subtitle,
     price,
-    issue_date,
-    is_subscribed,
+    issueDate,
+    isSubscribe,
     image,
     description,
     author,
-  } = productDetails;
+  } = productDetail;
 
-  useEffect(() => {
-    fetch('/data/data2.json')
-      .then(res => res.json())
-      .then(data => {
-        setProductDetails(data[0]);
-      });
-  }, []);
+  const [count, setCount] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const bookId = parseInt(id);
 
-  const tabArr = [
+  const productsInfo = [
     {
-      tabTitle: '설명',
-      tabCont: <DescriptionArea />,
-    },
-    {
-      tabTitle: '리뷰',
-      tabCont: <ReviewList />,
+      item: { id: id, title: title, price: price, isSubscribe: isSubscribe },
+      quauntity: count,
     },
   ];
+
   const totalPrice = price * count;
-  const handleTabClick = index => () => setActiveIndex(index);
+
+  const openCartModal = () => {
+    setModalOpen(true);
+  };
+
+  const totalPriceInCart = productsInCart.reduce((total, element) => {
+    return total + Number(element.price) * Number(element.amount);
+  }, 0);
+
+  const addToCart = async () => {
+    try {
+      const res = await fetch('http://10.58.52.241:3000/carts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+        body: JSON.stringify({
+          bookId: bookId,
+          amount: count,
+          isSubscribe: isSubscribe,
+        }),
+      });
+      if (res.status === 400) {
+        throw new Error('장바구니 확인');
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const fetchCartData = async () => {
+    try {
+      const res = await fetch('http://10.58.52.241:3000/carts', {
+        headers: {
+          'content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+      });
+      const data = await res.json();
+      setProductsInCart(data.data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleCartClick = async () => {
+    try {
+      if (token) {
+        await addToCart();
+        await openCartModal();
+        await fetchCartData();
+      } else {
+        navigate('/login', { state: { from: location.pathname } });
+      }
+    } catch (e) {
+      console.log(e);
+      setRecheckModalOpen(true);
+    }
+  };
+
+  const handlePaymentClick = () => {
+    if (token) {
+      navigate('/payment', {
+        state: { productsInfo },
+      });
+    } else {
+      navigate('/login', { state: { from: location.pathname } });
+    }
+  };
+
+  const handleProductsInCarts = async () => {
+    try {
+      const res = await fetch('http://10.58.52.241:3000/carts/add', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+        body: JSON.stringify({ bookId: bookId, amount: count }),
+      });
+      if (res.ok) {
+        setRecheckModalOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="contents">
@@ -68,13 +150,18 @@ const Contents = () => {
           <div className="product-title">
             <div>{title}</div>
             <div className="product-actions">
-              <WishlistButton />
+              <WishlistButton
+                id={id}
+                isLiked={isLiked}
+                setIsLiked={setIsLiked}
+                token={token}
+              />
               <ShareButton />
             </div>
           </div>
           <div className="book-meta text-sm">
             <div className="book-author">{author}</div>
-            <div className="book-issue-date">{issue_date}</div>
+            <div className="book-issue-date">{issueDate}</div>
           </div>
           <p className="product-desc">{subtitle}</p>
           <div className="product-summary">
@@ -84,33 +171,39 @@ const Contents = () => {
             </div>
             <QuantityBox count={count} setCount={setCount} />
           </div>
-          {is_subscribed && <SubscribeOptions />}
+          {isSubscribe === 1 && <SubscribeOptions />}
           <div className="price-info">
-            <div className="text-sm">총 제품금액</div>
+            <div className="text-sm test2">총 제품금액</div>
             <div className="text-2xl">{`${totalPrice.toLocaleString()}원`}</div>
           </div>
 
           <div>
-            <ShippingInfo />
+            <ShippingInfo totalPriceInCart={totalPriceInCart} />
             <div className="cart-purchase-container">
-              <Button color="white">장바구니</Button>
-              <Button color="black">구매하기</Button>
+              <Button color="white" onClick={handleCartClick}>
+                장바구니
+              </Button>
+              {modalOpen && (
+                <CartModal title={title} setModalOpen={setModalOpen} />
+              )}
+              {reCheckModalOpen && (
+                <CartRecheckModal
+                  setRecheckModalOpen={setRecheckModalOpen}
+                  handleProductsInCarts={handleProductsInCarts}
+                />
+              )}
+              <Button color="black" onClick={handlePaymentClick}>
+                구매하기
+              </Button>
             </div>
           </div>
         </div>
       </div>
-      <div className="information-area">
-        <ul className="tabs">
-          {tabArr.map((tab, index) => {
-            return (
-              <li className="tab" onClick={handleTabClick(index)} key={index}>
-                {tab.tabTitle}
-              </li>
-            );
-          })}
-        </ul>
-        <div className="tab-content">{tabArr[activeIndex].tabCont}</div>
-      </div>
+      <ProductInformation
+        bookId={bookId}
+        description={description}
+        token={token}
+      />
     </div>
   );
 };
