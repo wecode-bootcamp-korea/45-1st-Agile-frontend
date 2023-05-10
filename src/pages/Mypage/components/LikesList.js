@@ -22,6 +22,7 @@ const LikesList = ({ likesArr, setLikesArr, checkItems, setCheckItems }) => {
       setCheckItems(checkItems.filter(el => el !== id));
     }
   };
+
   return (
     <div className="likes-list">
       <div className="likes-select">

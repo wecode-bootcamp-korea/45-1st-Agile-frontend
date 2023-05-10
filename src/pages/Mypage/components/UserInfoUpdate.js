@@ -32,17 +32,15 @@ const UserInfoUpdate = () => {
       });
   }, []);
 
-  let isDisabled = true;
+  let isValidBtn =
+    userInfo.password &&
+    userInfo.passwordOk &&
+    userInfo.password === userInfo.passwordOk;
+  const btnMode = isValidBtn ? 'valid' : 'notValid';
 
   const handleInfo = e => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
-    if (name.includes('password')) {
-      isDisabled = userInfo.password === userInfo.passwordOk ? true : false;
-    }
-    console.log(isDisabled);
-    console.log(userInfo.password);
-    console.log(userInfo.passwordOk);
   };
   const handlePwd = () => {
     if (userInfo.password) {
@@ -109,7 +107,10 @@ const UserInfoUpdate = () => {
           );
         })}
         <div className="button-part">
-          <button className="text-lg updatePwd" onClick={handlePwd}>
+          <button
+            className={`text-lg updatePwd ${btnMode}`}
+            onClick={handlePwd}
+          >
             <b>비밀번호수정</b>
           </button>
           <button className="text-lg updateInfo" onClick={handleUser}>

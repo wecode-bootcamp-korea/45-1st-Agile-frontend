@@ -49,6 +49,12 @@
         height: 60px;
         background-color: black;
         color: white;
+
+        &.updatePwd {
+          &.valid {
+            background-color: red;
+          }
+        }
       }
     }
   }

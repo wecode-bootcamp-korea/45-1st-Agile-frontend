@@ -9,7 +9,7 @@ const ConfirmPassword = () => {
     setPwd(e.target.value);
   };
 
-  const handleButton = () => {
+  const confirmPwd = () => {
     fetch('http://10.58.52.241:3000/users/auth-check', {
       method: 'POST',
       headers: {
@@ -18,8 +18,25 @@ const ConfirmPassword = () => {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({ password: pwd }),
-    });
-    navigate('/userInfoUpdate');
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'AUTH SUCCESS') {
+          navigate('/userInfoUpdate');
+        } else {
+          alert('다시 입력해주세요.');
+        }
+      });
+  };
+
+  const handleEnter = e => {
+    if (e.key === 'Enter') {
+      confirmPwd();
+    }
+  };
+
+  const handleButton = () => {
+    confirmPwd();
   };
 
   return (
@@ -28,7 +45,7 @@ const ConfirmPassword = () => {
         <div className="text-2xl main-title">
           <b>비밀번호</b>
         </div>
-        <input onChange={handlePwd} />
+        <input onChange={handlePwd} onKeyUp={handleEnter} />
         <button onClick={handleButton}>
           <b>확인</b>
         </button>
