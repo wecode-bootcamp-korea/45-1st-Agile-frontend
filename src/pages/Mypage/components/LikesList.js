@@ -44,6 +44,7 @@ const LikesList = ({
     //     console.log('delete ok');
     //     console.log(data);
     //   });
+    console.log('delete');
   };
 
   return (
