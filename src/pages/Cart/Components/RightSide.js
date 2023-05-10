@@ -2,17 +2,13 @@ import React from 'react';
 import ShippingInfo from '../../Details/components/ShippingInfo';
 import BuyingButton from './BuyingButton';
 import './RightSide.scss';
-const RightSide = ({
-  total: { subtotal, total, deliveryFee },
-  productList,
-  setproductList,
-}) => {
+const RightSide = ({ subtotal, total, DELIVERY_FEE, productList }) => {
   const isDisplay = productList.length !== 0;
   return (
     <div className="right-side">
       <div className="order-info">
         <div className="sub-total">
-          합계 <div className="won">{subtotal}원</div>
+          합계 <div className="won">{subtotal}</div>
         </div>
         <div className="discount">
           할인금액 <div className="won">-0원</div>
@@ -20,7 +16,7 @@ const RightSide = ({
         <div className="deliver-fee">
           {' '}
           배송비
-          <div className="won">+{deliveryFee}원</div>
+          <div className="won">+{DELIVERY_FEE}원</div>
         </div>
         <div className="total">
           결제예정금액

@@ -1,9 +1,9 @@
 @import '../../../styles/variables';
 .right-side {
-  width: 100%;
+  width: 320px;
   height: 256px;
   margin-top: 40px;
-  margin-left: 20px;
+  margin-left: 40px;
   padding-top: 24px;
   padding-left: 10px;
 
@@ -12,7 +12,6 @@
     box-sizing: border-box;
     flex-direction: column;
     width: 100%;
-    // max-width: 316px;
     padding: 24px 20px 40px;
     background-color: #f1f1f1;
     color: #9a9a9a;
@@ -29,7 +28,7 @@
       margin-bottom: 16px;
       border-top: var(--border-color);
       color: black;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 140%;
     }
@@ -44,7 +43,7 @@
       margin-bottom: 16px;
       border-top: var(--border-color);
       color: black;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 140%;
     }
@@ -60,7 +59,7 @@
       margin-bottom: 16px;
       border-top: var(--border-color);
       color: black;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 140%;
     }
@@ -74,8 +73,9 @@
       width: 100%;
       margin-bottom: 16px;
       padding-top: 20px;
+      border-top: 1px solid #e5e5e5;
       color: #1c1c1c;
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
       line-height: 140%;
     }

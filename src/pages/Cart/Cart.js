@@ -5,25 +5,38 @@ import './Cart.scss';
 const Cart = () => {
   const [productList, setProductList] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [subtotal, setSubtotal] = useState(0);
-  const [deliveryFee, setDeliveryFee] = useState(0);
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjgzNjk2NTA1fQ.u_9aaaVQ7lQ-JQemx9ex1PqvyGCzN73x6u-sS044jSg';
 
   useEffect(() => {
-    fetch('/data/cartData.json', {
+    fetch('http://10.58.52.241:3000/carts', {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: token,
+      },
     })
       .then(res => res.json())
       .then(data => {
-        setProductList(data.map(product => ({ ...product, quantity: 1 })));
-        setSelectedProducts(data.map(product => product.Key));
+        console.log(data);
+        setProductList(data.data);
+        setSelectedProducts(data.data.map(product => product.cartId));
       });
   }, []);
+  console.log(selectedProducts);
 
-  const handleTotalChange = newTotal => {
-    setTotal(newTotal);
-    setSubtotal(newTotal);
-  };
+  if (productList.length === 0) return;
+
+  const subtotal = productList
+    .filter(product => selectedProducts.includes(product.cartId))
+    .map(product => product.price * product.amount)
+    .reduce((acc, price) => acc + price, 0);
+  console.log(subtotal);
+
+  const DELIVERY_FEE = 3000;
+
+  const total = subtotal + DELIVERY_FEE;
+
   return (
     <div className="cart">
       <div className="top">
@@ -31,19 +44,21 @@ const Cart = () => {
       </div>
       <div className="content-wrap">
         <LeftSide
-          onTotalChange={handleTotalChange}
+          token={token}
           productList={productList}
           setProductList={setProductList}
           selectedProducts={selectedProducts}
           setSelectedProducts={setSelectedProducts}
+          subtotal={subtotal}
+          total={total}
+          DELIVERY_FEE={DELIVERY_FEE}
         />
         <RightSide
-          total={total}
           subtotal={subtotal}
-          deliveryFee={deliveryFee}
+          DELIVERY_FEE={DELIVERY_FEE}
+          total={total}
           productList={productList}
-          setProductList={setProductList}
-        />{' '}
+        />
       </div>
     </div>
   );

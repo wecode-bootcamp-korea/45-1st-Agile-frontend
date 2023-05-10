@@ -18,44 +18,7 @@
     height: 63px;
     border-bottom: 1px solid black;
   }
-  .normal-deliver-things {
-    @include flex-sort(center, flex-start);
-    flex-direction: column;
-    .normal-deliver-thing {
-      @include flex-sort(space-between, center);
-      .normal-check {
-        width: 40px;
-      }
-      img {
-        width: 80px;
-        height: 80px;
-      }
-      .product-title {
-        width: 230px;
-        margin-left: 12px;
-        font-size: 20px;
-      }
-      .buttons {
-        @include flex-sort(space-between, center);
-        width: 86px;
-        height: 28px;
-        border: 1px solid #999999;
-        button {
-          @include font(20px, #1c1c1c);
-          border: none;
-          background-color: transparent;
-        }
-      }
-      .product-price {
-        @include flex-sort(flex-end, center);
-        width: 100px;
-        margin-right: 12px;
-        font-size: 20px;
-        font-weight: 700;
-        line-height: 20px;
-      }
-    }
-  }
+
   .amount {
     @include flex-sort(flex-end, center);
     width: 578px;

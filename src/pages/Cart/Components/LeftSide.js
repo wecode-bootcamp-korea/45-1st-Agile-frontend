@@ -1,62 +1,80 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import ProductItem from './ProductItem';
 import './LeftSide.scss';
 
 const LeftSide = ({
-  onTotalChange,
   productList,
   setProductList,
   selectedProducts,
   setSelectedProducts,
+  token,
+  subtotal,
+  total,
+  DELIVERY_FEE,
 }) => {
-  // const [productList, setProductList] = useState([]);
-  // const [selectedProducts, setSelectedProducts] = useState([]);
-  const [userToken, setUserToken] = useState('');
-
-  useEffect(() => {
-    // 사용자 토큰 가져오기
-    const token = localStorage.getItem('userToken');
-    setUserToken(token);
-  }, []);
-
-  // useEffect(() => {
-  //   fetch('/data/cartData.json', {
-  //     method: 'GET',
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setProductList(data.map(product => ({ ...product, quantity: 1 })));
-  //       setSelectedProducts(data.map(product => product.Key));
-  //     });
-  // }, []);
-
-  const handleQuantityChange = (key, value) => {
-    setProductList(
-      productList.map(product =>
-        product.Key === key && selectedProducts.includes(key)
-          ? { ...product, quantity: Math.max(1, product.quantity + value) }
+  const [cartId, setCartId] = useState(null);
+  const handleQuantityChange = async (key, value) => {
+    try {
+      const selectedItem = productList.map(product =>
+        product.cartId === key && selectedProducts.includes(key)
+          ? { ...product, amount: Math.max(1, product.amount + value) }
           : product
-      )
-    );
-
-    // PATCH 메서드로 상품 수량 변경 요청 보내기
-    fetch(`/carts?cartId=${key}&amount=${value}`, {
-      method: 'PATCH',
-      headers: {
-        userToken: userToken,
-      },
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+      );
+      await setProductList(selectedItem);
+      const selectedProduct = selectedItem.find(
+        product => product.cartId === key && selectedProducts.includes(key)
+      );
+      if (selectedProduct) {
+        setCartId(selectedProduct.cartId);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+  console.log(productList);
+
+  //PATCH 메서드로 상품 수량 변경 요청 보내기
+  useEffect(() => {
+    if (cartId) {
+      const value = productList.find(
+        product => product.cartId === cartId
+      ).amount;
+      fetch('http://10.58.52.241:3000/carts', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: token,
+        },
+        body: JSON.stringify({ cartId: cartId, amount: value }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          // GET 메서드로 데이터 다시 가져오기
+          fetch(`http://10.58.52.241:3000/carts?cartId=${cartId}`, {
+            method: 'GET',
+            headers: {
+              Authorization: token,
+            },
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log('Updated data:', data);
+              // 여기서 data를 사용하여 필요한 처리 수행
+            })
+            .catch(error => console.error(error));
+        })
+        .catch(error => console.error(error));
+    }
+  }, [cartId, productList, token]);
 
   const handleDelete = () => {
     selectedProducts.forEach(key => {
       // DELETE 메서드로 상품 삭제 요청 보내기
-      fetch(`/carts?cartId=${key}`, {
+      fetch(`http://10.58.52.241:3000/carts?cartId=${key}`, {
         method: 'DELETE',
         headers: {
-          userToken: userToken,
+          Authorization: token,
         },
       })
         .then(res => res.json())
@@ -66,43 +84,33 @@ const LeftSide = ({
 
     // 선택한 상품들 제거하기
     setProductList(
-      productList.filter(product => !selectedProducts.includes(product.Key))
+      productList.filter(product => !selectedProducts.includes(product.cartId))
     );
     setSelectedProducts([]);
   };
 
   const handleDeleteItem = key => {
     // DELETE 메서드로 상품 삭제 요청 보내기
-    fetch(`/carts?cartId=${key}`, {
+    fetch(`http://10.58.52.241:3000/carts?cartId=${key}`, {
       method: 'DELETE',
       headers: {
-        userToken: userToken,
+        Authorization: token,
       },
     })
       .then(res => res.json())
       .then(data => console.log(data))
       .catch(error => console.error(error));
     // 선택한 상품 제거하기
-    setProductList(productList.filter(product => product.Key !== key));
+    setProductList(productList.filter(product => product.cartId !== key));
     setSelectedProducts(
       selectedProducts.filter(selectedKey => selectedKey !== key)
     );
   };
 
-  useEffect(() => {
-    const subtotal = productList
-      .filter(product => selectedProducts.includes(product.Key))
-      .map(product => product.price * product.quantity)
-      .reduce((acc, price) => acc + price, 0);
-    const deliveryFee = subtotal < 40000 ? 3000 : 0;
-    const total = subtotal + deliveryFee;
-    onTotalChange({ subtotal, total, deliveryFee }); // subtotal값도 전달하도록 수정
-  }, [productList, selectedProducts, onTotalChange]);
-
   const handleCheckboxChange = (key, isChecked) => {
     if (key === 'all') {
       setSelectedProducts(
-        isChecked ? productList.map(product => product.Key) : []
+        isChecked ? productList.map(product => product.cartId) : []
       );
     } else {
       setSelectedProducts(
@@ -112,15 +120,6 @@ const LeftSide = ({
       );
     }
   };
-
-  const subtotal = productList
-    .filter(product => selectedProducts.includes(product.Key))
-    .map(product => product.price * product.quantity)
-    .reduce((acc, price) => acc + price, 0);
-
-  const deliveryFee = subtotal < 40000 ? 3000 : 0;
-
-  const total = subtotal + deliveryFee;
 
   return (
     <div className="left-side">
@@ -133,7 +132,10 @@ const LeftSide = ({
         <div className="text-left">
           <span className="select-all">전체선택</span>
           <span className="division">|</span>
-          <span className="select-delete" onClick={handleDelete}>
+          <span
+            className="select-delete"
+            onClick={selectedProducts => handleDelete(selectedProducts)}
+          >
             선택삭제
           </span>
         </div>
@@ -141,37 +143,29 @@ const LeftSide = ({
       <div className="normal-delivery">일반배송</div>
       <div className="normal-deliver-things">
         {productList.map(product => (
-          <div className="normal-deliver-thing" key={product.key}>
-            <div className="normal-check">
-              <input
-                type="checkbox"
-                checked={selectedProducts.includes(product.Key)}
-                onChange={e =>
-                  handleCheckboxChange(product.Key, e.target.checked)
-                }
-              />
-            </div>
-            <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fckk2n9%2Fbtseh8XtY4Z%2FbyMbN3ftovv3oUiL9vV8p0%2Fimg.png" />
-            <div className="product-title">{product.title}</div>
-            <div className="buttons">
-              <button onClick={() => handleQuantityChange(product.Key, -1)}>
-                -
-              </button>
-              <div> {product.quantity}</div>
-              <button onClick={() => handleQuantityChange(product.Key, 1)}>
-                +
-              </button>
-            </div>
-            <div className="product-price">{product.price}원</div>
-            <button onClick={() => handleDeleteItem(product.Key)}>x</button>
-          </div>
-        ))}{' '}
+          <ProductItem
+            key={product.cartId}
+            product={product}
+            productList={productList}
+            setProductList={setProductList}
+            handleCheckboxChange={handleCheckboxChange}
+            handleQuantityChange={handleQuantityChange}
+            selectedProducts={selectedProducts}
+            setSelectedProducts={setSelectedProducts}
+            handleDeleteItem={handleDeleteItem}
+            subtotal={subtotal}
+          />
+        ))}
       </div>
       <div className="amount">
-        제품가격 {subtotal} 원 + 배송비 {deliveryFee ? deliveryFee : '0'} 원 ={' '}
-        {total} 원
+        {`제품가격 ${subtotal.toLocaleString()}원 + 배송비
+        ${subtotal >= 40000 ? '0' : DELIVERY_FEE.toLocaleString()}원 =
+        ${
+          subtotal >= 40000 ? subtotal.toLocaleString() : total.toLocaleString()
+        } 원`}
       </div>
     </div>
   );
 };
+
 export default LeftSide;

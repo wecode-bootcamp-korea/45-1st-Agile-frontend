@@ -1,0 +1,41 @@
+@import '../../../styles/variables';
+.normal-deliver-things {
+  @include flex-sort(center, flex-start);
+  flex-direction: column;
+  .normal-deliver-thing {
+    @include flex-sort(space-between, center);
+    height: 120px;
+    .normal-check {
+      width: 40px;
+    }
+    img {
+      width: 80px;
+      height: 80px;
+    }
+    .product-title {
+      width: 230px;
+      margin-left: 12px;
+      font-size: 20px;
+    }
+    .count {
+      @include flex-sort(space-between, center);
+      width: 86px;
+      height: 28px;
+      border: 1px solid #e5e5e5;
+      border-radius: 2px;
+      button {
+        @include font(20px, #1c1c1c);
+        border: none;
+        background-color: transparent;
+      }
+    }
+    .product-price {
+      @include flex-sort(flex-end, center);
+      width: 100px;
+      margin-right: 12px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 20px;
+    }
+  }
+}
