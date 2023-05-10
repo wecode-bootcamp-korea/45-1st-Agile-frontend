@@ -116,7 +116,7 @@ const UserInfoUpdate = () => {
             className={`text-lg updatePwd ${btnMode}`}
             onClick={handlePwd}
           >
-            <b>비밀번호수정</b>
+            <b>비밀번호변경</b>
           </button>
           <button className="text-lg updateInfo" onClick={handleUser}>
             <b>회원정보수정</b>
