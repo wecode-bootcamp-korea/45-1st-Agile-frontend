@@ -40,6 +40,7 @@ const SignUp = () => {
     const { value, name } = event.target;
     setMemberData({ ...memberData, [name]: value });
   };
+
   const conditions = {
     userId:
       /^[a-z0-9]+@[a-z]+(\.[a-z]{2,3}){1,2}$/i.test(userId) &&
@@ -57,7 +58,7 @@ const SignUp = () => {
   };
 
   const goToMain = () => {
-    Object.keys(conditions).every(key => {
+    const allCondtionMet = Object.keys(conditions).every(key => {
       if (!conditions[key]) {
         alert(ALERT_MESSAGE[key]);
         return false;
@@ -65,24 +66,27 @@ const SignUp = () => {
         return true;
       }
     });
-    fetch('http://10.58.52.230:3000/users/signUp', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        email: memberData.userId,
-        password: memberData.userPassword,
-        name: memberData.userName,
-        gender: memberData.gender,
-        address: memberData.userAddress,
-        phoneNumber: memberData.userPhoneNumber,
-        birthDate: memberData.userBirth,
-      }),
-    }).then(response => {
-      return response.json();
-    });
-    navigate('/');
+
+    if (allCondtionMet) {
+      fetch('http://10.58.52.230:3000/users/signUp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          email: memberData.userId,
+          password: memberData.userPassword,
+          name: memberData.userName,
+          gender: memberData.gender,
+          address: memberData.userAddress,
+          phoneNumber: memberData.userPhoneNumber,
+          birthDate: memberData.userBirth,
+        }),
+      }).then(response => {
+        return response.json();
+      });
+      navigate('/');
+    }
   };
 
   return (
