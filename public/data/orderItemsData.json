@@ -3,9 +3,18 @@
     "id": 1,
     "quantity": 3,
     "bookId": 3,
-    "bookTitle": "최종마무리-한국사",
+    "bookTitle": "먼나라이웃나라",
     "orderId": 4,
     "price": 13000,
+    "isSubscribe": false
+  },
+  {
+    "id": 2,
+    "quantity": 3,
+    "bookId": 3,
+    "bookTitle": "최종마무리-한국사",
+    "orderId": 4,
+    "price": 3000,
     "isSubscribe": false
   }
 ]

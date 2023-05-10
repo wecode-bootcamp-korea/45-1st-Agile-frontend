@@ -17,6 +17,8 @@ const Payment = () => {
 
   const navigate = useNavigate();
 
+  const cartIds = [51, 50];
+
   const handlePayButton = () => {
     if (point.remainPoint < 0) {
       navigate('/invalidAccess');
@@ -29,8 +31,34 @@ const Payment = () => {
         cartIds: [],
       },
     });
-    console.log('상세 -> 주문 결제버튼');
-    fetch('http://10.58.52.196:3000/orders/direct', {
+    // console.log('상세 -> 주문 결제버튼');
+    // fetch('http://10.58.52.196:3000/orders/direct', {
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: localStorage.getItem('token'),
+    //     'Content-Type': 'application/json;charset=utf-8',
+    //   },
+    //   body: JSON.stringify({
+    //     address: info.receiver_address,
+    //     subscribeDeliveryTime: info.subscribeStart,
+    //     bookId: orderInfo[0].bookId,
+    //     quantity: orderInfo[0].quantity,
+    //   }),
+    // })
+    //   .then(res => res.json())
+    //   .catch(e => navigate('/invalidAccess'))
+    //   .then(data => {
+    //     console.log(data);
+    //     navigate('orderCompleted', { state: {} });
+    //   });
+
+    // console.log(userInfo);
+    // console.log();
+
+    ////////////////////////////////////////////////////////////////////////
+
+    console.log('장바구니 -> 주문 결제버튼');
+    fetch('http://10.58.52.196:3000/orders', {
       method: 'POST',
       headers: {
         Authorization: localStorage.getItem('token'),
@@ -39,8 +67,7 @@ const Payment = () => {
       body: JSON.stringify({
         address: info.receiver_address,
         subscribeDeliveryTime: info.subscribeStart,
-        bookId: orderInfo[0].bookId,
-        quantity: orderInfo[0].quantity,
+        cartIds: cartIds,
       }),
     })
       .then(res => res.json())
