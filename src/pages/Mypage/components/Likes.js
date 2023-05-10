@@ -8,7 +8,14 @@ const Likes = () => {
   const [likesArr, setLikesArr] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
   useEffect(() => {
-    fetch('/data/subscribeData.json')
+    fetch('/data/subscribeData.json', {
+      method: 'GET',
+      headers: {
+        Authorization: '',
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      // fetch('http://10.58.52.230:3000/users/likes')
       .then(res => res.json())
       .then(data => {
         setLikesArr(data);

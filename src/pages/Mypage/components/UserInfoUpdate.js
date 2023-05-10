@@ -32,17 +32,26 @@ const UserInfoUpdate = () => {
       });
   }, []);
 
-  let isValidBtn =
+  // const isValidBtn = false;
+
+  const isValidBtn =
     userInfo.password &&
     userInfo.passwordOk &&
-    userInfo.password === userInfo.passwordOk;
-  const btnMode = isValidBtn ? 'valid' : 'notValid';
+    userInfo.password === userInfo.passwordOk &&
+    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/.test(
+      userInfo.password
+    );
 
+  const btnMode = isValidBtn ? 'valid' : 'notValid';
   const handleInfo = e => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
   const handlePwd = () => {
+    if (!isValidBtn) {
+      alert('비밀번호를 조건에 맞춰 입력해주세요');
+      return;
+    }
     if (userInfo.password) {
       fetch('http://10.58.52.241:3000/users/password', {
         method: 'PATCH',
@@ -54,7 +63,6 @@ const UserInfoUpdate = () => {
         body: JSON.stringify({ password: userInfo.password }),
       });
       alert('비밀번호수정이 완료되었습니다.');
-
       navigate('/mypage');
     }
   };
@@ -132,7 +140,7 @@ const UPDATE_INFO = [
     type: 'password',
     isUpdate: 1,
     placeholder: '현재 비밀번호를 입력해주세요',
-    inputType: 'password',
+    // inputType: 'password',
   },
   {
     id: 3,
@@ -140,7 +148,7 @@ const UPDATE_INFO = [
     type: 'passwordOk',
     isUpdate: 1,
     placeholder: '비밀번호를 한번 더 입력해주세요',
-    inputType: 'password',
+    // inputType: 'password',
   },
   { id: 4, title: '이름', type: 'name', isUpdate: 0 },
   { id: 5, title: '주소', type: 'address', isUpdate: 1, placeholder: '주소' },

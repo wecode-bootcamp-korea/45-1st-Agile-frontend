@@ -7,6 +7,35 @@ const LikesProduct = ({
   setCheckItems,
   handleSingleCheck,
 }) => {
+  const handleLikesDelete = () => {
+    console.log('dd');
+    fetch('http://10.58.52.230:3000/users/', {
+      method: 'DELETE',
+      headers: {
+        Authorization: '',
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(),
+    })
+      .then(res => res.json())
+      .then(data => {});
+  };
+
+  const handleLikesAddCart = () => {
+    console.log('fgg');
+
+    fetch('http://10.58.52.230:3000/users/', {
+      method: 'POST',
+      headers: {
+        Authorization: '',
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(),
+    })
+      .then(res => res.json())
+      .then(data => {});
+  };
+
   return (
     <div className="likes-product">
       <div className="likes-left">
@@ -23,8 +52,10 @@ const LikesProduct = ({
         </div>
       </div>
       <div className="likes-right">
-        <button>삭제</button>
-        <button className="cart">장바구니</button>
+        <button onClick={handleLikesDelete}>삭제</button>
+        <button className="cart" onClick={handleLikesAddCart}>
+          장바구니
+        </button>
       </div>
     </div>
   );
