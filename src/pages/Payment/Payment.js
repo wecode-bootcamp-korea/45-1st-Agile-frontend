@@ -29,27 +29,49 @@ const Payment = () => {
         cartIds: [],
       },
     });
+    console.log('상세 -> 주문 결제버튼');
+    fetch('http://10.58.52.196:3000/orders/direct', {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        address: info.receiver_address,
+        subscribeDeliveryTime: info.subscribeStart,
+        bookId: orderInfo[0].bookId,
+        quantity: orderInfo[0].quantity,
+      }),
+    })
+      .then(res => res.json())
+      .catch(e => navigate('/invalidAccess'))
+      .then(data => {
+        console.log(data);
+        navigate('orderCompleted', { state: {} });
+      });
 
-    // fetch('http://10.58.52.230:3000/users/orders', {
-    //   method: 'POST',
-    //   headers: {
-    //     Authorization: '',
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     address: userInfo.receiver_address,
-    //     subscribeDeliveryTime: userInfo.subscribeStart,
-    //     cartIds: [],
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   // .catch(e => navigate('/invalidAccess'))
-    //   .then();
+    console.log(userInfo);
+    console.log();
   };
 
   // const { productsInfo } = location.state;
 
   // console.log(productsInfo);
+
+  useEffect(() => {
+    fetch('/data/orderItemsData.json', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        setOrderInfo(data);
+      });
+  }, []);
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -57,8 +79,12 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch('/data/userData.json', {
+    fetch('http://10.58.52.196:3000/users', {
       method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
     })
       .then(res => res.json())
       .then(data => {

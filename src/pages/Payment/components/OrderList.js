@@ -12,7 +12,7 @@ const OrderList = ({ orderInfo }) => {
         {orderInfo.length !== 0 && (
           <div>
             {orderInfo[0]?.bookTitle}{' '}
-            {orderLength && <span>외 {orderLength}개 </span>}
+            {orderLength === true && <span>외 {orderLength}개 </span>}
             제품을 주문합니다.
           </div>
         )}

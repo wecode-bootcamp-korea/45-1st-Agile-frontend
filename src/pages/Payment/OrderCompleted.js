@@ -8,23 +8,23 @@ const OrderCompleted = () => {
   const location = useLocation();
   const sendInfo = location.state;
 
-  useEffect(() => {
-    fetch('http://10.58.52.230:3000/users/orders', {
-      method: 'POST',
-      headers: {
-        Authorization: '',
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        address: sendInfo.receiver_address,
-        subscribeDeliveryTime: sendInfo.subscribeStart,
-        cartIds: [],
-      }),
-    })
-      .then(res => res.json())
-      // .catch(e => navigate('/invalidAccess'))
-      .then();
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://10.58.52.230:3000/users/orders', {
+  //     method: 'POST',
+  //     headers: {
+  //       Authorization: '',
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //     body: JSON.stringify({
+  //       address: sendInfo.receiver_address,
+  //       subscribeDeliveryTime: sendInfo.subscribeStart,
+  //       cartIds: [],
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     // .catch(e => navigate('/invalidAccess'))
+  //     .then();
+  // }, []);
 
   const handleConfirmOrder = () => {
     navigate('/mypage');
