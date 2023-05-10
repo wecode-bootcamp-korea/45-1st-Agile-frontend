@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import SORTOPTION from './SORTOPTION';
 import './ProductListCont.scss';
 
 const ProductListCont = ({ categoryId, subCategoryId }) => {
@@ -8,6 +9,17 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState([]);
+  const [selectedSortOption, setSelectedSortOption] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const order = searchParams.get('orderBy');
+
+  const selectValue = {
+    countLikes: '추천순',
+    newBooks: '신상품순',
+    priceAsc: '낮은 가격순',
+    priceDesc: '높은 가격순',
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,39 +32,60 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
         if (data.data) {
           setVisibleProducts(data.data);
         }
-        if (data.booksCount) {
-          setBooksCount(data.booksCount[0].booksCount);
-        }
-        const currentPage =
-          parseInt(new URLSearchParams(location.search).get('offset'), 10) / 9 +
-            1 || 1;
-        const totalPages = Math.ceil(booksCount / 9);
+        const totalPages = Math.ceil(data.booksCount[0].booksCount / 9);
         const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-        setCurrentPage(currentPage);
+        setBooksCount(data.booksCount[0].booksCount);
         setPages(pages);
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
-  }, [booksCount, location.search]);
+  }, [location.search, selectedSortOption]);
+
+  useEffect(() => {
+    const currentPage =
+      parseInt(new URLSearchParams(location.search).get('offset'), 10) / 9 +
+        1 || 1;
+    const order = searchParams.get('orderBy') || '추천순';
+    setSelectedSortOption(order);
+    setCurrentPage(currentPage);
+  }, [location.search]);
 
   const handlePageClick = page => {
     const offset = (page - 1) * 9;
     const searchParams = new URLSearchParams(location.search);
     searchParams.set('offset', offset);
+    searchParams.set('orderBy', selectedSortOption);
     window.location.search = searchParams.toString();
     setCurrentPage(page);
   };
-  const sortOptions = [
-    { value: 'likesCount', label: '추천순' },
-    { value: 'newBooks', label: '신상품순' },
-    { value: 'priceAsc', label: '낮은 가격순' },
-    { value: 'priceDesc', label: '높은 가격순' },
-  ];
+
+  const handleSortOptionChange = option => {
+    setSelectedSortOption(option);
+    searchParams.set('orderBy', option);
+    searchParams.set('offset', 0);
+    setSearchParams(searchParams);
+    setCurrentPage(1);
+  };
 
   return (
     <div className="product-list-cont">
+      <div className="sort-option-container">
+        <select
+          value={selectedSortOption}
+          onChange={event => {
+            handleSortOptionChange(event.target.value);
+          }}
+        >
+          {SORTOPTION.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="product-list">
         {visibleProducts.map((product, index) => (
           <Link key={product.id} to={`/books/${product.id}`}>
@@ -81,7 +114,6 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
               }`}
               onClick={() => {
                 handlePageClick(page);
-                setCurrentPage(page);
               }}
             >
               {page}
