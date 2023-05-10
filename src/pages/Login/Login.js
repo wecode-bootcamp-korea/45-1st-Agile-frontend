@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [userInfo, setUserInfo] = useState({
     email: '',
     password: '',
@@ -27,7 +28,7 @@ const Login = () => {
       alert('비밀번호를 입력해주세요!');
       return false;
     } else {
-      fetch('http://10.58.52.230:3000/users/login', {
+      fetch('http://10.58.52.241:3000/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -41,6 +42,8 @@ const Login = () => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
             navigate(-1);
+            const { from } = location.state || { from: '/' };
+            navigate(from);
           }
         });
     }

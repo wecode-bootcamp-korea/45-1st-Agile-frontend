@@ -19,11 +19,6 @@
       flex: 1;
     }
   }
-
-  .information-area {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .product {
@@ -56,6 +51,7 @@
       flex: 0.4;
     }
   }
+
   &-actions {
     display: flex;
     gap: 4px;
@@ -67,6 +63,7 @@
     font-size: 16px;
     line-height: 1.5;
   }
+
   &-summary {
     display: flex;
     align-items: center;
@@ -86,26 +83,9 @@
     border-left: 1px solid #999999;
   }
 }
+
 .cart-purchase-container {
   display: flex;
   padding-top: 36px;
   gap: 8px;
-}
-
-.information-area {
-  .tabs {
-    display: flex;
-    gap: 8px;
-
-    .tab {
-      flex: 1;
-      padding-bottom: 24px;
-      border-bottom: 1px solid;
-      text-align: center;
-    }
-  }
-  .tab-content {
-    padding-top: 56px;
-    text-align: center;
-  }
 }
