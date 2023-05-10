@@ -1,10 +1,10 @@
 @import '../../../styles/variables';
 
 .product-lineup {
+  @include flex-sort(space-between, center);
   position: relative;
   margin-top: 32px;
 
-  @include flex-sort(space-between, center);
   .product-slider-prev {
     position: absolute;
     z-index: 1;

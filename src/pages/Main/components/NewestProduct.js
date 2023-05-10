@@ -7,7 +7,6 @@ const NewestProduct = ({ categoryId, subCategoryId }) => {
 
   useEffect(() => {
     fetch(
-      // `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
       `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=newBooks&limit=8`
     )
       .then(res => res.json())
@@ -20,8 +19,6 @@ const NewestProduct = ({ categoryId, subCategoryId }) => {
       });
   }, [categoryId, subCategoryId]);
 
-  // `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=newBooks&limit=9`
-  //  setVisibleProducts(data.data);
   return (
     <div className="newest-product">
       {productList.length > 0 &&

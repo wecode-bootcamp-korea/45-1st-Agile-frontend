@@ -12,7 +12,6 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
       try {
         const res = await fetch(
           `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=likesCount&limit=9`
-          // `/data/books_category${categoryId}_subCategory${subCategoryId}_orderByNewBooks_limit8.json`
         );
         const data = await res.json();
         if (data.data) {
@@ -25,8 +24,6 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
     };
     fetchData();
   }, [categoryId, subCategoryId]);
-  // `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=likesCount&limit=9`
-  //  setVisibleProducts(data.data);
 
   const handlePrevClick = event => {
     event.preventDefault();

@@ -10,7 +10,7 @@ const CategoryModal = ({ showSubCategoryModal, setShowSubCategoryModal }) => {
       index === self.findIndex(c => c.category_id === category.category_id)
   );
 
-  const [selectedMainCategory, setSelectedMainCategory] = useState(null);
+  const [selectedMainCategory, setSelectedMainCategory] = useState(false);
 
   const handleSubCategoryMouseEnter = () => {
     setShowSubCategoryModal(true);

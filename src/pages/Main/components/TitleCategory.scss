@@ -1,8 +1,8 @@
 @import '../../../styles/variables';
 
 .title-category {
-  margin-top: 60px;
   @include flex-sort(space-around, center);
+  margin-top: 60px;
 
   .icons {
     @include font(20px, #1c1c1c);
@@ -13,7 +13,6 @@
     transform: translateZ(0);
     backface-visibility: hidden;
     transition: transform 0.25s ease-out;
-    // border: 1px solid grey;
     border-radius: 5px;
     text-decoration: none;
     cursor: pointer;

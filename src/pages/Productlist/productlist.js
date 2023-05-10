@@ -7,8 +7,8 @@ import NavMain from '../../components/Nav/NavMain';
 import './ProductList.scss';
 
 const ProductList = () => {
-  const [categoryId, setCategoryId] = useState(null);
-  const [subCategoryId, setSubCategoryId] = useState(null);
+  const [categoryId, setCategoryId] = useState(0);
+  const [subCategoryId, setSubCategoryId] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ProductList = () => {
   }, [location.search]);
 
   return (
-    <div className="mypage">
+    <div className="product-list">
       <TitleLine />
       <NavMain />
       <video

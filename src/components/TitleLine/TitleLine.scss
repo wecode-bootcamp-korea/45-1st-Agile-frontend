@@ -2,14 +2,16 @@
 
 .title-line {
   display: flex;
-
   flex-direction: column;
   margin-top: 40px;
+
   .title-one {
     @include flex-sort(space-around, center);
+
     .logo {
       height: 100px;
     }
+
     .search-bar {
       width: 406px;
       height: 50px;
@@ -18,6 +20,7 @@
   .title-right {
     @include flex-sort(center, center);
     gap: 20px;
+
     .to-wishlist,
     .to-cart {
       width: 32px;
@@ -34,9 +37,11 @@
       }
     }
   }
+
   .title-nav {
     display: flex;
     justify-content: flex-start;
+
     .title-nav-things {
       @include flex-sort(flex-start, center);
       @include font(16px, #1c1c1c);
@@ -44,6 +49,7 @@
       margin-top: 40px;
       font-weight: bold;
       gap: 20px;
+
       .menus {
         width: 32px;
         height: 32px;

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import './TitleCategory.scss';
 import CATEGORY from './CATEGORY';
+import './TitleCategory.scss';
 
 const TitleCategory = () => {
   return (
