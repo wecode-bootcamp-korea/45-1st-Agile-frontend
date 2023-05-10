@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+
+.title-category {
+  @include flex-sort(space-around, center);
+  margin-top: 60px;
+
+  .icons {
+    @include font(20px, #1c1c1c);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.25s ease-out;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    gap: 30px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  img {
+    width: 40px;
+  }
+}

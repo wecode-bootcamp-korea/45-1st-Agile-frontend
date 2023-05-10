@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.invalid-access {
+  height: 100vh;
+  @include flex-sort(center, center);
+
+  .invalid-box {
+    @include flex-sort(center, center);
+    flex-direction: column;
+
+    .error-msg {
+      margin: 50px;
+      font-size: 80px;
+      font-weight: bold;
+    }
+
+    .text-2xl {
+      width: 20vw;
+      height: 60px;
+      background-color: black;
+      color: white;
+    }
+  }
+}

@@ -35,4 +35,17 @@
   .pay-part {
     display: flex;
   }
+
+  .pay {
+    @include flex-sort(center, center);
+    margin-bottom: 100px;
+
+    .pay-button {
+      width: 320px;
+      height: 60px;
+      background-color: black;
+      color: white;
+      font-weight: bold;
+    }
+  }
 }

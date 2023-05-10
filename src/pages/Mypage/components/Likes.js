@@ -1,16 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import ItemTitle from './ItemTitle';
-import LikesProduct from './LikesProduct';
+import LikesList from './LikesList';
+
 import './Likes.scss';
 
-const Likes = () => {
-  const [likesList, setLikesList] = useState([]);
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjk2OTU5fQ.wPYKeEdVgIJljdnBoIelyaamXZtn-3LYrRBQiWhJktU';
 
+const Likes = () => {
+  const [likesArr, setLikesArr] = useState([]);
+  const [checkItems, setCheckItems] = useState([]);
   useEffect(() => {
-    fetch('/data/subscribeData.json')
+    fetch('http://10.58.52.196:3000/likes', {
+      method: 'GET',
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      // fetch('http://10.58.52.196:3000/users/likes')
       .then(res => res.json())
-      .then(data => {
-        setLikesList(data);
+      .then(res => {
+        const { message, data } = res;
+        console.log(message);
+        setLikesArr(data);
       });
   }, []);
 
@@ -20,17 +33,13 @@ const Likes = () => {
         <ItemTitle
           title="관심 제품"
           details="관심 제품은 최대 200개까지 저장됩니다."
-          count={`총 ${likesList.length}개`}
         />
-        <div className="likes-list">
-          {likesList.length === 0 && (
-            <div className="no-list">관심 상품이 없습니다.</div>
-          )}
-          {likesList.length !== 0 &&
-            likesList.map(data => {
-              return <LikesProduct key={data.id} data={data} />;
-            })}
-        </div>
+        <LikesList
+          likesArr={likesArr}
+          setLikesArr={setLikesArr}
+          checkItems={checkItems}
+          setCheckItems={setCheckItems}
+        />
       </div>
     </div>
   );
