@@ -7,10 +7,18 @@ const Subscribes = () => {
   const [subList, setSubList] = useState([]);
 
   useEffect(() => {
-    fetch('/data/subscribeData.json')
+    fetch('http://10.58.52.241:3000/orders/subscribe', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
       .then(res => res.json())
-      .then(data => {
-        setSubList(data);
+      .then(res => {
+        const { message, result } = res;
+        console.log(res);
+        setSubList(result);
       });
   }, []);
 
