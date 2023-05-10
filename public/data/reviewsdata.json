@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "bookId": 1,
+    "userId": "heeyeon",
+    "content": "최고에요",
+    "productId": "A",
+    "score": 4,
+    "date": "2022.04.20"
+  },
+  {
+    "id": 2,
+    "bookId": 2,
+    "userId": "juicy",
+    "content": "만점",
+    "productId": "B",
+    "score": 3,
+    "date": "2022.04.19"
+  },
+  {
+    "id": 3,
+    "bookId": 3,
+    "userId": "merci",
+    "content": "굿굿",
+    "productId": "C",
+    "score": 5,
+    "date": "2022.04.18"
+  },
+  {
+    "id": 4,
+    "bookId": 4,
+    "userId": "coffee",
+    "content": "추천합니다",
+    "productId": "D",
+    "score": 2,
+    "date": "2022.04.17"
+  },
+  {
+    "id": 5,
+    "bookId": 5,
+    "userId": "lipstick",
+    "content": "최고최고",
+    "productId": "E",
+    "score": 4,
+    "date": "2022.04.16"
+  }
+]
