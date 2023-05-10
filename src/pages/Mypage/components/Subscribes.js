@@ -6,6 +6,7 @@ import './Subscribes.scss';
 const Subscribes = () => {
   const [subList, setSubList] = useState([]);
 
+  //구독상품 불러오기
   useEffect(() => {
     fetch('http://10.58.52.241:3000/orders/subscribe', {
       method: 'GET',
@@ -15,9 +16,8 @@ const Subscribes = () => {
       },
     })
       .then(res => res.json())
-      .then(res => {
-        const { message, result } = res;
-        console.log(res);
+      .then(data => {
+        const { result } = data;
         setSubList(result);
       });
   }, []);

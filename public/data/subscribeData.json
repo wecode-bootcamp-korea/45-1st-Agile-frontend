@@ -2,7 +2,7 @@
   {
     "id": 1,
     "src": "/images/mypage/brunch.jpg",
-    "name": "건강식품",
+    "title": "건강식품",
     "price": 9000,
     "start": "2023-05-03",
     "period": 1
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "src": "/images/mypage/brunch.jpg",
-    "name": "홍삼",
+    "title": "홍삼",
     "price": 3000,
     "start": "2023-05-03",
     "period": 2
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "src": "/images/mypage/brunch.jpg",
-    "name": "칫솔",
+    "title": "칫솔",
     "price": 1000,
     "start": "2023-05-03",
     "period": 1

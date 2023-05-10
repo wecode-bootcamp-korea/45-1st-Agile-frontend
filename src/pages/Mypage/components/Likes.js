@@ -4,9 +4,10 @@ import LikesList from './LikesList';
 import './Likes.scss';
 
 const Likes = () => {
-  const [likesArr, setLikesArr] = useState([]);
-  const [checkItems, setCheckItems] = useState([]);
+  const [likesArr, setLikesArr] = useState([]); //관심상품 배열(map)
+  const [checkItems, setCheckItems] = useState([]); //체크박스 배열(체크된것의 id값 저장)
 
+  //관심상품 불러오기
   const likesGetFetch = () => {
     fetch('http://10.58.52.196:3000/likes', {
       method: 'GET',
@@ -15,14 +16,9 @@ const Likes = () => {
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
-      // fetch('http://10.58.52.196:3000/likes')
       .then(res => res.json())
       .then(res => {
-        console.log(res);
-        const { message, data } = res;
-        console.log(res);
-        // console.log(message);
-        // console.log(data);
+        const { data } = res;
         setLikesArr(data);
       });
   };
@@ -40,7 +36,6 @@ const Likes = () => {
         />
         <LikesList
           likesArr={likesArr}
-          setLikesArr={setLikesArr}
           checkItems={checkItems}
           setCheckItems={setCheckItems}
           likesGetFetch={likesGetFetch}

@@ -4,11 +4,9 @@ import ItemTitle from './ItemTitle';
 import './OrderDelivery.scss';
 
 const OrderDelivery = () => {
-  const [orderStatus, setOrderStatus] = useState({
-    PENDING: '',
-    SHIPPING: '',
-    COMPLETE: '',
-  });
+  const [orderStatus, setOrderStatus] = useState({});
+
+  // 주문배송상태 불러오기
   useEffect(() => {
     fetch('http://10.58.52.241:3000/orders', {
       method: 'GET',
@@ -19,11 +17,8 @@ const OrderDelivery = () => {
     })
       .then(res => res.json())
       .then(res => {
-        const { message, data, orderStatus } = res;
+        const { orderStatus } = res;
         setOrderStatus(orderStatus);
-        console.log(data);
-        console.log(orderStatus);
-        // setSubList(result);
       });
   }, []);
 
@@ -51,7 +46,7 @@ const OrderDelivery = () => {
 export default OrderDelivery;
 
 const PRESENT_CONDITION_INFO = [
-  { id: 1, count: 0, title: '배송준비중', type: 'PENDING' },
-  { id: 2, count: 1, title: '배송중', type: 'SHIPPING' },
-  { id: 3, count: 0, title: '배송완료', type: 'COMPLETE' },
+  { id: 1, title: '배송준비중', type: 'PENDING' },
+  { id: 2, title: '배송중', type: 'SHIPPING' },
+  { id: 3, title: '배송완료', type: 'COMPLETE' },
 ];

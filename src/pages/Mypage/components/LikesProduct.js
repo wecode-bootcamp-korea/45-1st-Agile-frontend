@@ -4,28 +4,11 @@ import './LikesProduct.scss';
 const LikesProduct = ({
   data,
   checkItems,
-  setCheckItems,
   handleSingleCheck,
-  likesGetFetch,
+  likesDeleteFetch,
 }) => {
-  const handleLikesSingleDelete = () => {
-    console.log('삭제');
-    console.log(data);
-    fetch(`http://10.58.52.196:3000/likes?likeId=${data.id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: localStorage.getItem('token'),
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      // body: JSON.stringify({ query: data.id }),
-    });
-
-    likesGetFetch();
-  };
-
+  //장바구니추가(버튼)
   const handleLikesAddCart = () => {
-    console.log('장바구니');
-
     fetch('http://10.58.52.196:3000/carts', {
       method: 'POST',
       headers: {
@@ -37,11 +20,7 @@ const LikesProduct = ({
         amount: 1,
         isSubscribe: data.isSubscribe,
       }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-      });
+    });
   };
 
   return (
@@ -65,7 +44,7 @@ const LikesProduct = ({
         </div>
       </div>
       <div className="likes-right">
-        <button onClick={handleLikesSingleDelete}>삭제</button>
+        <button onClick={() => likesDeleteFetch(data.id)}>삭제</button>
         <button className="cart" onClick={handleLikesAddCart}>
           장바구니
         </button>

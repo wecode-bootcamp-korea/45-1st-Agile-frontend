@@ -8,15 +8,16 @@ import ConfirmPassword from './components/ConfirmPassword';
 import './Mypage.scss';
 
 const Mypage = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(false); //정보수정 비밀번호 확인 모달창
   const [menuMode, setMenuMode] = useState(1);
   const [userInfo, setUserInfo] = useState({});
   const menuList = {
-    1: <OrderDelivery />,
-    2: <Subscribes />,
-    3: <Likes />,
+    1: <OrderDelivery />, //주문배송 조회
+    2: <Subscribes />, //정기구독 관리
+    3: <Likes />, //관심 상품
   };
 
+  //고객정보 불러오기
   useEffect(() => {
     fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
@@ -40,7 +41,7 @@ const Mypage = () => {
     <div className="mypage">
       {modal && <div className="background" />}
       {modal && <ConfirmPassword />}
-      <MypageTop userInfo={userInfo} modal={modal} setModal={setModal} />
+      <MypageTop userInfo={userInfo} setModal={setModal} />
       <div className="mypage-main">
         <div className="main-left">
           <div className="text-2xl">마이페이지</div>

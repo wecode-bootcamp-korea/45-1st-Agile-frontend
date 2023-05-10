@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import './ConfirmPassword.scss';
 import { useNavigate } from 'react-router-dom';
+import './ConfirmPassword.scss';
 
 const ConfirmPassword = () => {
   const navigate = useNavigate();
   const [pwd, setPwd] = useState();
+
   const handlePwd = e => {
     setPwd(e.target.value);
   };
 
+  // 현재 비밀번호와 같은지 확인
   const confirmPwd = () => {
     fetch('http://10.58.52.241:3000/users/auth-check', {
       method: 'POST',
@@ -42,9 +44,9 @@ const ConfirmPassword = () => {
     <div className="confirm-password">
       <div className="confirm-main">
         <div className="text-2xl main-title">
-          <b>비밀번호</b>
+          <b>비밀번호를 입력해주세요</b>
         </div>
-        <input onChange={handlePwd} onKeyUp={handleEnter} />
+        <input type="password" onChange={handlePwd} onKeyUp={handleEnter} />
         <button onClick={handleButton}>
           <b>확인</b>
         </button>
