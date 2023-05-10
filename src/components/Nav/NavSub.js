@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Nav-sub.scss';
+import { Link } from 'react-router-dom';
+import CategoryModalNav from '../CategoryModal/CategoryModalNav';
+import './NavSub.scss';
 
 const NavSub = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,31 +21,39 @@ const NavSub = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [isScrolled]);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
+
+  const handleMenusMouseEnter = () => {
+    setShowCategoryModal(true);
+  };
+
+  const handleMenusMouseLeave = () => {
+    setTimeout(() => {
+      if (showCategoryModal) {
+        setShowCategoryModal(false);
+      }
+    }, 300);
+  };
 
   return (
     <nav className="nav-sub">
       <div className={isScrolled ? 'nav-contaner-scrolled' : 'nav-contaner'}>
         <div className="nav-sub-thing">
-          <div className="nav-sub-left">
-            <img
-              alt="책"
-              className="viewmore icon"
-              src="../images/components/nav/books.png"
-            />
-            <div className="category">카테고리</div>
+          <div
+            className="nav-sub-left"
+            onMouseEnter={handleMenusMouseEnter}
+            onMouseLeave={handleMenusMouseLeave}
+          >
+            <button className="menus" />
+            <div className="category-name">카테고리</div>
+            {showCategoryModal && <CategoryModalNav />}
           </div>
           <div className="nav-sub-right">
             <input className="search-bar" type="text" />
-            <img
-              className="heart icon"
-              alt="heart"
-              src="../images/components/nav/heart.png"
-            />
-            <img
-              alt="쇼핑백"
-              className="shopingbag icon"
-              src="../images/components/nav/shopingbag.png"
-            />
+            <button className="to-wishlist" />
+            <Link to="/cart">
+              <button className="to-cart" />
+            </Link>
           </div>
         </div>
       </div>

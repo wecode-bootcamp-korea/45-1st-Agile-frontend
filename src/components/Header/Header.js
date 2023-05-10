@@ -10,10 +10,15 @@ function Header() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
-  }, [location.pathname]);
+  }, [location.pathname, setIsLoggedIn]);
 
   const handleButtonClick = () => {
-    isLoggedIn ? localStorage.removeItem('token') : navigate('/login');
+    if (isLoggedIn) {
+      localStorage.removeItem('token');
+      setIsLoggedIn(false);
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
