@@ -6,24 +6,15 @@
     margin-top: 15px;
     margin-bottom: 15px;
 
-    .text-base {
+    .all-article {
       font-weight: bold;
     }
   }
-
-  .agree-pay {
-    display: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
-
-    .text-base {
-      color: gray;
+  .agree-single {
+    .agree-article {
+      display: flex;
+      margin-top: 5px;
+      margin-bottom: 5px;
     }
-  }
-
-  .agree-subscribe {
-    display: flex;
-    margin-top: 5px;
-    margin-bottom: 5px;
   }
 }

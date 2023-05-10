@@ -3,7 +3,6 @@
 
 .payment-method {
   margin-top: 30px;
-  margin-bottom: 70px;
 
   .text-xl {
     padding-bottom: 15px;
@@ -38,21 +37,6 @@
         .confirm {
           @include flex-sort(center, center);
           margin-top: 30px;
-          margin-bottom: 30px;
-        }
-
-        .pay {
-          @include flex-sort(flex-end, none);
-          padding-top: 30px;
-          padding-bottom: 30px;
-
-          .pay-button {
-            width: 320px;
-            height: 60px;
-            background-color: black;
-            color: white;
-            font-weight: bold;
-          }
         }
       }
     }

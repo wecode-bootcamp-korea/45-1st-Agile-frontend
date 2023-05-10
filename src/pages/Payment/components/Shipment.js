@@ -2,18 +2,27 @@ import React from 'react';
 import ShipmentSelect from './ShipmentSelect';
 import './Shipment.scss';
 
-const Shipment = ({ info }) => {
+const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
   return (
     <div className="shipment">
       <div className="text-xl">배송 정보</div>
       <div className="shipment-main">
-        <ShipmentSelect />
+        <ShipmentSelect
+          switchRadio={switchRadio}
+          setRadio={setRadio}
+          radio={radio}
+        />
 
         {SHIPMENT_INFO.map(data => {
           return (
             <div className="courier-info" key={data.id}>
               <div className="text-lg">{data.title}</div>
-              <input value={info[data.type]} />
+              <input
+                name={data.type}
+                value={info[data.type]}
+                onChange={handleInfo}
+                readOnly={radio}
+              />
             </div>
           );
         })}
@@ -34,9 +43,9 @@ const Shipment = ({ info }) => {
 export default Shipment;
 
 const SHIPMENT_INFO = [
-  { id: 1, title: '받는 사람', type: 'name' },
-  { id: 2, title: '주소', type: 'address' },
-  { id: 3, title: '휴대폰 번호', type: 'phone_number' },
+  { id: 1, title: '받는 사람', type: 'receiver_name' },
+  { id: 2, title: '주소', type: 'receiver_address' },
+  { id: 3, title: '휴대폰 번호', type: 'receiver_phoneNumber' },
 ];
 
 const SELECT_MSG = [
