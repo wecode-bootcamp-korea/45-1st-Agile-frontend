@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import APIS from '../../../config';
 import SORTOPTION from './SORTOPTION';
 import './ProductListCont.scss';
 
@@ -11,7 +12,6 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
   const [pages, setPages] = useState([]);
   const [selectedSortOption, setSelectedSortOption] = useState('-정렬방식-');
   const [searchParams, setSearchParams] = useSearchParams();
-
   const order = searchParams.get('orderBy');
 
   const selectValue = {
@@ -24,9 +24,7 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(
-          `http://10.58.52.241:3000/books${location.search}`
-        );
+        const res = await fetch(`${APIS.books}${location.search}`);
         const data = await res.json();
         console.log(data);
         if (data.data) {

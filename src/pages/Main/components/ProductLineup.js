@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import APIS from '../../../config';
 import './ProductLineup.scss';
 
 const ProductLineup = ({ categoryId, subCategoryId }) => {
@@ -11,8 +12,9 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=likesCount&limit=9`
+          `${APIS.books}?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=likesCount&limit=20`
         );
+
         const data = await res.json();
         if (data.data) {
           setVisibleProducts(data.data);

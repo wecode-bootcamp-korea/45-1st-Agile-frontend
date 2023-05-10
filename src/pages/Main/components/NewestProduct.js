@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import APIS from '../../../config';
 import './NewestPrdouct.scss';
 
 const NewestProduct = ({ categoryId, subCategoryId }) => {
@@ -7,13 +8,12 @@ const NewestProduct = ({ categoryId, subCategoryId }) => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.241:3000/books?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=newBooks&limit=8`
+      `${APIS.books}?categoryId=${categoryId}&subCategoryId=${subCategoryId}&orderBy=newBooks&limit=8`
     )
       .then(res => res.json())
       .then(data => {
         setProductList(data.data);
       })
-
       .catch(error => {
         console.log(error);
       });
