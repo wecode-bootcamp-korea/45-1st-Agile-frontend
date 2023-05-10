@@ -1,6 +1,9 @@
 import React from 'react';
 import './LikesProduct.scss';
 
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
+
 const LikesProduct = ({
   data,
   checkItems,
@@ -12,7 +15,7 @@ const LikesProduct = ({
     fetch('http://10.58.52.230:3000/users/', {
       method: 'DELETE',
       headers: {
-        Authorization: '',
+        Authorization: token,
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(),
@@ -27,7 +30,7 @@ const LikesProduct = ({
     fetch('http://10.58.52.230:3000/users/', {
       method: 'POST',
       headers: {
-        Authorization: '',
+        Authorization: token,
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(),
@@ -45,10 +48,12 @@ const LikesProduct = ({
           checked={checkItems.includes(data.id)}
           onChange={e => handleSingleCheck(e.target.checked, data.id)}
         />
-        <img alt="관심제품" src={data.src} width="90" />
+        <img alt="관심제품" src={data.thumbnail} width="90" />
         <div className="product-info">
-          <div className="product-name">{data.name}</div>
-          <div className="product-price">{data.price?.toLocaleString()}원</div>
+          <div className="product-name">{data.title}</div>
+          <div className="product-price">
+            {parseInt(data.price).toLocaleString()}원
+          </div>
         </div>
       </div>
       <div className="likes-right">

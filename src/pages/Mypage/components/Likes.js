@@ -4,20 +4,25 @@ import LikesList from './LikesList';
 
 import './Likes.scss';
 
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjk2OTU5fQ.wPYKeEdVgIJljdnBoIelyaamXZtn-3LYrRBQiWhJktU';
+
 const Likes = () => {
   const [likesArr, setLikesArr] = useState([]);
   const [checkItems, setCheckItems] = useState([]);
   useEffect(() => {
-    fetch('/data/subscribeData.json', {
+    fetch('http://10.58.52.196:3000/likes', {
       method: 'GET',
       headers: {
-        Authorization: '',
+        Authorization: token,
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
-      // fetch('http://10.58.52.230:3000/users/likes')
+      // fetch('http://10.58.52.196:3000/users/likes')
       .then(res => res.json())
-      .then(data => {
+      .then(res => {
+        const { message, data } = res;
+        console.log(message);
         setLikesArr(data);
       });
   }, []);
