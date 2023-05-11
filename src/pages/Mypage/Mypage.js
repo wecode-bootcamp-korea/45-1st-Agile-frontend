@@ -55,7 +55,7 @@ const Mypage = () => {
         const { orderStatus, data } = res;
         setOrderStatus(orderStatus);
         setDataStatus(data);
-        console.log(data);
+        console.log(res);
       });
   }, []);
 
