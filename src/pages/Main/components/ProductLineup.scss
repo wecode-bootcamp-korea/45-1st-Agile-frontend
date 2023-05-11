@@ -45,7 +45,6 @@
 
   .product-slider-track {
     display: flex;
-    height: 300px;
     transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1.09);
     gap: 70px;
   }
@@ -54,7 +53,7 @@
     transform: translateZ(0);
     backface-visibility: hidden;
     border-radius: 5px;
-    white-space: nowrap;
+    white-space: normal;
     cursor: pointer;
 
     .product-img {
@@ -69,12 +68,18 @@
 
     .product-title {
       @include font(20px, #1c1c1c);
+      width: 200px;
       font-weight: 600;
       text-decoration: none;
     }
 
     .product-price {
       @include font(16px, #333333);
+    }
+
+    .product-score {
+      @include font(16px, #999999);
+      width: 200px;
     }
 
     .to-cart {

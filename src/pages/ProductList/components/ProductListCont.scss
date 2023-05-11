@@ -47,6 +47,12 @@
         @include font(16px, #333333);
       }
 
+      .product-score {
+        .product-score {
+          @include font(16px, #999999);
+          width: 200px;
+        }
+      }
       .product-subtitle {
         @include font(15px, #999999);
         white-space: normal;
