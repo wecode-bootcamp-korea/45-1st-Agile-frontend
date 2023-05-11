@@ -8,11 +8,10 @@ const Cart = () => {
   const navigate = useNavigate();
   const [productList, setProductList] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNzcyODU0fQ.qfyufQ0x5-KVbspoy2Vv6zuUB9bJlCJ8fcaxj9cwLfk';
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://10.58.52.196:3000/carts', {
+    fetch('http://10.58.52.241:3000/carts', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -21,6 +20,7 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         setProductList(data.data);
         setSelectedProducts(data.data.map(product => product.cartId));
       });
