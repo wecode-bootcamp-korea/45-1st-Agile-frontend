@@ -1,0 +1,29 @@
+@import '../../../styles/variables';
+.left-side {
+  width: 578px;
+  .check-box-controller {
+    display: flex;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    .text-left {
+      @include flex-sort(space-between, center);
+      gap: 30px;
+      .select-all {
+        margin-left: 10px;
+      }
+    }
+  }
+  .normal-delivery {
+    @include flex-sort(flex-start, center);
+    height: 63px;
+    border-bottom: 1px solid black;
+  }
+
+  .amount {
+    @include flex-sort(flex-end, center);
+    width: 578px;
+    height: 64px;
+    padding-right: 28px;
+    background-color: #f1f1f1;
+  }
+}

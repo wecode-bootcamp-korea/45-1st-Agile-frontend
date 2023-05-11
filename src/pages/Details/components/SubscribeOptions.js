@@ -8,17 +8,27 @@ const SELECT_LIST = [
   '3개월',
 ];
 
-const SubscribeOptions = ({ isOptionSelected, setIsOptionSelected }) => {
-  const [selected, setSelected] = useState('');
-
+const SubscribeOptions = ({
+  isOptionSelected,
+  setIsOptionSelected,
+  selected,
+  setSelected,
+  setDeliveryCycle,
+}) => {
   const handleOptionClick = () => {
     setIsOptionSelected(isOptionSelected ? false : true);
   };
 
   const handleCycleClick = e => {
-    e.target.selectedIndex === 0
-      ? setSelected('')
-      : setSelected(e.target.value);
+    e.target.selectedIndex === 0 && setSelected('');
+    if (e.target.value === '1주일') {
+      setDeliveryCycle('ONEWEEK');
+    } else if (e.target.value === '1개월') {
+      setDeliveryCycle('ONEMONTH');
+    } else {
+      setDeliveryCycle('THREEMONTHS');
+    }
+    setSelected(e.target.value);
     handleOptionClick();
   };
 
