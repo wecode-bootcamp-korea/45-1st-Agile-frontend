@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Button from './Button';
 import ProductInformation from './ProductInformation';
@@ -10,6 +10,7 @@ import SubscribeOptions from './SubscribeOptions';
 import CartModal from './CartModal';
 import CartRecheckModal from './CartRecheckModal';
 import './Contents.scss';
+
 const Contents = ({
   productDetail,
   setProductsInCart,
@@ -34,6 +35,7 @@ const Contents = ({
   const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
   const [selected, setSelected] = useState('');
+  const [deliveryCycle, setDeliveryCycle] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const bookId = parseInt(id);
@@ -63,6 +65,7 @@ const Contents = ({
     return total + Number(element.price) * Number(element.amount);
   }, 0);
   const addToCart = async () => {
+    console.log(deliveryCycle);
     try {
       const res = await fetch('http://10.58.52.241:3000/carts', {
         method: 'POST',
@@ -74,7 +77,7 @@ const Contents = ({
           bookId: bookId,
           amount: count,
           isSubscribe: isSubscribe,
-          option: selected.toUpperCase(),
+          subscribeCycle: deliveryCycle,
         }),
       });
       if (res.status >= 400 && res.status < 600) {
@@ -101,7 +104,6 @@ const Contents = ({
   };
   const handleCartClick = async () => {
     try {
-      console.log(isOptionSelected);
       if (!isOptionSelected) {
         throw new Error('옵션을 선택해주세요.');
       }
@@ -188,6 +190,7 @@ const Contents = ({
               setIsOptionSelected={setIsOptionSelected}
               selected={selected}
               setSelected={setSelected}
+              setDeliveryCycle={setDeliveryCycle}
             />
           )}
           <div className="price-info">
