@@ -48,8 +48,6 @@ const Login = () => {
     }
   };
 
-  console.log(location);
-
   const goToSignup = () => {
     navigate('/signup');
   };

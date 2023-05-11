@@ -67,7 +67,9 @@ const SignUp = () => {
       }
     });
 
-    if (allCondtionMet) {
+    const checkTerm = checkId.includes(1) && checkId.includes(2);
+
+    if (allCondtionMet && checkTerm) {
       fetch('http://10.58.52.196:3000/users/signUp', {
         method: 'POST',
         headers: {
@@ -87,6 +89,8 @@ const SignUp = () => {
       });
       alert('회원가입이 완료되었습니다!');
       navigate('/login', { state: { from: 'signup' } });
+    } else {
+      alert('필수 사항을 선택해주세요!');
     }
   };
 
