@@ -33,6 +33,7 @@ const Contents = ({
   const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
   const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
+  const [selected, setSelected] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const bookId = parseInt(id);
@@ -46,6 +47,7 @@ const Contents = ({
       mode: false,
     },
   ];
+
   const totalPrice = price * count;
   const openCartModal = () => {
     setModalOpen(true);
@@ -65,6 +67,7 @@ const Contents = ({
           bookId: bookId,
           amount: count,
           isSubscribe: isSubscribe,
+          option: selected,
         }),
       });
       if (res.status >= 400 && res.status < 600) {
@@ -176,6 +179,8 @@ const Contents = ({
             <SubscribeOptions
               isOptionSelected={isOptionSelected}
               setIsOptionSelected={setIsOptionSelected}
+              selected={selected}
+              setSelected={setSelected}
             />
           )}
           <div className="price-info">

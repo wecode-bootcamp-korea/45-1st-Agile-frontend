@@ -8,9 +8,12 @@ const SELECT_LIST = [
   '3개월',
 ];
 
-const SubscribeOptions = ({ isOptionSelected, setIsOptionSelected }) => {
-  const [selected, setSelected] = useState('');
-
+const SubscribeOptions = ({
+  isOptionSelected,
+  setIsOptionSelected,
+  selected,
+  setSelected,
+}) => {
   const handleOptionClick = () => {
     setIsOptionSelected(isOptionSelected ? false : true);
   };
