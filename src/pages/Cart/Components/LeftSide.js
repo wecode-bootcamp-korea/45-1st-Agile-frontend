@@ -36,6 +36,7 @@ const LeftSide = ({
   //PATCH 메서드로 상품 수량 변경 요청 보내기
   useEffect(() => {
     if (cartId) {
+      console.log(productList);
       const value = productList.find(
         product => product.cartId === cartId
       ).amount;
@@ -60,7 +61,6 @@ const LeftSide = ({
             .then(res => res.json())
             .then(data => {
               console.log('Updated data:', data);
-              // 여기서 data를 사용하여 필요한 처리 수행
             })
             .catch(error => console.error(error));
         })
@@ -90,6 +90,11 @@ const LeftSide = ({
   };
 
   const handleDeleteItem = key => {
+    setCartId(null);
+    setProductList(productList.filter(product => product.cartId !== key));
+    setSelectedProducts(
+      selectedProducts.filter(selectedKey => selectedKey !== key)
+    );
     // DELETE 메서드로 상품 삭제 요청 보내기
     fetch(`http://10.58.52.196:3000/carts?cartId=${key}`, {
       method: 'DELETE',
@@ -98,13 +103,21 @@ const LeftSide = ({
       },
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => {
+        fetch(`http://10.58.52.196:3000/carts?cartId=${cartId}`, {
+          method: 'GET',
+          headers: {
+            Authorization: token,
+          },
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log('Updated data:', data);
+            setProductList(data.data);
+          })
+          .catch(error => console.error(error));
+      })
       .catch(error => console.error(error));
-    // 선택한 상품 제거하기
-    setProductList(productList.filter(product => product.cartId !== key));
-    setSelectedProducts(
-      selectedProducts.filter(selectedKey => selectedKey !== key)
-    );
   };
 
   const handleCheckboxChange = (key, isChecked) => {
