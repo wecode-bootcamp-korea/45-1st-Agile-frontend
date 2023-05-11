@@ -72,6 +72,7 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
     <div className="product-list-cont">
       <div className="sort-option-container">
         <select
+          className="sortingButton"
           value={selectedSortOption}
           onChange={event => {
             handleSortOptionChange(event.target.value);
@@ -87,7 +88,11 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
 
       <div className="product-list">
         {visibleProducts.map((product, index) => (
-          <Link key={product.id} to={`/books/${product.id}`}>
+          <Link
+            key={product.id}
+            to={`/books/${product.id}`}
+            style={{ textDecoration: 'none' }}
+          >
             <div className="product-item">
               <img
                 className="product-img"

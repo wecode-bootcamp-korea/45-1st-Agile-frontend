@@ -56,9 +56,9 @@ const NavMain = () => {
           </div>
           <div className="nav-main-right">
             <input className="search-bar" type="text" />
-
-            <button className="to-wishlist" />
-
+            <Link to="/mypage">
+              <button className="to-wishlist" />
+            </Link>
             <Link to="/cart">
               <button className="to-cart" />
             </Link>

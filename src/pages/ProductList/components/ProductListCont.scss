@@ -1,6 +1,11 @@
 @import '../../../styles/variables';
 
 .product-list-cont {
+  .sort-option-container {
+    .sortingButton {
+      border: 1px solid #dddedd;
+    }
+  }
   .product-list {
     @include flex-sort(flex-start, center);
     flex-wrap: wrap;
@@ -45,11 +50,10 @@
       }
 
       .product-score {
-        .product-score {
-          @include font(16px, #999999);
-          width: 200px;
-        }
+        @include font(16px, #999999);
+        width: 200px;
       }
+
       .product-subtitle {
         @include font(15px, #999999);
         white-space: normal;
