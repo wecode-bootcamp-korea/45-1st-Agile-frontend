@@ -9,6 +9,8 @@ import PaymentInfo from './components/PaymentInfo'; //결제정보
 import './Payment.scss';
 
 const flag = false;
+const cartIds = [];
+const mode = false;
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -24,7 +26,6 @@ const Payment = () => {
     setInfo({ ...info, [name]: value });
   };
 
-  const cartIds = [51, 50];
   // const { productsInfo } = location.state;
 
   //고객정보 불러오기
@@ -38,8 +39,10 @@ const Payment = () => {
     })
       .then(res => res.json())
       .then(data => {
+        console.log(data);
         const user = data.user;
         setUserInfo(user);
+        console.log(user);
         setInfo({
           name: user.name,
           phoneNumber: user.phoneNumber,
@@ -62,73 +65,95 @@ const Payment = () => {
     }
 
     // 상세 -> 결제
-    // if (!productsInfo.mode)
-    fetch('http://10.58.52.196:3000/orders/direct', {
-      method: 'POST',
-      headers: {
-        Authorization: localStorage.getItem('token'),
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
-        address: info.receiver_address,
-        subscribeDeliveryTime: info.subscribeStart,
-        bookId: orderInfo[0].bookId,
-        quantity: orderInfo[0].quantity,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        flag = true;
-      });
+    if (!mode) {
+      fetch('http://10.58.52.196:3000/orders/direct', {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          address: info.receiver_address,
+          subscribeDeliveryTime: info.subscribeStart,
+          bookId: orderInfo[0].bookId,
+          quantity: orderInfo[0].quantity,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          const { message, data } = res;
+          console.log('finish');
+          console.log(data);
+          // flag = true;
+
+          navigate('/orderCompleted', {
+            state: {
+              orderNumber: data.orderNumber,
+              price: point.usePoint,
+            },
+          });
+        });
+    }
 
     ////////////////////////////////////////////////////////////////////////
 
     // 장바구니 -> 결제
-    // else
-    fetch('http://10.58.52.196:3000/orders', {
-      method: 'POST',
+    else {
+      fetch('http://10.58.52.196:3000/orders', {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          address: info.receiver_address,
+          subscribeDeliveryTime: info.subscribeStart,
+          cartIds: cartIds,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          const { message, data } = res;
+
+          console.log('finish');
+          console.log(data);
+          // flag = true;
+
+          navigate('/orderCompleted', {
+            state: {
+              orderNumber: data.orderNumber,
+              price: point.usePoint,
+            },
+          });
+        });
+    }
+
+    // if (flag) {
+    // navigate('/orderCompleted', {
+    //   state: {
+    //     orderNumber: '123',
+    //     price: point.usePoint,
+    //   },
+    // });
+    // }
+  };
+
+  //실험용 GET
+  useEffect(() => {
+    fetch('/data/orderItemsData.json', {
+      method: 'GET',
       headers: {
         Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify({
-        address: info.receiver_address,
-        subscribeDeliveryTime: info.subscribeStart,
-        cartIds: cartIds,
-      }),
     })
       .then(res => res.json())
       .then(data => {
         console.log(data);
-        flag = true;
+        setOrderInfo(data);
+        data.forEach(ele => cartIds.push(ele.cartId));
       });
-
-    // if (flag) {
-    navigate('/orderCompleted', {
-      state: {
-        orderNumber: '123',
-        price: point.usePoint,
-      },
-    });
-    // }
-  };
-
-  // //실험용 GET
-  // useEffect(() => {
-  //   fetch('/data/orderItemsData.json', {
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization: localStorage.getItem('token'),
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       setOrderInfo(data);
-  //     });
-  // }, []);
+  }, []);
 
   // point 설정하기
   if (orderInfo === []) return null;
