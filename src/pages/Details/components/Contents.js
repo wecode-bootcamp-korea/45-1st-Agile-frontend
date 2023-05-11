@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import ProductInformation from './ProductInformation';
 import WishlistButton from './WishlistButton';
@@ -10,6 +10,7 @@ import SubscribeOptions from './SubscribeOptions';
 import CartModal from './CartModal';
 import CartRecheckModal from './CartRecheckModal';
 import './Contents.scss';
+
 const Contents = ({
   productDetail,
   setProductsInCart,
@@ -18,6 +19,7 @@ const Contents = ({
   token,
 }) => {
   const {
+    quantity,
     title,
     subtitle,
     price,
@@ -33,19 +35,29 @@ const Contents = ({
   const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
   const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
+  const [selected, setSelected] = useState('');
+  const [deliveryCycle, setDeliveryCycle] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
+
   const bookId = parseInt(id);
+
+  const mode = selected.length !== 0 ? true : false;
+
   const productsInfo = [
     {
-      bookId: bookId,
-      title: title,
-      price: price,
-      isSubscribe: isSubscribe,
-      quauntity: count,
-      mode: false,
+      mode: mode,
+      data: [
+        {
+          bookId: bookId,
+          title: title,
+          price: price,
+          isSubscribe: isSubscribe,
+          quauntity: count,
+        },
+      ],
     },
   ];
+
   const totalPrice = price * count;
   const openCartModal = () => {
     setModalOpen(true);
@@ -54,6 +66,7 @@ const Contents = ({
     return total + Number(element.price) * Number(element.amount);
   }, 0);
   const addToCart = async () => {
+    console.log(deliveryCycle);
     try {
       const res = await fetch('http://10.58.52.241:3000/carts', {
         method: 'POST',
@@ -65,6 +78,7 @@ const Contents = ({
           bookId: bookId,
           amount: count,
           isSubscribe: isSubscribe,
+          subscribeCycle: deliveryCycle,
         }),
       });
       if (res.status >= 400 && res.status < 600) {
@@ -91,7 +105,6 @@ const Contents = ({
   };
   const handleCartClick = async () => {
     try {
-      console.log(isOptionSelected);
       if (!isOptionSelected) {
         throw new Error('옵션을 선택해주세요.');
       }
@@ -100,7 +113,7 @@ const Contents = ({
         await openCartModal();
         await fetchCartData();
       } else {
-        navigate('/login', { state: { from: location.pathname } });
+        navigate('/login');
       }
     } catch (e) {
       console.log(e);
@@ -124,6 +137,7 @@ const Contents = ({
       navigate('/login');
     }
   };
+
   const handleProductsInCarts = async () => {
     try {
       const res = await fetch('http://10.58.52.241:3000/carts/add', {
@@ -176,6 +190,9 @@ const Contents = ({
             <SubscribeOptions
               isOptionSelected={isOptionSelected}
               setIsOptionSelected={setIsOptionSelected}
+              selected={selected}
+              setSelected={setSelected}
+              setDeliveryCycle={setDeliveryCycle}
             />
           )}
           <div className="price-info">
@@ -197,9 +214,13 @@ const Contents = ({
                   handleProductsInCarts={handleProductsInCarts}
                 />
               )}
-              <Button color="black" onClick={handlePaymentClick}>
-                구매하기
-              </Button>
+              {quantity > 0 ? (
+                <Button color="black" onClick={handlePaymentClick}>
+                  구매하기
+                </Button>
+              ) : (
+                <Button color="gray">품절</Button>
+              )}
             </div>
           </div>
         </div>

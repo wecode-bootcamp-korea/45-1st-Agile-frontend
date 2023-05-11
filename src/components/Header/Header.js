@@ -2,25 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.scss';
 
-function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
-  }, [location.pathname, setIsLoggedIn]);
-
-  const handleButtonClick = () => {
-    if (isLoggedIn) {
-      localStorage.removeItem('token');
-      setIsLoggedIn(false);
-    } else {
-      navigate('/login');
-    }
-  };
-
+function Header({ isLoggedIn, handleButtonClick }) {
   return (
     <header className="header">
       <Link to={isLoggedIn ? '/mypage' : '/signup'}>

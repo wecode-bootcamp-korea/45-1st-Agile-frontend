@@ -16,7 +16,6 @@ import UserInfoUpdate from './pages/Mypage/components/UserInfoUpdate';
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
