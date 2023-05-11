@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Login.scss';
+import MainLayout from '../Details/Mainlayout';
+import TitleLine from '../../components/TitleLine/TitleLine';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ const Login = () => {
           if (response.ok) {
             return response.json();
           } else {
-            throw new Error('가입된 정보가 없습니다!');
+            throw new Error('아이디와 비밀번호를 다시 확인해주세요!');
           }
         })
         .then(result => {
@@ -60,55 +62,51 @@ const Login = () => {
   };
 
   return (
-    <div className="loginform">
-      <div className="id-logo">
-        <div className="id-logo-image">
-          <Link to="/">
-            <img className="logo" alt="logo" src="/images/main/logo.png" />
-          </Link>
-        </div>
-      </div>
-      <p className="start">
-        <strong>로그인 및 회원가입</strong>
-        <p className="start-words">을 시작합니다.</p>
-      </p>
-      <form>
-        <div className="inputwrap">
-          <input
-            className="login"
-            type="text"
-            name="email"
-            placeholder="이메일을 입력해주세요"
-            onChange={handleInput}
-          />
-          <input
-            className="password"
-            type="password"
-            name="password"
-            placeholder="비밀번호를 입력해주세요"
-            onChange={handleInput}
-          />
-          <div className="id-check">
-            <input type="checkbox" id="id-check" name="id-check" />
-            <label htmlFor="id-check">아이디 저장</label>
+    <MainLayout>
+      <TitleLine />
+      <div className="loginform">
+        <p className="start">
+          <strong>로그인 및 회원가입</strong>
+          <p className="start-words">을 시작합니다.</p>
+        </p>
+        <form>
+          <div className="inputwrap">
+            <input
+              className="login"
+              type="text"
+              name="email"
+              placeholder="이메일을 입력해주세요"
+              onChange={handleInput}
+            />
+            <input
+              className="password"
+              type="password"
+              name="password"
+              placeholder="비밀번호를 입력해주세요"
+              onChange={handleInput}
+            />
+            <div className="id-check">
+              <input type="checkbox" id="id-check" name="id-check" />
+              <label htmlFor="id-check">아이디 저장</label>
+            </div>
+          </div>
+          <button className="loginbtn" type="submit" onClick={goToMain}>
+            로그인
+          </button>
+          <button className="registerbtn" type="button" onClick={goToSignup}>
+            회원가입
+          </button>
+        </form>
+        <div className="forget">
+          <div className="findemail">
+            <Link to="/forgetemail">이메일 찾기</Link>
+          </div>
+          <div className="findpassword">
+            <Link to="/forgetpassword">비밀번호 찾기</Link>
           </div>
         </div>
-        <button className="loginbtn" type="submit" onClick={goToMain}>
-          로그인
-        </button>
-        <button className="registerbtn" type="button" onClick={goToSignup}>
-          회원가입
-        </button>
-      </form>
-      <div className="forget">
-        <div className="findemail">
-          <Link to="/forgetemail">이메일 찾기</Link>
-        </div>
-        <div className="findpassword">
-          <Link to="/forgetpassword">비밀번호 찾기</Link>
-        </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

@@ -8,11 +8,6 @@
   margin: 60px 170px 90px 340px;
   border-style: hidden;
 
-  .logo {
-    height: 80px;
-    margin: -150px 0px 0px -400px;
-  }
-
   .start {
     @include font(16px, black);
     margin-top: 25px;

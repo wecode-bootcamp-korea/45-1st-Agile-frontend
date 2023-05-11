@@ -95,7 +95,7 @@ const LeftSide = ({
       selectedProducts.filter(selectedKey => selectedKey !== key)
     );
     // DELETE 메서드로 상품 삭제 요청 보내기
-    fetch(`http://10.58.52.196:3000/carts?cartId=${key}`, {
+    fetch(`http://10.58.52.241:3000/carts?cartId=${key}`, {
       method: 'DELETE',
       headers: {
         Authorization: token,
@@ -103,7 +103,7 @@ const LeftSide = ({
     })
       .then(res => res.json())
       .then(data => {
-        fetch(`http://10.58.52.196:3000/carts?cartId=${cartId}`, {
+        fetch(`http://10.58.52.241:3000/carts?cartId=${cartId}`, {
           method: 'GET',
           headers: {
             Authorization: token,
@@ -132,9 +132,6 @@ const LeftSide = ({
       );
     }
   };
-
-  console.log(productList.isSubscribe);
-
   return (
     <div className="left-side">
       <div className="check-box-controller">
