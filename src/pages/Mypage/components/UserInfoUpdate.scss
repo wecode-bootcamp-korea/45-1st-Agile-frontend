@@ -51,8 +51,9 @@
         color: white;
 
         &.updatePwd {
+          background-color: rgb(221, 221, 221);
           &.valid {
-            background-color: red;
+            background-color: black;
           }
         }
       }

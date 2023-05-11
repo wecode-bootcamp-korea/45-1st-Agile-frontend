@@ -1,42 +1,26 @@
 import React from 'react';
 import './LikesProduct.scss';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
-
 const LikesProduct = ({
   data,
   checkItems,
-  setCheckItems,
   handleSingleCheck,
+  likesDeleteFetch,
 }) => {
-  const handleLikesDelete = () => {
-    console.log('dd');
-    fetch('http://10.58.52.230:3000/users/', {
-      method: 'DELETE',
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify(),
-    })
-      .then(res => res.json())
-      .then(data => {});
-  };
-
+  //장바구니추가(버튼)
   const handleLikesAddCart = () => {
-    console.log('fgg');
-
-    fetch('http://10.58.52.230:3000/users/', {
+    fetch('http://10.58.52.196:3000/carts', {
       method: 'POST',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(),
-    })
-      .then(res => res.json())
-      .then(data => {});
+      body: JSON.stringify({
+        bookId: data.bookId,
+        amount: 1,
+        isSubscribe: data.isSubscribe,
+      }),
+    });
   };
 
   return (
@@ -50,14 +34,17 @@ const LikesProduct = ({
         />
         <img alt="관심제품" src={data.thumbnail} width="90" />
         <div className="product-info">
-          <div className="product-name">{data.title}</div>
+          <div className="product-name">
+            {data.isSubscribe === 1 && <span>[구독]</span>}
+            {data.title}
+          </div>
           <div className="product-price">
             {parseInt(data.price).toLocaleString()}원
           </div>
         </div>
       </div>
       <div className="likes-right">
-        <button onClick={handleLikesDelete}>삭제</button>
+        <button onClick={() => likesDeleteFetch(data.id)}>삭제</button>
         <button className="cart" onClick={handleLikesAddCart}>
           장바구니
         </button>

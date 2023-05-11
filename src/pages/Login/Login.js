@@ -83,7 +83,7 @@ const Login = () => {
         <button className="loginbtn" type="submit" onClick={goToMain}>
           로그인
         </button>
-        <button className="signupbtn" type="button" onClick={goToSignup}>
+        <button className="registerbtn" type="button" onClick={goToSignup}>
           회원가입
         </button>
       </form>

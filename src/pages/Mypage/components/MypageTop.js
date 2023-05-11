@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import './MypageTop.scss';
 
-const MypageTop = ({ userInfo, modal, setModal }) => {
-  const navigate = useNavigate();
-
+const MypageTop = ({ userInfo, setModal }) => {
   const handleOnclick = () => {
     setModal(true);
   };

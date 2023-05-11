@@ -2,29 +2,31 @@ import React, { useEffect, useState } from 'react';
 import MypageTop from './components/MypageTop';
 import MenuBar from './components/MenuBar';
 import OrderDelivery from './components/OrderDelivery';
+import OrderStatus from './components/OrderStatus';
 import Subscribes from './components/Subscribes';
 import Likes from './components/Likes';
 import ConfirmPassword from './components/ConfirmPassword';
 import './Mypage.scss';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgzNjM4NDA0fQ.9AnFo7VZuBaLGv9jSTIq3XFd5PBZOKQpUchEfWzAT80';
-
 const Mypage = () => {
-  const [modal, setModal] = useState(false);
-  const [menuMode, setMenuMode] = useState(1);
-  const [userInfo, setUserInfo] = useState({});
+  const [modal, setModal] = useState(false); //정보수정 비밀번호 확인 모달창
+  const [menuMode, setMenuMode] = useState(0); //메뉴바 바꾸기
+  const [userInfo, setUserInfo] = useState({}); //사용자 정보
+  const [orderStatus, setOrderStatus] = useState({}); // 주문배송 현황
+  const [dataStatus, setDataStatus] = useState([]); // 주문배송물품 현황
   const menuList = {
-    1: <OrderDelivery />,
-    2: <Subscribes />,
-    3: <Likes />,
+    0: <OrderDelivery setMenuMode={setMenuMode} orderStatus={orderStatus} />, //주문배송 현황
+    1: <OrderStatus dataStatus={dataStatus} />, //주문배송 조회
+    2: <Subscribes />, //정기구독 관리
+    3: <Likes />, //관심 상품
   };
 
+  //고객정보 불러오기
   useEffect(() => {
     fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
         'Content-Type': 'application/json;charset=utf-8',
       },
     })
@@ -39,11 +41,29 @@ const Mypage = () => {
       });
   }, []);
 
+  // 주문배송현황 불러오기
+  useEffect(() => {
+    fetch('http://10.58.52.241:3000/orders', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      .then(res => {
+        const { orderStatus, data } = res;
+        setOrderStatus(orderStatus);
+        setDataStatus(data);
+        console.log(res);
+      });
+  }, []);
+
   return (
     <div className="mypage">
       {modal && <div className="background" />}
       {modal && <ConfirmPassword />}
-      <MypageTop userInfo={userInfo} modal={modal} setModal={setModal} />
+      <MypageTop userInfo={userInfo} setModal={setModal} />
       <div className="mypage-main">
         <div className="main-left">
           <div className="text-2xl">마이페이지</div>
