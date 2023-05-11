@@ -29,7 +29,7 @@ const Login = () => {
       alert('비밀번호를 입력해주세요!');
       return false;
     } else {
-      fetch('http://10.58.52.196:3000/users/login', {
+      fetch('http://10.58.52.241:3000/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -37,13 +37,20 @@ const Login = () => {
         body: JSON.stringify(userInfo),
       })
         .then(response => {
-          return response.json();
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('가입된 정보가 없습니다!');
+          }
         })
         .then(result => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
-            location.state.from === 'signup' ? navigate('/') : navigate(-1);
+            location.state === '' ? navigate('/') : navigate(-1);
           }
+        })
+        .catch(error => {
+          alert(error.message);
         });
     }
   };

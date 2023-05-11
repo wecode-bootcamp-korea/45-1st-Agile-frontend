@@ -70,7 +70,7 @@ const SignUp = () => {
     const checkTerm = checkId.includes(1) && checkId.includes(2);
 
     if (allCondtionMet && checkTerm) {
-      fetch('http://10.58.52.196:3000/users/signUp', {
+      fetch('http://10.58.52.241:3000/users/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
