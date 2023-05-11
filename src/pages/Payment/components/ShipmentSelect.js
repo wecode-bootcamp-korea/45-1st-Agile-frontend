@@ -5,6 +5,7 @@ const ShipmentSelect = ({ switchRadio, setRadio, radio }) => {
   const handleRadio = () => {
     setRadio(!radio);
     switchRadio();
+    console.log('radio', radio);
   };
 
   return (

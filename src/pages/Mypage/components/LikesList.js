@@ -38,6 +38,8 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
       checkItems.forEach(ele => (query += 'likeId=' + ele + '&'));
       query = query.slice(0, -1);
     }
+    console.log(id);
+    console.log(query);
 
     fetch(`http://10.58.52.241:3000/likes?${query}`, {
       method: 'DELETE',

@@ -21,7 +21,9 @@ const MypageTop = ({ userInfo, setModal }) => {
         <div className="top-right">
           <div className="point">
             <div className="text-lg">포인트</div>
-            <div className="text-xl">{parseInt(userInfo.point)}원</div>
+            <div className="text-xl">
+              {parseInt(userInfo.point)?.toLocaleString()}원
+            </div>
           </div>
           <div className="phone-number">
             <div>{userInfo.phoneNumber}</div>

@@ -9,6 +9,9 @@ import PaymentInfo from './components/PaymentInfo'; //결제정보
 import InvalidAccess from './InvalidAccess';
 import './Payment.scss';
 
+const cartIds = [];
+const mode = false;
+
 const Payment = () => {
   console.log('>>>>>', subDate());
   const navigate = useNavigate();
@@ -16,19 +19,46 @@ const Payment = () => {
 
   const [userInfo, setUserInfo] = useState({});
   const [orderInfo, setOrderInfo] = useState([]);
-  const [orderMode, setOrderMode] = useState({});
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
   const [checkItems, setCheckItems] = useState([]);
 
-  const token = localStorage.getItem('token');
   const handleInfo = e => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
 
+  //고객정보 불러오기
+  useEffect(() => {
+    fetch('http://10.58.52.241:3000/users', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        const user = data.user;
+        setUserInfo(user);
+        console.log(user);
+        setInfo({
+          name: user.name,
+          phoneNumber: user.phoneNumber,
+          email: user.email,
+          address: user.address,
+          receiver_name: user.name,
+          receiver_phoneNumber: user.phoneNumber,
+          receiver_address: user.address,
+          subscribeStart: subDate(),
+        });
+      });
+
+    // setOrderInfo(productsInfo); //주문제품정보 설정
+  }, []);
+
   const { productsInfo } = location.state;
-  console.log('productsInfo', productsInfo);
 
   //라디오변경으로 고객정보 변경
   const switchRadio = () => {
@@ -55,8 +85,8 @@ const Payment = () => {
     }
 
     // 상세 -> 결제
-    if (!orderMode.mode) {
-      fetch('http://10.58.52.241:3000/orders/direct', {
+    if (!mode) {
+      fetch('http://10.58.52.196:3000/orders/direct', {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -88,7 +118,7 @@ const Payment = () => {
 
     // 장바구니 -> 결제
     else {
-      fetch('http://10.58.52.241:3000/orders', {
+      fetch('http://10.58.52.196:3000/orders', {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -97,7 +127,7 @@ const Payment = () => {
         body: JSON.stringify({
           address: info.receiver_address,
           subscribeDeliveryTime: info.subscribeStart,
-          cartIds: orderMode.cartIds,
+          cartIds: cartIds,
         }),
       })
         .then(res => res.json())
@@ -105,7 +135,7 @@ const Payment = () => {
           const { message, data } = res;
 
           console.log('finish');
-          console.log(res);
+          console.log(data);
 
           navigate('/orderCompleted', {
             state: {
@@ -118,7 +148,7 @@ const Payment = () => {
   };
 
   // point 설정하기
-  // if (orderInfo === []) return null;
+  if (orderInfo === []) return null;
 
   let totalPrice = 0;
   orderInfo?.forEach(ele => {
@@ -138,43 +168,26 @@ const Payment = () => {
     shipmentFee: parseInt(fee),
   };
 
-  //고객정보 불러오기
-  useEffect(() => {
-    fetch('http://10.58.52.241:3000/users', {
-      method: 'GET',
-      headers: {
-        Authorization: localStorage.getItem('token'),
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        const user = data.user;
-        setUserInfo(user);
-        console.log(user);
-        setInfo({
-          name: user.name,
-          phoneNumber: user.phoneNumber,
-          email: user.email,
-          address: user.address,
-          receiver_name: user.name,
-          receiver_phoneNumber: user.phoneNumber,
-          receiver_address: user.address,
-          subscribeStart: subDate(),
-        });
-      });
-
-    // const { mode, data, cartIds } = productsInfo;
-    // setOrderInfo(data);
-    // orderMode[mode] = mode;
-    // orderMode[cartIds] = cartIds;
-
-    // setOrderInfo(productsInfo); //주문제품정보 설정
-  }, []);
+  // //실험용 GET
+  // useEffect(() => {
+  //   fetch('/data/orderItemsData.json', {
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: localStorage.getItem('token'),
+  //       'Content-Type': 'application/json;charset=utf-8',
+  //     },
+  //   })
+  //     .then(res => res.json())
+  //     // .catch(e => navigate('/invalidAccess'))
+  //     .then(data => {
+  //       console.log(data);
+  //       setOrderInfo(data);
+  //       data.forEach(ele => cartIds.push(ele.cartId));
+  //     });
+  // }, []);
 
   //token 없을때 예외처리
-
+  if (!localStorage.getItem('token')) return <InvalidAccess />;
   return (
     <div className="payment">
       <div className="order-sheet">
