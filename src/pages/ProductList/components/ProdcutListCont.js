@@ -21,7 +21,9 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
     priceAsc: '낮은 가격순',
     priceDesc: '높은 가격순',
   };
-
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -92,6 +94,7 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
             key={product.id}
             to={`/books/${product.id}`}
             style={{ textDecoration: 'none' }}
+            onClick={handleLinkClick}
           >
             <div className="product-item">
               <img
