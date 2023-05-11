@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Agreement.scss';
 
-const Agreement = () => {
-  const [checkItems, setCheckItems] = useState([]);
+const Agreement = ({ checkItems, setCheckItems }) => {
+  const IsAllAgree = AGREE_INFO.length === checkItems?.length;
 
   //전체체크
   const handleAllCheck = checked => {
@@ -26,10 +26,10 @@ const Agreement = () => {
 
   return (
     <div className="agreement">
-      <div className="agree-all">
+      <div className="agree-all-article">
         <input
           type="checkbox"
-          checked={AGREE_INFO.length === checkItems.length}
+          checked={IsAllAgree}
           onChange={e => handleAllCheck(e.target.checked)}
         />
         <div className="all-article">모든 약관 동의</div>

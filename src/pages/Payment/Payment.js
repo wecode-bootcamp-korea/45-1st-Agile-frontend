@@ -6,14 +6,14 @@ import Shipment from './components/Shipment'; //배송 정보
 import Subscribe from './components/Subscribe'; //정기배송 시작일
 import PaymentMethod from './components/PaymentMethod'; //결제수단
 import PaymentInfo from './components/PaymentInfo'; //결제정보
-import './Payment.scss';
 import InvalidAccess from './InvalidAccess';
+import './Payment.scss';
 
-const flag = false;
 const cartIds = [];
 const mode = false;
 
 const Payment = () => {
+  console.log('>>>>>', subDate());
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -21,6 +21,7 @@ const Payment = () => {
   const [orderInfo, setOrderInfo] = useState([]);
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
+  const [checkItems, setCheckItems] = useState([]);
 
   const handleInfo = e => {
     const { name, value } = e.target;
@@ -29,36 +30,24 @@ const Payment = () => {
 
   // const { productsInfo } = location.state;
 
-  //고객정보 불러오기
-  useEffect(() => {
-    fetch('http://10.58.52.196:3000/users', {
-      method: 'GET',
-      headers: {
-        Authorization: localStorage.getItem('token'),
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        const user = data.user;
-        setUserInfo(user);
-        console.log(user);
-        setInfo({
-          name: user.name,
-          phoneNumber: user.phoneNumber,
-          email: user.email,
-          address: user.address,
-          receiver_name: user.name,
-          receiver_phoneNumber: user.phoneNumber,
-          receiver_address: user.address,
-          subscribeStart: subDate(),
-        });
-      });
-    // setOrderInfo(productsInfo); //주문제품정보 설정
-  }, []);
+  //라디오변경으로 고객정보 변경
+  const switchRadio = () => {
+    for (let key in info) {
+      if (key.includes('receiver')) {
+        if (radio) {
+          info[key] = '';
+        } else {
+          info[key] = userInfo[key.slice(9)];
+        }
+      }
+    }
+  };
 
   const handlePayButton = () => {
+    if (checkItems < 2) {
+      alert('모든 약관에 동의해주세요.');
+      return;
+    }
     if (point.remainPoint < 0) {
       alert('포인트가 부족합니다.');
       navigate('/invalidAccess');
@@ -128,26 +117,8 @@ const Payment = () => {
     }
   };
 
-  //실험용 GET
-  useEffect(() => {
-    fetch('/data/orderItemsData.json', {
-      method: 'GET',
-      headers: {
-        Authorization: localStorage.getItem('token'),
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then(res => res.json())
-      // .catch(e => navigate('/invalidAccess'))
-      .then(data => {
-        console.log(data);
-        setOrderInfo(data);
-        data.forEach(ele => cartIds.push(ele.cartId));
-      });
-  }, []);
-
   // point 설정하기
-  if (orderInfo === []) return null;
+  // if (orderInfo === []) return null;
 
   let totalPrice = 0;
   orderInfo?.forEach(ele => {
@@ -167,18 +138,54 @@ const Payment = () => {
     shipmentFee: parseInt(fee),
   };
 
-  //라디오변경으로 고객정보 변경
-  const switchRadio = () => {
-    for (let key in info) {
-      if (key.includes('receiver')) {
-        if (radio) {
-          info[key] = '';
-        } else {
-          info[key] = userInfo[key.slice(9)];
-        }
-      }
-    }
-  };
+  //고객정보 불러오기
+  useEffect(() => {
+    fetch('http://10.58.52.196:3000/users', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        const user = data.user;
+        setUserInfo(user);
+        console.log(user);
+        setInfo({
+          name: user.name,
+          phoneNumber: user.phoneNumber,
+          email: user.email,
+          address: user.address,
+          receiver_name: user.name,
+          receiver_phoneNumber: user.phoneNumber,
+          receiver_address: user.address,
+          subscribeStart: subDate(),
+        });
+      });
+    // setOrderInfo(productsInfo); //주문제품정보 설정
+  }, []);
+
+  //실험용 GET
+  useEffect(() => {
+    fetch('/data/orderItemsData.json', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      // .catch(e => navigate('/invalidAccess'))
+      .then(data => {
+        console.log(data);
+        setOrderInfo(data);
+        data.forEach(ele => cartIds.push(ele.cartId));
+      });
+  }, []);
+
+  //token 없을때 예외처리
   if (!localStorage.getItem('token')) return <InvalidAccess />;
   return (
     <div className="payment">
@@ -199,7 +206,11 @@ const Payment = () => {
         <Subscribe info={info} handleInfo={handleInfo} />
       )}
       <div className="pay-part">
-        <PaymentMethod point={point} />
+        <PaymentMethod
+          point={point}
+          checkItems={checkItems}
+          setCheckItems={setCheckItems}
+        />
         <PaymentInfo point={point} />
       </div>
       <div className="pay">
@@ -214,9 +225,10 @@ export default Payment;
 
 const subDate = () => {
   const now = new Date();
+
   const year = now.getFullYear();
   let month = now.getMonth() + 1;
-  let day = now.getDay() + 1; //next day
+  let day = now.getDate() + 1; //next day
 
   if (month < 10) {
     month = '0' + String(month);
