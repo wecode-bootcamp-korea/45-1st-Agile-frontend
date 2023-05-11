@@ -2,6 +2,7 @@
 
 .product-list-cont {
   .product-list {
+    @include flex-sort(flex-start, center);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -9,7 +10,12 @@
     width: 1018px;
     margin-top: 70px;
     gap: 10px;
-    @include flex-sort(flex-start, center);
+
+    a {
+      &:visited &:hover &:focus &:active {
+        text-decoration: none;
+      }
+    }
 
     .product-item {
       width: 330px;

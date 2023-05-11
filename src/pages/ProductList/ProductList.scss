@@ -1,6 +1,11 @@
 @import '../../styles/variables';
 
 .product-list {
+  a {
+    &:visited &:hover &:focus &:active {
+      text-decoration: none !important;
+    }
+  }
   .banner {
     width: 1010px;
     height: 193px;
