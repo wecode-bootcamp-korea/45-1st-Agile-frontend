@@ -9,6 +9,10 @@ import MainLayout from '../Details/Mainlayout';
 import './Main.scss';
 
 const Main = () => {
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <MainLayout>
       <div className="main">
@@ -22,7 +26,10 @@ const Main = () => {
           loop
         />
         <TitleCategory />
-        <Link to="http://localhost:3000/productlist?categoryId=1&subCategoryId=1&limit=9&orderBy=&offset=0">
+        <Link
+          to="http://localhost:3000/productlist?categoryId=1&subCategoryId=1&limit=9&orderBy=&offset=0"
+          onClick={handleLinkClick}
+        >
           <video
             className="small-ad"
             src="/images/main/main-ad2.mp4"
