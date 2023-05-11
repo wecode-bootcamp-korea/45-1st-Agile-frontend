@@ -53,6 +53,7 @@ const ProductListNav = ({ categoryId, subCategoryId }) => {
       <div className="sub-names">
         <Link
           to={`/productlist?categoryId=${currentCategoryId}&limit=9&orderBy=countLikes&offset=0`}
+          style={{ textDecoration: 'none' }}
         >
           <div className={!currentSubCategoryId ? 'active' : 'inactive'}>
             전체보기
@@ -62,6 +63,7 @@ const ProductListNav = ({ categoryId, subCategoryId }) => {
           <Link
             key={subCategory.sub_category_id}
             to={`/productlist?categoryId=${subCategory.category_id}&subCategoryId=${subCategory.sub_category_id}&limit=9&orderBy=countLikes&offset=0`}
+            style={{ textDecoration: 'none' }}
             className={
               subCategory.category_id === parseInt(currentCategoryId) &&
               subCategory.sub_category_id === parseInt(currentSubCategoryId)

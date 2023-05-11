@@ -28,7 +28,7 @@ const ProductList = () => {
         autoPlay
         loop
         muted
-        src={`images/productlist/productlist-${subCategoryId}.mp4`}
+        src={`images/productlist/productlist-${categoryId}${subCategoryId}.mp4`}
       />
       <ProductListNav categoryId={categoryId} subCategoryId={subCategoryId} />
       <ProductListCont categoryId={categoryId} subCategoryId={subCategoryId} />

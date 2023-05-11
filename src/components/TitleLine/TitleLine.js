@@ -27,7 +27,9 @@ const TitleLine = () => {
         </Link>
         <input className="search-bar" />
         <div className="title-right">
-          <button className="to-wishlist" />
+          <Link to="/mypage">
+            <button className="to-wishlist" />
+          </Link>
           <Link to="/cart">
             <button className="to-cart" />
           </Link>
