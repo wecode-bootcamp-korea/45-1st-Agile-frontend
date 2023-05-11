@@ -55,6 +55,13 @@ const Login = () => {
 
   return (
     <div className="loginform">
+      <div className="id-logo">
+        <div className="id-logo-image">
+          <Link to="/">
+            <img className="logo" alt="logo" src="/images/main/logo.png" />
+          </Link>
+        </div>
+      </div>
       <p className="start">
         <strong>로그인 및 회원가입</strong>
         <p className="start-words">을 시작합니다.</p>
