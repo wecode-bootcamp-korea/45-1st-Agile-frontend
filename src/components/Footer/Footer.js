@@ -1,20 +1,21 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import FooterButton from './FooterButton';
 import './Footer.scss';
 
-const Footer = () => {
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    navigate('/login');
-  };
+const Footer = ({ isLoggedIn, handleButtonClick }) => {
   const handlePayment = () => {
     navigate('/mypage');
   };
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <div className="footer">
       <div className="footer-list">
-        <FooterButton onClick={handleLogin}>로그인</FooterButton>
+        <button className="to-login" onClick={handleButtonClick}>
+          {isLoggedIn ? '로그아웃' : '로그인'}
+        </button>
         <FooterButton onClick={handlePayment}>고객센터</FooterButton>
       </div>
       <div className="footer-info text-sm">
