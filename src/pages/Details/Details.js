@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import MainLayout from './Mainlayout';
+import TitleLine from '../../components/TitleLine/TitleLine';
 import Contents from './components/Contents';
 import APIS from '../../config';
 import './Details.scss';
-import MainLayout from './Mainlayout';
 
 const Details = () => {
   const [productDetail, setProductDetail] = useState({});
   const [productsInCart, setProductsInCart] = useState([]);
+  const [isOptionSelected, setIsOptionSelected] = useState(false);
   const token = localStorage.getItem('token');
   const params = useParams();
   const id = params.id;
@@ -17,6 +19,7 @@ const Details = () => {
       .then(res => res.json())
       .then(data => {
         setProductDetail(data);
+        setIsOptionSelected(data.isSubscribe === 0 && true);
       })
       .catch(e => {
         console.error(e);
@@ -44,6 +47,7 @@ const Details = () => {
 
   return (
     <MainLayout>
+      <TitleLine />
       <div className="product-detail-page">
         <Contents
           productDetail={productDetail}
@@ -51,6 +55,8 @@ const Details = () => {
           setProductsInCart={setProductsInCart}
           productsInCart={productsInCart}
           token={token}
+          isOptionSelected={isOptionSelected}
+          setIsOptionSelected={setIsOptionSelected}
         />
       </div>
     </MainLayout>
