@@ -15,8 +15,6 @@ const OrderCompleted = () => {
     navigate('/');
   };
 
-  console.log(info);
-
   return (
     <div className="order-completed">
       <div className="completed-box">

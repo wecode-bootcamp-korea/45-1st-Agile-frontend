@@ -21,7 +21,6 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProductList(data.data);
         setSelectedProducts(data.data.map(product => product.cartId));
       });
@@ -33,7 +32,6 @@ const Cart = () => {
     productList.filter(product => number === product.cartId)
   );
 
-  console.log(selectedList);
   const result = selectedList.map((list, index) => ({
     title: list[0].title,
     price: list[0].price,
@@ -57,8 +55,6 @@ const Cart = () => {
     totalPrice: total,
     subtotal: subtotal,
   };
-
-  console.log();
 
   const handleBuyingButton = () => {
     if (selectedList.length > 0) {

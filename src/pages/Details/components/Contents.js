@@ -62,7 +62,6 @@ const Contents = ({
     totalPrice: price * count < 40000 ? price * count + 3000 : price * count,
     subtotal: price * count,
   };
-  console.log('ddddd', productsInfo);
   const totalPrice = price * count;
   const openCartModal = () => {
     setModalOpen(true);

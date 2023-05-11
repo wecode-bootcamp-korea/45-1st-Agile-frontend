@@ -30,7 +30,6 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
       try {
         const res = await fetch(`${APIS.books}${location.search}`);
         const data = await res.json();
-        console.log(data);
         if (data.data) {
           setVisibleProducts(data.data);
         }

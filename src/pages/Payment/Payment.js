@@ -10,12 +10,8 @@ import InvalidAccess from './InvalidAccess';
 import './Payment.scss';
 
 const cartId = [];
-// const mode = false;
-// const subtot = 0;
-// const total = 0;
 
 const Payment = () => {
-  console.log('>>>>>', subDate());
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -31,11 +27,9 @@ const Payment = () => {
     setInfo({ ...info, [name]: value });
   };
   const { productsInfo } = location.state;
-  console.log(1);
 
   //고객정보 불러오기
   useEffect(() => {
-    console.log(2);
     fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
       headers: {
@@ -45,10 +39,9 @@ const Payment = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         const user = data.user;
         setUserInfo(user);
-        console.log(user);
+
         setInfo({
           name: user.name,
           phoneNumber: user.phoneNumber,
@@ -60,15 +53,9 @@ const Payment = () => {
           subscribeStart: subDate(),
         });
       });
-    console.log('pro', productsInfo);
     setOrderMode(productsInfo);
-
-    // console.log('mode', mode);
-    // console.log('data', data);
     setOrderInfo(productsInfo.data);
     if (orderMode.mode) cartId = productsInfo.cartIds;
-    console.log('bbb', cartId);
-    // setOrderInfo(productsInfo); //주문제품정보 설정
   }, []);
 
   //라디오변경으로 고객정보 변경
@@ -95,13 +82,8 @@ const Payment = () => {
       return;
     }
 
-    console.log('3333333', productsInfo.data.subscribeCycle);
-    console.log('22222221', orderInfo[0]);
     // 상세 -> 결제
     if (!orderMode.mode) {
-      console.log('상세 -> 결제');
-
-      console.log('dddd', orderInfo[0].bookId);
       fetch('http://10.58.52.241:3000/orders/direct', {
         method: 'POST',
         headers: {
@@ -114,16 +96,11 @@ const Payment = () => {
           bookId: orderInfo[0]?.bookId,
           quantity: orderInfo[0]?.quauntity,
           subscribeCycle: productsInfo.data.subscribeCycle,
-          // price: productsInfo.totalPrice,
         }),
       })
         .then(res => res.json())
         .then(res => {
           const { message, data } = res;
-          console.log('finish');
-          console.log(data);
-          console.log(res);
-
           navigate('/orderCompleted', {
             state: {
               orderNumber: data.orderNumber,
@@ -137,8 +114,6 @@ const Payment = () => {
 
     // 장바구니 -> 결제
     else {
-      console.log('장바구니 -> 결제');
-      console.log('qqqqq', cartId);
       fetch('http://10.58.52.241:3000/orders', {
         method: 'POST',
         headers: {
@@ -156,9 +131,6 @@ const Payment = () => {
         .then(res => {
           const { message, data } = res;
 
-          console.log('finish');
-          console.log(res);
-
           navigate('/orderCompleted', {
             state: {
               orderNumber: data.orderNumber,
@@ -168,17 +140,8 @@ const Payment = () => {
         });
     }
   };
-  // function delay(ms) {
-  //   return new Promise(resolve => setTimeout(resolve, ms));
-  // }
 
   if (orderMode === {}) return;
-
-  let totalPrice = 0;
-  let fee = 0;
-  let usePoint = 0;
-  let earnPoint = 0;
-  let remainPoint = 0;
 
   const point = {
     curPoint: parseInt(userInfo?.points),
@@ -188,25 +151,6 @@ const Payment = () => {
     price: orderMode.subtotal,
     shipmentFee: orderMode.totalPrice < 40000 ? 3000 : 0,
   };
-  console.log('point', point);
-
-  // //실험용 GET
-  // useEffect(() => {
-  //   fetch('/data/orderItemsData.json', {
-  //     method: 'GET',
-  //     headers: {
-  //       Authorization: localStorage.getItem('token'),
-  //       'Content-Type': 'application/json;charset=utf-8',
-  //     },
-  //   })
-  //     .then(res => res.json())
-  //     // .catch(e => navigate('/invalidAccess'))
-  //     .then(data => {
-  //       console.log(data);
-  //       setOrderInfo(data);
-  //       data.forEach(ele => cartIds.push(ele.cartId));
-  //     });
-  // }, []);
 
   //token 없을때 예외처리
   if (!localStorage.getItem('token')) return <InvalidAccess />;
