@@ -85,7 +85,10 @@ const SignUp = () => {
       }).then(response => {
         return response.json();
       });
-      navigate('/');
+      alert('회원가입이 완료되었습니다!');
+      navigate('/login', { state: { from: 'signup' } });
+    } else {
+      alert('필수 사항을 선택해주세요!');
     }
   };
 

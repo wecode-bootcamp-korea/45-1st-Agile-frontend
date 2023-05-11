@@ -8,7 +8,9 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCount, setShowCount] = useState(4);
   const [visibleProducts, setVisibleProducts] = useState([]);
-
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -46,7 +48,7 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
   };
 
   if (visibleProducts.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Loading..</div>;
   }
   return (
     <div className="product-lineup">
@@ -62,7 +64,11 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
           }}
         >
           {visibleProducts.map(product => (
-            <Link key={product.id} to={`/books/${product.id}`}>
+            <Link
+              key={product.id}
+              to={`/books/${product.id}`}
+              onClick={handleLinkClick}
+            >
               <div
                 key={product.key}
                 className="product-item"

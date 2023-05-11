@@ -12,11 +12,11 @@
   }
   .sub-names {
     @include flex-sort(space-around, center);
-    width: 928px;
+    width: 1050px;
     margin-top: 40px;
     padding: 32px 44px;
     border: 1px solid #dddedd;
-
+    border-radius: 5px;
     & .inactive {
       @include font(16px, #1c1c1c);
 

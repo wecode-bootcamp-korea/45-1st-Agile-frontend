@@ -21,6 +21,7 @@ const Login = () => {
 
   const goToMain = event => {
     event.preventDefault();
+
     if (isInputValid) {
       alert('이메일을 다시 입력해주세요!');
       return false;
@@ -28,7 +29,7 @@ const Login = () => {
       alert('비밀번호를 입력해주세요!');
       return false;
     } else {
-      fetch('http://10.58.52.241:3000/users/login', {
+      fetch('http://10.58.52.196:3000/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -41,9 +42,7 @@ const Login = () => {
         .then(result => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
-            navigate(-1);
-            const { from } = location.state || { from: '/' };
-            navigate(from);
+            location.state.from === 'signup' ? navigate('/') : navigate(-1);
           }
         });
     }

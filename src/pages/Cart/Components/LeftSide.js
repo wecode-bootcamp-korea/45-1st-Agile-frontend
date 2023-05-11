@@ -133,6 +133,8 @@ const LeftSide = ({
     }
   };
 
+  console.log(productList.isSubscribe);
+
   return (
     <div className="left-side">
       <div className="check-box-controller">
@@ -152,7 +154,13 @@ const LeftSide = ({
           </span>
         </div>
       </div>
-      <div className="normal-delivery">일반배송</div>
+      <div className="normal-delivery">
+        {productList.every(el => el.isSubscribe === 0)
+          ? `일반배송`
+          : productList.every(el => el.isSubscribe === 1)
+          ? '정기배송'
+          : `상품배송`}
+      </div>
       <div className="normal-deliver-things">
         {productList.map(product => (
           <ProductItem

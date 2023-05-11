@@ -3,6 +3,7 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import APIS from '../../../config';
 import StarFullIcon from '../../Main/components/StarFullIcon';
 import SORTOPTION from './SORTOPTION';
+
 import './ProductListCont.scss';
 
 const ProductListCont = ({ categoryId, subCategoryId }) => {
@@ -21,7 +22,9 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
     priceAsc: '낮은 가격순',
     priceDesc: '높은 가격순',
   };
-
+  const handleLinkClick = () => {
+    window.scrollTo(0, 0);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -85,33 +88,35 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
           ))}
         </select>
       </div>
-
-      <div className="product-list">
-        {visibleProducts.map((product, index) => (
-          <Link
-            key={product.id}
-            to={`/books/${product.id}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <div className="product-item">
-              <img
-                className="product-img"
-                src={product.thumbnail}
-                alt={product.title}
-              />
-              <div className="product-title">{product.title}</div>
-              <div className="product-price">
-                {Number(product.price).toLocaleString()}원
+      <div className="product-list-container">
+        <div className="product-list">
+          {visibleProducts.map((product, index) => (
+            <Link
+              key={product.id}
+              to={`/books/${product.id}`}
+              style={{ textDecoration: 'none' }}
+              onClick={handleLinkClick}
+            >
+              <div className="product-item">
+                <img
+                  className="product-img"
+                  src={product.thumbnail}
+                  alt={product.title}
+                />
+                <div className="product-title">{product.title}</div>
+                <div className="product-price">
+                  {Number(product.price).toLocaleString()}원
+                </div>
+                <div className="product-score">
+                  <StarFullIcon style={{ color: 'rgb(255, 223, 112)' }} />{' '}
+                  {product.reviewScore ? product.reviewScore : 0} (
+                  {product.reviewsCount})
+                </div>
+                <div className="product-subtitle">{product.subtitle}</div>
               </div>
-              <div className="product-score">
-                <StarFullIcon style={{ color: 'rgb(255, 223, 112)' }} />{' '}
-                {product.reviewScore ? product.reviewScore : 0} (
-                {product.reviewsCount})
-              </div>
-              <div className="product-subtitle">{product.subtitle}</div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
       <div className="pagination-container">
         <div className="pagination">

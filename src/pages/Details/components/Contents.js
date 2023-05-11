@@ -17,6 +17,8 @@ const Contents = ({
   productsInCart,
   id,
   token,
+  isOptionSelected,
+  setIsOptionSelected,
 }) => {
   const {
     quantity,
@@ -34,18 +36,16 @@ const Contents = ({
   const [modalOpen, setModalOpen] = useState(false);
   const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
   const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
-  const [isOptionSelected, setIsOptionSelected] = useState(false);
+
   const [selected, setSelected] = useState('');
   const [deliveryCycle, setDeliveryCycle] = useState('');
   const navigate = useNavigate();
 
   const bookId = parseInt(id);
 
-  const mode = selected.length !== 0 ? true : false;
-
   const productsInfo = [
     {
-      mode: mode,
+      mode: false,
       data: [
         {
           bookId: bookId,
@@ -65,8 +65,8 @@ const Contents = ({
   const totalPriceInCart = productsInCart.reduce((total, element) => {
     return total + Number(element.price) * Number(element.amount);
   }, 0);
+
   const addToCart = async () => {
-    console.log(deliveryCycle);
     try {
       const res = await fetch('http://10.58.52.241:3000/carts', {
         method: 'POST',

@@ -4,6 +4,7 @@ import TitleLine from '../../components/TitleLine/TitleLine';
 import ProductListCont from './components/ProdcutListCont';
 import ProductListNav from './components/ProductListNav';
 import NavMain from '../../components/Nav/NavMain';
+import MainLayout from '../Details/Mainlayout';
 import './ProductList.scss';
 
 const ProductList = () => {
@@ -20,19 +21,24 @@ const ProductList = () => {
   }, [location.search]);
 
   return (
-    <div className="product-list">
-      <TitleLine />
-      <NavMain />
-      <video
-        className="banner"
-        autoPlay
-        loop
-        muted
-        src={`images/productlist/productlist-${categoryId}${subCategoryId}.mp4`}
-      />
-      <ProductListNav categoryId={categoryId} subCategoryId={subCategoryId} />
-      <ProductListCont categoryId={categoryId} subCategoryId={subCategoryId} />
-    </div>
+    <MainLayout>
+      <div className="product-list">
+        <TitleLine />
+        <NavMain />
+        <video
+          className="banner"
+          autoPlay
+          loop
+          muted
+          src={`images/productlist/productlist-${categoryId}${subCategoryId}.mp4`}
+        />
+        <ProductListNav categoryId={categoryId} subCategoryId={subCategoryId} />
+        <ProductListCont
+          categoryId={categoryId}
+          subCategoryId={subCategoryId}
+        />
+      </div>
+    </MainLayout>
   );
 };
 
