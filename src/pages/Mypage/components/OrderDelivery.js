@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import ItemTitle from './ItemTitle';
+import OrderStatus from './OrderStatus';
 import './OrderDelivery.scss';
 
 const OrderDelivery = () => {
@@ -31,7 +32,7 @@ const OrderDelivery = () => {
           return (
             <>
               <div key={data.id} className="condition-mode">
-                <div className="text-2xl">{orderStatus[data.type]}</div>
+                <div className="text-2xl">{orderStatus[data.type]}1</div>
                 <div className="mode">{data.title}</div>
               </div>
               <div className="text-lg">{'>'}</div>
@@ -39,6 +40,7 @@ const OrderDelivery = () => {
           );
         })}
       </div>
+      <OrderStatus />
     </div>
   );
 };
