@@ -9,7 +9,11 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   word-break: keep-all;
 }
-
+a {
+  &:visited &:hover &:focus &:active {
+    text-decoration: none;
+  }
+}
 .text-xs {
   font-size: 0.75rem; /* 12px */
   line-height: 1rem; /* 16px */

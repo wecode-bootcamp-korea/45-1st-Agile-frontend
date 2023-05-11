@@ -1,15 +1,23 @@
 @import '../../../styles/variables';
 
 .product-list-cont {
+  .sort-option-container {
+    .sortingButton {
+      border: 1px solid #dddedd;
+    }
+  }
   .product-list {
-    display: flex;
+    @include flex-sort(flex-start, center);
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
     width: 1018px;
     margin-top: 70px;
     gap: 10px;
-    @include flex-sort(flex-start, center);
+
+    a {
+      &:visited &:hover &:focus &:active {
+        text-decoration: none;
+      }
+    }
 
     .product-item {
       width: 330px;
@@ -39,6 +47,11 @@
 
       .product-price {
         @include font(16px, #333333);
+      }
+
+      .product-score {
+        @include font(16px, #999999);
+        width: 200px;
       }
 
       .product-subtitle {

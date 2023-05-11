@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import APIS from '../../../config';
 import './ProductLineup.scss';
+import StarFullIcon from './StarFullIcon';
 
 const ProductLineup = ({ categoryId, subCategoryId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,6 +25,7 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
         console.log(error);
       }
     };
+
     fetchData();
   }, [categoryId, subCategoryId]);
 
@@ -68,12 +70,17 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
               >
                 <img
                   className="product-img"
-                  src={`images/main/booksimg/${product.id}.png`}
+                  src={product.thumbnail}
                   alt={product.title}
                 />
                 <div className="product-title">{product.title}</div>
                 <div className="product-price">
                   {Number(product.price).toLocaleString()}원
+                </div>
+                <div className="product-score">
+                  <StarFullIcon style={{ color: 'rgb(255, 223, 112)' }} />{' '}
+                  {product.reviewScore ? product.reviewScore : 0} (
+                  {product.reviewsCount})
                 </div>
               </div>
             </Link>

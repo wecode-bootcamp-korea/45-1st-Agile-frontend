@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Signup.scss';
 
 const SignUp = () => {
@@ -91,6 +91,13 @@ const SignUp = () => {
 
   return (
     <div className="signup">
+      <div className="logo">
+        <div className="logo-image">
+          <Link to="/">
+            <img className="logo" alt="logo" src="/images/main/logo.png" />
+          </Link>
+        </div>
+      </div>
       <div className="title">
         <h1>회원가입</h1>
       </div>

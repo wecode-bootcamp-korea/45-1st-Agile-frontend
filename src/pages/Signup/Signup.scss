@@ -2,9 +2,13 @@
 @import '../../styles/variables';
 
 .signup {
+  .logo {
+    height: 80px;
+    margin: 5px 0px 0px -25px;
+  }
   .title {
     @include font(28px, black);
-    margin-top: 150px;
+    margin-top: 60px;
     text-align: center;
   }
 

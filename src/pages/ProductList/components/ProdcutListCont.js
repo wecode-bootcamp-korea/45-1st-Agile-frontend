@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import APIS from '../../../config';
+import StarFullIcon from '../../Main/components/StarFullIcon';
 import SORTOPTION from './SORTOPTION';
 import './ProductListCont.scss';
 
@@ -71,6 +72,7 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
     <div className="product-list-cont">
       <div className="sort-option-container">
         <select
+          className="sortingButton"
           value={selectedSortOption}
           onChange={event => {
             handleSortOptionChange(event.target.value);
@@ -86,16 +88,25 @@ const ProductListCont = ({ categoryId, subCategoryId }) => {
 
       <div className="product-list">
         {visibleProducts.map((product, index) => (
-          <Link key={product.id} to={`/books/${product.id}`}>
+          <Link
+            key={product.id}
+            to={`/books/${product.id}`}
+            style={{ textDecoration: 'none' }}
+          >
             <div className="product-item">
               <img
                 className="product-img"
-                src={`images/main/booksimg/${product.id}.png`}
+                src={product.thumbnail}
                 alt={product.title}
               />
               <div className="product-title">{product.title}</div>
               <div className="product-price">
                 {Number(product.price).toLocaleString()}원
+              </div>
+              <div className="product-score">
+                <StarFullIcon style={{ color: 'rgb(255, 223, 112)' }} />{' '}
+                {product.reviewScore ? product.reviewScore : 0} (
+                {product.reviewsCount})
               </div>
               <div className="product-subtitle">{product.subtitle}</div>
             </div>
