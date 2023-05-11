@@ -31,7 +31,6 @@ const LeftSide = ({
       console.error(error);
     }
   };
-  console.log(productList);
 
   //PATCH 메서드로 상품 수량 변경 요청 보내기
   useEffect(() => {

@@ -9,7 +9,7 @@ const Blank = () => {
       <div className="content-wrap">
         <div className="left-side">
           <div className="check-box-controller">
-            <input type="checkbox" checked={false} />
+            <input type="checkbox" checked={false} onChange={() => {}} />
             <div className="text-left">
               <span className="select-all">전체선택</span>
               <span className="division">|</span>
