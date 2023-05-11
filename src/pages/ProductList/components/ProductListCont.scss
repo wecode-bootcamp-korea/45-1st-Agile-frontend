@@ -3,10 +3,7 @@
 .product-list-cont {
   .product-list {
     @include flex-sort(flex-start, center);
-    display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
     width: 1018px;
     margin-top: 70px;
     gap: 10px;
