@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './WishlistButton.scss';
 
-const WishlistButton = ({ id, isLiked, setIsLiked, token }) => {
+const WishlistButton = ({ id, isLikeChanged, setIsLikeChanged, token }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -19,7 +19,7 @@ const WishlistButton = ({ id, isLiked, setIsLiked, token }) => {
       if (res.ok) {
         const data = await res.json();
         const message = data.message;
-        setIsLiked(!message.includes('Deleted'));
+        setIsLikeChanged(!message.includes('Deleted'));
       }
     } catch (error) {
       console.log(error);
@@ -40,7 +40,7 @@ const WishlistButton = ({ id, isLiked, setIsLiked, token }) => {
       onClick={handleLikesClick}
     >
       <img
-        src={`/images/details/${isLiked ? 'red-' : ''}heart.svg`}
+        src={`/images/details/${isLikeChanged ? 'red-' : ''}heart.svg`}
         alt="wish"
         className="wish-img"
       />

@@ -8,14 +8,20 @@ const SELECT_LIST = [
   '3개월',
 ];
 
-const SubscribeOptions = () => {
+const SubscribeOptions = ({ isOptionSelected, setIsOptionSelected }) => {
   const [selected, setSelected] = useState('');
+
+  const handleOptionClick = () => {
+    setIsOptionSelected(isOptionSelected ? false : true);
+  };
 
   const handleCycleClick = e => {
     e.target.selectedIndex === 0
       ? setSelected('')
       : setSelected(e.target.value);
+    handleOptionClick();
   };
+
   return (
     <div className="subscribe-options">
       <div className="delivery-cycle-options">
