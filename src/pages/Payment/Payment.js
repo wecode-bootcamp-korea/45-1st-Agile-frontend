@@ -56,7 +56,7 @@ const Payment = () => {
 
     // 상세 -> 결제
     if (!mode) {
-      fetch('http://10.58.52.196:3000/orders/direct', {
+      fetch('http://10.58.52.241:3000/orders/direct', {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -88,7 +88,7 @@ const Payment = () => {
 
     // 장바구니 -> 결제
     else {
-      fetch('http://10.58.52.196:3000/orders', {
+      fetch('http://10.58.52.241:3000/orders', {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -140,7 +140,7 @@ const Payment = () => {
 
   //고객정보 불러오기
   useEffect(() => {
-    fetch('http://10.58.52.196:3000/users', {
+    fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('token'),
