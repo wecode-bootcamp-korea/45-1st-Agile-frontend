@@ -37,14 +37,21 @@ const Contents = ({
   const navigate = useNavigate();
   const location = useLocation();
   const bookId = parseInt(id);
+
+  const mode = selected.length !== 0 ? true : false;
+
   const productsInfo = [
     {
-      bookId: bookId,
-      title: title,
-      price: price,
-      isSubscribe: isSubscribe,
-      quauntity: count,
-      mode: false,
+      mode: mode,
+      data: [
+        {
+          bookId: bookId,
+          title: title,
+          price: price,
+          isSubscribe: isSubscribe,
+          quauntity: count,
+        },
+      ],
     },
   ];
 
@@ -67,7 +74,7 @@ const Contents = ({
           bookId: bookId,
           amount: count,
           isSubscribe: isSubscribe,
-          option: selected,
+          option: selected.toUpperCase(),
         }),
       });
       if (res.status >= 400 && res.status < 600) {
