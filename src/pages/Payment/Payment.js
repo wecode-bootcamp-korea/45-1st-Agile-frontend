@@ -7,6 +7,7 @@ import Subscribe from './components/Subscribe'; //정기배송 시작일
 import PaymentMethod from './components/PaymentMethod'; //결제수단
 import PaymentInfo from './components/PaymentInfo'; //결제정보
 import './Payment.scss';
+import InvalidAccess from './InvalidAccess';
 
 const flag = false;
 const cartIds = [];
@@ -84,7 +85,6 @@ const Payment = () => {
           const { message, data } = res;
           console.log('finish');
           console.log(data);
-          // flag = true;
 
           navigate('/orderCompleted', {
             state: {
@@ -117,7 +117,6 @@ const Payment = () => {
 
           console.log('finish');
           console.log(data);
-          // flag = true;
 
           navigate('/orderCompleted', {
             state: {
@@ -127,15 +126,6 @@ const Payment = () => {
           });
         });
     }
-
-    // if (flag) {
-    // navigate('/orderCompleted', {
-    //   state: {
-    //     orderNumber: '123',
-    //     price: point.usePoint,
-    //   },
-    // });
-    // }
   };
 
   //실험용 GET
@@ -148,6 +138,7 @@ const Payment = () => {
       },
     })
       .then(res => res.json())
+      // .catch(e => navigate('/invalidAccess'))
       .then(data => {
         console.log(data);
         setOrderInfo(data);
@@ -165,10 +156,10 @@ const Payment = () => {
   const fee = totalPrice < 40000 ? 3000 : 0;
   const usePoint = parseInt(totalPrice + fee);
   const earnPoint = totalPrice >= 70000 ? usePoint * 0.02 : 0;
-  const remainPoint = parseInt(userInfo.points) - usePoint + earnPoint;
+  const remainPoint = parseInt(userInfo?.points) - usePoint + earnPoint;
 
   const point = {
-    curPoint: parseInt(userInfo.points),
+    curPoint: parseInt(userInfo?.points),
     usePoint: usePoint,
     earnPoint: earnPoint,
     remainPoint: remainPoint,
@@ -188,7 +179,7 @@ const Payment = () => {
       }
     }
   };
-
+  if (!localStorage.getItem('token')) return <InvalidAccess />;
   return (
     <div className="payment">
       <div className="order-sheet">

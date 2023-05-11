@@ -12,7 +12,7 @@ const PaymentInfo = ({ point }) => {
               <div className="fee-title">{data.title}</div>
               <div className="fee-point">
                 {data.oper}
-                {point[data.type]?.toLocaleString()}원
+                {/* {point[data.type]?.toLocaleString()}원 */}
               </div>
             </div>
           );

@@ -10,7 +10,7 @@ const Point = ({ point }) => {
             <div className="status-title">{data.title}</div>
             <div className="status-count">
               {data.oper}
-              {point[data.type]?.toLocaleString()}
+              {/* {point[data.type]?.toLocaleString()} */}
             </div>
           </div>
         );
