@@ -43,28 +43,30 @@ const Contents = ({
 
   const bookId = parseInt(id);
 
-  const productsInfo = [
-    {
-      mode: false,
-      data: [
-        {
-          bookId: bookId,
-          title: title,
-          price: price,
-          isSubscribe: isSubscribe,
-          quauntity: count,
-        },
-      ],
-    },
-  ];
+  const totalPriceInCart = productsInCart.reduce((total, element) => {
+    return total + Number(element.price) * Number(element.amount);
+  }, 0);
 
+  const productsInfo = {
+    mode: false,
+    data: [
+      {
+        bookId: bookId,
+        title: title,
+        price: price,
+        isSubscribe: isSubscribe,
+        quauntity: count,
+        subscribeCycle: deliveryCycle,
+      },
+    ],
+    totalPrice: price * count < 40000 ? price * count + 3000 : price * count,
+    subtotal: price * count,
+  };
+  console.log('ddddd', productsInfo);
   const totalPrice = price * count;
   const openCartModal = () => {
     setModalOpen(true);
   };
-  const totalPriceInCart = productsInCart.reduce((total, element) => {
-    return total + Number(element.price) * Number(element.amount);
-  }, 0);
 
   const addToCart = async () => {
     try {
@@ -124,6 +126,7 @@ const Contents = ({
       }
     }
   };
+
   const handlePaymentClick = () => {
     if (token) {
       if (isOptionSelected) {

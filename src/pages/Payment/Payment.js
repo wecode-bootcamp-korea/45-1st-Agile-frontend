@@ -9,8 +9,10 @@ import PaymentInfo from './components/PaymentInfo'; //결제정보
 import InvalidAccess from './InvalidAccess';
 import './Payment.scss';
 
-const cartIds = [];
-const mode = false;
+const cartId = [];
+// const mode = false;
+// const subtot = 0;
+// const total = 0;
 
 const Payment = () => {
   console.log('>>>>>', subDate());
@@ -19,6 +21,7 @@ const Payment = () => {
 
   const [userInfo, setUserInfo] = useState({});
   const [orderInfo, setOrderInfo] = useState([]);
+  const [orderMode, setOrderMode] = useState({});
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
   const [checkItems, setCheckItems] = useState([]);
@@ -27,9 +30,12 @@ const Payment = () => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
+  const { productsInfo } = location.state;
+  console.log(1);
 
   //고객정보 불러오기
   useEffect(() => {
+    console.log(2);
     fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
       headers: {
@@ -54,11 +60,16 @@ const Payment = () => {
           subscribeStart: subDate(),
         });
       });
+    console.log('pro', productsInfo);
+    setOrderMode(productsInfo);
 
+    // console.log('mode', mode);
+    // console.log('data', data);
+    setOrderInfo(productsInfo.data);
+    if (orderMode.mode) cartId = productsInfo.cartIds;
+    console.log('bbb', cartId);
     // setOrderInfo(productsInfo); //주문제품정보 설정
   }, []);
-
-  const { productsInfo } = location.state;
 
   //라디오변경으로 고객정보 변경
   const switchRadio = () => {
@@ -84,9 +95,14 @@ const Payment = () => {
       return;
     }
 
+    console.log('3333333', productsInfo.data.subscribeCycle);
+    console.log('22222221', orderInfo[0]);
     // 상세 -> 결제
-    if (!mode) {
-      fetch('http://10.58.52.196:3000/orders/direct', {
+    if (!orderMode.mode) {
+      console.log('상세 -> 결제');
+
+      console.log('dddd', orderInfo[0].bookId);
+      fetch('http://10.58.52.241:3000/orders/direct', {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -95,8 +111,10 @@ const Payment = () => {
         body: JSON.stringify({
           address: info.receiver_address,
           subscribeDeliveryTime: info.subscribeStart,
-          bookId: orderInfo[0].bookId,
-          quantity: orderInfo[0].quantity,
+          bookId: orderInfo[0]?.bookId,
+          quantity: orderInfo[0]?.quauntity,
+          subscribeCycle: productsInfo.data.subscribeCycle,
+          // price: productsInfo.totalPrice,
         }),
       })
         .then(res => res.json())
@@ -104,6 +122,7 @@ const Payment = () => {
           const { message, data } = res;
           console.log('finish');
           console.log(data);
+          console.log(res);
 
           navigate('/orderCompleted', {
             state: {
@@ -118,7 +137,9 @@ const Payment = () => {
 
     // 장바구니 -> 결제
     else {
-      fetch('http://10.58.52.196:3000/orders', {
+      console.log('장바구니 -> 결제');
+      console.log('qqqqq', cartId);
+      fetch('http://10.58.52.241:3000/orders', {
         method: 'POST',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -127,7 +148,8 @@ const Payment = () => {
         body: JSON.stringify({
           address: info.receiver_address,
           subscribeDeliveryTime: info.subscribeStart,
-          cartIds: cartIds,
+          cartIds: productsInfo.cartIds,
+          subscribeCycle: productsInfo.subscribeCycle,
         }),
       })
         .then(res => res.json())
@@ -135,7 +157,7 @@ const Payment = () => {
           const { message, data } = res;
 
           console.log('finish');
-          console.log(data);
+          console.log(res);
 
           navigate('/orderCompleted', {
             state: {
@@ -146,27 +168,27 @@ const Payment = () => {
         });
     }
   };
+  // function delay(ms) {
+  //   return new Promise(resolve => setTimeout(resolve, ms));
+  // }
 
-  // point 설정하기
-  if (orderInfo === []) return null;
+  if (orderMode === {}) return;
 
   let totalPrice = 0;
-  orderInfo?.forEach(ele => {
-    totalPrice += ele.price * ele.quantity;
-  });
-  const fee = totalPrice < 40000 ? 3000 : 0;
-  const usePoint = parseInt(totalPrice + fee);
-  const earnPoint = totalPrice >= 70000 ? usePoint * 0.02 : 0;
-  const remainPoint = parseInt(userInfo?.points) - usePoint + earnPoint;
+  let fee = 0;
+  let usePoint = 0;
+  let earnPoint = 0;
+  let remainPoint = 0;
 
   const point = {
     curPoint: parseInt(userInfo?.points),
-    usePoint: usePoint,
-    earnPoint: earnPoint,
-    remainPoint: remainPoint,
-    price: parseInt(totalPrice),
-    shipmentFee: parseInt(fee),
+    usePoint: orderMode.totalPrice,
+    earnPoint: orderMode.totalPrice >= 70000 ? orderMode.totalPrice * 0.02 : 0,
+    remainPoint: parseInt(userInfo?.points) - orderMode.totalPrice,
+    price: orderMode.subtotal,
+    shipmentFee: orderMode.totalPrice < 40000 ? 3000 : 0,
   };
+  console.log('point', point);
 
   // //실험용 GET
   // useEffect(() => {
