@@ -5,68 +5,73 @@
     display: flex;
     justify-content: flex-end;
     .sortingButton {
+      @include font(16px, #1c1c1c);
+      margin-top: 20px;
       border: 1px solid #dddedd;
-    }
-  }
-  .product-list {
-    @include flex-sort(flex-start, center);
-    flex-wrap: wrap;
-    width: 1018px;
-    margin-top: 70px;
-    gap: 10px;
-
-    a {
-      &:visited &:hover &:focus &:active {
-        text-decoration: none;
-      }
-    }
-
-    .product-item {
-      width: 330px;
-      height: 500px;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1.09);
       border-radius: 5px;
-      white-space: nowrap;
-      cursor: pointer;
+    }
+  }
+  .product-list-container {
+    @include flex-sort(center, center);
+    .product-list {
+      @include flex-sort(flex-start, center);
+      flex-wrap: wrap;
+      width: 1018px;
 
-      &:hover {
-        transform: scale(1.05);
+      a {
+        &:visited &:hover &:focus &:active {
+          text-decoration: none;
+        }
       }
+      margin-top: 70px;
+      gap: 12px;
 
-      .product-img {
-        width: 328px;
-        height: 328px;
-      }
+      .product-item {
+        width: 330px;
+        height: 500px;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1.09);
+        border-radius: 5px;
+        white-space: nowrap;
+        cursor: pointer;
 
-      .product-title {
-        @include font(20px, #1c1c1c);
-        font-weight: 600;
-        text-decoration: none;
-        white-space: normal;
-      }
+        &:hover {
+          transform: scale(1.05);
+        }
 
-      .product-price {
-        @include font(16px, #333333);
-      }
+        .product-img {
+          width: 328px;
+          height: 328px;
+        }
 
-      .product-score {
-        @include font(16px, #999999);
-        width: 200px;
-      }
+        .product-title {
+          @include font(20px, #1c1c1c);
+          font-weight: 600;
+          text-decoration: none;
+          white-space: normal;
+        }
 
-      .product-subtitle {
-        @include font(15px, #999999);
-        white-space: normal;
+        .product-price {
+          @include font(16px, #333333);
+        }
+
+        .product-score {
+          @include font(16px, #999999);
+          width: 200px;
+        }
+
+        .product-subtitle {
+          @include font(15px, #999999);
+          white-space: normal;
+        }
       }
     }
   }
-
   .pagination-container {
     @include flex-sort(center, center);
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 200px;
+    margin-bottom: 10px;
 
     .pagination {
       display: flex;
