@@ -49,6 +49,7 @@ const CategoryModal = ({ showSubCategoryModal, setShowSubCategoryModal }) => {
           onMouseLeave={() => setSelectedMainCategory(null)}
         >
           <Link
+            style={{ textDecoration: 'none' }}
             to={`/productlist?categoryId=${mainCategory.category_id}&limit=9&orderBy=&offset=0`}
           >
             <img
@@ -74,6 +75,7 @@ const CategoryModal = ({ showSubCategoryModal, setShowSubCategoryModal }) => {
                     key={subCategory.sub_category_id}
                   >
                     <Link
+                      style={{ textDecoration: 'none' }}
                       to={`/productlist?categoryId=${subCategory.category_id}&subCategoryId=${subCategory.subCategory_id}&limit=9&orderBy=&offset=0`}
                     >
                       <img
