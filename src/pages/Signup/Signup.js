@@ -68,7 +68,7 @@ const SignUp = () => {
     });
 
     if (allCondtionMet) {
-      fetch('http://10.58.52.230:3000/users/signUp', {
+      fetch('http://10.58.52.196:3000/users/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -85,7 +85,8 @@ const SignUp = () => {
       }).then(response => {
         return response.json();
       });
-      navigate('/');
+      alert('회원가입이 완료되었습니다!');
+      navigate('/login', { state: { from: 'signup' } });
     }
   };
 
