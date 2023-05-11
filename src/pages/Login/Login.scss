@@ -46,7 +46,7 @@
   color: white;
 }
 
-.signupbtn {
+.registerbtn {
   @include flex-sort(center, center);
   @include font(black, 16px);
   width: 260px;
