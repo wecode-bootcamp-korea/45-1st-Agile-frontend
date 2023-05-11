@@ -24,7 +24,9 @@ const ProductItem = ({
       <img src={product.thumbnail} />
       <div className="product-title-option">
         <div className="product-title text-base">{product.title}</div>
-        <div className="text-sm product-option">{product.subscribeCycle}</div>
+        <div className="text-sm product-option">
+          {product.isSubscribe === 1 ? `[구독] ${product.subscribeCycle}` : ''}
+        </div>
       </div>
       <div className="count">
         <button onClick={() => handleQuantityChange(product.cartId, -1)}>
