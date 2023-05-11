@@ -1,10 +1,12 @@
 import React from 'react';
 import './BuyingButton.scss';
 
-const BuyingButton = () => {
+const BuyingButton = ({ handleBuyingButton }) => {
   return (
     <div>
-      <button className="buy-button">구매하기</button>
+      <button className="buy-button" onClick={handleBuyingButton}>
+        구매하기
+      </button>
     </div>
   );
 };
