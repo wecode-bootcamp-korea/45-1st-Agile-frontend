@@ -19,7 +19,7 @@ const Details = () => {
       .then(res => res.json())
       .then(data => {
         setProductDetail(data);
-        setIsOptionSelected(data.isSubscribe === 0 && true);
+        setIsOptionSelected(data.isSubscribe === 0);
       })
       .catch(e => {
         console.error(e);
