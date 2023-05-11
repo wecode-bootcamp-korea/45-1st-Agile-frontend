@@ -14,9 +14,11 @@
       }
     }
   }
+
   .likes-list-items {
     @include flex-sort(center, center);
     flex-direction: column;
+
     .no-list {
       width: 100%;
       padding: 50px;

@@ -6,11 +6,19 @@ import './Subscribes.scss';
 const Subscribes = () => {
   const [subList, setSubList] = useState([]);
 
+  //구독상품 불러오기
   useEffect(() => {
-    fetch('/data/subscribeData.json')
+    fetch('http://10.58.52.241:3000/orders/subscribe', {
+      method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
       .then(res => res.json())
       .then(data => {
-        setSubList(data);
+        const { result } = data;
+        setSubList(result);
       });
   }, []);
 
