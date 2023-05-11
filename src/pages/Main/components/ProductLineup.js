@@ -48,7 +48,7 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
   };
 
   if (visibleProducts.length === 0) {
-    return <div>Loading...</div>;
+    return <div>Loading..</div>;
   }
   return (
     <div className="product-lineup">
