@@ -68,7 +68,7 @@ const SignUp = () => {
     });
 
     if (allCondtionMet) {
-      fetch('http://10.58.52.230:3000/users/signUp', {
+      fetch('http://10.58.52.196:3000/users/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',

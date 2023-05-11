@@ -2,6 +2,8 @@
 
 .product-list-cont {
   .sort-option-container {
+    display: flex;
+    justify-content: flex-end;
     .sortingButton {
       border: 1px solid #dddedd;
     }
