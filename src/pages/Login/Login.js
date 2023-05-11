@@ -42,13 +42,11 @@ const Login = () => {
         .then(result => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
-            location.state.from === 'signup' ? navigate('/') : navigate(-1);
+            location.state === '' ? navigate('/') : navigate(-1);
           }
         });
     }
   };
-
-  console.log(location);
 
   const goToSignup = () => {
     navigate('/signup');
