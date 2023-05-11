@@ -22,6 +22,9 @@ const MainLayout = props => {
     if (isLoggedIn) {
       localStorage.removeItem('token');
       setIsLoggedIn(false);
+      if (['/cart', '/mypage', '/payment'].includes(location.pathname)) {
+        navigate('/');
+      }
     } else {
       navigate('/login');
     }
