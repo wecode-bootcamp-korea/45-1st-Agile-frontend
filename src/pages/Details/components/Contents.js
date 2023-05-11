@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import ProductInformation from './ProductInformation';
 import WishlistButton from './WishlistButton';
@@ -19,6 +19,7 @@ const Contents = ({
   token,
 }) => {
   const {
+    quantity,
     title,
     subtitle,
     price,
@@ -37,7 +38,7 @@ const Contents = ({
   const [selected, setSelected] = useState('');
   const [deliveryCycle, setDeliveryCycle] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
+
   const bookId = parseInt(id);
 
   const mode = selected.length !== 0 ? true : false;
@@ -112,7 +113,7 @@ const Contents = ({
         await openCartModal();
         await fetchCartData();
       } else {
-        navigate('/login', { state: { from: location.pathname } });
+        navigate('/login');
       }
     } catch (e) {
       console.log(e);
@@ -136,6 +137,7 @@ const Contents = ({
       navigate('/login');
     }
   };
+
   const handleProductsInCarts = async () => {
     try {
       const res = await fetch('http://10.58.52.241:3000/carts/add', {
@@ -212,9 +214,13 @@ const Contents = ({
                   handleProductsInCarts={handleProductsInCarts}
                 />
               )}
-              <Button color="black" onClick={handlePaymentClick}>
-                구매하기
-              </Button>
+              {quantity > 0 ? (
+                <Button color="black" onClick={handlePaymentClick}>
+                  구매하기
+                </Button>
+              ) : (
+                <Button color="gray">품절</Button>
+              )}
             </div>
           </div>
         </div>
