@@ -6,10 +6,6 @@
   .order-delivery-main {
     @include flex-sort(center, center);
 
-    &:hover {
-      background-color: aquamarine;
-    }
-
     .condition-mode {
       @include flex-sort(center, center);
       flex-direction: column;

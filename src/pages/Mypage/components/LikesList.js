@@ -64,7 +64,7 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
             {checkItems.length}/{likesArr.length})
           </div>
         </div>
-        <div onClick={() => likesDeleteFetch()}>선택삭제</div>
+        <div onClick={likesDeleteFetch}>선택삭제</div>
       </div>
       <div className="likes-list-items">
         {likesArr.length === 0 && (
