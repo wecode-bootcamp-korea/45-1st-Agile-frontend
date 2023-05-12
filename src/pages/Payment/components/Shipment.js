@@ -2,7 +2,15 @@ import React from 'react';
 import ShipmentSelect from './ShipmentSelect';
 import './Shipment.scss';
 
-const Shipment = ({ info, handleInfo, switchRadio, setRadio, radio }) => {
+const Shipment = ({
+  info,
+  handleInfo,
+  switchRadio,
+  setRadio,
+  radio,
+  message,
+  setMessage,
+}) => {
   return (
     <div className="shipment">
       <div className="text-xl">배송 정보</div>

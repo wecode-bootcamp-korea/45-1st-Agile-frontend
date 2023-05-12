@@ -21,11 +21,13 @@ const Payment = () => {
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
   const [checkItems, setCheckItems] = useState([]);
+  const [message, setMessage] = useState(1);
 
   const handleInfo = e => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
+
   const { productsInfo } = location.state;
 
   //고객정보 불러오기
@@ -72,11 +74,17 @@ const Payment = () => {
   };
 
   const handlePayButton = () => {
-    if (checkItems < 2) {
+    if (
+      info.receiver_address === '' ||
+      info.receiver_name === '' ||
+      info.receiver_phoneNumber === ''
+    ) {
+      alert('배송정보를 입력해주세요.');
+      return;
+    } else if (checkItems < 2) {
       alert('모든 약관에 동의해주세요.');
       return;
-    }
-    if (point.remainPoint < 0) {
+    } else if (point.remainPoint < 0) {
       alert('포인트가 부족합니다.');
       navigate('/invalidAccess');
       return;
@@ -109,8 +117,6 @@ const Payment = () => {
           });
         });
     }
-
-    ////////////////////////////////////////////////////////////////////////
 
     // 장바구니 -> 결제
     else {
@@ -154,6 +160,9 @@ const Payment = () => {
 
   //token 없을때 예외처리
   if (!localStorage.getItem('token')) return <InvalidAccess />;
+
+  ////////////////////////////////////////////////////////////////////////
+  // main
   return (
     <div className="payment">
       <div className="order-sheet">
@@ -168,8 +177,10 @@ const Payment = () => {
         setRadio={setRadio}
         radio={radio}
         switchRadio={switchRadio}
+        message={message}
+        setMessage={setMessage}
       />
-      {orderInfo[0]?.isSubscribe && (
+      {orderInfo[0]?.isSubscribe !== 0 && (
         <Subscribe info={info} handleInfo={handleInfo} />
       )}
       <div className="pay-part">
