@@ -17,7 +17,7 @@ const SubscribesProduct = ({ data }) => {
             </div>
             <div className="subscribes-period">
               <div className="period-title">구독주기</div>
-              <div className="period-cycle">{data.deliveryCycle}개월</div>
+              <div className="period-cycle">{data.subscribeCycle}</div>
             </div>
           </div>
         </div>
