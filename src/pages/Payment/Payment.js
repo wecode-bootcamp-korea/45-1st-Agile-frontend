@@ -7,6 +7,7 @@ import Subscribe from './components/Subscribe'; //정기배송 시작일
 import PaymentMethod from './components/PaymentMethod'; //결제수단
 import PaymentInfo from './components/PaymentInfo'; //결제정보
 import InvalidAccess from './InvalidAccess';
+import Mainlayout from '../../pages/Details/Mainlayout';
 import './Payment.scss';
 
 const cartId = [];
@@ -28,7 +29,14 @@ const Payment = () => {
     setInfo({ ...info, [name]: value });
   };
 
+  const subMode = {
+    '1주일': 'ONEWEEK',
+    '1개월': 'ONEMONTH',
+    '3개월': 'THREEMONTHS',
+  };
+
   const { productsInfo } = location.state;
+  console.log(productsInfo);
 
   //고객정보 불러오기
   useEffect(() => {
@@ -90,6 +98,8 @@ const Payment = () => {
       return;
     }
 
+    console.log(productsInfo.data);
+    console.log(productsInfo.data[0].subscribeCycle);
     // 상세 -> 결제
     if (!orderMode.mode) {
       fetch('http://10.58.52.241:3000/orders/direct', {
@@ -103,7 +113,7 @@ const Payment = () => {
           subscribeDeliveryTime: info.subscribeStart,
           bookId: orderInfo[0]?.bookId,
           quantity: orderInfo[0]?.quauntity,
-          subscribeCycle: productsInfo.data.subscribeCycle,
+          subscribeCycle: productsInfo.data[0].subscribeCycle,
         }),
       })
         .then(res => res.json())
@@ -120,6 +130,7 @@ const Payment = () => {
 
     // 장바구니 -> 결제
     else {
+      console.log(productsInfo);
       fetch('http://10.58.52.241:3000/orders', {
         method: 'POST',
         headers: {
@@ -130,7 +141,7 @@ const Payment = () => {
           address: info.receiver_address,
           subscribeDeliveryTime: info.subscribeStart,
           cartIds: productsInfo.cartIds,
-          subscribeCycle: productsInfo.subscribeCycle,
+          subscribeCycle: productsInfo.data[0].subscribeCycle,
         }),
       })
         .then(res => res.json())
@@ -151,11 +162,14 @@ const Payment = () => {
 
   const point = {
     curPoint: parseInt(userInfo?.points),
-    usePoint: orderMode.totalPrice,
+    usePoint: orderMode.subtotal + (orderMode.subtotal < 40000 ? 3000 : 0),
     earnPoint: orderMode.totalPrice >= 70000 ? orderMode.totalPrice * 0.02 : 0,
-    remainPoint: parseInt(userInfo?.points) - orderMode.totalPrice,
+    remainPoint:
+      parseInt(userInfo?.points) -
+      orderMode.totalPrice +
+      (orderMode.totalPrice >= 70000 ? orderMode.totalPrice * 0.02 : 0),
     price: orderMode.subtotal,
-    shipmentFee: orderMode.totalPrice < 40000 ? 3000 : 0,
+    shipmentFee: orderMode.subtotal < 40000 ? 3000 : 0,
   };
 
   //token 없을때 예외처리
@@ -164,39 +178,41 @@ const Payment = () => {
   ////////////////////////////////////////////////////////////////////////
   // main
   return (
-    <div className="payment">
-      <div className="order-sheet">
-        <p className="text-2xl">주문서</p>
-      </div>
+    <Mainlayout>
+      <div className="payment">
+        <div className="order-sheet">
+          <p className="text-2xl">주문서</p>
+        </div>
 
-      <OrderList orderInfo={orderInfo} />
-      <Orderer info={info} handleInfo={handleInfo} />
-      <Shipment
-        info={info}
-        handleInfo={handleInfo}
-        setRadio={setRadio}
-        radio={radio}
-        switchRadio={switchRadio}
-        message={message}
-        setMessage={setMessage}
-      />
-      {orderInfo[0]?.isSubscribe !== 0 && (
-        <Subscribe info={info} handleInfo={handleInfo} />
-      )}
-      <div className="pay-part">
-        <PaymentMethod
-          point={point}
-          checkItems={checkItems}
-          setCheckItems={setCheckItems}
+        <OrderList orderInfo={orderInfo} />
+        <Orderer info={info} handleInfo={handleInfo} />
+        <Shipment
+          info={info}
+          handleInfo={handleInfo}
+          setRadio={setRadio}
+          radio={radio}
+          switchRadio={switchRadio}
+          message={message}
+          setMessage={setMessage}
         />
-        <PaymentInfo point={point} />
+        {orderInfo[0]?.isSubscribe !== 0 && (
+          <Subscribe info={info} handleInfo={handleInfo} />
+        )}
+        <div className="pay-part">
+          <PaymentMethod
+            point={point}
+            checkItems={checkItems}
+            setCheckItems={setCheckItems}
+          />
+          <PaymentInfo point={point} />
+        </div>
+        <div className="pay">
+          <button className="pay-button" onClick={handlePayButton}>
+            결제하기
+          </button>
+        </div>
       </div>
-      <div className="pay">
-        <button className="pay-button" onClick={handlePayButton}>
-          결제하기
-        </button>
-      </div>
-    </div>
+    </Mainlayout>
   );
 };
 export default Payment;

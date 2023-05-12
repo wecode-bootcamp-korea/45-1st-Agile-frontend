@@ -34,7 +34,7 @@ const OrderCompleted = () => {
           <div className="payment-amount">
             <div>결제금액</div>
             <div>
-              <b>{info.price}원</b>
+              <b>{parseInt(info.price).toLocaleString()}원</b>
             </div>
           </div>
         </div>

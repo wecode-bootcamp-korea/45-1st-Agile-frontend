@@ -35,12 +35,18 @@ const Cart = () => {
     productList.filter(product => number === product.cartId)
   );
 
+  const subMode = {
+    '1주일': 'ONEWEEK',
+    '1개월': 'ONEMONTH',
+    '3개월': 'THREEMONTHS',
+  };
+
   const result = selectedList.map((list, index) => ({
     title: list[0].title,
     price: list[0].price,
     isSubscribe: list[0].isSubscribe,
     quantity: list[0].amount,
-    subscribeCycle: list[0].subscribeCycle,
+    subscribeCycle: subMode[list[0].subscribeCycle],
   }));
 
   const subtotal = productList

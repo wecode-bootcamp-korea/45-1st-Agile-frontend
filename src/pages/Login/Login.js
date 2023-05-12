@@ -3,7 +3,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Login.scss';
 import MainLayout from '../Details/Mainlayout';
 import TitleLine from '../../components/TitleLine/TitleLine';
-
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,19 +10,15 @@ const Login = () => {
     email: '',
     password: '',
   });
-
   const isInputValid = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
     userInfo.userId
   );
-
   const handleInput = event => {
     const { name, value } = event.target;
     setUserInfo(prev => ({ ...prev, [name]: value }));
   };
-
   const goToMain = event => {
     event.preventDefault();
-
     if (isInputValid) {
       alert('이메일을 다시 입력해주세요!');
       return false;
@@ -48,7 +43,7 @@ const Login = () => {
         .then(result => {
           if (result.accessToken) {
             localStorage.setItem('token', result.accessToken);
-            location.state === '' ? navigate('/') : navigate(-1);
+            location.state === null ? navigate(-1) : navigate('/');
           }
         })
         .catch(error => {
@@ -56,11 +51,9 @@ const Login = () => {
         });
     }
   };
-
   const goToSignup = () => {
     navigate('/signup');
   };
-
   return (
     <MainLayout>
       <TitleLine />
@@ -109,5 +102,4 @@ const Login = () => {
     </MainLayout>
   );
 };
-
 export default Login;

@@ -6,7 +6,9 @@ import OrderStatus from './components/OrderStatus';
 import Subscribes from './components/Subscribes';
 import Likes from './components/Likes';
 import ConfirmPassword from './components/ConfirmPassword';
+import Mainlayout from '../../pages/Details/Mainlayout';
 import './Mypage.scss';
+import TitleLine from '../../components/TitleLine/TitleLine';
 
 const Mypage = () => {
   const [modal, setModal] = useState(false); //정보수정 비밀번호 확인 모달창
@@ -59,18 +61,21 @@ const Mypage = () => {
   }, []);
 
   return (
-    <div className="mypage">
+    <Mainlayout>
+      <TitleLine />
       {modal && <div className="background" />}
       {modal && <ConfirmPassword />}
-      <MypageTop userInfo={userInfo} setModal={setModal} />
-      <div className="mypage-main">
-        <div className="main-left">
-          <div className="text-2xl">마이페이지</div>
-          <MenuBar menuMode={menuMode} setMenuMode={setMenuMode} />
+      <div className="mypage">
+        <MypageTop userInfo={userInfo} setModal={setModal} />
+        <div className="mypage-main">
+          <div className="main-left">
+            <div className="text-2xl">마이페이지</div>
+            <MenuBar menuMode={menuMode} setMenuMode={setMenuMode} />
+          </div>
+          <div className="main-right">{menuList[menuMode]}</div>
         </div>
-        <div className="main-right">{menuList[menuMode]}</div>
       </div>
-    </div>
+    </Mainlayout>
   );
 };
 export default Mypage;
