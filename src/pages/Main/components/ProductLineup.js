@@ -22,7 +22,6 @@ const ProductLineup = ({ categoryId, subCategoryId }) => {
         if (data.data) {
           setVisibleProducts(data.data);
         }
-        console.log(data);
       } catch (error) {
         console.log(error);
       }

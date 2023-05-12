@@ -39,7 +39,7 @@ const LeftSide = ({
       const value = productList.find(
         product => product.cartId === cartId
       ).amount;
-      fetch('http://10.58.52.196:3000/carts', {
+      fetch('http://10.58.52.241:3000/carts', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -51,7 +51,7 @@ const LeftSide = ({
         .then(data => {
           console.log(data);
           // GET 메서드로 데이터 다시 가져오기
-          fetch(`http://10.58.52.196:3000/carts?cartId=${cartId}`, {
+          fetch(`http://10.58.52.241:3000/carts?cartId=${cartId}`, {
             method: 'GET',
             headers: {
               Authorization: token,
@@ -70,7 +70,7 @@ const LeftSide = ({
   const handleDelete = () => {
     selectedProducts.forEach(key => {
       // DELETE 메서드로 상품 삭제 요청 보내기
-      fetch(`http://10.58.52.196:3000/carts?cartId=${key}`, {
+      fetch(`http://10.58.52.241:3000/carts?cartId=${key}`, {
         method: 'DELETE',
         headers: {
           Authorization: token,
@@ -95,7 +95,7 @@ const LeftSide = ({
       selectedProducts.filter(selectedKey => selectedKey !== key)
     );
     // DELETE 메서드로 상품 삭제 요청 보내기
-    fetch(`http://10.58.52.196:3000/carts?cartId=${key}`, {
+    fetch(`http://10.58.52.241:3000/carts?cartId=${key}`, {
       method: 'DELETE',
       headers: {
         Authorization: token,
@@ -103,7 +103,7 @@ const LeftSide = ({
     })
       .then(res => res.json())
       .then(data => {
-        fetch(`http://10.58.52.196:3000/carts?cartId=${cartId}`, {
+        fetch(`http://10.58.52.241:3000/carts?cartId=${cartId}`, {
           method: 'GET',
           headers: {
             Authorization: token,
@@ -132,9 +132,6 @@ const LeftSide = ({
       );
     }
   };
-
-  console.log(productList.isSubscribe);
-
   return (
     <div className="left-side">
       <div className="check-box-controller">
