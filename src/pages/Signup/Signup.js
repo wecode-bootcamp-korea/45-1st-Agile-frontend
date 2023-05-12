@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './Signup.scss';
+import MainLayout from '../Details/Mainlayout';
+import TitleLine from '../../components/TitleLine/TitleLine';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -67,7 +69,9 @@ const SignUp = () => {
       }
     });
 
-    if (allCondtionMet) {
+    const checkTerm = checkId.includes(1) && checkId.includes(2);
+
+    if (allCondtionMet && checkTerm) {
       fetch('http://10.58.52.241:3000/users/signUp', {
         method: 'POST',
         headers: {
@@ -93,120 +97,116 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup">
-      <div className="logo">
-        <div className="logo-image">
-          <Link to="/">
-            <img className="logo" alt="logo" src="/images/main/logo.png" />
-          </Link>
+    <MainLayout>
+      <TitleLine />
+      <div className="signup">
+        <div className="title">
+          <h1>회원가입</h1>
         </div>
-      </div>
-      <div className="title">
-        <h1>회원가입</h1>
-      </div>
-      <div className="basicinfo">
-        <div className="basic-info">기본정보</div>
-      </div>
+        <div className="basicinfo">
+          <div className="basic-info">기본정보</div>
+        </div>
 
-      <div className="signupform">
-        {USER_INFO.map(info => {
-          return (
-            <div className="form-id" key={info.id}>
-              <span className="form-title">{info.title}</span>
-              <input
-                className="form-placeholder"
-                type={info.type}
-                placeholder={info.placeholder}
-                name={info.name}
-                onChange={handleUserInput}
-              />
-              {(info.title === '이메일' || info.title === '비밀번호') && (
-                <span className="form-message">{info.message}</span>
-              )}
-            </div>
-          );
-        })}
-      </div>
-      <div className="plusinfo">
-        <div className="plus-info">추가정보</div>
-      </div>
-      <div className="plusinfoform">
-        <div className="write-birth">
-          <span className="birth">생년월일</span>
-          <input
-            className="input-birth"
-            type="text"
-            placeholder="YYYY-MM-DD"
-            name="userBirth"
-            onChange={handleUserInput}
-          />
+        <div className="signupform">
+          {USER_INFO.map(info => {
+            return (
+              <div className="form-id" key={info.id}>
+                <span className="form-title">{info.title}</span>
+                <input
+                  className="form-placeholder"
+                  type={info.type}
+                  placeholder={info.placeholder}
+                  name={info.name}
+                  onChange={handleUserInput}
+                />
+                {(info.title === '이메일' || info.title === '비밀번호') && (
+                  <span className="form-message">{info.message}</span>
+                )}
+              </div>
+            );
+          })}
         </div>
-        <div className="check-gender">
-          <span className="gender">성별</span>
-          <div className="check-radio">
+        <div className="plusinfo">
+          <div className="plus-info">추가정보</div>
+        </div>
+        <div className="plusinfoform">
+          <div className="write-birth">
+            <span className="birth">생년월일</span>
             <input
-              type="radio"
-              name="gender"
-              value="male"
-              onChange={handleradioCheck}
+              className="input-birth"
+              type="text"
+              placeholder="YYYY-MM-DD"
+              name="userBirth"
+              onChange={handleUserInput}
             />
-            남자
-            <input
-              type="radio"
-              name="gender"
-              value="female"
-              onChange={handleradioCheck}
-            />
-            여자
-            <input
-              type="radio"
-              name="gender"
-              value="noselected"
-              onChange={handleradioCheck}
-            />
-            선택 안함
+          </div>
+          <div className="check-gender">
+            <span className="gender">성별</span>
+            <div className="check-radio">
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                onChange={handleradioCheck}
+              />
+              남자
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                onChange={handleradioCheck}
+              />
+              여자
+              <input
+                type="radio"
+                name="gender"
+                value="noselected"
+                onChange={handleradioCheck}
+              />
+              선택 안함
+            </div>
           </div>
         </div>
-      </div>
-      <div className="agree">
-        <div className="agree-ok">이용약관 동의</div>
-      </div>
-      <div className="agree-all">
-        <input
-          type="checkbox"
-          checked={isAllChecked}
-          onChange={handleAllAgreeChange}
-        />
-        전체 동의 합니다.
-        <div className="check-message">
-          선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할
-          수 있습니다.
+        <div className="agree">
+          <div className="agree-ok">이용약관 동의</div>
         </div>
-      </div>
+        <div className="agree-all">
+          <input
+            type="checkbox"
+            checked={isAllChecked}
+            onChange={handleAllAgreeChange}
+          />
+          전체 동의 합니다.
+          <div className="check-message">
+            선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할
+            수 있습니다.
+          </div>
+        </div>
 
-      <div className="agree-check">
-        {CHECKBOX.map(checkbox => {
-          return (
-            <div key={checkbox.id} className="agree-check">
-              <input
-                type="checkbox"
-                checked={checkId.includes(checkbox.id)}
-                onChange={e => handleCheckBox(e.target.checked, checkbox.id)}
-              />
-              <label htmlFor={checkbox.name}>{checkbox.label}</label>
-              {(checkbox.label === '전체 동의 합니다.' ||
-                checkbox.label ===
-                  '[선택] 이메일로 혜택과 정보를 보내드려도 될까요?') && (
-                <span className="checkbox-message">{checkbox.message}</span>
-              )}
-            </div>
-          );
-        })}
+        <div className="agree-check">
+          {CHECKBOX.map(checkbox => {
+            return (
+              <div key={checkbox.id} className="agree-check">
+                <input
+                  type="checkbox"
+                  checked={checkId.includes(checkbox.id)}
+                  onChange={e => handleCheckBox(e.target.checked, checkbox.id)}
+                />
+                <label htmlFor={checkbox.name}>{checkbox.label}</label>
+                {(checkbox.label === '전체 동의 합니다.' ||
+                  checkbox.label ===
+                    '[선택] 이메일로 혜택과 정보를 보내드려도 될까요?') && (
+                  <span className="checkbox-message">{checkbox.message}</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <button className="signupbtn" type="button" onClick={goToMain}>
+          가입하기
+        </button>
       </div>
-      <button className="signupbtn" type="button" onClick={goToMain}>
-        가입하기
-      </button>
-    </div>
+    </MainLayout>
   );
 };
 

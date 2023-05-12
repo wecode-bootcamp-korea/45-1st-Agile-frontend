@@ -127,9 +127,6 @@ const LeftSide = ({
       );
     }
   };
-
-  console.log(productList.isSubscribe);
-
   return (
     <div className="left-side">
       <div className="check-box-controller">

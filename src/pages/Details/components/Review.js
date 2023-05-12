@@ -2,7 +2,7 @@ import React from 'react';
 import './Review.scss';
 
 const Review = ({ review }) => {
-  const { content, createdAt, score, userId } = review;
+  const { content, createdAt, score, userName } = review;
 
   const scoreToStars = score => {
     let filledStar = '★'.repeat(score);
@@ -23,7 +23,7 @@ const Review = ({ review }) => {
         <div className="review-content">{content}</div>
         <button className="toggle-review-more">리뷰 더보기</button>
       </div>
-      <div className="user-info">{`${userId}님의 리뷰입니다.`}</div>
+      <div className="user-info">{`${userName}님의 리뷰입니다.`}</div>
     </li>
   );
 };

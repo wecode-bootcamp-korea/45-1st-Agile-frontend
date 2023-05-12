@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import CategoryModalNav from '../CategoryModal/CategoryModalNav';
 import './NavMain.scss';
-
 const NavMain = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -15,19 +15,20 @@ const NavMain = () => {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [isScrolled]);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
+  }, [location.pathname, setIsLoggedIn]);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [showSubCategoryModal, setShowSubCategoryModal] = useState(false);
-
   const handleMenusMouseEnter = () => {
     setShowCategoryModal(true);
   };
-
   const handleMenusMouseLeave = () => {
     setTimeout(() => {
       if (showCategoryModal) {
@@ -35,7 +36,6 @@ const NavMain = () => {
       }
     }, 500);
   };
-
   return (
     <nav className="nav-main">
       <div className={isScrolled ? 'nav-contaner-scrolled' : 'nav-contaner'}>
@@ -59,14 +59,19 @@ const NavMain = () => {
             <Link to="/mypage">
               <button className="to-wishlist" />
             </Link>
-            <Link to="/cart">
-              <button className="to-cart" />
-            </Link>
+            {isLoggedIn ? (
+              <Link to="/cart">
+                <button className="to-cart" />
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="to-cart" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
     </nav>
   );
 };
-
 export default NavMain;

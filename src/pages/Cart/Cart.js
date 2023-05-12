@@ -4,6 +4,8 @@ import LeftSide from './Components/LeftSide';
 import RightSide from './Components/RightSide';
 import Blank from './Components/Blank';
 import './Cart.scss';
+import MainLayout from '../Details/Mainlayout';
+import TitleLine from '../../components/TitleLine/TitleLine';
 const Cart = () => {
   const navigate = useNavigate();
   const [productList, setProductList] = useState([]);
@@ -26,6 +28,7 @@ const Cart = () => {
       });
   }, []);
 
+  if (!productList) return <Blank />;
   if (productList.length === 0) return <Blank />;
 
   const selectedList = selectedProducts.map(number =>
@@ -67,30 +70,33 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart">
-      <div className="top">
-        <div className="text-2xl cart-title">장바구니</div>
+    <MainLayout>
+      <TitleLine />
+      <div className="cart">
+        <div className="top">
+          <div className="text-2xl cart-title">장바구니</div>
+        </div>
+        <div className="content-wrap">
+          <LeftSide
+            token={token}
+            productList={productList}
+            setProductList={setProductList}
+            selectedProducts={selectedProducts}
+            setSelectedProducts={setSelectedProducts}
+            subtotal={subtotal}
+            total={total}
+            DELIVERY_FEE={DELIVERY_FEE}
+          />
+          <RightSide
+            subtotal={subtotal}
+            DELIVERY_FEE={DELIVERY_FEE}
+            total={total}
+            productList={productList}
+            handleBuyingButton={handleBuyingButton}
+          />
+        </div>
       </div>
-      <div className="content-wrap">
-        <LeftSide
-          token={token}
-          productList={productList}
-          setProductList={setProductList}
-          selectedProducts={selectedProducts}
-          setSelectedProducts={setSelectedProducts}
-          subtotal={subtotal}
-          total={total}
-          DELIVERY_FEE={DELIVERY_FEE}
-        />
-        <RightSide
-          subtotal={subtotal}
-          DELIVERY_FEE={DELIVERY_FEE}
-          total={total}
-          productList={productList}
-          handleBuyingButton={handleBuyingButton}
-        />
-      </div>
-    </div>
+    </MainLayout>
   );
 };
 export default Cart;
