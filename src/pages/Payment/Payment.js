@@ -1,69 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import OrderList from './components/OrderList';
-import Orderer from './components/Orderer';
-import Shipment from './components/Shipment';
-import Subscribe from './components/Subscribe';
-import PaymentMethod from './components/PaymentMethod';
-import PaymentInfo from './components/PaymentInfo';
+import OrderList from './components/OrderList'; //주문제품
+import Orderer from './components/Orderer'; //주문자 정보
+import Shipment from './components/Shipment'; //배송 정보
+import Subscribe from './components/Subscribe'; //정기배송 시작일
+import PaymentMethod from './components/PaymentMethod'; //결제수단
+import PaymentInfo from './components/PaymentInfo'; //결제정보
+import InvalidAccess from './InvalidAccess';
 import './Payment.scss';
 
+const cartId = [];
+
 const Payment = () => {
+  const navigate = useNavigate();
   const location = useLocation();
+
   const [userInfo, setUserInfo] = useState({});
   const [orderInfo, setOrderInfo] = useState([]);
+  const [orderMode, setOrderMode] = useState({});
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
-
-  const navigate = useNavigate();
-
-  const handlePayButton = () => {
-    if (point.remainPoint < 0) {
-      navigate('/invalidAccess');
-      return;
-    }
-    navigate('/orderCompleted', {
-      state: {
-        address: info.receiver_address,
-        subscribeDeliveryTime: info.subscribeStart,
-        cartIds: [],
-      },
-    });
-
-    // fetch('http://10.58.52.230:3000/users/orders', {
-    //   method: 'POST',
-    //   headers: {
-    //     Authorization: '',
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     address: userInfo.receiver_address,
-    //     subscribeDeliveryTime: userInfo.subscribeStart,
-    //     cartIds: [],
-    //   }),
-    // })
-    //   .then(res => res.json())
-    //   // .catch(e => navigate('/invalidAccess'))
-    //   .then();
-  };
-
-  const { productsInfo } = location.state;
-
-  console.log(productsInfo);
+  const [checkItems, setCheckItems] = useState([]);
+  const [message, setMessage] = useState(1);
 
   const handleInfo = e => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
 
+  const { productsInfo } = location.state;
+
+  //고객정보 불러오기
   useEffect(() => {
-    fetch('/data/userData.json', {
+    fetch('http://10.58.52.241:3000/users', {
       method: 'GET',
+      headers: {
+        Authorization: localStorage.getItem('token'),
+        'Content-Type': 'application/json;charset=utf-8',
+      },
     })
       .then(res => res.json())
       .then(data => {
-        const user = data.user; // for real backend data
+        const user = data.user;
         setUserInfo(user);
+
         setInfo({
           name: user.name,
           phoneNumber: user.phoneNumber,
@@ -75,29 +55,12 @@ const Payment = () => {
           subscribeStart: subDate(),
         });
       });
-    // setOrderInfo(productsInfo);
+    setOrderMode(productsInfo);
+    setOrderInfo(productsInfo.data);
+    if (orderMode.mode) cartId = productsInfo.cartIds;
   }, []);
 
-  if (orderInfo === []) return null;
-
-  let totalPrice = 0;
-  orderInfo?.forEach(ele => {
-    totalPrice += ele.price * ele.quantity;
-  });
-  const fee = totalPrice < 40000 ? 3000 : 0;
-  const usePoint = parseInt(totalPrice + fee);
-  const earnPoint = totalPrice >= 70000 ? usePoint * 0.02 : 0;
-  const remainPoint = parseInt(userInfo.points) - usePoint + earnPoint;
-
-  const point = {
-    curPoint: parseInt(userInfo.points),
-    usePoint: usePoint,
-    earnPoint: earnPoint,
-    remainPoint: remainPoint,
-    price: parseInt(totalPrice),
-    shipmentFee: parseInt(fee),
-  };
-
+  //라디오변경으로 고객정보 변경
   const switchRadio = () => {
     for (let key in info) {
       if (key.includes('receiver')) {
@@ -110,6 +73,96 @@ const Payment = () => {
     }
   };
 
+  const handlePayButton = () => {
+    if (
+      info.receiver_address === '' ||
+      info.receiver_name === '' ||
+      info.receiver_phoneNumber === ''
+    ) {
+      alert('배송정보를 입력해주세요.');
+      return;
+    } else if (checkItems < 2) {
+      alert('모든 약관에 동의해주세요.');
+      return;
+    } else if (point.remainPoint < 0) {
+      alert('포인트가 부족합니다.');
+      navigate('/invalidAccess');
+      return;
+    }
+
+    // 상세 -> 결제
+    if (!orderMode.mode) {
+      fetch('http://10.58.52.241:3000/orders/direct', {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          address: info.receiver_address,
+          subscribeDeliveryTime: info.subscribeStart,
+          bookId: orderInfo[0]?.bookId,
+          quantity: orderInfo[0]?.quauntity,
+          subscribeCycle: productsInfo.data.subscribeCycle,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          const { message, data } = res;
+          navigate('/orderCompleted', {
+            state: {
+              orderNumber: data.orderNumber,
+              price: point.usePoint,
+            },
+          });
+        });
+    }
+
+    // 장바구니 -> 결제
+    else {
+      fetch('http://10.58.52.241:3000/orders', {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('token'),
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({
+          address: info.receiver_address,
+          subscribeDeliveryTime: info.subscribeStart,
+          cartIds: productsInfo.cartIds,
+          subscribeCycle: productsInfo.subscribeCycle,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          const { message, data } = res;
+
+          navigate('/orderCompleted', {
+            state: {
+              orderNumber: data.orderNumber,
+              price: point.usePoint,
+            },
+          });
+        });
+    }
+  };
+
+  if (orderMode === {}) return;
+
+  const point = {
+    curPoint: parseInt(userInfo?.points),
+    usePoint: orderMode.totalPrice,
+    earnPoint: orderMode.totalPrice >= 70000 ? orderMode.totalPrice * 0.02 : 0,
+    remainPoint: parseInt(userInfo?.points) - orderMode.totalPrice,
+    price: orderMode.subtotal,
+    shipmentFee: orderMode.totalPrice < 40000 ? 3000 : 0,
+  };
+
+  //token 없을때 예외처리
+  if (!localStorage.getItem('token')) return <InvalidAccess />;
+
+  ////////////////////////////////////////////////////////////////////////
+  // main
   return (
     <div className="payment">
       <div className="order-sheet">
@@ -124,12 +177,18 @@ const Payment = () => {
         setRadio={setRadio}
         radio={radio}
         switchRadio={switchRadio}
+        message={message}
+        setMessage={setMessage}
       />
-      {orderInfo[0]?.isSubscribe && (
+      {orderInfo[0]?.isSubscribe !== 0 && (
         <Subscribe info={info} handleInfo={handleInfo} />
       )}
       <div className="pay-part">
-        <PaymentMethod point={point} />
+        <PaymentMethod
+          point={point}
+          checkItems={checkItems}
+          setCheckItems={setCheckItems}
+        />
         <PaymentInfo point={point} />
       </div>
       <div className="pay">
@@ -144,9 +203,10 @@ export default Payment;
 
 const subDate = () => {
   const now = new Date();
+
   const year = now.getFullYear();
   let month = now.getMonth() + 1;
-  let day = now.getDay() + 1; //next day
+  let day = now.getDate() + 1; //next day
 
   if (month < 10) {
     month = '0' + String(month);

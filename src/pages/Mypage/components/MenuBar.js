@@ -10,7 +10,7 @@ const MenuBar = ({ menuMode, setMenuMode }) => {
 
     //log out
     if (id === 4) {
-      localStorage.setItem('token', '');
+      localStorage.removeItem('token');
       navigate('/');
     }
   };

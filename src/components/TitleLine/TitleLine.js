@@ -29,9 +29,16 @@ const TitleLine = () => {
         </Link>
         <input className="search-bar" />
         <div className="title-right">
-          <Link to="/mypage">
-            <button className="to-wishlist" />
-          </Link>
+          {isLoggedIn ? (
+            <Link to="/mypage">
+              <button className="to-wishlist" />
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button className="to-wishlist" />
+            </Link>
+          )}
+
           {isLoggedIn ? (
             <Link to="/cart">
               <button className="to-cart" />

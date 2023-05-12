@@ -10,6 +10,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const [productList, setProductList] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -22,7 +23,6 @@ const Cart = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProductList(data.data);
         setSelectedProducts(data.data.map(product => product.cartId));
       });
@@ -40,11 +40,23 @@ const Cart = () => {
     price: list[0].price,
     isSubscribe: list[0].isSubscribe,
     quantity: list[0].amount,
+    subscribeCycle: list[0].subscribeCycle,
   }));
+
+  const subtotal = productList
+    .filter(product => selectedProducts.includes(product.cartId))
+    .map(product => product.price * product.amount)
+    .reduce((acc, price) => acc + price, 0);
+
+  const DELIVERY_FEE = 3000;
+
+  const total = subtotal + DELIVERY_FEE;
   const productsInfo = {
     mode: true,
     data: result,
     cartIds: selectedProducts,
+    totalPrice: total,
+    subtotal: subtotal,
   };
 
   const handleBuyingButton = () => {
@@ -56,14 +68,6 @@ const Cart = () => {
       alert('선택된 상품이 없습니다.');
     }
   };
-  const subtotal = productList
-    .filter(product => selectedProducts.includes(product.cartId))
-    .map(product => product.price * product.amount)
-    .reduce((acc, price) => acc + price, 0);
-
-  const DELIVERY_FEE = 3000;
-
-  const total = subtotal + DELIVERY_FEE;
 
   return (
     <MainLayout>

@@ -35,7 +35,6 @@ const LeftSide = ({
   //PATCH 메서드로 상품 수량 변경 요청 보내기
   useEffect(() => {
     if (cartId) {
-      console.log(productList);
       const value = productList.find(
         product => product.cartId === cartId
       ).amount;
@@ -49,7 +48,6 @@ const LeftSide = ({
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           // GET 메서드로 데이터 다시 가져오기
           fetch(`http://10.58.52.241:3000/carts?cartId=${cartId}`, {
             method: 'GET',
@@ -58,9 +56,7 @@ const LeftSide = ({
             },
           })
             .then(res => res.json())
-            .then(data => {
-              console.log('Updated data:', data);
-            })
+            .then(data => {})
             .catch(error => console.error(error));
         })
         .catch(error => console.error(error));
@@ -111,7 +107,6 @@ const LeftSide = ({
         })
           .then(res => res.json())
           .then(data => {
-            console.log('Updated data:', data);
             setProductList(data.data);
           })
           .catch(error => console.error(error));

@@ -27,8 +27,8 @@ const Router = () => {
         <Route path="/books/:id" element={<Details />} />
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/orderCompleted" element={<OrderCompleted />} />
-        <Route path="/invalidAccess" element={<InvalidAccess />} />
         <Route path="/userInfoUpdate" element={<UserInfoUpdate />} />
+        <Route path="*" element={<InvalidAccess />} />
       </Routes>
     </BrowserRouter>
   );

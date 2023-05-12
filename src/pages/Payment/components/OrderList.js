@@ -11,8 +11,8 @@ const OrderList = ({ orderInfo }) => {
         {orderInfo.length === 0 && <div>장바구니를 불러올 수 없습니다.</div>}
         {orderInfo.length !== 0 && (
           <div>
-            {orderInfo[0]?.bookTitle}{' '}
-            {orderLength && <span>외 {orderLength}개 </span>}
+            {orderInfo[0]?.title}{' '}
+            {orderLength > 0 && <span>외 {orderLength}개 </span>}
             제품을 주문합니다.
           </div>
         )}
