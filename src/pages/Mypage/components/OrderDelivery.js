@@ -15,7 +15,9 @@ const OrderDelivery = ({ setMenuMode, orderStatus }) => {
           return (
             <>
               <div key={data.id} className="condition-mode">
-                <div className="text-2xl">{orderStatus[data.type]}</div>
+                <div className="text-2xl">
+                  {orderStatus ? orderStatus[data.type] : 0}
+                </div>
                 <div className="mode">{data.title}</div>
               </div>
               <div className="text-lg">{'>'}</div>

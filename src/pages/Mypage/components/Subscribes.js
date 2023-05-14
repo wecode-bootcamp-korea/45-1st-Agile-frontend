@@ -27,13 +27,14 @@ const Subscribes = () => {
       <ItemTitle title="정기구독 관리" />
       <div className="subscribes-main">
         <div className="text-lg application-details">
-          신청내역 ({subList.length}건)
+          신청내역 ({subList ? subList.length : 0}건)
         </div>
         <div className="subscribes-list">
-          {subList.length === 0 && (
+          {(!subList || subList.length === 0) && (
             <div className="no-list">신청내역이 없습니다.</div>
           )}
-          {subList.length !== 0 &&
+          {subList &&
+            subList.length !== 0 &&
             subList.map(data => {
               return <SubscribesProduct key={data.id} data={data} />;
             })}

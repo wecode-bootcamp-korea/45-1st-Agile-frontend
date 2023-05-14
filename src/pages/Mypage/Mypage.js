@@ -64,7 +64,7 @@ const Mypage = () => {
     <Mainlayout>
       <TitleLine />
       {modal && <div className="background" />}
-      {modal && <ConfirmPassword />}
+      {modal && <ConfirmPassword modal={modal} setModal={setModal} />}
       <div className="mypage">
         <MypageTop userInfo={userInfo} setModal={setModal} />
         <div className="mypage-main">
