@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Signup.scss';
 import MainLayout from '../Details/Mainlayout';
 import TitleLine from '../../components/TitleLine/TitleLine';
@@ -17,7 +17,7 @@ const SignUp = () => {
     userGender: '',
   });
 
-  const { userId, userPassword, userPasswordOk } = memberData;
+  const { userId, userPassword, userPasswordOk, userPhoneNumber } = memberData;
   const [checkId, setCheckId] = useState([]);
 
   const isAllChecked = checkId.length === CHECKBOX.length;
@@ -52,6 +52,9 @@ const SignUp = () => {
         userPassword
       ) && userPassword.length !== 0,
     userPasswordOk: userPasswordOk === userPassword,
+    userPhoneNumber:
+      /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/.test(userPhoneNumber) &&
+      userPhoneNumber.length !== 0,
   };
 
   const handleradioCheck = event => {
@@ -69,31 +72,37 @@ const SignUp = () => {
       }
     });
 
+    if (!allCondtionMet) {
+      return;
+    }
+
     const checkTerm = checkId.includes(1) && checkId.includes(2);
 
-    if (allCondtionMet && checkTerm) {
-      fetch('http://10.58.52.241:3000/users/signUp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8',
-        },
-        body: JSON.stringify({
-          email: memberData.userId,
-          password: memberData.userPassword,
-          name: memberData.userName,
-          gender: memberData.gender,
-          address: memberData.userAddress,
-          phoneNumber: memberData.userPhoneNumber,
-          birthDate: memberData.userBirth,
-        }),
-      }).then(response => {
-        return response.json();
-      });
-      alert('회원가입이 완료되었습니다!');
-      navigate('/login', { state: { from: 'signup' } });
-    } else {
+    if (!checkTerm) {
       alert('필수 사항을 선택해주세요!');
+      return;
     }
+
+    fetch('http://10.58.52.241:3000/users/signUp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        email: memberData.userId,
+        password: memberData.userPassword,
+        name: memberData.userName,
+        gender: memberData.gender,
+        address: memberData.userAddress,
+        phoneNumber: memberData.userPhoneNumber,
+        birthDate: memberData.userBirth,
+      }),
+    }).then(response => {
+      return response.json();
+    });
+
+    alert('회원가입이 완료되었습니다!');
+    navigate('/login', { state: { from: 'signup' } });
   };
 
   return (
@@ -262,6 +271,7 @@ const ALERT_MESSAGE = {
   userId: '이메일을 다시 입력해주세요!',
   userPassword: '비밀번호를 다시 입력해주세요!',
   userPasswordOk: '입력한 비밀번호와 일치하지 않습니다!',
+  userPhoneNumber: '전화번호를 다시 입력해주세요!',
 };
 
 const CHECKBOX = [
