@@ -10,16 +10,28 @@ const Details = () => {
   const [productDetail, setProductDetail] = useState({});
   const [productsInCart, setProductsInCart] = useState([]);
   const [isOptionSelected, setIsOptionSelected] = useState(false);
+  const [isLikeChanged, setIsLikeChanged] = useState('');
   const token = localStorage.getItem('token');
   const params = useParams();
   const id = params.id;
 
   useEffect(() => {
-    fetch(`http://10.58.52.241:3000/books/${id}`)
+    fetch(
+      `http://10.58.52.241:3000/books/${id}`,
+      !token
+        ? null
+        : {
+            headers: {
+              'content-Type': 'application/json;charset=utf-8',
+              Authorization: token,
+            },
+          }
+    )
       .then(res => res.json())
       .then(data => {
         setProductDetail(data);
         setIsOptionSelected(data.isSubscribe === 0);
+        setIsLikeChanged(data.isLiked);
       })
       .catch(e => {
         console.error(e);
@@ -57,6 +69,8 @@ const Details = () => {
           token={token}
           isOptionSelected={isOptionSelected}
           setIsOptionSelected={setIsOptionSelected}
+          isLikeChanged={isLikeChanged}
+          setIsLikeChanged={setIsLikeChanged}
         />
       </div>
     </MainLayout>
