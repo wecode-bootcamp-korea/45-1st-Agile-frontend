@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import MypageTop from './components/MypageTop';
 import MenuBar from './components/MenuBar';
 import OrderDelivery from './components/OrderDelivery';
@@ -11,6 +12,8 @@ import './Mypage.scss';
 import TitleLine from '../../components/TitleLine/TitleLine';
 
 const Mypage = () => {
+  const location = useLocation();
+
   const [modal, setModal] = useState(false); //정보수정 비밀번호 확인 모달창
   const [menuMode, setMenuMode] = useState(0); //메뉴바 바꾸기
   const [userInfo, setUserInfo] = useState({}); //사용자 정보
@@ -22,7 +25,6 @@ const Mypage = () => {
     2: <Subscribes />, //정기구독 관리
     3: <Likes />, //관심 상품
   };
-
   //고객정보 불러오기
   useEffect(() => {
     fetch('http://10.58.52.241:3000/users', {
@@ -43,6 +45,11 @@ const Mypage = () => {
           phoneNumber: user.phoneNumber,
         });
       });
+
+    if (location.state) {
+      const { state } = location;
+      setMenuMode(state.menuMode);
+    }
   }, []);
 
   // 주문배송현황 불러오기
