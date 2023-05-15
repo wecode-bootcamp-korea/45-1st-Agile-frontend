@@ -36,8 +36,6 @@ const Mypage = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('user', data);
-
         const user = data.user;
         setUserInfo({
           name: user.name,
@@ -63,7 +61,6 @@ const Mypage = () => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log('order', res);
         const { orderStatus, data } = res;
         setOrderStatus(orderStatus);
         setDataStatus(data);
