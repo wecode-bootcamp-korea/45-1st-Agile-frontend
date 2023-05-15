@@ -19,6 +19,8 @@ const Contents = ({
   token,
   isOptionSelected,
   setIsOptionSelected,
+  isLikeChanged,
+  setIsLikeChanged,
 }) => {
   const {
     quantity,
@@ -30,13 +32,11 @@ const Contents = ({
     thumbnail,
     description,
     author,
-    isLiked,
   } = productDetail;
   const [count, setCount] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
-  const [isLikeChanged, setIsLikeChanged] = useState(isLiked);
-  const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
 
+  const [reCheckModalOpen, setRecheckModalOpen] = useState(false);
   const [selected, setSelected] = useState('');
   const [deliveryCycle, setDeliveryCycle] = useState('');
   const navigate = useNavigate();
