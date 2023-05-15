@@ -1,0 +1,11 @@
+@import '../../../styles/variables';
+
+.customer-service {
+  .customer-service-main {
+    .text-xl {
+      &.main-number {
+        margin: 10px;
+      }
+    }
+  }
+}

@@ -46,7 +46,7 @@ const LikesProduct = ({
       </div>
       <div className="likes-right">
         <button onClick={() => likesDeleteFetch(data.id)}>삭제</button>
-        <button className="cart" onClick={handleLikesAddCart}>
+        <button className="likes-cart" onClick={handleLikesAddCart}>
           장바구니
         </button>
       </div>

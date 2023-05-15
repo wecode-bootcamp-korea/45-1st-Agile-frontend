@@ -9,7 +9,7 @@ const MenuBar = ({ menuMode, setMenuMode }) => {
     setMenuMode(id);
 
     //log out
-    if (id === 4) {
+    if (id === 5) {
       localStorage.removeItem('token');
       navigate('/');
     }
@@ -38,5 +38,6 @@ const MENU_INFO = [
   { id: 1, title: '주문배송 조회' },
   { id: 2, title: '정기구독 관리' },
   { id: 3, title: '관심 상품' },
-  { id: 4, title: '로그아웃' },
+  { id: 4, title: '고객센터' },
+  { id: 5, title: '로그아웃' },
 ];

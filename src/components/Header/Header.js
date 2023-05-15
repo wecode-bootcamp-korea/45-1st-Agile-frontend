@@ -15,7 +15,7 @@ function Header({ isLoggedIn, handleButtonClick }) {
         {isLoggedIn ? '로그아웃' : '로그인'}
       </button>
 
-      <Link to="/customer-center">
+      <Link to="/mypage" state={{ menuMode: 4 }}>
         <button className="to-customer-center">고객센터</button>
       </Link>
     </header>
