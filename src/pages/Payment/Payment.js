@@ -10,7 +10,8 @@ import InvalidAccess from './InvalidAccess';
 import Mainlayout from '../../pages/Details/Mainlayout';
 import './Payment.scss';
 
-const cartId = [];
+let cartId = [];
+let flag = false;
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const Payment = () => {
   };
 
   const { productsInfo } = location.state;
-  console.log(productsInfo);
+  console.log('pro', productsInfo);
 
   //고객정보 불러오기
   useEffect(() => {
@@ -63,10 +64,15 @@ const Payment = () => {
           subscribeStart: subDate(),
         });
       });
+
     setOrderMode(productsInfo);
     setOrderInfo(productsInfo.data);
     if (orderMode.mode) cartId = productsInfo.cartIds;
   }, []);
+
+  orderInfo.forEach(ele => {
+    if (ele.isSubscribe) flag = true;
+  });
 
   //라디오변경으로 고객정보 변경
   const switchRadio = () => {
@@ -98,8 +104,6 @@ const Payment = () => {
       return;
     }
 
-    console.log(productsInfo.data);
-    console.log(productsInfo.data[0].subscribeCycle);
     // 상세 -> 결제
     if (!orderMode.mode) {
       fetch('http://10.58.52.241:3000/orders/direct', {
@@ -197,9 +201,7 @@ const Payment = () => {
           message={message}
           setMessage={setMessage}
         />
-        {orderInfo[0]?.isSubscribe !== 0 && (
-          <Subscribe info={info} handleInfo={handleInfo} />
-        )}
+        {flag && <Subscribe info={info} handleInfo={handleInfo} />}
         <div className="pay-part">
           <PaymentMethod
             point={point}
