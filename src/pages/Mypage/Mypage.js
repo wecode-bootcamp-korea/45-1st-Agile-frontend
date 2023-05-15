@@ -8,8 +8,9 @@ import Subscribes from './components/Subscribes';
 import Likes from './components/Likes';
 import ConfirmPassword from './components/ConfirmPassword';
 import Mainlayout from '../../pages/Details/Mainlayout';
-import './Mypage.scss';
 import TitleLine from '../../components/TitleLine/TitleLine';
+import CustomerService from './components/CustomerService';
+import './Mypage.scss';
 
 const Mypage = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const Mypage = () => {
     1: <OrderStatus dataStatus={dataStatus} />, //주문배송 조회
     2: <Subscribes />, //정기구독 관리
     3: <Likes />, //관심 상품
+    4: <CustomerService />, //고객센터
   };
   //고객정보 불러오기
   useEffect(() => {
