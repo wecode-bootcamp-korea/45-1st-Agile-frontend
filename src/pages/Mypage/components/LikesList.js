@@ -39,8 +39,6 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
       query = query.slice(0, -1);
     }
 
-    console.log(query);
-
     fetch(`http://10.58.52.241:3000/likes?${query}`, {
       method: 'DELETE',
       headers: {
@@ -66,7 +64,7 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
             {checkItems.length}/{likesArr ? likesArr.length : 0})
           </div>
         </div>
-        <div onClick={likesDeleteFetch}>선택삭제</div>
+        <div onClick={() => likesDeleteFetch()}>선택삭제</div>
       </div>
       <div className="likes-list-items">
         {(!likesArr || likesArr.length === 0) && (
