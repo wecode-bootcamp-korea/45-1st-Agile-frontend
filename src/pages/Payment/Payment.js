@@ -37,7 +37,6 @@ const Payment = () => {
   };
 
   const { productsInfo } = location.state;
-  console.log('pro', productsInfo);
 
   //고객정보 불러오기
   useEffect(() => {
@@ -95,7 +94,7 @@ const Payment = () => {
     ) {
       alert('배송정보를 입력해주세요.');
       return;
-    } else if (checkItems < 2) {
+    } else if (checkItems.length < 2) {
       alert('모든 약관에 동의해주세요.');
       return;
     } else if (point.remainPoint < 0) {
@@ -122,7 +121,6 @@ const Payment = () => {
       })
         .then(res => res.json())
         .then(res => {
-          console.log('res', res);
           const { message, data } = res;
           navigate('/orderCompleted', {
             state: {
@@ -135,7 +133,6 @@ const Payment = () => {
 
     // 장바구니 -> 결제
     else {
-      console.log(productsInfo);
       fetch('http://10.58.52.241:3000/orders', {
         method: 'POST',
         headers: {
@@ -151,8 +148,6 @@ const Payment = () => {
         .then(res => res.json())
         .then(res => {
           const { message, data } = res;
-
-          console.log('res', res);
 
           navigate('/orderCompleted', {
             state: {

@@ -18,8 +18,6 @@ const TitleLine = () => {
     }, 500);
   };
 
-  const handleWishlistClick = () => {};
-
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); // 토큰이 있으면 true, 없으면 false
@@ -33,11 +31,7 @@ const TitleLine = () => {
         <input className="search-bar" />
         <div className="title-right">
           {isLoggedIn ? (
-            <Link
-              to="/mypage"
-              state={{ menuMode: 3 }}
-              onClick={handleWishlistClick}
-            >
+            <Link to="/mypage" state={{ menuMode: 3 }}>
               <button className="to-wishlist" />
             </Link>
           ) : (
