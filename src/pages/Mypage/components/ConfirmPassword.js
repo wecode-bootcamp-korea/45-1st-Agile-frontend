@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ConfirmPassword.scss';
 
-const ConfirmPassword = () => {
+const ConfirmPassword = ({ setModal }) => {
   const navigate = useNavigate();
   const [pwd, setPwd] = useState();
 
@@ -36,20 +36,29 @@ const ConfirmPassword = () => {
     }
   };
 
-  const handleButton = () => {
+  const handleConfirmButton = () => {
     confirmPwd();
+  };
+
+  const handleCloseButton = () => {
+    setModal(false);
   };
 
   return (
     <div className="confirm-password">
       <div className="confirm-main">
         <div className="text-2xl main-title">
-          <b>비밀번호를 입력해주세요</b>
+          <b>현재 비밀번호를 입력해주세요</b>
         </div>
         <input type="password" onChange={handlePwd} onKeyUp={handleEnter} />
-        <button onClick={handleButton}>
-          <b>확인</b>
-        </button>
+        <div className="button-part">
+          <button onClick={handleConfirmButton}>
+            <b>확인</b>
+          </button>
+          <button onClick={handleCloseButton}>
+            <b>닫기</b>
+          </button>
+        </div>
       </div>
     </div>
   );

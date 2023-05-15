@@ -10,12 +10,12 @@ const OrderItems = ({ data }) => {
           <div className="text-lg order-date">
             <b>{data.createdAt} </b>
           </div>
-          {data.subscribeCycle !== null && (
+          {/* {data.subscribeCycle !== null && (
             <div className="text-sm order-subCycle">
               {' '}
               (구독: {data.subscribeCycle})
             </div>
-          )}
+          )} */}
         </div>
         <div>{data.status}</div>
       </div>

@@ -1,7 +1,7 @@
 @import '../../../styles/variables';
 
 .order-products {
-  @include flex-sort(none, center);
+  @include flex-sort(space-between, none);
   padding: 15px;
   border-bottom: 1px solid rgb(221, 221, 221);
 
@@ -9,18 +9,35 @@
     border: none;
   }
 
-  .products-main {
-    display: flex;
-    flex-direction: column;
-
-    .products-info {
+  .product-left-main {
+    @include flex-sort(none, center);
+    .products-main {
       display: flex;
-      padding-left: 20px;
+      flex-direction: column;
 
-      .title-att {
-        width: 100px;
-        color: #999999;
+      .products-info {
+        display: flex;
+        padding-left: 20px;
+
+        .title-att {
+          width: 100px;
+          color: #999999;
+        }
       }
+    }
+  }
+  .product-right-main {
+    @include flex-sort(none, center);
+    height: 50px;
+    margin-top: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border: 1px solid #999999;
+    border-radius: 50px;
+    background-color: white;
+    .title-att {
+      width: 70px;
+      color: #999999;
     }
   }
 }

@@ -34,6 +34,8 @@ const Mypage = () => {
     })
       .then(res => res.json())
       .then(data => {
+        console.log('user', data);
+
         const user = data.user;
         setUserInfo({
           name: user.name,
@@ -54,6 +56,7 @@ const Mypage = () => {
     })
       .then(res => res.json())
       .then(res => {
+        console.log('order', res);
         const { orderStatus, data } = res;
         setOrderStatus(orderStatus);
         setDataStatus(data);
@@ -64,7 +67,7 @@ const Mypage = () => {
     <Mainlayout>
       <TitleLine />
       {modal && <div className="background" />}
-      {modal && <ConfirmPassword />}
+      {modal && <ConfirmPassword modal={modal} setModal={setModal} />}
       <div className="mypage">
         <MypageTop userInfo={userInfo} setModal={setModal} />
         <div className="mypage-main">

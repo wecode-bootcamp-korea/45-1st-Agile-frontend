@@ -39,6 +39,8 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
       query = query.slice(0, -1);
     }
 
+    console.log(query);
+
     fetch(`http://10.58.52.241:3000/likes?${query}`, {
       method: 'DELETE',
       headers: {
@@ -61,16 +63,17 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
           />
           <div className="text-lg">
             <b onClick={() => handleAllCheck(!isAllChecked)}>전체선택</b> (
-            {checkItems.length}/{likesArr.length})
+            {checkItems.length}/{likesArr ? likesArr.length : 0})
           </div>
         </div>
         <div onClick={likesDeleteFetch}>선택삭제</div>
       </div>
       <div className="likes-list-items">
-        {likesArr.length === 0 && (
+        {(!likesArr || likesArr.length === 0) && (
           <div className="no-list">관심 상품이 없습니다.</div>
         )}
-        {likesArr.length !== 0 &&
+        {likesArr &&
+          likesArr.length !== 0 &&
           likesArr.map(data => {
             return (
               <LikesProduct
