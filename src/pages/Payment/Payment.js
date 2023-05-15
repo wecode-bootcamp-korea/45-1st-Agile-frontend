@@ -118,6 +118,7 @@ const Payment = () => {
       })
         .then(res => res.json())
         .then(res => {
+          console.log('res', res);
           const { message, data } = res;
           navigate('/orderCompleted', {
             state: {
@@ -141,12 +142,13 @@ const Payment = () => {
           address: info.receiver_address,
           subscribeDeliveryTime: info.subscribeStart,
           cartIds: productsInfo.cartIds,
-          subscribeCycle: productsInfo.data[0].subscribeCycle,
         }),
       })
         .then(res => res.json())
         .then(res => {
           const { message, data } = res;
+
+          console.log('res', res);
 
           navigate('/orderCompleted', {
             state: {
