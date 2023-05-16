@@ -55,7 +55,7 @@ const Contents = ({
         title: title,
         price: price,
         isSubscribe: isSubscribe,
-        quauntity: count,
+        quantity: count,
         subscribeCycle: deliveryCycle,
       },
     ],

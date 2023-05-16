@@ -115,7 +115,7 @@ const Payment = () => {
           address: info.receiver_address,
           subscribeDeliveryTime: info.subscribeStart,
           bookId: orderInfo[0]?.bookId,
-          quantity: orderInfo[0]?.quauntity,
+          quantity: orderInfo[0]?.quantity,
           subscribeCycle: productsInfo.data[0].subscribeCycle,
         }),
       })
