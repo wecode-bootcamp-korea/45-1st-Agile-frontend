@@ -1,13 +1,42 @@
-45기 1차 프로젝트 1조
+# 45기 1차 프로젝트
 
-팀 이름 : Agile
-프로젝트 이름 : Esteem-up
+- Team Name : Agile <br>
+- Project Name : Esteem-up <br>  <br>
 
-프로젝트 플로우 : 회원가입/로그인 -> 메인페이지/상품리스트 -> 상세페이지 -> 장바구니 -> 결제페이지 -> 마이페이지
+- Project Manager: 이지은(B) <br>
+- Product Manager: 김준섭(F) <br>
+- Teammates: 김희연(F), 박현아(F), 오승민(F), 오진석(B), 이소진(F) <br>
 
-프로덕트 매니저 : 김준섭(F)
-프로젝트 매니저 : 이지은(B)
-팀원 : 김희연(F), 박현아(F), 오승민(F), 오진석(B), 이소진(F)
+<br>
+
+
+# TECH STACK
+
+<div display=flex >
+
+### BACKEND <br>
+<img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+<img src="https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white">
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
+<img src="https://img.shields.io/badge/TypeORM-262627?style=for-the-badge&logo=TypeORM&logoColor=white">
+<img src="https://img.shields.io/badge/postman-FF4500?style=for-the-badge&logo=postman&logoColor=white">
+ 
+### FRONTEND <br>
+<img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+<img src="https://img.shields.io/badge/sass-CC6699?style=for-the-badge&logo=sass&logoColor=red"> 
+
+### CO-OP TOOLS <br>
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">
+<img src="https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=Trello&logoColor=white">
+<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white">
+</div>
 
 
 로그인 / 회원 가입 기능
