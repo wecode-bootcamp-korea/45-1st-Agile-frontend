@@ -1,8 +1,15 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './MypageTop.scss';
 
-const MypageTop = ({ userInfo, setModal }) => {
+const MypageTop = ({ userInfo, setModal, isLoggedIn }) => {
+  const navigate = useNavigate();
+
   const handleOnclick = () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
     setModal(true);
   };
 

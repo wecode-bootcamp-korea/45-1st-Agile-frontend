@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './MenuBar.scss';
 
-const MenuBar = ({ menuMode, setMenuMode }) => {
+const MenuBar = ({ menuMode, setMenuMode, isLoggedIn }) => {
   const navigate = useNavigate();
 
   const handleMenu = id => {
@@ -12,6 +12,12 @@ const MenuBar = ({ menuMode, setMenuMode }) => {
     if (id === 5) {
       localStorage.removeItem('token');
       navigate('/');
+      return;
+    } else if (id !== 4) {
+      if (!isLoggedIn) {
+        navigate('/login');
+        return;
+      }
     }
   };
 
