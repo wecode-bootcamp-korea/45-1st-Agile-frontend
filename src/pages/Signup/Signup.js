@@ -83,7 +83,7 @@ const SignUp = () => {
       return;
     }
 
-    fetch('http://10.58.52.241:3000/users/signUp', {
+    fetch('http://13.209.8.13:3000/users/signUp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

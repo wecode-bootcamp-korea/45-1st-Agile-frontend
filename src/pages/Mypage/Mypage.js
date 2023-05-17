@@ -29,7 +29,7 @@ const Mypage = () => {
   };
   //고객정보 불러오기
   useEffect(() => {
-    fetch('http://10.58.52.241:3000/users', {
+    fetch('http://13.209.8.13:3000/users', {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('token'),
@@ -54,7 +54,7 @@ const Mypage = () => {
 
   // 주문배송현황 불러오기
   useEffect(() => {
-    fetch('http://10.58.52.241:3000/orders', {
+    fetch('http://13.209.8.13:3000/orders', {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('token'),
