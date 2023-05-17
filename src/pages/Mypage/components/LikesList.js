@@ -39,7 +39,7 @@ const LikesList = ({ likesArr, checkItems, setCheckItems, likesGetFetch }) => {
       query = query.slice(0, -1);
     }
 
-    fetch(`http://10.58.52.241:3000/likes?${query}`, {
+    fetch(`http://13.209.8.13:3000/likes?${query}`, {
       method: 'DELETE',
       headers: {
         Authorization: localStorage.getItem('token'),

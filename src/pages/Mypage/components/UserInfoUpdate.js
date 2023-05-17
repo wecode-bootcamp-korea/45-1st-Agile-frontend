@@ -14,7 +14,7 @@ const UserInfoUpdate = () => {
 
   //고객정보 불러오기
   useEffect(() => {
-    fetch('http://10.58.52.241:3000/users', {
+    fetch('http://13.209.8.13:3000/users', {
       method: 'GET',
       headers: {
         Authorization: localStorage.getItem('token'),
@@ -52,7 +52,7 @@ const UserInfoUpdate = () => {
       return;
     }
     if (userInfo.password) {
-      fetch('http://10.58.52.241:3000/users/password', {
+      fetch('http://13.209.8.13:3000/users/password', {
         method: 'PATCH',
         headers: {
           Authorization: localStorage.getItem('token'),
@@ -68,7 +68,7 @@ const UserInfoUpdate = () => {
   //회원정보수정
   const handleUser = () => {
     if (userInfo.address && userInfo.phoneNumber) {
-      fetch('http://10.58.52.241:3000/users/information', {
+      fetch('http://13.209.8.13:3000/users/information', {
         method: 'PATCH',
         headers: {
           Authorization: localStorage.getItem('token'),
