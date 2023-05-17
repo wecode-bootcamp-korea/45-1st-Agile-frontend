@@ -4,7 +4,7 @@ import './ConfirmPassword.scss';
 
 const ConfirmPassword = ({ setModal }) => {
   const navigate = useNavigate();
-  const [pwd, setPwd] = useState();
+  const [pwd, setPwd] = useState(); //비밀번호 입력값 상태
 
   const handlePwd = e => {
     setPwd(e.target.value);
@@ -36,10 +36,12 @@ const ConfirmPassword = ({ setModal }) => {
     }
   };
 
+  //확인 버튼
   const handleConfirmButton = () => {
     confirmPwd();
   };
 
+  // 닫기 버튼
   const handleCloseButton = () => {
     setModal(false);
   };
