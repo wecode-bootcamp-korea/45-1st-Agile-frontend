@@ -136,7 +136,7 @@ const SignUp = () => {
           })}
         </div>
         <div className="plusinfo">
-          <div className="plus-info">추가정보</div>
+          <div className="plus-info">고객정보</div>
         </div>
         <div className="plusinfoform">
           <div className="write-birth">

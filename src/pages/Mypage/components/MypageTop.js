@@ -5,7 +5,7 @@ import './MypageTop.scss';
 const MypageTop = ({ userInfo, setModal, isLoggedIn }) => {
   const navigate = useNavigate();
 
-  const handleOnclick = () => {
+  const handleUpdateInfoClick = () => {
     if (!isLoggedIn) {
       navigate('/login');
       return;
@@ -34,7 +34,7 @@ const MypageTop = ({ userInfo, setModal, isLoggedIn }) => {
           </div>
           <div className="phone-number">
             <div>{userInfo.phoneNumber}</div>
-            <div onClick={handleOnclick}>정보수정{' > '}</div>
+            <div onClick={handleUpdateInfoClick}>정보수정{' > '}</div>
           </div>
         </div>
       </div>

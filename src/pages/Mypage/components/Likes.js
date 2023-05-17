@@ -24,7 +24,7 @@ const Likes = () => {
   };
 
   useEffect(() => {
-    likesGetFetch();
+    likesGetFetch(); //관심상품 불러오기 (GET)
   }, []);
 
   return (

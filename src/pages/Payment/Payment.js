@@ -23,17 +23,10 @@ const Payment = () => {
   const [radio, setRadio] = useState(true);
   const [info, setInfo] = useState({});
   const [checkItems, setCheckItems] = useState([]);
-  const [message, setMessage] = useState(1);
 
   const handleInfo = e => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
-  };
-
-  const subMode = {
-    '1주일': 'ONEWEEK',
-    '1개월': 'ONEMONTH',
-    '3개월': 'THREEMONTHS',
   };
 
   const { productsInfo } = location.state;
@@ -193,8 +186,6 @@ const Payment = () => {
           setRadio={setRadio}
           radio={radio}
           switchRadio={switchRadio}
-          message={message}
-          setMessage={setMessage}
         />
         {flag && <Subscribe info={info} handleInfo={handleInfo} />}
         <div className="pay-part">
