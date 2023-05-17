@@ -27,6 +27,13 @@ const Payment = () => {
   const handleInfo = e => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
+
+    if (name === 'receiver_phoneNumber') {
+      if (info.receiver_phoneNumber?.length === 10) {
+        let v = value.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        setInfo({ ...info, [name]: v });
+      }
+    }
   };
 
   const { productsInfo } = location.state;
