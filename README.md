@@ -56,10 +56,28 @@
 
 <br />
 장바구니 페이지 
-<bt />![장바구니담기](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/e5dcffc3-452f-4cd5-aa04-015d1210a7d6)
+<br />
+구독 옵션 설정 후 장바구니 담기 <br />
+
+![구독상품](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/adf31377-bef4-46b5-b671-ed22149babb2)
 
 
-체크박스 전체선택 / 선택삭제 
+체크박스 전체선택 / 선택삭제 <br/>
 ![전체선택,선택삭제](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/64b6b8ae-f388-49b6-bfe9-1e0f5f28775b)
 
+수량 변경 후 선택삭제 <br />
+![수량변경,선택삭제](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/11adcc2a-8a58-48fa-803f-649137025e37)
+
+x 버튼으로 개별삭제 <br />
+![수량변경,삭제](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/7fe560cd-4b76-417c-93f5-489f02322427)
+
+전체선택 후 삭제 <br />
+
+![전체선택,선택삭제](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/d21f6e60-7a37-411c-9404-f4848b0d7abb)
+<br/>
+![4만원이상무료배송](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/46516d71-63d7-4b63-85db-a969e10a5485)
+
+
+구매하기 버튼 클릭 시 결제페이지로 이동 <br />
+![ezgif com-video-to-gif](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/e4ad6ce5-ca73-4911-b676-5ecdb9bae118)
 
