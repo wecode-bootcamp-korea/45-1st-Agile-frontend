@@ -55,10 +55,10 @@
       
 
 <br />
-장바구니 페이지 
+장바구니 페이지 <br/>
 
 
-구독 옵션 설정 후 장바구니 담기 <br />
+구독 옵션 설정 후 장바구니 담기 <br/>
 
 ![구독상품](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/adf31377-bef4-46b5-b671-ed22149babb2)
 
