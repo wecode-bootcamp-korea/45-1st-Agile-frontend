@@ -56,8 +56,10 @@
 
 <br />
 장바구니 페이지 
-<bt />
-![장바구니담기](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/2fa98cab-3133-43da-92a2-fa1d6be670f9)
+<bt />![장바구니담기](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/e5dcffc3-452f-4cd5-aa04-015d1210a7d6)
 
+
+체크박스 전체선택 / 선택삭제 
+![전체선택,선택삭제](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/130316191/64b6b8ae-f388-49b6-bfe9-1e0f5f28775b)
 
 
