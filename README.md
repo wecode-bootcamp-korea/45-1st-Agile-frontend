@@ -1,3 +1,6 @@
+# 아마존s3 배포주소 : eemup.s3-website.ap-northeast-2.amazonaws.com
+
+
 # 45기 1차 프로젝트
 
 - Team Name : Agile <br>
