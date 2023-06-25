@@ -181,18 +181,22 @@ x 버튼으로 개별삭제 <br />
 12) '정보수정' 기능으로 휴대폰 번호, 주소 정보 수정을 백엔드와 통신하여 구현
 
 - 마이페이지 레이아웃 <br />
+![ezgif com-video-to-gif (6)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/db295ebc-d106-44fc-89f7-f5e57fe4fe5d)
 
 
 - 주문배송 조회 <br />
+![ezgif com-video-to-gif (7)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/97f1bfb3-5086-4aaa-a776-6555bbda9b02)
 
 
 - 정기구독 관리 <br />
 
 
 - 관심상품 보기 <br />
+![ezgif com-video-to-gif (8)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/004a9677-c155-446c-ae18-aac349c72e2e)
 
 
 - 관심상품 삭제 및 장바구니 추가 <br />
+![ezgif com-video-to-gif (9)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/242f1370-0928-45fc-a270-a7d6361eb566)
 
 
 - 정보수정 이동 <br />
