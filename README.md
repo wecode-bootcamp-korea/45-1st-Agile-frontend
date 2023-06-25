@@ -153,13 +153,13 @@ x 버튼으로 개별삭제 <br />
 8) '결제정보'에서 주문제품의 가격과 배송비, 총 결제금액 노출
 9) 백엔드에 결제 요청하고 요청 불가시 에러페이지 노출, 성공시 주문완료페이지에서 주문번호와 결제금액 노출
 
-- 결제페이지 레이아웃 <br />
+- **결제페이지 레이아웃** <br />
   ![ezgif com-video-to-gif (3)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/b2d182fa-9901-437c-8fed-3666ba2a109a)
 
-- 배송정보 변경 <br />
+- **배송정보 변경** <br />
 ![ezgif com-video-to-gif (4)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/2061ff24-1c94-4374-8c80-af14a8301873)
 
-- 결제하기 <br />
+- **결제하기** <br />
 ![ezgif com-video-to-gif (5)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/4e690db5-df1c-44d5-9fd6-c6ad429fc952)
 
 
@@ -180,11 +180,11 @@ x 버튼으로 개별삭제 <br />
 11) '정보수정' 기능으로 비밀번호와 비밀번호 확인 유효성 검사 구현과 비밀번호 변경을 백엔드와 통신하여 구현
 12) '정보수정' 기능으로 휴대폰 번호, 주소 정보 수정을 백엔드와 통신하여 구현
 
-- 마이페이지 레이아웃 <br />
+- **마이페이지 레이아웃** <br />
 ![ezgif com-video-to-gif (6)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/db295ebc-d106-44fc-89f7-f5e57fe4fe5d)
 
 
-- 주문배송 조회 <br />
+- **주문배송 조회** <br />
 ![ezgif com-video-to-gif (7)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/97f1bfb3-5086-4aaa-a776-6555bbda9b02)
 
 
@@ -192,23 +192,23 @@ x 버튼으로 개별삭제 <br />
 ![ezgif com-video-to-gif (12)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/88028273-b044-4852-9ac6-53eb43be2640)
 
 
-- 관심상품 보기 <br />
+- **관심상품 보기** <br />
 ![ezgif com-video-to-gif (8)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/004a9677-c155-446c-ae18-aac349c72e2e)
 
 
-- 관심상품 삭제 및 장바구니 추가 <br />
+- **관심상품 삭제 및 장바구니 추가** <br />
 ![ezgif com-video-to-gif (9)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/242f1370-0928-45fc-a270-a7d6361eb566)
 
 
-- 정보수정 이동 <br />
+- **정보수정 페이지 이동** <br />
 ![ezgif com-video-to-gif (2)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/d051232b-b117-4ec8-a4a7-f972340adf79)
 
 
-- 비밀번호 수정 <br />
+- **비밀번호 수정** <br />
 ![ezgif com-video-to-gif (10)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/d0474650-8d67-44d8-81f7-b0f9e69219bd)
 
 
-- 회원정보수정 <br />
+- **회원정보수정(주소, 휴대폰번호)** <br />
 ![ezgif com-video-to-gif (11)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/c2f196b2-b98d-404d-aff0-f00d1145b7bc)
 
 
