@@ -153,14 +153,15 @@ x 버튼으로 개별삭제 <br />
 8) '결제정보'에서 주문제품의 가격과 배송비, 총 결제금액 노출
 9) 백엔드에 결제 요청하고 요청 불가시 에러페이지 노출, 성공시 주문완료페이지에서 주문번호와 결제금액 노출
 
-- 결제페이지 레이아웃
+- 결제페이지 레이아웃 <br />
   ![ezgif com-video-to-gif (3)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/b2d182fa-9901-437c-8fed-3666ba2a109a)
 
-- 배송정보 변경
+- 배송정보 변경 <br />
 ![ezgif com-video-to-gif (4)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/2061ff24-1c94-4374-8c80-af14a8301873)
 
-  
-- 결제하기
+- 결제하기 <br />
+![ezgif com-video-to-gif (5)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/4e690db5-df1c-44d5-9fd6-c6ad429fc952)
+
 
 ----------------------------------------------------------
 
