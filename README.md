@@ -188,7 +188,8 @@ x 버튼으로 개별삭제 <br />
 ![ezgif com-video-to-gif (7)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/97f1bfb3-5086-4aaa-a776-6555bbda9b02)
 
 
-- 정기구독 관리 <br />
+- **정기구독 관리** <br />
+![ezgif com-video-to-gif (12)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/88028273-b044-4852-9ac6-53eb43be2640)
 
 
 - 관심상품 보기 <br />
@@ -204,9 +205,11 @@ x 버튼으로 개별삭제 <br />
 
 
 - 비밀번호 수정 <br />
+![ezgif com-video-to-gif (10)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/d0474650-8d67-44d8-81f7-b0f9e69219bd)
 
 
 - 회원정보수정 <br />
+![ezgif com-video-to-gif (11)](https://github.com/wecode-bootcamp-korea/45-1st-Agile-frontend/assets/33508589/c2f196b2-b98d-404d-aff0-f00d1145b7bc)
 
 
 ----------------------------------------------------------
